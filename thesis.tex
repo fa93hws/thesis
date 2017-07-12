@@ -1,11 +1,22 @@
 % /* cspell:disable */
-\documentclass[12pt]{report}
+\documentclass[12pt]{book}
 
+% import package
 \usepackage{graphics}   % include graphics
 \usepackage{float}      % h!
+\usepackage{fancyhdr}
+
+% fancyhdr setting
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RO]{}
+\fancyhead[RE]{\bfseries\leftmark}
+\fancyhead[LE]{}
 
 \begin{document}
 \tableofcontents
+
 
 
 \input{chapter1/introduction.tex}
