@@ -10,7 +10,11 @@
         "NURBS",
         "Isogeometric",
         "IGES",
-        "adaptivity"
+        "adaptivity",
+        "Backpropagation",
+        "perceptron",
+        "Kingma",
+        "Diederik"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
