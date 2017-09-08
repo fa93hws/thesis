@@ -2,16 +2,110 @@
 
 % Isogeometric enhanced SBFEM in 2D
 \section{Introduction}
+\paragraph{}
+The main objective of this paper is to combine the concepts of isogeometric analysis and the SBFEM.
+Non-uniform rational B-splines (NURBS) basis functions are employed to approximate the unknown fields in the circumferential
+    direction.
+This provides a seamless integration with the CAD model.
+We further extend the method to problems with singularities within the framework of linear elastic fracture mechanics and to
+    dynamic analysis.
+The proposed method enhances the conventional IGA and the salient features of the method are:
+    \begin{itemize}
+        \item No tensor-product patches as only the boundary information is required for the stress analysis.
+        \item Feasible to have a n-sided polygonal domain of mixed type/order of the element on the edges.
+                This leads to high flexibility in meshing and mesh transition.
+        \item Model strain/stress singularities without enrichment.
+        \item When employed to study the dynamic response at high frequencies, the proposed method does not need internal mesh.
+    \end{itemize}
 
+\paragraph{}
+% need to refactor
+% The paper is organized as follows.
+% Section 2 introduces the non-uniform rational B-splines.
+% In Section 3 an overview of the SBFEM and important equations pertaining to linear elasticity are given.
+% Section 4 extends the formulation to linear elastic fracture mechanics.
+% The accuracy and the convergence properties of the proposed techniques are demonstrated with benchmark problems in the context of
+%     linear elasticity and linear elastic fracture mechanics in Section 5, followed by concluding remarks in the last section.
+\pagebreak
+%=================================================================================================================================%
 \section{2D NURBS curves}
-    \input{isogeometric_sbfem/numerical_integrations.tex}
-    \input{isogeometric_sbfem/surface_traction.tex}
+\input{isogeometric_sbfem/numerical_integrations.tex}
+\input{isogeometric_sbfem/surface_traction.tex}
     
 \section{Formulation of SBFEM}
 
 \section{NURBS enhanced SBFEM}
-    \input{isogeometric_sbfem/displacement_interpolation.tex}
+\input{isogeometric_sbfem/displacement_interpolation.tex}
 
+%=================================================================================================================================%
 \section{Numerical examples}
-    \input{isogeometric_sbfem/cantilever_beam.tex}
+\paragraph{}
+In this section, the accuracy and the convergence properties of the proposed method are demonstrated with a few
+    benchmark problems.
+First, the proposed method is applied to thick cantilever beam bending, to a plate with a center
+    circular hole and to an L-shaped bracket.
+In the case of L-shaped bracket both the static and the dynamic responses are studied.
+The results are compared with analytical solution where available and with the results obtained using quadratic
+    Lagrange shape functions.
+In the latter part of the section, problems involving strong discontinuities (e.g., plate with an edge crack,
+    angled crack in an orthotropic body) are solved to illustrate the effectiveness of the proposed method.
+It is noted that, when the proposed method is applied to problems involving strong discontinuities, no special 
+    treatment is required, such as, the augmentation of finite element basis or IGA with asymptotic functions
+    \cite{Benson2010} \cite{De2011}.
+For the purpose of error estimation and convergence studies, the relative error, L 2 and H 1 norms are used.
+The displacement norm is given by:
+    \begin{equation}
+        \| u - u^h \|_{L^2(\Omega)}=
+        \sqrt{
+            \int_{\Omega}\left[
+                \left(
+                    u-u^h
+                \right) \cdot
+                \left(
+                    u-u^h
+                \right)
+            \right]
+        }
+    \end{equation}
+
+where $u^h$ is the numerical solution and $u$ is the analytical solution or a reference solution.
+The energy norm is given by
+    \begin{equation}
+        \| u - u^h \|_{H^1(\Omega)}=
+        \sqrt{
+            \int_{\Omega}\left[
+                \left(
+                    \epsilon - \epsilon^h
+                \right)^T D
+                \left(
+                    \epsilon - \epsilon^h
+                \right)
+            \right]
+        }
+    \end{equation}
+
+For the purpose of numerical integration of NURBS basis functions, we employ higher order Gaussian quadrature
+    over each span of the NURBS basis functions.
+Other quadrature rules are possible as outlined in \cite{Hug2010}.
+For Lagrange basis functions, conventional Gauss–Lobatto quadrature is employed.
+
+\input{isogeometric_sbfem/ex_cantilever_beam.tex}
+\input{isogeometric_sbfem/ex_circular_hole.tex}
+\input{isogeometric_sbfem/ex_l_shaped_bracket.tex}
+
+%=================================================================================================================================%
 \section{Conclusions}
+\paragraph{}
+In this chapter, we employed the NURBS basis functions to approximate the unknown fields in the circumferential
+direction within the framework of the SBFEM.
+The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark
+problems in linear elasticity and linear elastic fracture mechanics.
+From the numerical studies, it can be observed that the NURBS basis functions yield superior accuracy when compared
+to Lagrange basis functions of the same order.
+The proposed method overcomes the disadvantages of both the isogeometric finite element analysis and the isogeometric
+boundary element method. 
+Like in the IGAFEM no fundamental solution is required and like in the IGABEM the spatial dimension is reduced by one.
+However, for complicated geometries, to meet the star convexity, subdivision into smaller sub-domains is required.
+When applied to problems with singularities, the proposed method does not require additional functions to span the solution space.
+Moreover, the proposed framework does not require internal discretization to study the dynamic response at high frequencies.
+\pagebreak

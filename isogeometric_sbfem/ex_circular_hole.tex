@@ -1,0 +1,169 @@
+\subsection{Infinite plate with a circular hole}
+\paragraph{}
+In this example, an infinite plate with a traction free hole under uniaxial tension $(\sigma = 1 N/m^2 )$
+along x-axis (see fig.~\ref{fig:circular_hole_geo_bc}) is considered.
+
+    \begin{figure}[h!]
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{isogeometric_sbfem/images/circular_hole_geo_bc.eps}
+        }
+        \caption{ Infinite plate with a circular hole: geometry and boundary conditions}
+        \label{fig:circular_hole_geo_bc}
+    \end{figure}
+    
+The exact solution of the principal stresses in Cartesian coordinate $(r,\theta)$ is given by \cite{Sukumar2001}:
+    \begin{subequations}
+        \begin{align}
+            \sigma_{x}(r,\theta) &= 1 - \frac{a^2}{r^2} \left(
+                \frac{3}{2} \cos2\theta +
+                \cos4\theta
+            \right) +
+            \frac{3a^4}{2r^4} \cos4\theta\\
+            \sigma_{y}(r,\theta) &= -\frac{a^2}{r^2} \left(
+                \frac{1}{2} \cos2\theta -
+                \cos4\theta
+            \right) -
+            \frac{3a^4}{2r^4} \cos4\theta\\
+            \gamma_{xy}(r,\theta) &= -\frac{a^2}{r^2} \left(
+                \frac{1}{2} \sin2\theta +
+                \sin4\theta
+            \right) -
+            \frac{3a^4}{2r^4} \sin4\theta
+        \end{align}
+    \end{subequations}
+
+where $a$ is the radius of the hole.
+Owing to symmetry, only one quarter of the plate is modeled.
+Fig. 10 shows a typical control net used for the study.
+The material properties are: Young’s modulus $E = 100 N/m^2$ and Poisson’s ratio $ν = 0.3$.
+The closed form displacement in Cartesian coordinate is given as
+    \begin{subequations}
+        \begin{align}
+            u_x(r,\theta) = \frac{R}{8G} \left[
+                \frac{r}{R} (\kappa + 1) \cos\theta +
+                2 \frac{R}{r} \left(
+                    (1+ \kappa ) \cos\theta +
+                    \cos3\theta
+                \right) -
+                2 \frac{R^3}{r^3}\cos3\theta
+            \right] \\
+            u_y(r,\theta) = \frac{R}{8G} \left[
+                \frac{r}{R} (\kappa -3) \sin\theta +
+                2 \frac{R}{r} \left(
+                    (1 - \kappa) \sin\theta +
+                    \sin3\theta
+                \right) -
+                2 \frac{R^3}{r^3}\sin3\theta
+            \right]
+        \end{align}
+    \end{subequations}
+
+Where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
+    \begin{equation}
+        \kappa = \left\{
+            \begin{aligned}   
+                3-4v \\
+                \frac{3-v}{1+v}    
+            \end{aligned}
+        \right.
+    \end{equation}
+
+In this example, analytical tractions are applied on the boundary.
+The left and bottom boundary are enforced with a roller boundary condition. $u_x=0$ where $y=0$
+    and $u_y=0$ where $x=0$.
+
+\paragraph{}
+% result analysis
+The convergence rate in terms of the displacement norm is shown in fig.~\ref{fig:circular_hole_convergence}
+It is observed that the error decreases as the order of the shape functions is increased.
+Another unique feature of the proposed method is that the method allows mixed type or order of shape
+    functions to be employed for each line segment.
+For example, in Fig.~\ref{fig:circular_hole_mesh}, the arc A–B and the line segment B–C can be represented
+    by different basis functions, i.e., the arc can be represented by NURBS and the line segment can be represented by
+    conventional Lagrange basis functions.
+Fig.~\ref{fig:circular_hole_basis} shows the plot of the NURBS basis and Lagrange basis functions.
+It can be seen that at point B, the shape function is continuous.
+In order to assess the behavior, we represent the arc with quadratic NURBS and the straight lines with
+    conventional Lagrange shape functions.
+Since the NURBS are interpolatory at the ends, the compatibility requirement is automatically satisfied
+    (see Fig.~\ref{fig:circular_hole_shape_function_convergence}).
+The convergence of the relative error in the L 2 and H 1 is shown in Fig. 13.
+The results from both the approaches converge with mesh refinement
+
+    \begin{figure}
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{1}{
+                \input{isogeometric_sbfem/images/circular_hole_mesh_1.tikz}
+            }            
+        \end{subfigure}
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{1}{
+                \input{isogeometric_sbfem/images/circular_hole_mesh_2.tikz}
+            }
+        \end{subfigure}
+        \caption[Plate with circular hole: mesh]{
+            Plate with circular hole: control net for two different discretizations.
+            Control points ( 
+                \tikz\draw[blue,fill=blue] (0,0) circle (.7ex);
+            ), Boundary lines (
+                \tikz[baseline=-0.5ex]\draw[blue,thick] (0,0) -- (0.5,0);
+            ), Control polygon (
+                \begin{tikzpicture}[baseline=-0.5ex]
+                    \draw[blue,thick,dashed] (0,0) -- (1,0);
+                    \draw[blue,fill=blue] (0.5,0) circle (.7ex);
+                \end{tikzpicture}
+            ),
+            Scaling center (
+                \tikz[baseline=-0.5ex]\draw[blue] (0,0) circle (0.7ex);
+            ).
+        }
+    \label{fig:circular_hole_mesh}
+    \end{figure}
+
+    \begin{figure}
+        \begin{subfigure}[b]{1\linewidth}
+            \centering
+            \scalebox{0.7}{
+                \input{Isogeometric_sbfem/images/circular_hole_displacement_convergence.tikz}
+            }
+            \label{fig:circular_hole_displacement_convergence}
+            \caption{the relative error in displacement norm $(L^2)$}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{1\linewidth}
+            \centering
+            \scalebox{0.7}{
+                \input{Isogeometric_sbfem/images/circular_hole_energy_convergence.tikz}
+            }
+            \label{fig:circular_hole_energy_convergence}
+            \caption{the relative error in the energy norm}
+        \end{subfigure}
+    \caption{Bending of thick cantilever beam: Convergence results}
+    \label{fig:circular_hole_convergence}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{Isogeometric_sbfem/images/circular_hole_basis.png}
+        }
+        \caption{NURBS basis functions and Lagrange basis functions. It can be seen that at Point $B$, the shape functions are continuous}
+        \label{fig:circular_hole_basis}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{Isogeometric_sbfem/images/circular_hole_shape_function_convergence.png}
+        }
+        \caption{
+            Infinite plate with a circular hole: Convergence results for the relative error in the displacement norm ($L^2$) and
+                the relative error in the energy norm. In this case, the arc is represented with NURBS and Lagrange shape functions.
+        }
+        \label{fig:circular_hole_shape_function_convergence}
+    \end{figure}
+
+\pagebreak

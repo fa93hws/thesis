@@ -1,0 +1,27 @@
+\subsection{L-shaped bracket}
+\label{subsection:l_shaped_bracket}
+\paragraph{}
+In this example, consider an L-shaped bracket with isotropic material properties.
+Fig. 14 shows the geometry and the boundary conditions of the problem.
+The L-shaped bracket is fixed at one end and subjected to downward vertical displacement at the other end.
+Plain strain conditions are assumed.
+This problem was studied in \cite{LIPTON2010357} by employing the conventional IGA.
+In their study, the fillet was modeled as a separate path using biquadratic NURBS with nine control points.
+\paragraph{}
+In the present study, the control mesh is directly employed for the stress analysis.
+However, as the domain does not meet the star convexity, we divide the domain into three sub-domains 
+    (see Fig. 14).
+We employ NURBS to represent the fillet, whilst for the straight lines, we employ Lagrange basis functions.
+The results from the present approach are compared with conventional finite element analysis using the commercial
+    software ANSYS$^\circledR$.
+\paragraph{}
+A total of $2000$ $8$-node quadrilateral elements were used for the finite element analysis.
+Fig. 15 shows the von Mises equivalent stress for the L-shaped bracket with and without the fillet.
+As expected, the no fillet case shows higher stress when compared to the L-shaped bracket with the fillet.
+From Fig. 15, it can be observed that the results from the present approach qualitatively match with the FE solution.
+It should be noted that, the proposed method is computationally less intensive than the conventional IGA as it requires
+    only the boundary information.
+
+
+
+\pagebreak

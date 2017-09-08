@@ -10,6 +10,9 @@
         "SBFEM",
         "NURBS",
         "IGES",
+        "IGAFEM",
+        "ANSYS",
+        "IGABEM",
         // math
         "argmin",
         "argmax",
@@ -17,11 +20,20 @@
         "meshless",
         "Isogeometric",
         "piecewise",
+        "orthotropic",
+        "discretizations",
+        "interpolatory",
+        "biquadratic",
+        "discretization",
         // names
         "Kingma",
         "Bézier",
         "Neumann",
         "Diederik",
+        "Lobatto",
+        "Sukumar",
+        "Kolosov",
+        "Mises",
         // command
         "pagebreak",
         "scalebox",
@@ -31,6 +43,7 @@
         "subequations",
         "subfigure",
         "linewidth",
+        "textregistered",
         // others
         "adaptivity",
         "Backpropagation",
