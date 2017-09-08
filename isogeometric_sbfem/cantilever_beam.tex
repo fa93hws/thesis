@@ -1,0 +1,173 @@
+\subsection{Cantilever beam}
+\paragraph{}
+A two-dimensional cantilever beam subjected to a parabolic shear load at the free end is examined as shown
+in fig.~\ref{fig:cantilever_beam_geo_bc}.
+    \begin{figure}[h!]
+    \centering
+        \scalebox{0.8}{\includegraphics{isogeometric_sbfem/images/cantilever_beam_geo_bc.eps}}
+        \caption{ Cantilever beam: Geometry and boundary conditions.}
+        \label{fig:cantilever_beam_geo_bc}
+    \end{figure}
+
+The geometry is: length $L=8m$, height $D=4m$.
+The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ν=0.25$.
+The parabolic shear force is $P$ = $250 N$.
+The exact solutions for the displacements are given by \cite{Aug2008}:
+    \begin{equation}
+        \begin{aligned}
+            u(x,y) &= 
+                \frac{Py}{6 \mean{E} I}
+                \left[
+                    \left(
+                        6L-3x
+                    \right)x
+                    +\left(
+                        2+ \mean{v}
+                    \right)\left(
+                        y^2-\frac{D^2}{4}
+                    \right)
+                \right]
+            \\
+            v(x,y) &=  
+                -\frac{P}{6 \mean{E} I}
+                \left[
+                    3 \mean{v} y^2 \left(
+                        L-x
+                    \right)+
+                    \left(
+                        4+5 \mean{v}
+                    \right)\frac{D^2x}{4}+
+                    \left(
+                        3L-x
+                    \right)x^2
+                \right]        
+        \end{aligned}
+    \label{eq:cantilever_beam_displacement_solution}
+    \end{equation}
+
+where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{v}=v$ and $\mean{E}=E/(1-v^2)$, $\mean{v}=v/(1-v)$ for plane
+    stress and plane strain condition respectively.
+The stress $\sigma$ can be expressed as \cite{Aug2008}
+    \begin{subequations}
+    \begin{align}
+        \sigma_{xx} &= \frac{P(L-x)y}{I} \\
+        \sigma_{yy} &= 0 \\
+        \tau_{xy} &= -\frac{P}{2I} \left[
+            \frac{D^2}{4} - y^2
+        \right]
+    \end{align}
+    \label{eq:cantilever_beam_stress_solution}
+    \end{subequations}
+
+The strain energy can be derived from eq.~\ref{eq:cantilever_beam_stress_solution} and eq.~\ref{eq:cantilever_beam_displacement_solution} as
+    \begin{equation}
+        \frac{1}{2} \left(
+            \frac{D^3 L^3 P^2}{36EI^2} + 
+            \frac{D^5LP^2(1+v)}{60EI^2}
+        \right)
+    \label{eq:cantilever_beam_energy_solution}
+    \end{equation}
+
+\paragraph{}
+In this example, rigid body motion is constrained by fixing 3 DOF on the left edge of the beam.
+$u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$.
+Stress from analytical solution in eq.~\ref{eq:cantilever_beam_stress_solution} are applied on the boundary.
+
+\paragraph{}
+From the description in \ref{subsection:surface_traction}, the expression of the surface traction must be transformed into
+    NURBS-like representation before the stress can be applied on the nodes.
+Although least square is introduced to solve for the ``control stress'' $\Phi_c$, the control points that describe a second
+    order function as surface traction in this example can be solved mathematically.
+Assume the knot vector is evenly spaced and the shape function is in second order, i.e. knot vector $K=[0,0,0,1,1,1]$.
+Weight vector will be uniform because only the straight line is being interpolated, i.e. weight vector $w=[1,1,1]$.
+Three basis function used in B-Spline will be
+    \begin{equation}
+    \begin{aligned}
+        N_1 & = (1-u)^2 \\
+        N_2 & = 2u(1-u) \\
+        N_3 & = u^2
+    \end{aligned}
+    \end{equation}
+
+With the given targeted parabola as $y=ax^2+bx+c,x \in [0,1]$, the generalized control points for the NURBS curve will be
+    \begin{equation}
+        P= \begin{bmatrix}
+            P_x \\
+            P_y
+        \end{bmatrix} = \begin{bmatrix}
+            0 & m & 1 \\
+            c & n & a+b+c
+        \end{bmatrix}
+    \end{equation}
+
+where $m$ and $n$ are unknowns for the second control point.
+B-spline curve $C=[N][[P]$ then can be expressed as in parametric form as
+    \begin{equation}
+        \left\{
+        \begin{aligned}
+            x &= 2u(1-u)m + u^2 \\
+            y &= c(1-u)^2 + 2u(1-u)n + (a+b+c)u^2
+        \end{aligned}
+        \right.
+    \label{eq:parabola_fitting_parametric}
+    \end{equation}
+
+After substituting eq.~\ref{eq:parabola_fitting_parametric} into $y=ax^2+bx+c$, we then have the system of equations as
+    \begin{equation}
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            2c - 2n +a +b \\
+            2n - 2c \\
+            c
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            4am^2-4am+a \\
+            -8am^2 + 4am \\
+            4am^2 -2bm +b \\
+            2bm \\
+            c
+        \end{bmatrix}
+    \end{equation}
+
+$m$ and $n$ then can be solved as
+    \begin{equation}
+        \left\{
+        \begin{aligned}
+            m &= \frac{1}{2} \\
+            n &= \frac{b+2c}{2}
+        \end{aligned}
+        \right.
+    \end{equation}
+
+\paragraph{}
+The numerical convergence of the relative error in the displacement norm and the relative error in the energy norm are
+    shown in fig.~\ref{fig:cantilever_beam_convergence} for various order of NURBS basis functions with refinement.
+Fig.~\ref{fig:cantilever_beam_convergence} also shows the error in the displacement norm when quadratic Lagrange shape
+    functions are used along each edge within the scaled boundary formulation.
+It can be observed that NURBS basis functions yield superior accuracy when compared to Lagrange basis functions of the
+    same order.
+It is seen that as the order of the shape functions is increased, the error decreases while the convergence rate increases.
+
+\begin{figure}
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.7}{
+            \input{Isogeometric_sbfem/images/cantilever_beam_displacement_convergence.tikz}
+        }
+        % \label{fig:cantilever_beam_displacement_convergence}
+        \caption{the relative error in displacement norm $(L^2)$}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.7}{
+            \input{Isogeometric_sbfem/images/cantilever_beam_energy_convergence.tikz}
+        }
+        % \label{fig:cantilever_beam_energy_convergence}
+        \caption{the relative error in the energy norm}
+    \end{subfigure}
+\label{fig:cantilever_beam_convergence}
+\caption{Bending of thick cantilever beam: Convergence results}
+\end{figure}
+\pagebreak

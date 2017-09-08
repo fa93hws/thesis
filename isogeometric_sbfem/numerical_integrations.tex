@@ -1,0 +1,52 @@
+\subsection{Numerical integrations}
+\label{subsection:numerical_integration}
+\paragraph{}
+When computing the integrations in SBFEM % equation
+    , numerical integrations tends to be overwhelmingly preferred over mathematical deduction. 
+The reason behind lies in the flexibility of the numerical and that deduction of exact integrations scheme 
+    to any given shape functions are not feasible. 
+Due to the fact that the polynomials are adopted as the shape function, the numerical integrations methods 
+    such as Legendre Quadrature or Gauss Quadrature provides possibility for an exact integration. 
+An integration quadrature is normally defined as followed:
+    \begin{equation}
+        \int_{-1}^{1}
+        f(x)dx 
+        = \sum_{i=1}^n
+        a_i f(x_i)
+    \label{eq:numerical_integration}
+    \end{equation}
+
+\paragraph{}
+Any given targeted polynomial function defined on $[-1,1]$ can be explicitly expressed as series.
+A set of integration points $\left\{ x_1, x_2, \dots, x_n \right\} \in \left[-1,1\right]$ and the corresponding weight $\left\{ a_1, a_2, 
+    \dots, a_n \right\} \in \mathbb{R}$ determined from the integration quadrature can be adopted to perform an exact integration
+    on the given function.
+\paragraph{}
+Although shape functions used in NURBS are not polynomials, they can be separated into several spans where the function is a 
+    rational polynomial. 
+Based on this property, we are able to apply the numerical integration quadrature on each of these spans and achieve a reasonably 
+    accurate result.
+In other words, the NURBS curve with a knot vector of 
+$[ 
+    \underbrace{-1,-1,\dots,-1}_{p+1}, 
+    u_0,\dots,u_n, 
+    \underbrace{1,1,\dots,1 }_{p+1}
+]$
+can be integrated as
+\begin{equation}
+    \int_{-1}^{1} R(u) du = \int_{-1}^{u_0} R(u)du + 
+                            \int_{u_0}^{u_1} R(u)du + \dots +
+                            \int_{u_n}^1 R(u)du
+\label{eq:numerical_integration_piecewise}
+\end{equation}
+
+\paragraph{}
+Since the rational polynomials instead of the usual polynomials are utilized as the shape functions in NURBS, the difference between
+    output from eq.~\ref{eq:numerical_integration_piecewise} and the analytical solution will be so large that can not be regarded as
+    machine error.
+Based on eq.~\ref{eq:rational_basis_function} we can conclude that the basis functions constructed by rational polynomials become
+    non-rational if and only if the weight vector is identical i.e. $\left\{ w \right\} = \left[ 1,1,\dots,1 \right]$ after normalization.
+That indicates the error of numerical integration will be decreased when the weight vector of the NURBS curves becomes more uniform as
+    the basis functions are more close to non-rational polynomials.
+In order to achieve this target, either or both of the knot insertion or the order elevation can be used.
+\pagebreak
