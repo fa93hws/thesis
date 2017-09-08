@@ -5,6 +5,10 @@
 \usepackage{graphics}   % include graphics
 \usepackage{float}      % h!
 \usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 % fancyhdr setting
 \pagestyle{fancy}
@@ -13,11 +17,16 @@
 \fancyhead[RO]{}
 \fancyhead[RE]{\bfseries\leftmark}
 \fancyhead[LE]{}
+% page setting
+\doublespacing
+\allsectionsfont{\singlespacing}
+\raggedbottom
+% math symbols
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 \begin{document}
 \tableofcontents
-
-
 
 \input{chapter1/introduction.tex}
 \input{chapter2/literature.tex}

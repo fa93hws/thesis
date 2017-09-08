@@ -6,15 +6,26 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
+        // abb
         "SBFEM",
         "NURBS",
-        "Isogeometric",
         "IGES",
+        // math
+        "argmin",
+        // terms
+        "meshless",
+        "Isogeometric",
+        // names
+        "Kingma",
+        "Bézier",
+        "Neumann",
+        "Diederik",
+        // command
+        "pagebreak",
+        // others
         "adaptivity",
         "Backpropagation",
-        "perceptron",
-        "Kingma",
-        "Diederik"
+        "perceptron"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
