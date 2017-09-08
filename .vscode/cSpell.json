@@ -25,6 +25,10 @@
         "interpolatory",
         "biquadratic",
         "discretization",
+        "dilatational",
+        "discretized",
+        "subdomain",
+        "subdomains",
         // names
         "Kingma",
         "Bézier",
@@ -34,6 +38,7 @@
         "Sukumar",
         "Kolosov",
         "Mises",
+        "Newmark's",
         // command
         "pagebreak",
         "scalebox",

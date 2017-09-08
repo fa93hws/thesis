@@ -10,8 +10,8 @@ in fig.~\ref{fig:cantilever_beam_geo_bc}.
     \end{figure}
 
 The geometry is: length $L=8m$, height $D=4m$.
-The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ν=0.25$.
-The parabolic shear force is $P$ = $250 N$.
+The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ \nu =0.25$.
+The parabolic shear force is $P = 250 N$.
 The exact solutions for the displacements are given by \cite{Aug2008}:
     \begin{equation}
         \begin{aligned}
@@ -22,7 +22,7 @@ The exact solutions for the displacements are given by \cite{Aug2008}:
                         6L-3x
                     \right)x
                     +\left(
-                        2+ \mean{v}
+                        2+ \mean{\nu}
                     \right)\left(
                         y^2-\frac{D^2}{4}
                     \right)
@@ -31,11 +31,11 @@ The exact solutions for the displacements are given by \cite{Aug2008}:
             v(x,y) &=  
                 -\frac{P}{6 \mean{E} I}
                 \left[
-                    3 \mean{v} y^2 \left(
+                    3 \mean{\nu} y^2 \left(
                         L-x
                     \right)+
                     \left(
-                        4+5 \mean{v}
+                        4+5 \mean{\nu}
                     \right)\frac{D^2x}{4}+
                     \left(
                         3L-x
@@ -45,7 +45,7 @@ The exact solutions for the displacements are given by \cite{Aug2008}:
     \label{eq:cantilever_beam_displacement_solution}
     \end{equation}
 
-where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{v}=v$ and $\mean{E}=E/(1-v^2)$, $\mean{v}=v/(1-v)$ for plane
+where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane
     stress and plane strain condition respectively.
 The stress $\sigma$ can be expressed as \cite{Aug2008}
     \begin{subequations}
