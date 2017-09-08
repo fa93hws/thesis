@@ -4,9 +4,16 @@
 % import package
 \usepackage{graphics}   % include graphics
 \usepackage{float}      % h!
+% figure
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{subcaption}
+% page
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{sectsty}
+% math
 \usepackage{amssymb}
 \usepackage{amsmath}
 
@@ -17,15 +24,21 @@
 \fancyhead[RO]{}
 \fancyhead[RE]{\bfseries\leftmark}
 \fancyhead[LE]{}
+
 % page setting
 \doublespacing
 \allsectionsfont{\singlespacing}
 \raggedbottom
+
 % math symbols
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand*\mean[1]{\overline{#1}}
 
+%pdf plot
+\pgfplotsset{compat=1.15}
 \begin{document}
+
 \tableofcontents
 
 \input{chapter1/introduction.tex}
@@ -36,11 +49,11 @@
 \input{chapter6/octree.tex}
 \input{chapter7/conclusions.tex}
 
-% /* cspell:enabled*/
-
-
-
-
+% reference
+\pagebreak
+\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{ref}
 
 
 

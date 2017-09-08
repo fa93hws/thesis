@@ -12,9 +12,11 @@
         "IGES",
         // math
         "argmin",
+        "argmax",
         // terms
         "meshless",
         "Isogeometric",
+        "piecewise",
         // names
         "Kingma",
         "Bézier",
@@ -22,10 +24,19 @@
         "Diederik",
         // command
         "pagebreak",
+        "scalebox",
+        "includegraphics",
+        "bmatrix",
+        "mathbb",
+        "subequations",
+        "subfigure",
+        "linewidth",
         // others
         "adaptivity",
         "Backpropagation",
-        "perceptron"
+        "perceptron",
+        // file names
+        "octree"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
