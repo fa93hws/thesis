@@ -10,25 +10,25 @@ A surface traction $\Phi$ can be regarded as Neumann boundary condition which ca
         [N]
         \Phi_n
         d\Gamma
-    \label{eq:neumann_bc}
+    \label{iso_eq:neumann_bc}
     \end{equation}
 where $[N]$ describe the shape functions and $\Phi_n$ is the surface traction on the nodes.
 
 \paragraph{}
 As mentioned in \ref{subsection:numerical_integration}, numerical integration would be much more preferred over mathematical deduction
-when the target function is an input. In the flavour of numerical integration, eq.~\ref{eq:neumann_bc} can be expressed as followed.
+when the target function is an input. In the flavour of numerical integration, eq.~\ref{iso_eq:neumann_bc} can be expressed as followed.
     \begin{equation}
         {F}=-\sum_{i=1}^n
         a_i
         [N(\xi_i)]
         \Phi_n
-    \label{eq:neumann_bc_numerical}
+    \label{iso_eq:neumann_bc_numerical}
     \end{equation}
 Where $\xi_i$ is the integration points and $a$ is the weights,
 $n$ is the number of integration points and different quadrature rule need different number to achieve a optimal accuracy.
 
 \paragraph{}
-It can be found that the term $[N(\xi_i)] \Phi_n$ is corresponding to $f(x)$ in eq.~\ref{eq:numerical_integration}.
+It can be found that the term $[N(\xi_i)] \Phi_n$ is corresponding to $f(x)$ in eq.~\ref{iso_eq:numerical_integration}.
 In conventional FEM or SBFEM, $\Phi_n$ can be determined as the real values on the nodes because geometrically speaking,
     its shape function is interpolated from the given set of points.
 In other words, all nodes that determine the shape function in traditional FEM or SBFEM must be on the interpolating function.
@@ -36,7 +36,7 @@ However, this is not the case in NURBS curves where it is the control points tha
     shape function.
     % figure required
 In NURBS curves, apart from the first and the last points, the control points are not necessarily on the curves.
-This prevent us from adopting the physical value on the nodes as $\Phi_n$ in eq.~\ref{eq:neumann_bc_numerical}.
+This prevent us from adopting the physical value on the nodes as $\Phi_n$ in eq.~\ref{iso_eq:neumann_bc_numerical}.
 Instead, a set of ``control stress'' $\Phi_c$, the control points of another NURBS curve that represent the surface traction
     geometrically, need to be determined as \footnote{$\argmin_x f(x) = \left\{
         x | x \in S \wedge \forall y \in S : f(y) \geq f(x)
@@ -51,7 +51,7 @@ Instead, a set of ``control stress'' $\Phi_c$, the control points of another NUR
                     \Phi_c
             \|^2
             d\xi            
-    \label{eq:surface_traction_fitting}
+    \label{iso_eq:surface_traction_fitting}
     \end{equation}
 
 \paragraph{}
@@ -60,7 +60,7 @@ It means that ``control stress'' $\Phi_c$ describe a minimum mean squared error 
 One of the simplest mathematical method to determine $\Phi_c$ will be least square method.
 Given the fact that the shape functions of this NURBS curve will be the same as that describe the geometry, $\left[ N(\xi) \right]$
     can be considered as known.
-By selecting $n$ sample points over the domain of the $\Phi$, eq.~\ref{eq:surface_traction_fitting} can be rewrite as
+By selecting $n$ sample points over the domain of the $\Phi$, eq.~\ref{iso_eq:surface_traction_fitting} can be rewrite as
     \begin{equation}
         \Phi_c = \argmin_{\Phi_c}
             \frac{1}{n}
@@ -70,7 +70,7 @@ By selecting $n$ sample points over the domain of the $\Phi$, eq.~\ref{eq:surfac
                     \left[ N(\xi_i) \right]
                     \Phi_c
             \|^2
-    \label{eq:surface_traction_fitting_discrete}
+    \label{iso_eq:surface_traction_fitting_discrete}
     \end{equation}
 Then ``control stress'' $\Phi_c$ can be solved by least square as
     \begin{equation}
@@ -81,12 +81,12 @@ Then ``control stress'' $\Phi_c$ can be solved by least square as
         \left[ N(\xi) \right]^T
         \Phi(\xi)
     \end{equation}
-and eq.~\ref{eq:neumann_bc_numerical} in the case where NURBS is in use can be rewrite as
+and eq.~\ref{iso_eq:neumann_bc_numerical} in the case where NURBS is in use can be rewrite as
     \begin{equation}
         {F}=-\sum_{i=1}^n
         a_i
         [N(\xi_i)]
         \Phi_c
-    \label{eq:neumann_bc_numerical_NURBS}
+    \label{iso_eq:neumann_bc_numerical_NURBS}
     \end{equation}
 \pagebreak

@@ -13,7 +13,7 @@ An integration quadrature is normally defined as followed:
         f(x)dx 
         = \sum_{i=1}^n
         a_i f(x_i)
-    \label{eq:numerical_integration}
+    \label{iso_eq:numerical_integration}
     \end{equation}
 
 \paragraph{}
@@ -37,14 +37,14 @@ can be integrated as
     \int_{-1}^{1} R(u) du = \int_{-1}^{u_0} R(u)du + 
                             \int_{u_0}^{u_1} R(u)du + \dots +
                             \int_{u_n}^1 R(u)du
-\label{eq:numerical_integration_piecewise}
+\label{iso_eq:numerical_integration_piecewise}
 \end{equation}
 
 \paragraph{}
 Since the rational polynomials instead of the usual polynomials are utilized as the shape functions in NURBS, the difference between
-    output from eq.~\ref{eq:numerical_integration_piecewise} and the analytical solution will be so large that can not be regarded as
+    output from eq.~\ref{iso_eq:numerical_integration_piecewise} and the analytical solution will be so large that can not be regarded as
     machine error.
-Based on eq.~\ref{eq:rational_basis_function} we can conclude that the basis functions constructed by rational polynomials become
+Based on eq.~\ref{iso_eq:rational_basis_function} we can conclude that the basis functions constructed by rational polynomials become
     non-rational if and only if the weight vector is identical i.e. $\left\{ w \right\} = \left[ 1,1,\dots,1 \right]$ after normalization.
 That indicates the error of numerical integration will be decreased when the weight vector of the NURBS curves becomes more uniform as
     the basis functions are more close to non-rational polynomials.

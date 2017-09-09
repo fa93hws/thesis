@@ -1,12 +1,12 @@
 \subsection{Cantilever beam}
 \paragraph{}
 A two-dimensional cantilever beam subjected to a parabolic shear load at the free end is examined as shown
-in fig.~\ref{fig:cantilever_beam_geo_bc}.
+in fig.~\ref{iso_fig:cantilever_beam_geo_bc}.
     \begin{figure}[h!]
     \centering
         \scalebox{0.8}{\includegraphics{isogeometric_sbfem/images/cantilever_beam_geo_bc.eps}}
         \caption{ Cantilever beam: Geometry and boundary conditions.}
-        \label{fig:cantilever_beam_geo_bc}
+        \label{iso_fig:cantilever_beam_geo_bc}
     \end{figure}
 
 The geometry is: length $L=8m$, height $D=4m$.
@@ -42,7 +42,7 @@ The exact solutions for the displacements are given by \cite{Aug2008}:
                     \right)x^2
                 \right]        
         \end{aligned}
-    \label{eq:cantilever_beam_displacement_solution}
+    \label{iso_eq:cantilever_beam_displacement_solution}
     \end{equation}
 
 where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane
@@ -56,22 +56,22 @@ The stress $\sigma$ can be expressed as \cite{Aug2008}
             \frac{D^2}{4} - y^2
         \right]
     \end{align}
-    \label{eq:cantilever_beam_stress_solution}
+    \label{iso_eq:cantilever_beam_stress_solution}
     \end{subequations}
 
-The strain energy can be derived from eq.~\ref{eq:cantilever_beam_stress_solution} and eq.~\ref{eq:cantilever_beam_displacement_solution} as
+The strain energy can be derived from eq.~\ref{iso_eq:cantilever_beam_stress_solution} and eq.~\ref{iso_eq:cantilever_beam_displacement_solution} as
     \begin{equation}
         \frac{1}{2} \left(
             \frac{D^3 L^3 P^2}{36EI^2} + 
             \frac{D^5LP^2(1+v)}{60EI^2}
         \right)
-    \label{eq:cantilever_beam_energy_solution}
+    \label{iso_eq:cantilever_beam_energy_solution}
     \end{equation}
 
 \paragraph{}
 In this example, rigid body motion is constrained by fixing 3 DOF on the left edge of the beam.
 $u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$.
-Stress from analytical solution in eq.~\ref{eq:cantilever_beam_stress_solution} are applied on the boundary.
+Stress from analytical solution in eq.~\ref{iso_eq:cantilever_beam_stress_solution} are applied on the boundary.
 
 \paragraph{}
 From the description in \ref{subsection:surface_traction}, the expression of the surface traction must be transformed into
@@ -109,10 +109,10 @@ B-spline curve $C=[N][[P]$ then can be expressed as in parametric form as
             y &= c(1-u)^2 + 2u(1-u)n + (a+b+c)u^2
         \end{aligned}
         \right.
-    \label{eq:parabola_fitting_parametric}
+    \label{iso_eq:parabola_fitting_parametric}
     \end{equation}
 
-After substituting eq.~\ref{eq:parabola_fitting_parametric} into $y=ax^2+bx+c$, we then have the system of equations as
+After substituting eq.~\ref{iso_eq:parabola_fitting_parametric} into $y=ax^2+bx+c$, we then have the system of equations as
     \begin{equation}
         \begin{bmatrix}
             0 \\
@@ -142,8 +142,8 @@ $m$ and $n$ then can be solved as
 
 \paragraph{}
 The numerical convergence of the relative error in the displacement norm and the relative error in the energy norm are
-    shown in fig.~\ref{fig:cantilever_beam_convergence} for various order of NURBS basis functions with refinement.
-Fig.~\ref{fig:cantilever_beam_convergence} also shows the error in the displacement norm when quadratic Lagrange shape
+    shown in fig.~\ref{iso_fig:cantilever_beam_convergence} for various order of NURBS basis functions with refinement.
+Fig.~\ref{iso_fig:cantilever_beam_convergence} also shows the error in the displacement norm when quadratic Lagrange shape
     functions are used along each edge within the scaled boundary formulation.
 It can be observed that NURBS basis functions yield superior accuracy when compared to Lagrange basis functions of the
     same order.
@@ -155,7 +155,7 @@ It is seen that as the order of the shape functions is increased, the error decr
         \scalebox{0.7}{
             \input{isogeometric_sbfem/images/cantilever_beam_displacement_convergence.tikz}
         }
-        \label{fig:cantilever_beam_displacement_convergence}
+        \label{iso_fig:cantilever_beam_displacement_convergence}
         \caption{the relative error in displacement norm $(L^2)$}
     \end{subfigure}
     
@@ -164,11 +164,11 @@ It is seen that as the order of the shape functions is increased, the error decr
         \scalebox{0.7}{
             \input{isogeometric_sbfem/images/cantilever_beam_energy_convergence.tikz}
         }
-        \label{fig:cantilever_beam_energy_convergence}
+        \label{iso_fig:cantilever_beam_energy_convergence}
         \caption{the relative error in the energy norm}
     \end{subfigure}
 \caption{Bending of thick cantilever beam: Convergence results}
-\label{fig:cantilever_beam_convergence}
+\label{iso_fig:cantilever_beam_convergence}
 \end{figure}
 
 \pagebreak
