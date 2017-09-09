@@ -29,13 +29,19 @@ The proposed method enhances the conventional IGA and the salient features of th
 \pagebreak
 %=================================================================================================================================%
 \section{2D NURBS curves}
-\input{isogeometric_sbfem/numerical_integrations.tex}
-\input{isogeometric_sbfem/surface_traction.tex}
+\input{isogeometric_sbfem/nurbs_numerical_integrations.tex}
     
-\section{Formulation of SBFEM}
+
+
 
 \section{NURBS enhanced SBFEM}
-\input{isogeometric_sbfem/displacement_interpolation.tex}
+\input{isogeometric_sbfem/sbfem_formulation.tex}
+
+\input{isogeometric_sbfem/sbfem_linear_fracture.tex}
+
+\input{isogeometric_sbfem/sbfem_surface_traction.tex}
+
+\input{isogeometric_sbfem/sbfem_displacement_interpolation.tex}
 
 %=================================================================================================================================%
 \section{Numerical examples}
@@ -94,6 +100,14 @@ For Lagrange basis functions, conventional Gauss–Lobatto quadrature is employe
 \input{isogeometric_sbfem/ex_circular_hole.tex}
 
 \input{isogeometric_sbfem/ex_l_shaped_bracket.tex}
+
+\input{isogeometric_sbfem/ex_circular_disk_edge_crack.tex}
+
+\input{isogeometric_sbfem/ex_edge_crack.tex}
+
+\input{isogeometric_sbfem/ex_angled_crack.tex}
+
+\input{isogeometric_sbfem/ex_bi_material_plate_with_notch.tex}
 
 %=================================================================================================================================%
 \section{Conclusions}

@@ -29,6 +29,7 @@
         "discretized",
         "subdomain",
         "subdomains",
+        "bimaterial",
         // names
         "Kingma",
         "Bézier",
