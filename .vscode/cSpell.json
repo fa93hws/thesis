@@ -31,6 +31,9 @@
         "subdomain",
         "subdomains",
         "bimaterial",
+        "polyline",
+        "polylines",
+        "quadtree",
         // names
         "Kingma",
         "Bézier",

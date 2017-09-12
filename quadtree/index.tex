@@ -1,20 +1,33 @@
 %!TEX root = ../thesis.tex
-
 \chapter{Quad-tree mesh in 2D analysis}
 
 \section{Introduction}
+\paragraph{}
+The main objective of this chapter is to introduce a way that can utilize the engineering design available in CAD or other popular commercial softwares for 2D case.
+The data format that used in almost all engineering design softwares that can represent the geometry exactly is IGES file.
+It will be used as a bridge between design and numerical analysis.
+
+\paragraph{}
+After the NURBS represented exact geometry has been extracted from the IGES file, a quad-tree mesh generation algorithm described in \ref{qt_sc:quadtree} will be adopted to generate high quality mesh.
+Either the NURBS basis functions or the traditional shape function can be used as the shape function of the SBFEM solver.
+% We further extend the method to problems with singularities within the framework of linear elastic fracture mechanics.
+The proposed method enhances the conventional SBFEM and the salient features of the method are:
+    \begin{itemize}
+        \item No human effort need to generate the mesh
+        \item Exact geometry will be retain
+        \item High quality mesh from the quad-tree algorithm
+    \end{itemize}
+\pagebreak
 
 \section{CAD output in 2D}
+\label{qt_sc:iges}
+\input{quadtree/iges.tex}
 
 \section{NURBS utilization}
-
-    \subsection{Distance function}
-
-    \subsection{Finding intersections}
-
-    \subsection{Optimization}
+\label{qt_sc:nurbs}
 
 \section{Quad-tree structure}
+\label{qt_sc:quadtree}
 
 \section{Numerical Examples}
 
