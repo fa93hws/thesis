@@ -13,7 +13,7 @@ This section will introduce the procedure to generate the background mesh.
 First of all, we start with one square which is the root of the tree.
 The size of it will be slightly larger than the normalized input geometry and it is selected as $16 \times 16$ in this chapter.
 After that, the root square will be divided into millions (defined by resolution, defined as $2^{res} \times 2^{res}$) smaller ones like pixel in the image.
-Then, $2^{s_max} \times 2^{s_max}$ pixels will be group into the first layer of the tree, or initial background mesh.
+Then, $2^{s_{max}} \times 2^{s_{max}}$ pixels will be group into the first layer of the tree, or initial background mesh.
 It is used to control the maximum allowable mesh size globally or separately for different material regions.
 There are two ways to decided whether each individual square need to be refined or not, seed points method and curve size field and both of them will be used depends on the requirement of the controlling over the mesh.
 

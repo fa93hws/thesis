@@ -72,7 +72,7 @@ $ can be derived as:
 For NURBS curve there is no closed form chord ratio that can be utilized.
 However, similar idea can be applied numerically.
 The NURBS curves are first divided into serval smaller ones based on the knot vector.  % may be explained in detail
-Since the order of each sub-divided NURBS curve used in engineering softwares are predominantly lower or equal to three, the sub-curves then can be divided into two classes, convex curves or concave curve with an inflection point as shown in fig.~\ref{qt_fig:iges_chord_ratio_nurbs}.
+Since the order of each subdivided NURBS curve used in engineering softwares are predominantly lower or equal to three, the sub-curves then can be divided into two classes, convex curves or concave curve with an inflection point as shown in fig.~\ref{qt_fig:iges_chord_ratio_nurbs}.
     \begin{figure}
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
@@ -93,7 +93,7 @@ Since the order of each sub-divided NURBS curve used in engineering softwares ar
     \end{figure}
 
 In order to determine the target NURBS curve is convex or concave, a cross product to assess whether the control net will be conducted.
-Assuming the target sub-divided NURBS curve is cubic, there will be four control points $P_1,P_2,P_3$ and $P_4$.
+Assuming the target subdivided NURBS curve is cubic, there will be four control points $P_1,P_2,P_3$ and $P_4$.
 If signs of $cross(\overrightarrow{P_1P_2},\overrightarrow{P_2P_3})$ and $cross(\overrightarrow{P_1P_2},\overrightarrow{P_2P_3})$ are the same, then the curve is convex. Otherwise it will be concave.
 
 %=====================================================================================================================%
@@ -114,9 +114,9 @@ The target is then split one NURBS curve segment into two.
 If any arc length to chord length ratio of these two ratio is below the tolerance given, the splitting will be processed recursively.
 Based on the properties of the convex set, there is one and only one parameter $u_m$ that satisfy the condition.
 As a consequence, numerical method such as Newton's method can be adopted to find it.
-For a given $u_n$, the next iteration will be:
+For a given $u_m$, the next iteration will be:
     \begin{equation}
-        u_{n_{new}} =  u_n - \frac{f(u_n)}{f'(u_n)}
+        u_{m_{new}} =  u_n - \frac{f(u_m)}{f'(u_m)}
     \end{equation}
 
 where 
@@ -127,7 +127,63 @@ where
         \end{bmatrix}
     \end{equation}
 
+The procedure to find $u_m$ can be concluded in Algorithm.~\ref{qdt_alg:split_convex_nurbs} and Algorithm.~\ref{qdt_alg:discrete_convex_nurbs} describe the procedure to find all knots corresponding to the vertexes of the polylines recursively.
+\begin{algorithm}
+    function splitConvexCurve(curve,u\_0, u\_n) \\
+    \Input{
+        curve, the input NURBS curve \\
+        u\_0,u\_n, two end knots of the NURBS curve
+    }
+    \Output{
+        u\_m, in fig.~\ref{qt_fig:iges_chord_split_convex_sum}
+    }
+    u\_m = (u\_n + u\_0) * 0.5 \\
+    pt\_0, pt\_n = getCurvePts(u\_0, u\_n) \\
+    vector\_0n = Vector(pt\_0,pt\_n) \\
+    angle = vector\_0n.atan2() \\
+    deri1\_m = getCurveDeri(u\_m,1) \\
+    angle\_m = deri1\_m.atan2() \\
+    \While{abs(angle\_m-anlge)$<10^{-4}$}
+      {
+        deri1\_m, deri2\_m = getCurveDeri(u\_m,2) \\
+        angle\_m = atan2(deri1\_m.y, deri1\_m.x)  \\
+        fu = deri1\_m * vector\_0n.normalVector() \\
+        fu\_deri = deri2\_m * vector\_0n.normalVector() \\
+        u\_m = u\_m - fu / fu\_deri \\
+        deri1\_m = getCurveDeri(u\_m,1) \\
+        angle\_m = deri1\_m.atan2()
+      }
+    \caption{Split a convex NURBS curve into two}
+    \label{qdt_alg:split_convex_nurbs}
+\end{algorithm}
 
+
+\begin{algorithm}
+    function discreteConvexCurve(curve,eps,u\_0,u\_n,u)
+    \Input{
+        curve, the input NURBS curve \\
+        eps, the tolerance of the chord to arc-length ratio \\
+        u\_0,u\_n, two end knots of the NURBS curve
+    }
+    \Output{
+        u, the vector of the knot corresponding to vertexes of the polylines
+    }
+    arcLength = curve.arcLength(u\_0,u\_n) \\
+    chordLength = curve.getPt(u\_0).distanceTo(curve.getPt(u\_n)) \\
+    \eIf{1-chordLength/arcLength $<$ eps}{
+        return
+    }{
+        u\_m = (splitConvexCurve(curve,u\_0,u\_n))
+        u.add(u\_m)
+        discreteConvexCurve(curve,eps,u\_0,u\_m)
+        discreteConvexCurve(curve,eps,u\_m,u\_n)
+        return
+    }
+    
+    
+\caption{Discrete a convex NURBS curve recursively}
+\label{qdt_alg:discrete_convex_nurbs}
+\end{algorithm}
 %=====================================================================================================================%
 \subsubsection{Concave curves}
 \paragraph{}
@@ -148,21 +204,12 @@ where
 %=====================================================================================================================%
 \subsubsection{Calculation of the arc length}
 \paragraph{}
-The arc length of the NURBS curve defined on $u \in [u_0, u_1]$ can be expressed as
+The arc length of the NURBS curve defined on $u \in [u_0, u_n]$ can be expressed as
     \begin{equation}
-        L = \int_{u_0} ^{u_1} \sqrt{C_x^2(u) + C_y^2(u)} du
+        L = \int_{u_0} ^{u_n} \sqrt{C_x^2(u) + C_y^2(u)} du
     \end{equation}
 
 The integration can be solved by the help of the numerical integration quadrature described in \ref{iso_subsection:numerical_integration} as:
     \begin{equation}
         L = \sum_{i=0}^n a_i \sqrt{C_x^2(u_i) + C_y^2(u_i)}
     \end{equation}
-
-% \begin{algorithm}
-% \caption{Discretization of a nurbs curve}
-% \begin{algorithmic}[1]
-%     \Procedure{YourFunction}{$x$}
-%     \State Do Something
-%     \EndProcedure
-% \end{algorithmic}
-% \end{algorithm}

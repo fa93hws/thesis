@@ -17,6 +17,7 @@
         // math
         "argmin",
         "argmax",
+        "Deri",
         // terms
         "meshless",
         "Isogeometric",
