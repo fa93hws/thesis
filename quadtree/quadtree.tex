@@ -6,7 +6,7 @@ As a consequence, the first step is to normalize the geometry into a uniform spa
 
 \subsection{Background mesh}
 \paragraph{}
-Background mesh, like its name, describe a mesh in the background. %fig
+Background mesh describes a mesh in the background. %fig
 Its density is decided by the geometry.
 This section will introduce the procedure to generate the background mesh.
 \paragraph{}
@@ -27,11 +27,35 @@ It is used to control the maximum allowable mesh size globally or separately for
 
 \paragraph{}
 % generating the initial mesh without balance
-Criteria to decided whether each individual square in the initial mesh need to be refined or not is seed points.
+Criteria to decided whether each individual square in the initial mesh need to be refined or not is the seed points.
 The curve will be uniformly discretized into a given number of seed points uniformly and the mesh will be refined until the number of the seed points within the square is less than the threshold.
-However, finer mesh is expected around the segment with high curvature in the curve and the uniform discretization does not emphasis on them.
+However, finer mesh is expected at the region where geometry with high curvature appeared but the uniform discretization does not generate different number of points based on curvature.
 It can be solved by treating each segment of the polylines as an individual curve when generating seed points.
 Due to the fact that algorithm described in .~\ref{qdt_section:iges_output} guarantee the chord length to arc length ratio, polylines ought to have finer segments at the position where curvature is significant.
+
+\paragraph{}
+% only two intersections allowed
+Although seed points provides a good guide on the mesh density, situations where high density mesh is required while few seed points appeared may happen as plotted in fig.~\ref{qdt_fig:qdt_seed_point_problem}.
+The geometry limits the seed points due to the lack of curvature.
+While, it is expected that the square element will be refined at least once as one layer of mesh may not be appropriate to formulate a thin shell structure. 
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_seed_points_problem}
+        }
+        \caption[Limitation of the seed points]{
+            Limitation of the seed points: few seed points will be generated over a straight line and few seed points will be included in the square element which leads to unexpected behavior.
+            \tikz\draw[black,fill=black] (0,0) circle (.7ex);
+            stands for the seed points.
+        }
+        \label{qdt_fig:qdt_seed_point_problem}
+    \end{figure}
+As a result, another restriction will be adopted together with the seed points to prevent this kind of situation from happening.
+Element with more than two unique intersections will be tagged to be refined no matter how many seed points it contains.
+In numerical calculation, two points may be regarded as one if they are close enough to each others.
+Normalization of the geometry described at the beginning of this section helps to define a meaningful tolerance to handle numerical error.
+
+
 
 % balance the initial mesh
 \paragraph{}
