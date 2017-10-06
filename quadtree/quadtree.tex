@@ -130,14 +130,97 @@ As a comparison, SBFEM provides greater flexibility on the element, n-sides poly
         \label{qdt_fig:sbfem_adv_2}
     \end{figure}
 
+
+\pagebreak
+
+
 %=====================================================================================================================%
-\subsection{Hardpoint treatment}
+\subsection{Hard point treatment}
+\paragraph{}
+%introduction
+Hard point is a kind of point in the geometry that must be meshed as a node or scaling center.
+When more than two materials are involved, it is common to have some hard points to make sure the point shared by three material can be properly formulated as shown in fig.~\ref{qdt_fig:qdt_hard_point_demo}
+    \begin{figure}[!ht]
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{0.8}{
+                \includegraphics{quadtree/images/qdt_hard_point_demo.eps}
+            }
+        \caption{Hard point is meshed as node}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{0.8}{
+                \includegraphics{quadtree/images/qdt_hard_point_demo_2.eps}
+            }
+        \caption{hard point is meshed as scaling center}
+        \label{qdt_fig:qdt_hard_point_demo_sc}
+        \end{subfigure}
+        \caption[Example of a hard point]{Example of a hard point, elements around the point shared by three material must be properly divided into three.}
+        \label{qdt_fig:qdt_hard_point_demo}
+    \end{figure}
+The difficulty in treating a hard point will be the position of itself in the background mesh.
+The further it is away from the geometric center of the background mesh, the poorer the quality of mesh will be generated.
+If the hard point in fig.~\ref{qdt_fig:qdt_hard_point_demo_sc} is located somewhere that is very close to the left boundary of the background mesh, the mesh for material one after cutting may be a quite elongated and twisted concave unit.
+Besides, the requirement of the scaling center in the SBFEM can always be satisfied no matter where it is located in a convex polygon.
+The opposite is true for a concave polygon, special treatment must be adopted to fullfil this requirement.
+As a consequence, generally speaking, a convex mesh may always be preferred over a concave one and hard point can be the only source that will introduce concave polygons in most of the situation.
+Although algorithm finding qualified scaling center in a concave polygon exists, the quality of the mesh may not be satisfactory even the scaling center is located on the vertex.
+
+
+\paragraph{}
+% make sure the hard point is close to the center of the background mesh
+The first step to treat the hard point will be trying to locate the background mesh so that the hard point is close enough to its geometric center.
+The ideal size of the background mesh shall ensure that only one hard point is in it and that no points from any other curves should be located in it.
+As a consequence, the size of the containing square $box\_size$ is set to be one third of the distance to the nearest curves or half of the distance to the nearest hard point, whichever is smaller.
+These parameter usually result in a valid and large enough background mesh that can treat the hard point easily. 
+When building the background cell containing hard point in the algorithm, it will be implemented by have a considerably fine mesh within the range of the hard point and merge all cells in that range into one larger cell to be the background one.
+Size of the ``considerably fine'' mesh $size\_field$ will be defined with the adjacent vertexes of the hard point as in eq.~\ref{qdt_eq:qdt_hard_point_size_field}
+    \begin{equation}
+        size\_field = \frac{box\_size}{
+            2^{
+                round(
+                    \log(\frac{2 \pi}{ min(\alpha)})-1
+                )
+            }
+        }
+    \label{qdt_eq:qdt_hard_point_size_field}
+    \end{equation}
+where $\alpha$ is the minimal angle $min(\alpha_1, \alpha_2, \dots, \alpha_n)$ in fig.~\ref{qdt_fig:qdt_hard_point_setp_1}.
+As is exponentially related to the minimal angle $\alpha$, the $size\_field$ may always be small enough to capture thin shell.
+    \begin{figure}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{quadtree/images/qdt_hard_point_step_1.eps}
+        }
+        \caption[Hard point treatment step 1]{Hard point treatment step1: find $box\_size$ and $size\_field$}
+        \label{qdt_fig:qdt_hard_point_setp_1}
+    \end{figure}
+
+After the first step of the hard point treatment is done, the background cell shall have the following properties
+    \begin{enumerate}
+        \item Distance between hard point to geometric center of the background cell must be smaller than $\sqrt{2}size\_field$
+        \item Element after cutting share the hard point as the node or it will be one element with scaling center located at the hard point
+    \end{enumerate}
+With these two properties, the cell can be cut by simply connecting the intersections with the hard point later.
+\pagebreak
+
 
 %=====================================================================================================================%
 \subsection{Bucket sort algorithm}
 
+
+
+\pagebreak
+
+
 %=====================================================================================================================%
 \subsection{Cutting with boundary}
+
+
+
+\pagebreak
+
 
 %=====================================================================================================================%
 \subsection{Color the region}
