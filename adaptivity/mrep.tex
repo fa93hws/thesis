@@ -1,0 +1,196 @@
+\subsection{Implicit Matrix Representation}
+\paragraph{} 
+Matrix representation of a parameterized algebraic curves/surfaces allows a easy way to calculate the intersection between it with another curves and find corresponding parameter based on the given points on the curve/surface. For a algebraic curve $t \in \mathbf{R}^1 \xrightarrow{\phi} \left( \frac{f_1(t)}{f_0(t)}, \frac{f_2(t)}{f_0(t)},\frac{f_3(t)}{f_0(t)} \right) \in \mathbf{R}^3$, $f_0,f_1,f_2$ and $f_3$ are polynomials function in parameter $t$ with degree $\leq p$. The procedure of constructing the matrix representation for NURBS curves and surfaces are explained detail in \cite{Laurent2014}.
+\paragraph{}
+The aim of this method is to find 4-tuples of polynomials $\left( g_0(t),g_1(t),g_2(t),g_3(t) \right)$ with order $v$ so that
+    \begin{equation}
+        \sum_{i=0}^3 g_i(t) f_i(t) \equiv 0
+        \label{adap_eq_mRep_eq0}
+    \end{equation}
+who is a vector space and one of its bases can be $$\mathbf{L_j}(t,X,Y,Z) = g_0(t) + Xg_1(t) + Yg_2(t) + Zg_3(t)$$
+Since $g$ is also a polynomial based function, it can be expressed in the vector space with a set of bases of $\left\{\psi_1(t), \psi_2(t), \dots, \psi_{m_v}(t) \right\}$ and the bases $\mathbf{L_j}$ can be expressed as
+    \begin{equation}
+        \begin{aligned}
+            \mathbf{L_j} &= \sum^{m_v}_{i=1}\left( \lambda_{0,i}^{(j)} + \lambda_{1,i}^{(j)}X + \lambda_{2,i}^{(j)}Y + \lambda_{3,i}^{(j)}Z\right)\psi_i(t)\\
+        & = \sum_{i=1}^{m_v} \Lambda_{i,j}(X,Y,Z)\psi_i(t)
+        \end{aligned}
+    \end{equation}
+Finally, a matrix which represent the mapping of $\phi$ in a $m_v \times r_v$-matrix $\mathbf{M_v}$ with order $v$
+    \begin{equation}
+        \mathbf{M_v}(\phi) = 
+        \begin{bmatrix}
+        \Lambda_{1,1} & \Lambda_{1,2} & \dots & \Lambda_{1,r_v} \\ 
+        \Lambda_{2,1} & \Lambda_{2,2} & \dots & \Lambda_{2,r_v} \\ 
+        \vdots 		  & \vdots 		  &  	  &\vdots			\\
+        \Lambda_{m_v,1}&\Lambda_{m_v,2}&\dots &\Lambda_{m_v,r_v}
+        \end{bmatrix}
+    \end{equation}
+\pagebreak
+
+
+
+%=====================================================================================================================%
+\subsection{Matrix Representation for Rational Bezier Curves}
+Rational Bezier curves wit are defined by 
+\begin{equation}
+	\phi:t\in \mathbf{R}\rightarrow \frac{\sum_{i=0}^pw_i\mathbf{P}_iB_i^p(t) }{\sum_{i=0}^pw_iB_i^p(t)}
+\end{equation}
+where
+    \begin{equation}
+        B_i^p(t) = \mathbf{C}_i^dt^i(1-t)^{d-i}
+        \label{adap_eq_mrep_bbasis}
+    \end{equation}
+
+\paragraph{}
+The aim is to have a matrix whose vector is in the form 
+    \begin{equation}
+        [\alpha] =
+        \begin{bmatrix}
+            \alpha_{0,0} & \alpha_{0,1}&  \dots&  \alpha_{0,v} & \alpha_{1,0} & \dots & \alpha_{3,v} 
+        \end{bmatrix}^T
+    \end{equation}
+where $g_j(t)$ in the previous section can be expressed as
+    \begin{equation}
+        g_j(t) = \sum_{i=0}^v \alpha_{j,i}B_i^v(t)
+    \end{equation}
+Based on eq.~\eqref{adap_eq_mRep_eq0}, it can be concluded that $\mathbf{R}\times\left[\alpha\right]=0$
+    \begin{equation}
+        \mathbf{R} = 
+        \begin{bmatrix}
+            B_0^v(t)f_0(t) & \dots & B_v^v(t)f_0(t) & B_0^v(t)f_1(t) & \dots & B_v^v(t)f_3(t)
+        \end{bmatrix}
+    \end{equation}
+By having another set of basis $\mathbf{L_v}$ and the transformation matrix $\mathbf{S}$ so that $\mathbf{L_vS}=\mathbf{R}$ where
+    \begin{equation}
+        \mathbf{L_v}=
+        \begin{bmatrix}
+            B_0^{v+d}(t) & B_1^{v+d}(t) & \dots & B_{v+d}^{v+d}(t)
+        \end{bmatrix}
+    \end{equation}
+That leads to
+    \begin{equation}
+        \begin{bmatrix}
+            B_0^{v+d}(t) & B_1^{v+d}(t) & \dots & B_{v+d}^{v+d}(t)
+        \end{bmatrix}\times \mathbf{S}\times\left[\alpha\right] = R\times\left[\alpha\right] = 0
+    \end{equation}
+which indicates $\left[ \alpha\right]$ is in the null space of $\mathbf{S}$;
+    \paragraph{}
+After substuite $f(t) = \sum_{i=0}^dc_iB_i^d(t)$ into $\mathbf{R}$, the following can be deduced
+    \begin{equation}
+        B_j^v(t)f(t) =  \sum_{i=0}^dc_iB_i^d(t)B_j^v(t) =\sum_{i=0}^d \frac{\mathbf{C}^v_j\mathbf{C}^d_i}{\mathbf{C}^{d+v}_{i+j}}c_i B_{i+j}^{d+v}(t)
+    \end{equation}
+which indicates that
+    \begin{equation}
+        \mathbf{S}_{i+j,j} = \frac{\mathbf{C}^v_j\mathbf{C}^d_i}{\mathbf{C}^{d+v}_{i+j}}c_i
+    \end{equation}
+Finally, the null space of $\mathbf{S_v}$, $\mathbf{M_v}$ is the matrix representation of the rational bezier curve.
+\pagebreak
+
+
+%=====================================================================================================================%
+\subsection{Curve and Curve/Surface Intersection}
+The calculation of the intersection is described in detail in \cite{Buse2010} and \cite{Ba2009}. All intersections can be calculated at once by using matrix representation of the algebraic curve/surface.
+\paragraph{} 
+Given a rational curve/surface $C1$
+    \begin{equation}
+        \mathbf{P}^1 \xrightarrow{\phi_1} \mathbf{P}^n: (u,v) \rightarrow(f_0,f_1,f_2,f_3)(u,v)
+    \end{equation}
+the aim of finding the intersection via matrix representation method between it with another ration curve $C2$
+    \begin{equation}
+        \mathbf{P}^1 \xrightarrow{\phi_2} \mathbf{P}^n: (t) \rightarrow(g_0,g_1,g_2,g_3)(t)
+    \end{equation}
+is to find
+    \begin{equation}
+        \mathbf{M}_{v1}(\phi_2(t) = 0
+    \end{equation}
+which leads to
+    \begin{equation}
+        \mathbf{M_0}g_0 + \mathbf{M_1}g_1 + \mathbf{M_2}g_2 + \mathbf{M_3}g_3 = 0
+        \label{mRep_intec_base}
+    \end{equation}
+By knowing $g_n$ is a polynomial function with order $p$, eq.~\eqref{mRep_intec_base} can be rearranged as
+    \begin{equation}
+        \mathbf{M}(t) = \sum_{i=0}^p \mathbf{M_i}t^i
+    \end{equation}
+After that, the generalized companion $q\times p$-matrices $A,B$ with rank $\rho$are introduced
+    \begin{equation}
+        A = 
+        \begin{bmatrix}
+            0		&I 		&\dots 		&\dots 		&0 		\\
+            0 		&0 		&I 			&\dots 		&0 		\\
+            \vdots 	&\vdots &\vdots 	&\vdots 	&\vdots \\
+            0 		&0 		&\dots		&\dots 		&I 		\\
+            M_0^t 	&M_1^t 	&\dots 		&\dots 		&M_{d-1}^t
+        \end{bmatrix}
+    \end{equation}
+
+    \begin{equation}
+        B = 
+        \begin{bmatrix}
+            I 		&0 		&\dots 		&\dots 		&0 		\\
+            0 		&I 		&0 			&\dots 		&0 		\\
+            \vdots 	&\vdots &\vdots 	&\vdots 	&\vdots \\
+            0 		&0 		&\dots 		&I 			&0 		\\
+            0 		&0 		&\dots 		&\dots 		&-M_d^t \\		
+        \end{bmatrix}
+    \end{equation}
+Before the eigen values are calculated, the regular part of a non-square pencil of the matrices shall be extracted first which is done by the following step
+\paragraph{} 
+\textbf{Step 1}
+	Transform B into its column echelon form. It is claimed to be performed by adopting LU-decomposition, but I relly don't know how that is accomplished so SVD-decomposition is used in my case
+	\begin{equation}
+	\begin{aligned}
+		B_1 = BV_0 = [\underbrace{B_{1,1}}_{\rho} |\underbrace{0}_{q-\rho}]	\\
+		A_1 = AV_0 = [\underbrace{A_{1,1}}_{\rho} |\underbrace{A_{1,2}}_{q-\rho}]
+	\end{aligned}
+	\end{equation}
+\paragraph{} 
+\textbf{Step 2}
+	Transform $A_{1,2}$ into its row echelon form
+	\begin{equation}
+		U_1A_{1,2} = 
+		\begin{bmatrix}
+			\underline{A^\prime_{1,2}}\\
+			0
+		\end{bmatrix}
+	\end{equation}
+	where $A^\prime_{1,2}$ is in full row rank.\\
+	At the end of step 2, matrix $A$ and $B$ can be represented as
+	\begin{equation}
+	\begin{aligned}
+	A^\prime_1 &=
+	\begin{bmatrix}
+		A^\prime_{1,1} & A^\prime_{1,2} \\
+		\cmidrule(lr){1-2}
+		A_2 & 0
+	\end{bmatrix}\\
+	B^\prime_1 &=
+	\begin{bmatrix}
+		B^\prime_{1,1} & 0\\
+		\cmidrule(lr){1-2}
+		B_2 & 0
+	\end{bmatrix}
+	\end{aligned}
+	\end{equation}
+where $A^\prime_{1,2}$ has full row rank\\
+$
+\begin{bmatrix}
+\underline{B^\prime_{1,1}}\\
+B_2
+\end{bmatrix}
+$ has full column rank\\
+$
+\begin{bmatrix}
+\underline{B^\prime_{1,1}}\\
+B_2
+\end{bmatrix}
+$ and $B_2$ are in echelon form
+\paragraph{}
+$A_2$ and $B_2$ will be the new $A$ and $B$ matrices for next iteration until $B$ has full rank. If $B$ has full row rank but not full rank, $A=A^T$, $B=B^T$.
+\paragraph{}
+After these process, $A$ and $B$ become two square matrices and $B$ is invertible so that the solution for the intersection parameter $t$ can be determined from the eigen value of the matrix $AB^{-1}$
+\paragraph{}
+This method is proofed to be valid in most of the cases and the line/ NURBS curve/ NURBS surface problem is addressed in our cases. However, the method may fail when the intersection is under the case where nearly tangential geometric conditions happens and return two empty matrices. It is addressed by adding another step after extracting the real part of the $A$ and $B$ if the results are empty matrices\cite{Shen2016}.\\
+If the input matrix $A$ and $B$ are not in full row rank or full column rank, it is considered that $C1 \cap C2 = C2$.\\
+If the input matrix $A$ and $B$ are in full row rank or full column rank, a rank $m$ square sub-pencil is extracted assuming $A$ and $B$ have a rank of $m$. Then the eigenvalues yield a intersection.
+\pagebreak
