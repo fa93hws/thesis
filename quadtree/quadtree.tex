@@ -208,14 +208,125 @@ With these two properties, the cell can be cut by simply connecting the intersec
 
 %=====================================================================================================================%
 \subsection{Bucket sort algorithm}
+\paragraph{}
+When cutting the boundary, it is necessary to find the intersections between input geometry and the background mesh.
+Finding geometric relationship between each cell and each curve may be necessary.
+However, it could be computational expansive when quite a few curves are involved and a fine mesh is targeted.
+As a result, an algorithm inspired by buck sort is introduced in order to reduce the computational cost of this process.
+\paragraph{}
+% introduce bucket sort algorithm
+Bucket sort algorithm is a sorting algorithm that put an array of objects into different buckets and then sort the objects in each bucket.
+Objects in each bucket then are sorted by other sorting algorithm or by applying buckets sort recursively.
+Although the sort algorithm can not be adopted directly in finding the intersection, the idea ``divide and conquer'' can be utilized in order to help reduce the computational cost in finding the intersection.
+\paragraph{}
+% bucket sort in quadtree
+First step of this method would be very similar to the first step in generating the background mesh.
+The entire background square or the root of the quadtree will be divided evenly into $2^n \times 2^n$ smaller ones.
+A larger $n$ will result in more buckets and will detect more irrelevant curves but take more time.
+Trade off normally is not necessary and $n=8$ usually provide a good enough result so it can be fixed as $8$ unless special need is posed on.
+Fig.~\ref{qdt_fig:qdt_bucket_sort} illustrates an example of the algorithm ($n$ is taken as $4$ in this example in order to have a clear figure, it should usually be taken as no less than $6$).
+The end points of the curve are located in gird D2 and I5, as a consequence, the curve will be put in bucket ``D2-I5''.
+In other words, cells that are not in this region shall not have any intersections with the curve.
 
+\begin{figure}[!ht]
+    \centering
+    \scalebox{0.8}{
+        \includegraphics{quadtree/images/qdt_bucket_sort.eps}
+    }
+    \label{qdt_fig:qdt_bucket_sort}
+    \caption[Bucket sort in quadtree]{Bucket sort in quadtree}
+\end{figure}
 
 
 \pagebreak
 %=====================================================================================================================%
 \subsection{Cutting with boundary}
+\paragraph{}
+% 3cases of the cutting
+Generally, there are three situations where cutting is involved with one curve and they are sorted by the number of the intersections as shown in fig.~\ref{qdt_fig:qdt_cutting}.
+Due to the fact that the background cell is refined properly and hence curves can be regarded as straight lines.
+Case 3 in fig.~\ref{qdt_fig:qdt_cutting_3} is an exception as it shall not happen unless even the minimal allowable background cell may not able to catch the feature.
+Unfortunately, result from case 3 may not be as expected and increase the resolution or decrease the minimal allowable cell size can help to prevent case 3 from happening.
+\begin{figure}[!ht]
+    \begin{subfigure}[b]{0.3\linewidth}
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_case_1.eps}
+        }
+        \caption{Case1: two intersections}
+        \label{qdt_fig:qdt_cutting_2}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_case_2.eps}
+        }
+        \label{qdt_fig:qdt_cutting_1}
+        \caption{Case2: one intersectoin}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_case_3.eps}
+        }
+        \caption{Case3: more than two intersections}
+        \label{qdt_fig:qdt_cutting_3}
+    \end{subfigure}
+    \caption[Situations in cutting]{Situations in cutting: one, two and more than two intersections}
+    \label{qdt_fig:qdt_cutting}
+\end{figure}
+
+\paragraph{}
+% situation a (two intersections)
+% sup an alg
+In situation a (fig.~\ref{qdt_fig:qdt_cutting_2}) where two intersections are observed, cell can be split by connecting points $EF$.
+To start with, any vertex among A, B, C or D can be selected as the start point.
+After the point is selected, point A for example, another point from any of the line connected it will be chosen, point B for line AB for example.
+This procedure will be repeated recursively until intersection point E or F is found and next point will be E or F whichever is not selected at the moment.
+Recursion will be continued until the starting point is found again.
+A closed region then will be formed by all selected points in sequence.
+Another cell can also be easily be found by finding the implement set.
+It should be noted that all cells split in situation must be convex.
+
+\paragraph{}
+% situation b (one intersection)
+% sup an alg
+In case 2 where only one intersection will be detected, multiple curves with intersection should be observed as in fig.~\ref{qdt_fig:qdt_cutting_hard_point} and hard point must be involved (point H in fig.~\ref{qdt_fig:qdt_cutting_hard_point}).
+    \begin{figure}
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_hard_point.eps}
+        }
+        \caption[Hard point treatment in cutting]{Hard point treatment in cutting}
+        \label{qdt_fig:qdt_cutting_hard_point}
+    \end{figure}
+Handling case 2 would be similar but slightly tricky compared to that in case 1.
+At the beginning, hard point is selected (point H in the example).
+After that, any intersection point is selected (F in this example).
+Then, the other point of any line segment that has F will be selected (D in this example).
+The former step will be performed recursively until another intersection point is found under which situation.
+Once the hard point is detected again, a closed region is found.
+Repeat the procedure can find all closed region cut by hard point and multiple curves.
+
+\paragraph{}
+% situation c (more than two intersection)
+% no alg needed
+In case 3 where more than two intersections are found, result split cells may not be as expected as this situation shall not happen normally.
+If case 3 does happen, the first and the last intersection points will be selected and all other intersection points will be ignored.
+After that, method in case one can be applied directly.
 
 
+\pagebreak
+%=====================================================================================================================%
+\subsection{Points moving}
+\paragraph{}
+% poor mesh quality
+Although all types of cells with intersections are able to be treated by the algorithm described above, quality of the mesh sometimes may out of control as example shown in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_point_moving.eps}
+        }
+        \caption[Poor quality of mesh]{Poor quality of mesh: triangle element ABC is too small compared to its neiboughre}
+        \label{qdt_fig:qdt_cutting_poor_mesh_quality}
+    \end{figure}
 
 \pagebreak
 %=====================================================================================================================%
