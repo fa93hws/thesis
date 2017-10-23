@@ -5,6 +5,7 @@ An absolute tolerance may not be able to handle problem with very large or small
 As a consequence, the first step is to normalize the geometry into a uniform space ($10\times10$ is used in this chapter).
 
 \subsection{Background mesh}
+\label{qdt_sc:qdt_background_mesh}
 \paragraph{}
 Background mesh describes a mesh in the background. %fig
 Its density is decided by the geometry.
@@ -327,6 +328,92 @@ Although all types of cells with intersections are able to be treated by the alg
         \caption[Poor quality of mesh]{Poor quality of mesh: triangle element ABC is too small compared to its neiboughre}
         \label{qdt_fig:qdt_cutting_poor_mesh_quality}
     \end{figure}
+\paragraph{}
+% point moving
+In order to improve the mesh quality, points moving is adopted.
+Generally there are two ways of moving the points, one is move closing points to the line (move point C to line AB in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}) and another is move points on the line to the closing point, e.g. point B will move to C in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
+Both method has its own advantages and disadvantage and will be discussed later.
+\paragraph{}
+% mark node as intersection
+The recommended method is to mark the node that is close enough to the curve as intersection and project it back onto the curve at the end.
+One significant advantage is that only convex cells may appear during cutting but special treatment need to be added in generating the background mesh.
+The algorithm for cutting a convex cell into two will always yield valid result in existing algorithm.
+For example, point C in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality} will be marked as intersection and point A and B will be ignored.
+Point C will be projected back to the curve when the cutting is finished.
+The threshold usually is taken as a proportion to the length of the background cell size.
+When finding the intersection, another detection will be posed after.
+If the distance of the intersection to a node is smaller than $\epsilon a$ where $\epsilon$ is tolerance and $a$ is the size of the background cell, the intersection will be ignored and the nearest node will be marked as intersection instead.
+\begin{figure}
+    \centering
+    \scalebox{1}{
+        \includegraphics{quadtree/images/qdt_cutting_point_moving_1.eps}
+    }
+    \caption[Treatment of cell cutting when point is moved]{Treatment of cell cutting when point is moved}
+    \label{qdt_fig:qdt_cutting_point_moving_1}
+\end{figure}
+
+\paragraph{}
+Fig.~\ref{qdt_fig:qdt_cutting_point_moving_1} illustrates an example when points are moved toward one of the nodes.
+If both intersections are moved then cutting may not be needed.
+When one is moved and another is retained, algorithm described in previous section can be adopted directly as the topology remain the same.
+The disadvantage is that it need to be taken into consideration when generating the background mesh as situation in fig.~\ref{qdt_fig:qdt_cutting_point_moving_problem}.
+Points A, B and C will be marked as intersections and it becomes situation 3 in fig.~\ref{qdt_fig:qdt_cutting_3}.
+However, background cell like it shall be refined otherwise unexpected behavior resulted from cutting algorithm may appear and such unexpected behavior shall be only allowed to happen when minimal allowable cell size in setting is too large to capture the local feature.
+As a consequence, when refining background mesh in section.~\ref{qdt_sc:qdt_background_mesh}, not only the number of intersections between curves with the origin cell need to be counted, but also that from the enlarged box need to be counted as well as shown in fig.~\ref{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}.
+Either more than two intersections are found in origin cell or the enlarged one in fig.~\ref{qdt_fig:qdt_cutting_enlarged_box} will result in the refinement of the cell.
+\begin{figure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_point_moving_1_dis.eps}
+        }
+        \caption{Problem in marking intersection}
+        \label{qdt_fig:qdt_cutting_point_moving_problem}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_cutting_point_moving_1_enlarge.eps}
+        }
+        \caption{Enlarged box (dashed line)}
+        \label{qdt_fig:qdt_cutting_enlarged_box}
+    \end{subfigure}
+    \caption[Problem in marking intersection]{Adopting enlarged box to ensure the background mesh is refined properly}
+    \label{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}
+\end{figure}
+
+\paragraph{}
+% move points before cutting
+Another method is projecting the nodes in background mesh on to the curves before the cutting.
+Special treatment in generating the background mesh is no longer necessary but cutting concave cells may be inevitable.
+Fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave} illustrates an example of a concave cell resulted from point moving.
+An intersecting curve that is not a straight line even with a very small curvature, possibility exists that distance $a$ from the hanging node $A$ to the curve is slightly smaller than the tolerance while $b$ and $c$ are slightly larger than tolerance.
+    \begin{figure}[!ht]
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{1.2}{
+                \includegraphics{quadtree/images/qdt_cutting_point_moving_2_concave_before.eps}
+            }
+            \caption{Before moving}
+            \label{qdt_fig:qdt_cutting_point_moving_2_concave_before}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.5\linewidth}
+            \centering
+            \scalebox{1.2}{
+                \includegraphics{quadtree/images/qdt_cutting_point_moving_2_concave_after.eps}
+            }
+            \caption{After moving}
+            \label{qdt_fig:qdt_cutting_point_moving_2_concave_after}
+        \end{subfigure}
+        \caption[Concave cell resulted from points moving]{Concave cell resulted from point moving}
+        \label{qdt_fig:qdt_cutting_point_moving_2_concave}
+    \end{figure}
+
+\paragraph{}
+As a result, points $A$ will be moved on the curves but the other two nodes will not and hence cutting a concave cell need to be treated.
+This method is not recommended because special treatment on cutting concave cells need to be implemented and it could be much more complicated than that in previous method.
+First of all, more than two intersections will be observed in fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave_after} and it may be mixed with case 3 in fig.~\ref{qdt_fig:qdt_cutting_3}.
+Moreover, the concave cell will be cut into three instead of two which create extra difference.
 
 \pagebreak
 %=====================================================================================================================%
