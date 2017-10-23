@@ -35,6 +35,7 @@
         "polyline",
         "polylines",
         "quadtree",
+        "parallelize",
         // names
         "Kingma",
         "Bézier",

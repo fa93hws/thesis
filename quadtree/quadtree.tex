@@ -317,6 +317,7 @@ After that, method in case one can be applied directly.
 \pagebreak
 %=====================================================================================================================%
 \subsection{Points moving}
+\label{qdt_sc:point_moving}
 \paragraph{}
 % poor mesh quality
 Although all types of cells with intersections are able to be treated by the algorithm described above, quality of the mesh sometimes may out of control as example shown in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
@@ -414,17 +415,174 @@ As a result, points $A$ will be moved on the curves but the other two nodes will
 This method is not recommended because special treatment on cutting concave cells need to be implemented and it could be much more complicated than that in previous method.
 First of all, more than two intersections will be observed in fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave_after} and it may be mixed with case 3 in fig.~\ref{qdt_fig:qdt_cutting_3}.
 Moreover, the concave cell will be cut into three instead of two which create extra difference.
+As a consequence, the sequence of all intersections may need to be recorded in order to distinguish it from case 3 in fig.~\ref{qdt_fig:qdt_cutting_3} and special treatment in cutting concave into more than three parts need to be implemented as well.
+Generally speaking, they may be much more complex than solving background mesh issue when moving points before cutting.
+
 
 \pagebreak
 %=====================================================================================================================%
-\subsection{Scaling center for concave elements}
+% \subsection{Scaling center for concave elements}
+% later
 
 
-
-\pagebreak
+% \pagebreak
 %=====================================================================================================================%
 \subsection{Color the region}
+\paragraph{}
+% intro
+Multiple material properties and holes may appear in the input and the programme is expected to assign each mesh with its corresponding material id, or color.
+Each different material will be related to one color and hole can be regarded as void material.
+There are two ways to achieve this goal: method based on geometry and that based on topology.
+Using geometric location to find the color is easy and not sensitive to the correctness of the mesh but may introduce error in coloring.
+While using topological property require more computational cost and is sensitive to validity of the mesh but usually provide correct coloring if former steps are correct.
+Considering the possibility of coloring being the bottle neck of the whole programme is too low to take time complexity into account and the fact that mesh are expected to be valid, topological property may be preferred in most of the cases.
 
+\paragraph{}
+% geometry
+Geometric location can provide a good reference of the color in most of the case but may fail in some situation.
+Calculating geometric geometric center and find which bounded area is it located is a computational cheap work and can be parallelize to utilize multiple thread.
+However it can fail in some case especially for a concave polygon whose geometric center is outside of itself as shown in fig.~\ref{qdt_fig:qdt_coloring_geo_problem}.
+\begin{figure}[!ht]
+    \centering
+    \scalebox{1.2}{
+        \includegraphics{quadtree/images/qdt_coloring_geo.eps}
+    }
+    \caption[Coloring problem using location of geometric center in concave polygon]{Coloring problem using location of geometric center in concave polygon}
+    \label{qdt_fig:qdt_coloring_geo_problem}
+\end{figure}
 
+Using scaling center which is always inside of the polygon instead of geometric center can not prevent it from happening.
+Fig.~\ref{qdt_fig:qdt_coloring_geo_problem_sc} discussed the possibility of coloring failure in convex cell where geometric center is coincide with scaling center.
+The coordinate of the scaling center of the rectangle in the left is $(\frac{l-a}{2},\frac{l}{2})$.
+If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is large enough so that point $C$ is not recognized as hard point and $a$ is not too large compared to $l$ so that point $A$ and $B$ will not merged to the node of the rectangle.
+
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1.5}{
+            \includegraphics{quadtree/images/qdt_coloring_geo_sc.eps}
+        }
+        \caption[Coloring problem using location of scaling center]{Coloring problem using location of scaling center}
+        \label{qdt_fig:qdt_coloring_geo_problem_sc}
+    \end{figure}
+
+In other words, coloring failure may happen if
+    \begin{equation}
+        \begin{aligned}
+            C_x  &\leq \frac{l-a}{2} \\
+            \alpha &> \epsilon_{1} \\
+            \frac{l-a}{l} &> \epsilon_{2}
+        \end{aligned}
+    \end{equation}
+where $C_x$ refer to the x coordinate of the point $C$, $\epsilon_1$ is the tolerance used in define hard point and $\epsilon_2$ is the tolerance used for point moving in section.~\ref{qdt_sc:point_moving}.
+Assuming point $C$ just located on the geometric center of the rectangle in the left, or $C_x = \frac{l-a}{2}$, it is concluded that 
+    \begin{equation}
+        \begin{aligned}
+            2 \arctan \frac{l}{l-a} &> \epsilon_1 \\
+            \frac{l-a}{l} &> \epsilon_{2}
+        \end{aligned}
+    \end{equation}
+
+Result of minimal $\epsilon_1$ with different $\epsilon_2$ is summarized in table.~\ref{qdt_tab:qdt_coloring_ep1_ep2}.
+Setting $\epsilon_1$ greater than $150^\circ$ may result in large amount of unexpected hard points and a $\epsilon_2 > 0.35$ could leads to significantly increased points moving.
+A combination of $\epsilon_1 = 150^\circ$ and $\epsilon_2 = 0.3$ seems to be the only possible solution.
+However, stick on the parameters that produce some unexpected hard points and points moving may not surpass the advantage of this method.
+
+    \begin{table}[!ht]
+        \centering
+        \caption{Minimal $\epsilon_2$ with different $\epsilon_1$}
+        \label{qdt_tab:qdt_coloring_ep1_ep2}
+        \begin{tabular}{ccccccccc}
+            \toprule
+            $\epsilon_1$(Deg) & 100    & 110      & 120     & 130      & 140     & 150   &   160  &  170   \\
+            \midrule    
+            $\epsilon_2$ & 0.84 & 0.70 & 0.58 & 0.47 & 0.36 & 0.27 &    0.18 &  0.09\\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\paragraph{}
+% topology
+A method based on topology, on the other hand, color the polygons based on the connectivity rather than the geometric location and hence provide correct coloring in theory if the mesh generated is valid.
+It is assumed that the mesh generated before is valid, in other words, it satisfy following requirement:
+    \begin{itemize}
+        \item Background mesh shall be refined properly so that situation in fig.~\ref{qdt_fig:qdt_cutting_3} will not appear
+        \item Hard point is set properly
+        \item Input has ben properly scaled so that there is few margin around
+    \end{itemize}
+The coloring algorithm then will utilize a breadth-first search to find color for each of the cell.
+Any polygon can be picked as the root element of the search tree.
+For convenience, the most bottom-left element is defined as the root of the search tree.
+All neighbor polygons will be added to the parent node as children nodes recursively until a cell whose boundary shared by another color.
+Once such a cell is found, the algorithm then consider the whole branch share same color id which can be found based on the color id information about the boundary.
+The loops stops when there are not any unvisited polygons found under available parent node. 
+Any uncolored polygons will have the same color as its youngest parent with known color.
+Take fig.~\ref{qdt_fig:qdt_color_example} as an example,
+
+\begin{figure}[!ht]
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_coloring_example_geometry.eps}
+        }
+        \caption{Geometry of an example for coloring}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_coloring_example_mesh.eps}
+        }
+        \caption{Mesh of an example for coloring}
+    \end{subfigure}
+    \caption{Example for coloring}
+    \label{qdt_fig:qdt_color_example}
+\end{figure}
+\paragraph{}
+% step 1
+The root element will be polygon $0$ and its neighbor polygon $1$ and $4$ will be added to its children node.
+Since no boundary of polygon $1$ and $4$ is the border between two materials, the recursion goes on.
+Polygon $15$ then will be found as the child node of polygon $1$, the recursion will pause before polygon $5$ being added to polygon $1$ as child node.
+The hypotenuse of polygon $15$ is border between color $1$ and $-1$, considering the fact that the known color of its youngest parent (polygon $0$) is $1$, whole branch (polygon $0,1$ and $15$) will be marked as color $1$.
+By knowing the hypotenuse of polygon $15$ can only be contained in one other polygon, next child node, polygon $2$, will be marked as color $-1$ in next recursion.
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_coloring_example_tree_0.eps}
+        }
+        \caption[Tree for example for coloring: step 1]{tree for example for coloring: step 1}
+        \label{qdt_fig:qdt_color_tree_0}
+    \end{figure}
+
+\paragraph{}
+% step 2
+The recursion resumes for polygon $1$ and polygon $5$ shall be added to its children and polygon $4$ find $5$ and $12$.
+Due to the fact that polygon $5$ is visited by polygon $1$, it will not be added to polygon $4$'s child.
+After that, polygon $15$ find polygon $2$, whose bottom boundary is border between color $1$ and $-1$ (background color is set as $1$ and hence it is assumed color outside of the bonding box is $1$).
+The oldest node with known color is itself, polygon $2$ and as a result the branch with single element will be marked as color $-1$.
+Bottom edge of polygon $2$ is contained in itself only, which implies the termination of the branch.
+As another child node of polygon $15$, polygon $6$ , whose hypotenuse is border between two colors and the youngest parent with known color will be polygon $15$ which is marked as color $1$.
+Polygon $13$ will be marked as color $-1$ in next recursion.
+
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_coloring_example_tree_1.eps}
+        }
+        \caption[Tree for example for coloring: step 2]{tree for example for coloring: step 2}
+        \label{qdt_fig:qdt_color_tree_1}
+    \end{figure}
+
+\paragraph{}
+% done
+Fig.~\ref{qdt_fig:qdt_color_tree_2} illustrates the final search tree after a few more recursion.
+End node polygon $11$ and $3$ do not trigger the termination process normally will be marked with color in the end with the youngest parent rule, which gives branch $11,10,12,4$ and branch $3$ the same color as polygon $0$ and $2$.
+
+    \begin{figure}[!ht]
+        \centering
+        \scalebox{1}{
+            \includegraphics{quadtree/images/qdt_coloring_example_tree_2.eps}
+        }
+        \caption[Tree for example for coloring: final tree]{tree for example for coloring: final tree}
+        \label{qdt_fig:qdt_color_tree_2}
+    \end{figure}
 
 \pagebreak
