@@ -45,8 +45,7 @@ The exact solutions for the displacements are given by \cite{Aug2008}:
     \label{iso_eq:cantilever_beam_displacement_solution}
     \end{equation}
 
-where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane
-    stress and plane strain condition respectively.
+where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=\nu/(1-\nu)$ for plane stress and plane strain condition respectively.
 The stress $\sigma$ can be expressed as \cite{Aug2008}
     \begin{subequations}
     \begin{align}
@@ -74,10 +73,8 @@ $u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$
 Stress from analytical solution in eq.~\ref{iso_eq:cantilever_beam_stress_solution} are applied on the boundary.
 
 \paragraph{}
-From the description in \ref{subsection:surface_traction}, the expression of the surface traction must be transformed into
-    NURBS-like representation before the stress can be applied on the nodes.
-Although least square is introduced to solve for the ``control stress'' $\Phi_c$, the control points that describe a second
-    order function as surface traction in this example can be solved mathematically.
+From the description in \ref{subsection:surface_traction}, the expression of the surface traction must be transformed into NURBS-like representation before the stress can be applied on the nodes.
+Although least square is introduced to solve for the ``control stress'' $\Phi_c$, the control points that describe a second order function as surface traction in this example can be solved mathematically.
 Assume the knot vector is evenly spaced and the shape function is in second order, i.e. knot vector $K=[0,0,0,1,1,1]$.
 Weight vector will be uniform because only the straight line is being interpolated, i.e. weight vector $w=[1,1,1]$.
 Three basis function used in B-Spline will be
