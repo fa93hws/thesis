@@ -58,6 +58,7 @@ The closed form displacement in Cartesian coordinate is given as
                 2 \frac{R^3}{r^3}\sin3\theta
             \right]
         \end{align}
+    \label{iso_eq:ex_chole_disp_sol}
     \end{subequations}
 
 Where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
@@ -72,25 +73,19 @@ Where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
     \end{equation}
 
 In this example, analytical tractions are applied on the boundary.
-The left and bottom boundary are enforced with a roller boundary condition. $u_x=0$ where $y=0$
-    and $u_y=0$ where $x=0$.
+The left and bottom boundary are enforced with a roller boundary condition. $u_x=0$ where $y=0$ and $u_y=0$ where $x=0$.
 
 \paragraph{}
 % result analysis
 The convergence rate in terms of the displacement norm is shown in fig.~\ref{iso_fig:circular_hole_convergence}
 It is observed that the error decreases as the order of the shape functions is increased.
-Another unique feature of the proposed method is that the method allows mixed type or order of shape
-    functions to be employed for each line segment.
-For example, in Fig.~\ref{iso_fig:circular_hole_mesh}, the arc A–B and the line segment B–C can be represented
-    by different basis functions, i.e., the arc can be represented by NURBS and the line segment can be represented by
-    conventional Lagrange basis functions.
+Another unique feature of the proposed method is that the method allows mixed type or order of shape functions to be employed for each line segment.
+For example, in Fig.~\ref{iso_fig:circular_hole_mesh}, the arc A–B and the line segment B–C can be represented by different basis functions, i.e., the arc can be represented by NURBS and the line segment can be represented by conventional Lagrange basis functions.
 Fig.~\ref{iso_fig:circular_hole_basis} shows the plot of the NURBS basis and Lagrange basis functions.
 It can be seen that at point B, the shape function is continuous.
-In order to assess the behavior, we represent the arc with quadratic NURBS and the straight lines with
-    conventional Lagrange shape functions.
-Since the NURBS are interpolatory at the ends, the compatibility requirement is automatically satisfied
-    (see Fig.~\ref{iso_fig:circular_hole_shape_function_convergence}).
-The convergence of the relative error in the L 2 and H 1 is shown in Fig. 13.
+In order to assess the behavior, we represent the arc with quadratic NURBS and the straight lines with conventional Lagrange shape functions.
+Since the NURBS are interpolatory at the ends, the compatibility requirement is automatically satisfied (see Fig.~\ref{iso_fig:circular_hole_shape_function_convergence}).
+% The convergence of the relative error in the L 2 and H 1 is shown in Fig. 13.
 The results from both the approaches converge with mesh refinement
 
     \begin{figure}
