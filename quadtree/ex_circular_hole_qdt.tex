@@ -22,7 +22,25 @@ Due to the fact that the geometry of the cantilever beam can be described by fou
 As a result, the input geometry is defined manually.
 Generated background mesh, coloring and the final result with $res=32$, $s_{max}=16$ and $s_{min}=1$ are shown in fig.~\ref{qdt_fig:ex_cantilever_beam_background_mesh}, fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_coloring} and fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_final}.
 
+%%
+The geometry is: length $L=8m$, height $D=4m$.
+The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ \nu =0.25$.
+The parabolic shear force is $P = 250 N$.
+The exact solutions for the displacements are given by \cite{Aug2008} as eq.~\ref{iso_eq:cantilever_beam_displacement_solution}.
+where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane stress and plane strain condition respectively.
+The stress $\sigma$ can be expressed as \cite{Aug2008} as eq.~\ref{iso_eq:cantilever_beam_stress_solution}.
+The strain energy can be derived from eq.~\ref{iso_eq:cantilever_beam_stress_solution} and eq.~\ref{iso_eq:cantilever_beam_displacement_solution} as eq.~\ref{iso_eq:cantilever_beam_energy_solution}.
 
+\paragraph{}
+In this example, rigid body motion is constrained by fixing 3 DOF on the left edge of the beam.
+$u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$.
+Stress from analytical solution in eq.~\ref{iso_eq:cantilever_beam_stress_solution} are applied on the boundary.
+
+\paragraph{}
+Due to the fact that the geometry of the cantilever beam can be described by four points and four straight lines, drawing in AutoCAD may not be necessary.
+As a result, the input geometry is defined manually.
+Generated background mesh, coloring and the final result with $res=32$, $s_{max}=16$ and $s_{min}=1$ are shown in fig.~\ref{qdt_fig:ex_cantilever_beam_background_mesh}, fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_coloring} and fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_final}.
+%%
 
 \begin{figure}
     \centering
@@ -71,6 +89,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
         \caption{Mesh with $res=128$, $s_{max}=4$, 876 DOFs}
     \end{subfigure}
 \end{figure}
+
 \begin{figure}[!ht]\ContinuedFloat
     \begin{subfigure}[b]{1\linewidth}
         \centering
@@ -88,7 +107,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
     \centering
     \scalebox{0.75}{
         \includegraphics{quadtree/ex_images/ex_chole_conv.eps}
-    }
+    }   
     \caption[Convergence of the infinite plate with a circular hole]{Convergence of the infinite plate with a circular hole}
     \label{qdt_fig:ex_chole_mesh_conv}
 \end{figure}
