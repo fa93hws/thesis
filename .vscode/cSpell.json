@@ -18,6 +18,8 @@
         "argmin",
         "argmax",
         "Deri",
+        "superset",
+        "discretize",
         // terms
         "meshless",
         "Isogeometric",

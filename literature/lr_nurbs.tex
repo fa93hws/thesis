@@ -1,0 +1,76 @@
+
+\paragraph{}
+In the proposed approach, the geometry and the unknown fields are represented by non-uniform rational B-splines (NURBS).
+In this section, we give a brief overview of NURBS.
+For more detailed description and implementation aspects, interested readers can refer to [5,58].
+\paragraph{}
+% basis function
+NURBS are the superset of B-spline functions.
+B-spline is short for basis spline and is a generalization of Bézier curves.
+A spline function is a piecewise polynomial function of degree $p$ and the points of intersection of such functions are called knots.
+The number of knots must be equal to or greater than $p + 1$.
+One of the salient features of spline functions is that the functions are continuous at the knots, however, the continuity of the functions can be altered by repeating the knots.
+The B-spline functions are parametric functions of the form $F(\eta)$ in which the parameter $\eta$ lies in the parametric space.
+The key ingredients in the construction of B-spline functions are: the knot vector (a non decreasing sequence of parameter values, $\eta_i \leq \eta_{i+1}$ , $i = 0,1,\dots,m -1$) and the degree of the curve p. The $i$th B-spline basis function of degree $p$, denoted by $_{i,p}$ is defined as [5]:
+\begin{equation}
+    \begin{aligned}
+        N_{i,0}(\eta) &=
+            \begin{cases}
+                1   & \text{if } \eta_i \leq \eta \leq \eta_{i+1}    \\
+                0   & \text{else}
+            \end{cases}\\
+        N_{i,p}(\eta) &= 
+            \frac{\eta - \eta_i}{\eta_{i+p}-\eta_i}     N_{i,p-1}(\eta) - 
+            \frac{\eta_{i+p+1}-\eta}{\eta_{i+p+1} - \eta_{i+1}}     N_{i+1,p-1}(\eta)
+    \end{aligned}
+    \label{lr_nurbs_basis}
+\end{equation}
+
+The first derivative of the B-spline basis function can be computed recursively from lower order basis functions as:
+\begin{equation}
+    \frac{d}{d\eta} N_{i,p}(\eta) =
+        \frac{p}{\eta_{i+p} - \eta_i} N_{i,p-1}(\eta) -
+        \frac{p}{\eta_{i+p+1} - \eta_{i+1}} N_{i+1,p-1}(\eta)
+\end{equation}
+
+\paragraph{}
+% basis properties
+The B-spline basis functions has the following properties:
+\begin{enumerate}
+    \item Non-negativity
+    \item Partition of unity, $\sum_i N_{i,p}=1$
+    \item Interpolatory at the end points. The last point requires special treatment when imposing non-homogeneous Dirichlet boundary conditions [58].
+\end{enumerate}
+
+
+\paragraph{}
+% curves
+Moreover, the spline function has limited support.
+Given $n + 1$ control points $(P_0 ,P_1,\dots,P_n )$ and a knot vector 
+    $\Xi$ = $\left\{
+        \eta_0 ,\eta_1 ,\dots,\eta_m 
+    \right\}$, the piecewise polynomial B-spline curve of degree p is defined as:
+\begin{equation}
+    C(\eta) = \sum_{i=0}^n P_i N_{i,p} (\eta)
+\end{equation}
+
+where $P_i$ are the control points.
+A B-spline curve has the following information: $n+1$ control points, $m+1$ knots and a degree $p$.
+It is noted that $n$,$m$ and $p$ must satisfy $m = n + p + 1$.
+The B-spline functions also provide a variety of refinement algorithms, which are essential when employing B-spline functions to discretize the unknown fields.
+The analogous $h$ and $p$ refinement can be done by the process of `knot insertion' and `order elevation'.
+Another unique feature of the B-spline basis function is that, it is possible to combine the knot insertion and the degree elevation, commonly referred to as ‘k-refinement’ in the literature [6].
+Here we briefly discuss the knot insertion and the degree elevation.
+For more details, interested readers are referred to [5,6] and references therein.
+
+
+\subsubsection{Knot Insertion}
+\paragraph{}
+Consider a B-spline basis functions defined on $\Xi = \left\{
+    \eta_0 ,\eta_1,\dots,\eta_m 
+    \right\}$, let $\overline{\eta} \in [\eta_k ,\eta_{k+1} )$, and insert $\overline{\eta}$ into $\Xi$ to form a new knot vector $\overline{\Xi} = \left\{
+    \eta_0 ,\dots, \overline{\eta}_k = \eta_k , 
+    \overline{\eta}_{k+1} = \overline{\eta}, 
+    \overline{\eta}_{k+2} = \overline{\eta}_{k+1} ,
+    \dots,\eta_{m+1} = \eta_m
+    \right\}$. Simultaneously, the size of the control points is increased by one. Thus $C(\eta)$ has a representation on $\overline{\Xi}$ of the form
