@@ -20,6 +20,7 @@
         "Deri",
         "superset",
         "discretize",
+        "eigenvector",
         // terms
         "meshless",
         "Isogeometric",

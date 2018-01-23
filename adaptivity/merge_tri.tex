@@ -1,4 +1,6 @@
 
 \paragraph{}
 % why
-Eigenvalue 
+Due to the property of the SBFEM, first order triangle element will result identical eigenvalues of one.
+Under this circumstances, the displacement, nodal forces and energy using eigenvalues failed as the they are always equal to the order of the shape function, one.
+As a consequence, the triangular elements shall be merged with their neighbours to form a larger polygon.

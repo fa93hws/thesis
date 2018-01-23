@@ -1,0 +1,214 @@
+
+
+\begin{equation}
+    u(\xi,\eta) = R(\eta) u(\xi)
+    \label{lr_eq:sbfem_disp_interpolation}
+\end{equation}
+
+\begin{equation}
+    \epsilon(\xi,\eta) = Lu(\xi,\eta)
+    \label{lr_eq:sbfem_strain_disp_relation}
+\end{equation}
+
+\begin{equation}
+    L = b_1(\eta) \frac{\partial}{\partial \xi} +
+        \frac{1}{\xi}b_2(\eta)
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+    b_1(\eta) & = \frac{1}{|J|}
+            \begin{bmatrix}
+                y_b(\eta),_{\eta}   &   0   \\
+                0   &   -x_b(\eta),_{\eta}  \\
+                -x_b(\eta),_{\eta} & y_b(\eta),_{\eta}
+            \end{bmatrix} \\
+    b_2(\eta) & = \frac{1}{|J|}
+            \begin{bmatrix}
+                -y_b    &   0   \\
+                0       &   x_b \\
+                x_b     &   y_b
+            \end{bmatrix}
+    \end{aligned}
+    \label{lr_eq:sbfem_little_b}
+\end{equation}
+
+\begin{equation}
+    |J| = x_b(\eta)y_b(\eta),_{\eta}
+        - y_b(\eta)x_b(\eta),_{\eta}
+    \label{lr_eq:sbfem_Jdet}
+\end{equation}
+
+\begin{equation}
+    \sigma(\xi,\eta) = DB_1(\eta)u(\xi),_{\xi} +
+                        \frac{1}{\xi}DB_2(\eta)u(\xi)
+    \label{lr_eq:sbfem_stress}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        B_1(\eta) &= b_1(\eta)R(\eta)    \\
+        B_2(\eta) &= b_2(\eta)R(\eta),_{\eta}
+        \label{lr_eq:sbfem_captial_b}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \delta u(\xi)^{T} \left(
+            (E_0 \xi u(\xi),_{\xi}
+            + E_1^T u(\xi))|_{\xi=1}
+            - F
+        \right) - \\
+        \int_0^1 \delta u(\xi)^T\left(
+            E_0 \xi^2 u(\xi),_{\xi\xi} + (E_0 + E_1^T - E_1) \xi u(\xi),_{\xi}
+            - E_2 u(\xi)
+        \right) d\xi = 0
+    \end{aligned}
+    \label{lr_eq:sbfem_virtual_work}
+\end{equation}
+
+\begin{equation}
+    F = (E_0 \xi u(\xi),_{\xi} + E_1^T u(\xi))|_{\xi=1}
+    \label{lr_eq:sbfem_nodal forces}
+\end{equation}
+
+\begin{equation}
+    E_0 \xi^2 u(\xi),{\xi\xi} + (E_0 + E_1^T - E_1)\xi u(\xi),_{\xi} - E_2 u(\xi) = 0
+    \label{lr_eq:sbfem_ODE}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        E_0 &= \int_\eta B_1(\eta)^T DB_1(\eta)|J|d\eta \\
+        E_1 &= \int_\eta B_2(\eta)^T DB_1(\eta)|J|d\eta \\
+        E_2 &= \int_\eta B_2(\eta)^T DB_2(\eta)|J|d\eta
+    \end{aligned}
+    \label{lr_eq:sbfem_coe_matrix}
+\end{equation}
+
+\begin{equation}
+    \chi = \left\{
+        \begin{matrix}
+            u(\xi)  \\
+            q(\xi)
+        \end{matrix}
+    \right\}
+    \label{lr_eq:sbfem_ODE_soltion}
+\end{equation}
+
+
+\begin{equation}
+    q(\xi) = E_0 \xi u(\xi),_{\xi}
+            + E_1^T u(\xi)
+    \label{lr_eq:sbfem_internal_force}
+\end{equation}
+
+\begin{equation}
+    F = q(\xi=1) = (E_0\xi u(\xi),_{\xi} + E_1^Tu(\xi))|_{\xi=1}
+    \label{lr_eq:sbfem_boundary_nodal_force}
+\end{equation}
+
+\begin{equation}
+    \xi \chi(\xi),_{\xi} = -Z\chi(\xi)
+    \label{lr_eq:sbfem_1stODE}
+\end{equation}
+
+\begin{equation}
+    Z = \begin{bmatrix}
+        E_0^{-1} E_1^T    &  -E_0^{-1}   \\
+        E_1 E_0^{-1} E_1^T - E_2    &   -E_1 E_0^{-1}
+    \end{bmatrix}
+    \label{lr_eq:sbfem_zmatrix}
+\end{equation}
+
+\begin{equation}
+    Z \begin{bmatrix}
+        \Phi_u \\
+        \Phi_q
+    \end{bmatrix} = \begin{bmatrix}
+        \Phi_u  \\
+        \Phi_q
+    \end{bmatrix} \Lambda_n
+    \label{lr_eq:sbfem_eigen_decomp}
+\end{equation}
+
+\begin{equation}
+    u(\xi) = \Phi_u \xi^{-\Lambda_n} c
+    \label{lr_eq:sbfem_general_sol_disp}
+\end{equation}
+
+\begin{equation}
+    q(\xi) = \Phi_q \xi^{-\Lambda_n} c
+    \label{lr_eq:sbfem_general_sol_str}
+\end{equation}
+
+\begin{equation}
+    c = \Phi_u^{-1} u_b
+    \label{lr_eq:sbfem_int_constant}
+\end{equation}
+
+\begin{equation}
+    u(\xi,\eta) = R(\eta) \Phi_u \xi ^{-\Lambda_n} c
+    \label{lr_eq:sbfem_displacement_field}
+\end{equation}
+
+\begin{equation}
+    \sigma(\xi,\eta) = \Psi_\alpha (\eta) \xi^{-\Lambda_n - I} c
+    \label{lr_eq:sbfem_stress_field}
+\end{equation}
+
+\begin{equation}
+    \Psi_\alpha(\eta) = D(-B_1(\eta)\Phi_u \Lambda_n + B_2(\eta)\Phi_u)
+    \label{lr_eq:sbfem_stress_mode}
+\end{equation}
+
+\begin{equation}
+    F = \Phi_q \Phi_u^{-1} u_b
+    \label{lr_eq:sbfem_kmat_previous}
+\end{equation}
+
+\begin{equation}
+    K = \Phi_q \Phi_u^{-1}
+    \label{lr_eq:sbfem_kmat}
+\end{equation}
+
+\begin{equation}
+    E_0 \xi^2 u(\xi),_{\xi\xi} +
+    (E_0 + E_1^T - E_1)\xi u(\xi),_{\xi} -
+    E_2 u(\xi) + \omega^2 M_0 \xi^2 u(\xi) = 0
+    \label{lr_eq:sbfem_dynamic}
+\end{equation}
+
+\begin{equation}
+    M_0 = \int_\eta R^T \rho R|J| d\eta
+    \label{lr_eq:sbfem_dynamic_mass}
+\end{equation}
+
+\begin{equation}
+    (S(\omega)-E_1)E_0^{-1}
+    (S(\omega)-E_1^T) - E_2 +
+    \omega S(\omega),_\omega + \omega^2 M_0 = 0
+    \label{lr_eq:sbfem_dynamic_1stODE}
+\end{equation}
+
+\begin{equation}
+    F = S(\omega) u(\xi=1)
+    \label{lr_eq:sbfem_dynamic_nodal_force}
+\end{equation}
+
+\begin{equation}
+    S(\omega) = K - \omega^2 M + \omega^4 \left[
+        R^{(1)}    
+    \right]^{-1}
+    \label{lr_eq:sbfem_dynamic_stiffness}
+\end{equation}
+
+\begin{equation}
+    R^{(1)} = S_0^{(1)} - \omega^2 S_1^{(1)} + \omega^4 [R^{(2)}]^{-1}
+    \label{lr_eq:sbfem_dynamic_R}
+\end{equation}
+
+% \begin{equation}
+
+% \end{equation}

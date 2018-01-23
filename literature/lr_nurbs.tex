@@ -2,7 +2,7 @@
 \paragraph{}
 In the proposed approach, the geometry and the unknown fields are represented by non-uniform rational B-splines (NURBS).
 In this section, we give a brief overview of NURBS.
-For more detailed description and implementation aspects, interested readers can refer to [5,58].
+For more detailed description and implementation aspects, interested readers can refer to \cite{Pie1997,NGUYEN201589}.
 \paragraph{}
 % basis function
 NURBS are the superset of B-spline functions.
@@ -11,7 +11,7 @@ A spline function is a piecewise polynomial function of degree $p$ and the point
 The number of knots must be equal to or greater than $p + 1$.
 One of the salient features of spline functions is that the functions are continuous at the knots, however, the continuity of the functions can be altered by repeating the knots.
 The B-spline functions are parametric functions of the form $F(\eta)$ in which the parameter $\eta$ lies in the parametric space.
-The key ingredients in the construction of B-spline functions are: the knot vector (a non decreasing sequence of parameter values, $\eta_i \leq \eta_{i+1}$ , $i = 0,1,\dots,m -1$) and the degree of the curve p. The $i$th B-spline basis function of degree $p$, denoted by $_{i,p}$ is defined as [5]:
+The key ingredients in the construction of B-spline functions are: the knot vector (a non decreasing sequence of parameter values, $\eta_i \leq \eta_{i+1}$ , $i = 0,1,\dots,m -1$) and the degree of the curve p. The $i$th B-spline basis function of degree $p$, denoted by $_{i,p}$ is defined as \cite{Pie1997}:
 \begin{equation}
     \begin{aligned}
         N_{i,0}(\eta) &=
@@ -59,9 +59,9 @@ A B-spline curve has the following information: $n+1$ control points, $m+1$ knot
 It is noted that $n$,$m$ and $p$ must satisfy $m = n + p + 1$.
 The B-spline functions also provide a variety of refinement algorithms, which are essential when employing B-spline functions to discretize the unknown fields.
 The analogous $h$ and $p$ refinement can be done by the process of `knot insertion' and `order elevation'.
-Another unique feature of the B-spline basis function is that, it is possible to combine the knot insertion and the degree elevation, commonly referred to as ‘k-refinement’ in the literature [6].
+Another unique feature of the B-spline basis function is that, it is possible to combine the knot insertion and the degree elevation, commonly referred to as ‘k-refinement’ in the literature \cite{Hug2005b}.
 Here we briefly discuss the knot insertion and the degree elevation.
-For more details, interested readers are referred to [5,6] and references therein.
+For more details, interested readers are referred to \cite{Pie1997,Hug2005b} and references therein.
 
 
 \subsubsection{Knot Insertion}
