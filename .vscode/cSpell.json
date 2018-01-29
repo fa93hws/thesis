@@ -21,6 +21,7 @@
         "superset",
         "discretize",
         "eigenvector",
+        "orthonormal",
         // terms
         "meshless",
         "Isogeometric",
@@ -63,6 +64,7 @@
         "adaptivity",
         "Backpropagation",
         "perceptron",
+        "neighbours",
         // file names
         "octree"
     ],

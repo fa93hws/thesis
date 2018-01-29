@@ -24,7 +24,7 @@ The area of any polygon in fig.~\ref{adap_fig:ei_polygon} can be calculated as
     \caption{A polygon with $n$ vertexes}
     \label{adap_fig:ei_polygon}
 \end{figure}
-\pagebreak
+
 %   ----    %
 \subsection{Mesh Quality}
 \paragraph{}
@@ -52,7 +52,7 @@ An extremely smaller angel may raise numerical stability issue and hence decreas
         \tikz[baseline=-0.5ex]\draw[black,fill=black] (0,0) circle (0.7ex);
     ), minimal angle $\alpha$}
 \end{figure}
-\pagebreak
+
 %   ----    %
 
 \subsection{Eigenvalue in SBFEM}
@@ -99,8 +99,9 @@ The energy can be calculated by the
         U_a &= u_e q_a + u_a q_e + u_e q_e
     \end{aligned}
 \end{equation}
-
+The relative error for energy can be calculated as $\frac{U_a}{U}$ and the same logic for displacement and stress. 
 \paragraph{}
 In order to obtain satisfactory solutions within certain accuracy, the contribution of $U_a$ towards $U$ should be minimized and $U_a$ should also be distributed evenly to all cells. This is, in fact, similar to the relative energy norm error used in the literature \cite{NME:NME1620280411}.
+
 
 \pagebreak
