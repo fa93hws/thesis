@@ -11,47 +11,81 @@ SVM can be trained to solve the linearly separable problem and non-linearly sepa
 %   ----    %
 \subsection{Training Set}
 \paragraph{}
-The training set is determined by a numerical example in fig.~\ref{adap_fig:svm_train} \cite{Duval2018}.
+The training set is determined by numerical examples in fig.~\ref{adap_fig:svm_train_chole} and fig.~\ref{adap_fig:svm_train_cantilever}.
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.5\linewidth}
-        \scalebox{0.7}{
-            \includegraphics{adaptivity/images/adap_svm_train_0.png}
+        \scalebox{0.65}{
+            \includegraphics{adaptivity/images/adap_svm_train_chole_0.png}
         }
         \caption{Mesh and displacement field before refinement}
     \end{subfigure}
     \begin{subfigure}[b]{0.5\linewidth}
-        \scalebox{0.7}{
-            \includegraphics{adaptivity/images/adap_svm_train_1.png}
+        \scalebox{0.5}{
+            \includegraphics{adaptivity/images/adap_svm_train_chole_1.png}
         }
         \caption{Mesh and displacement field after refinement}
     \end{subfigure}
     \caption{Mesh refinement for square plate with circular hole \cite{Duval2018}}
-    \label{adap_fig:svm_train}
+    \label{adap_fig:svm_train_chole}
 \end{figure}
 
-
-\paragraph{}
-With the same example, an uniform mesh of quadtree is conducted and the same region is marked as refined as shown in fig.~\ref{adap_fig:svm_train_my}
 \begin{figure}[!ht]
     \centering
-    \scalebox{0.5}{
-        \includegraphics{adaptivity/images/adap_svm_train_my.eps}
-    }
+    \begin{subfigure}[b]{0.4\linewidth}
+        \scalebox{0.6}{
+            \includegraphics{adaptivity/images/adap_svm_train_cantilever_0.png}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \scalebox{0.6}{
+            \includegraphics{adaptivity/images/adap_svm_train_cantilever_1.png}
+        }
+    \end{subfigure}\\
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.7}{
+            \includegraphics{adaptivity/images/adap_svm_train_cantilever_2.png}
+        }
+    \end{subfigure}
+    \label{adap_fig:svm_train_cantilever}
+    \caption{Mesh refinement of a short cantilever beam \cite{Zienkiewicz2005500}}
+\end{figure}
+
+\paragraph{}
+With the same examples, uniform mesh of quadtree is conducted and the same region are marked as refined as shown in fig.~\ref{adap_fig:svm_train_my}.
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.3}{
+            \includegraphics{adaptivity/images/adap_svm_train_my_chole.eps}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.35}{
+            \includegraphics{adaptivity/images/adap_svm_train_my_cantilever_0.eps}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.35}{
+            \includegraphics{adaptivity/images/adap_svm_train_my_cantilever_1.eps}
+        }
+    \end{subfigure}
     \caption[Training data for SVM]{Training data for SVM: Cells in black is marked as refined.}
     \label{adap_fig:svm_train_my}
 \end{figure}
+
 Criteria taken into consideration are: 
 \begin{enumerate}
-    \item Area of the cell
+    \item Ratio of the area of the cell to the total area
     \item Minimal angle formed by the intersecting lines connected by scaling center and adjacent polygon vertexes
     \item Eigenvalue error indicator for displacement
     \item Eigenvalue error indicator for stress
 \end{enumerate}
 All data are normalized into the range of $[0,1]$, cell that need to be refined are labeled as $1$ and the rest are labeled as $0$.
-Radial basis function with $\sigma^2=\frac{1}{2}$ is adopted as kernel function.
-Half of the training data (192 out of 383) are used to train the model and the reset are used as a cross validation.
-A score of $0.9581$ indicate the model may be valid.
+Radial basis function with $\sigma=0.7624$ is adopted as kernel function.
+Half of the training data (320 out of 640) are used to train the model and the reset are used as a cross validation and the out-of-sample misclassification error is approximately $7.2\%$.
 
 
 
