@@ -48,5 +48,6 @@
     "cSpell.ignoreRegExpList": [
       "\\\\\\w*(\\[.*?\\])?(\\{.*?\\})?",
       "\\$.+?\\$"
-    ]
-}
+    ],
+    "latex-workshop.debug.showUpdateMessage": false
+  }
