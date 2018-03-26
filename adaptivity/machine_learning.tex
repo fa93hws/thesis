@@ -1,11 +1,29 @@
 \paragraph{}
-Having a few error indicator may not be a good story as some of them can be correlated to each others and contribute little to decided whether a cell need to be refined.
-As a result, some statistical technique is required to find out a set of most significant variables.
+Due to the fact that there are a few error indicators, it could be hard to determine the relationship between them and whether a subdomain need refinement or not.
+As a result, specific technique is required in order to search for patterns in the data to find this relationship.
+After that a final decision which is a binary classification in this case as each subdomain will be labeled as ``refine'' or ``not refine'' can be made based on the input of the error indicators explained before.
+Hence, the discovery of regularities plays a key role in adaptive analysis and an automatic discovery of regularities is usually associated with pattern recognition by the help of algorithms.
+
 
 \paragraph{}
-Support Vector Machine(SVM) is a popular method in solving classification in machine learning.
-The data set called training set includes both criteria and the classifications.
-SVM can be trained to solve the linearly separable problem and non-linearly separable upon some special technique.
+A machine learning algorithm is such an algorithm that is able to learn from data and find regularities.
+The ``learning'' is defined as ``A computer program is said to learn from Experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.'' \cite{Mitchell:1997:ML:541177}
+The tasks T refer to the task that are too hard to solve with fixed programs.
+For example, if a robot is designed to be able to walk, it can be done by a program that help the robot learn how to walk or by a program written manually to tell the robot how to walk.
+The second option is rarely chosen because a fixed programs can hardly adapt the complex situation in the reality.
+The task in adaptive analysis will be classification.
+In this type of task, the algorithm is required to specify which category some input belongs to.
+Solving this task is to find a function $f: \mathbb{R}^n \rightarrow \{0,1\}$ where $0$ stands for ``not refine'' and $1$ for ``refine''.
+Each variable in the vector of the input $\pmb{x}$ in the function $y=f(\pmb{x})$ is a feature.
+
+\paragraph{}
+As a way to measure the abilities of a machine learning program, quantitative measurement of its performance must be designed.
+Accuracy could be one of the most popular performance measurement in classification task.
+It is simply defined as the rate of examples for which the algorithms gives the same classification as the reality.
+In adaptive analysis, the ability that a model performs on data that it has not seen before is more important as it is related to its performance when used in real world problem.
+Consequently, these performance measures are usually evaluated using a subset of the original data called test set.
+While another subset of the original data called training set are adopted to train the machine learning system.
+
 
 
 %   ----    %
