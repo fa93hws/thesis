@@ -30,6 +30,7 @@ While another subset of the original data called training set are adopted to tra
 \subsection{Training Set}
 \paragraph{}
 The training set is determined by numerical examples in fig.~\ref{adap_fig:svm_train_chole} and fig.~\ref{adap_fig:svm_train_cantilever}.
+The training data is annotated with whether a subdomain is refined or not and the model can study the data and learn to classify each subdomain based on all four features explained in \ref{adap_error_indicator}.
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.5\linewidth}
@@ -66,8 +67,8 @@ The training set is determined by numerical examples in fig.~\ref{adap_fig:svm_t
             \includegraphics{adaptivity/images/adap_svm_train_cantilever_2.png}
         }
     \end{subfigure}
-    \label{adap_fig:svm_train_cantilever}
     \caption{Mesh refinement of a short cantilever beam \cite{Zienkiewicz2005500}}
+    \label{adap_fig:svm_train_cantilever}    
 \end{figure}
 
 \paragraph{}

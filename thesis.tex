@@ -5,6 +5,16 @@
 \usepackage{graphics}   % include graphics
 \usepackage{float}      % h!
 
+% font
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+% caption
+\usepackage[labelfont=bf,font=sf]{caption}
+\DeclareCaptionFont{caption_size}{\fontsize{12}{13}\rmfamily}
+\captionsetup{font=caption_size}
+
 % figure
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -22,6 +32,7 @@
 % math
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{siunitx}
 
 %algorithm
 % \usepackage{algorithm,algorithmicx,algpseudocode}
@@ -63,10 +74,10 @@
 
 % \tableofcontents
 
-% \input{introduction/index.tex}
+\input{introduction/index.tex}
 \input{literature/index.tex}
-% \input{isogeometric_sbfem/index.tex}    % chapter 3
-% \input{quadtree/index.tex}              % chapter 4
+\input{isogeometric_sbfem/index.tex}    % chapter 3
+\input{quadtree/index.tex}              % chapter 4
 \input{adaptivity/index.tex}            % chapter 5
 % \input{octree/index.tex}
 % \input{conclusion/index.tex}
