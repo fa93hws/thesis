@@ -7,6 +7,7 @@
 
 % font
 \usepackage{helvet}
+\usepackage{color}
 \renewcommand{\familydefault}{\sfdefault}
 
 
@@ -79,7 +80,9 @@
 \input{isogeometric_sbfem/index.tex}    % chapter 3
 \input{quadtree/index.tex}              % chapter 4
 \input{adaptivity/index.tex}            % chapter 5
-% \input{octree/index.tex}
+\textcolor[rgb]{1,0,0}{
+    \input{octree/index.tex}
+}
 % \input{conclusion/index.tex}
 
 % reference
@@ -87,6 +90,5 @@
 \bibliographystyle{plain}
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{ref}
-
 
 \end{document}

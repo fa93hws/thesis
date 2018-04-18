@@ -27,5 +27,6 @@
     "\\\\\\w*(\\[.*?\\])?(\\{.*?\\})?",
     "\\$.+?\\$"
   ],
-  "latex-workshop.debug.showUpdateMessage": true
+  "latex-workshop.debug.showUpdateMessage": true,
+  "latex-workshop.message.update.show": true
 }

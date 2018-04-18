@@ -1,0 +1,82 @@
+\subsection{Matrix Representation for Rational Bezier Surface} 
+\paragraph{}
+A tensor-product rational Bézier surface of degree $(p_1,p_2)$ can be expressed as
+\begin{equation*}
+	\phi(u,v)\in\mathbf{R}^2 \rightarrow \frac{\sum_{i=0}^{p_1}\sum_{j=0}^{p_2}w_{i,j}\mathbf{P}_{i,j}B_i^{p_1}(t)B_j^{p_2}(t) }{\sum_{i=0}^{p_1}\sum_{j=0}^{p_2}w_{i,j}B_i^{p_1}(t)B_j^{p_2}(t)}
+\end{equation*}
+For the surface, $\mathbf{L}$ and $\mathbf{R}$ with order $(v_1,v_2)$
+\begin{equation*}
+	\mathbf{L} =
+	\begin{bmatrix}
+		B_0^{v_1+p_1}(u)B_0^{v_2+p_2}(v) & B_1^{v_1+p_1}(u)B_0^{v_2+p_2}(v) & \dots & B_{v_1+p_1}^{v_1+p_1}(u)B_{v_2+p_2}^{v_2+p_2}(v)
+	\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+	\mathbf{R} =
+	\begin{bmatrix}
+		B_0^{v_1}(u)B_0^{v_2}(v)f_0(u,v) & B_0^{v_1}(u)B_1^{v_2}(v)f_0(u,v) & \dots & B_{v_1}^{v_1}(u)B_{v_2}^{v_2}(v)f_3(u,v)
+	\end{bmatrix}
+\end{equation*}
+Following the same manner in the previous section, it can be derived that 
+\begin{equation}
+	\mathbf{S}_{\left( (i+k)(v_2+p_2+1)+j+l, l(v1+1)+k\right)} = 
+	\frac{\mathbf{C}_k^{v_1}\mathbf{C}_l^{v_2}\mathbf{C}_i^{p_1}\mathbf{C}_j^{p_2}} 
+		{\mathbf{C}_{i+k}^{v_1+d_2}\mathbf{C}_{j+l}^{v_2+d_2}}c_{(i,j)}
+\end{equation}
+
+\subsection{Property of $\mathbf{M_v}$ Matrix}
+As described in the previous sections, the $\mathbf{M_v}$ matrix is defined so that
+\begin{equation*}
+	\begin{bmatrix}
+	\psi_1(t_0) \dots \psi_{m_v}(t_0)
+	\end{bmatrix}
+	\times
+	\mathbf{M_v(\mathbf{P})}
+	= \vec{0}
+\end{equation*}
+where $\mathbf{P}$ is a point on the rational bezier curve/surface.
+The order $v$ shall be no less than a critical value and it is proofed to be
+\begin{itemize}
+	\item $v>max(p-1,1)$ for rational bezier curve
+	\item $(v_1,v_2) > (2p_1 -1, p_2 -1)$ or  $(v_1,v_2) > (p_1 -1, 2p_2 -1)$
+\end{itemize}
+The following properties are proofed in \cite{Laurent2014}
+\begin{enumerate}
+	\item For all degrees $geq$ critical degree and all point $\in\mathbf{R}^3$ , rank($\mathbf{M_v}(\mathbf{P})$) $<m_v$ if and only if $\mathbf{P}\in$ the closure of $\overline{Im}(\phi)$.
+	\item If $\mathbf{P}\in\mathbf{R}^3$ is a point with a unique pre-image by $\phi$, the dimension of the null space of $\mathbf{M_v}(\mathbf{P})^T$ is one. 
+	\item $\delta\mathbf{M_v}(\mathbf{P}) = 0$ if $\mathbf{P} \in\overline{Im}(\phi)$
+\end{enumerate}
+where 
+\begin{equation*}
+	\delta\mathbf{M_v}(\mathbf{P}) = \prod_{i=1}^{m_v}\sigma_i(\mathbf{M_v}(\mathbf{P}))
+\end{equation*}
+and $\sigma_i$ is the diagonal of $\Sigma$ in the SVD decomposition of $\mathbf{M_v}(\mathbf{P})=U\Sigma V^T$
+
+\begin{enumerate}
+	\setcounter{enumi}{3}
+	\item $\forall\mathbf{P}\in\mathbf{R}^3$, $d(\mathbf{P},\overline{Im}(\phi))^{n_1}\leq c_1 \delta\mathbf{M_v}(\mathbf{P})$
+	\item $\forall\mathbf{P}\in\mathbf{R}^3$, $\delta\mathbf{M_v}(\mathbf{P})^{n_2}\leq c_2 d(\mathbf{P},\overline{Im}(\phi))^{n_2} $
+\end{enumerate}
+where $c_1,c_2,n_1,n_2$ are constant.\\
+These two properties give a distance function like function of the $M_v$ matrix. When the point get away to the surface, $\delta\mathbf{M_v}$ is getting larger and vice versa.vise visa.
+\paragraph{}
+If the point is on the curve/surface, in which case $\delta\mathbf{M_v}(\mathbf{P}) = 0$, the corresponding parameter value on the curve/surface can be easily found by a SVD numerically.\\
+The computation of the null space of $\mathbf{M_v}(\mathbf{P}) $ will give a single vector $V=[v_1,v_2,\dots,v_{m_v}]$based on 2 and $V$ will be proportional to 
+\begin{equation*}
+	\begin{bmatrix}
+	\psi_1(t_0) \dots \psi_{m_v}(t_0)
+	\end{bmatrix}
+\end{equation*}
+More specifically, it will be proportional to
+\begin{equation*}
+	\begin{bmatrix}
+		B_0^v & B_1^v & \dots
+	\end{bmatrix}
+\end{equation*}
+for the rational bézier curves and
+\begin{equation*}
+	\begin{bmatrix}
+		B_0^{v1}B_0^{v2} & B_0^{v1}B_1^{v2} & \dots
+	\end{bmatrix}
+\end{equation*}
+for the rational bézier surfaces.
