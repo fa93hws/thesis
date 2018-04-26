@@ -16,7 +16,7 @@ The area of any polygon in fig.~\ref{adap_fig:ei_polygon} can be calculated as
         \right)
 \end{equation}
 
-\begin{figure}[!h]
+\begin{figure}[h!]
     \centering
     \scalebox{1}{
         \includegraphics{adaptivity/images/adap_ei_polygon.eps}
@@ -32,7 +32,7 @@ Mesh quality is another important factor that influence the accuracy.
 In SBFEM, mesh quality is highly related to the minimal angle formed by the intersecting lines connected by scaling center and adjacent polygon vertexes.
 An extremely smaller angel may raise numerical stability issue and hence decrease the accuracy of the result.
 
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
         \scalebox{1}{
@@ -102,6 +102,5 @@ The energy can be calculated by the
 The relative error for energy can be calculated as $\frac{U_a}{U}$ and the same logic for displacement and stress. 
 \paragraph{}
 In order to obtain satisfactory solutions within certain accuracy, the contribution of $U_a$ towards $U$ should be minimized and $U_a$ should also be distributed evenly to all cells. This is, in fact, similar to the relative energy norm error used in the literature \cite{NME:NME1620280411}.
-
 
 \pagebreak

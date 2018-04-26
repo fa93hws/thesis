@@ -17,7 +17,7 @@ After that, the root square will be divided into millions (defined by resolution
 Then, $2^{s_{max}} \times 2^{s_{max}}$ ``pixels'' will be group into the first layer of the tree, or initial background mesh as shown in fig.~\ref{qdt_fig:qdt_initial_mesh}.
 It is used to control the maximum allowable mesh size globally or separately for different material regions.
 
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \centering
     \scalebox{0.8}{
         \includegraphics{quadtree/images/qdt_initial_mesh.eps}
@@ -39,7 +39,7 @@ Due to the fact that algorithm described in .~\ref{qdt_section:iges_output} guar
 Although seed points provides a good guide on the mesh density, situations where high density mesh is required while few seed points appeared may happen as plotted in fig.~\ref{qdt_fig:qdt_seed_point_problem}.
 The geometry limits the seed points due to the lack of curvature.
 While, it is expected that the square element will be refined at least once as one layer of mesh may not be appropriate to formulate a thin shell structure. 
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_seed_points_problem}
@@ -77,7 +77,7 @@ Balancing by rotation is performed because difference in height of the leaf B an
 % balance in quadtree
 Same idea is adopted in quadtree as well.
 a refinement will be performed to achieve a balanced tree if the difference in the height of the leaf (Cell A and B in fig.~\ref{qdt_fig:tree_balance_quadtree} for example) is larger than one.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
             \scalebox{0.8}{
@@ -103,7 +103,7 @@ Even thought computational cost on searching seems not to be significant during 
 One of the advantages is to improve the mesh quality.
 Any extremely small or large angle between the element and the scaling center may result in a bad quality mesh.
 Chances are that these poor quality mesh may appear without self-balancing, fig.~\ref{qdt_fig:sbfem_adv_1} for an example.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_balance_sbfem_adv_1.eps}
@@ -118,7 +118,7 @@ Thanks to the geometric similarity, local stiffness matrix can be calculated and
 Hanging nodes in fig.~\ref{qdt_fig:sbfem_adv_2} can be a problem for traditional finite element to handle the displacement compatibility \cite{Tabarraei:2009:XFE} \cite{NME:NME3070} \cite{NME:NME2900} .
 Solution including triangulation \cite{4037344} \cite{BERN1994384} \cite{ijeas251083} , using special shape function \cite{NME:NME1620120104} and other methods are available but special treatment is required.
 As a comparison, SBFEM provides greater flexibility on the element, n-sides polygons with hanging nodes or curved edge can be treated natively.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_balance_sbfem_adv_2.eps}
@@ -141,7 +141,7 @@ As a comparison, SBFEM provides greater flexibility on the element, n-sides poly
 %introduction
 Hard point is a kind of point in the geometry that must be meshed as a node or scaling center.
 When more than two materials are involved, it is common to have some hard points to make sure the point shared by three material can be properly formulated as shown in fig.~\ref{qdt_fig:qdt_hard_point_demo}
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
             \scalebox{0.8}{
@@ -229,7 +229,7 @@ Fig.~\ref{qdt_fig:qdt_bucket_sort} illustrates an example of the algorithm ($n$ 
 The end points of the curve are located in gird D2 and I5, as a consequence, the curve will be put in bucket ``D2-I5''.
 In other words, cells that are not in this region shall not have any intersections with the curve.
 
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \centering
     \scalebox{0.8}{
         \includegraphics{quadtree/images/qdt_bucket_sort.eps}
@@ -248,7 +248,7 @@ Generally, there are three situations where cutting is involved with one curve a
 Due to the fact that the background cell is refined properly and hence curves can be regarded as straight lines.
 Case 3 in fig.~\ref{qdt_fig:qdt_cutting_3} is an exception as it shall not happen unless even the minimal allowable background cell may not able to catch the feature.
 Unfortunately, result from case 3 may not be as expected and increase the resolution or decrease the minimal allowable cell size can help to prevent case 3 from happening.
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \begin{subfigure}[b]{0.3\linewidth}
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_cutting_case_1.eps}
@@ -321,7 +321,7 @@ After that, method in case one can be applied directly.
 \paragraph{}
 % poor mesh quality
 Although all types of cells with intersections are able to be treated by the algorithm described above, quality of the mesh sometimes may out of control as example shown in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_cutting_point_moving.eps}
@@ -389,7 +389,7 @@ Another method is projecting the nodes in background mesh on to the curves befor
 Special treatment in generating the background mesh is no longer necessary but cutting concave cells may be inevitable.
 Fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave} illustrates an example of a concave cell resulted from point moving.
 An intersecting curve that is not a straight line even with a very small curvature, possibility exists that distance $a$ from the hanging node $A$ to the curve is slightly smaller than the tolerance while $b$ and $c$ are slightly larger than tolerance.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
             \scalebox{1.2}{
@@ -442,7 +442,7 @@ Considering the possibility of coloring being the bottle neck of the whole progr
 Geometric location can provide a good reference of the color in most of the case but may fail in some situation.
 Calculating geometric geometric center and find which bounded area is it located is a computational cheap work and can be parallelize to utilize multiple thread.
 However it can fail in some case especially for a concave polygon whose geometric center is outside of itself as shown in fig.~\ref{qdt_fig:qdt_coloring_geo_problem}.
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \centering
     \scalebox{1.2}{
         \includegraphics{quadtree/images/qdt_coloring_geo.eps}
@@ -456,7 +456,7 @@ Fig.~\ref{qdt_fig:qdt_coloring_geo_problem_sc} discussed the possibility of colo
 The coordinate of the scaling center of the rectangle in the left is $(\frac{l-a}{2},\frac{l}{2})$.
 If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is large enough so that point $C$ is not recognized as hard point and $a$ is not too large compared to $l$ so that point $A$ and $B$ will not merged to the node of the rectangle.
 
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1.5}{
             \includegraphics{quadtree/images/qdt_coloring_geo_sc.eps}
@@ -487,7 +487,7 @@ Setting $\epsilon_1$ greater than $150^\circ$ may result in large amount of unex
 A combination of $\epsilon_1 = 150^\circ$ and $\epsilon_2 = 0.3$ seems to be the only possible solution.
 However, stick on the parameters that produce some unexpected hard points and points moving may not surpass the advantage of this method.
 
-    \begin{table}[!ht]
+    \begin{table}[h!]
         \centering
         \caption{Minimal $\epsilon_2$ with different $\epsilon_1$}
         \label{qdt_tab:qdt_coloring_ep1_ep2}
@@ -518,7 +518,7 @@ The loops stops when there are not any unvisited polygons found under available 
 Any uncolored polygons will have the same color as its youngest parent with known color.
 Take fig.~\ref{qdt_fig:qdt_color_example} as an example,
 
-\begin{figure}[!ht]
+\begin{figure}[h!]
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
         \scalebox{1}{
@@ -543,7 +543,7 @@ Since no boundary of polygon $1$ and $4$ is the border between two materials, th
 Polygon $15$ then will be found as the child node of polygon $1$, the recursion will pause before polygon $5$ being added to polygon $1$ as child node.
 The hypotenuse of polygon $15$ is border between color $1$ and $-1$, considering the fact that the known color of its youngest parent (polygon $0$) is $1$, whole branch (polygon $0,1$ and $15$) will be marked as color $1$.
 By knowing the hypotenuse of polygon $15$ can only be contained in one other polygon, next child node, polygon $2$, will be marked as color $-1$ in next recursion.
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_0.eps}
@@ -562,7 +562,7 @@ Bottom edge of polygon $2$ is contained in itself only, which implies the termin
 As another child node of polygon $15$, polygon $6$ , whose hypotenuse is border between two colors and the youngest parent with known color will be polygon $15$ which is marked as color $1$.
 Polygon $13$ will be marked as color $-1$ in next recursion.
 
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_1.eps}
@@ -576,7 +576,7 @@ Polygon $13$ will be marked as color $-1$ in next recursion.
 Fig.~\ref{qdt_fig:qdt_color_tree_2} illustrates the final search tree after a few more recursion.
 End node polygon $11$ and $3$ do not trigger the termination process normally will be marked with color in the end with the youngest parent rule, which gives branch $11,10,12,4$ and branch $3$ the same color as polygon $0$ and $2$.
 
-    \begin{figure}[!ht]
+    \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_2.eps}
