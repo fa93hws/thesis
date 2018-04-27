@@ -19,7 +19,7 @@ It is used to control the maximum allowable mesh size globally or separately for
 
 \begin{figure}[h!]
     \centering
-    \scalebox{0.8}{
+    \scalebox{0.6}{
         \includegraphics{quadtree/images/qdt_initial_mesh.eps}
     }
     \caption{An example of the background initial mesh: $16 \times 16$ square are divided into $2^4 \times 2^4$ pixels (dashed lines, $res=4$) and $2^2 \times 2^2$ pixels form the initial mesh (solid lines, $s_{max}=2$)}
@@ -41,7 +41,7 @@ The geometry limits the seed points due to the lack of curvature.
 While, it is expected that the square element will be refined at least once as one layer of mesh may not be appropriate to formulate a thin shell structure. 
     \begin{figure}[h!]
         \centering
-        \scalebox{1}{
+        \scalebox{0.8}{
             \includegraphics{quadtree/images/qdt_seed_points_problem}
         }
         \caption[Limitation of the seed points]{
@@ -80,14 +80,14 @@ a refinement will be performed to achieve a balanced tree if the difference in t
     \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
-            \scalebox{0.8}{
+            \scalebox{0.7}{
                 \includegraphics{quadtree/images/qdt_balance_before.eps}
             }
             \caption{Before balance operation}
         \end{subfigure}
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
-            \scalebox{0.8}{
+            \scalebox{0.7}{
                 \includegraphics{quadtree/images/qdt_balance_after.eps}
             }
             \caption{After balance operation}
@@ -458,7 +458,7 @@ If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is
 
     \begin{figure}[h!]
         \centering
-        \scalebox{1.5}{
+        \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_geo_sc.eps}
         }
         \caption[Coloring problem using location of scaling center]{Coloring problem using location of scaling center}
@@ -528,7 +528,7 @@ Take fig.~\ref{qdt_fig:qdt_color_example} as an example,
     \end{subfigure}
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
-        \scalebox{1}{
+        \scalebox{0.8}{
             \includegraphics{quadtree/images/qdt_coloring_example_mesh.eps}
         }
         \caption{Mesh of an example for coloring}
