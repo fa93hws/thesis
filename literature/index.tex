@@ -1,8 +1,17 @@
 %!TEX root = ../thesis.tex
 
 \chapter{Literature review}
+\input{literature/lr_intro.tex}
 
-% \section{Overview of numerical methods}
+
+\section{Isogeometric analysis}
+\input{literature/lr_nurbs.tex}
+\label{lr_sc:nurbs}
+
+\input{literature/lr_iges.tex}
+\label{lr_sc:iges}
+
+\section{Overview of numerical methods}
 
 %     \subsection{Finite element method}
 
@@ -10,15 +19,11 @@
 
 %     \subsection{Isogeometric analysis}
 
-\section{Scaled boundary finite element method}
 \input{literature/lr_sbfem.tex}
 
-\section{Approaches for meshing automation}
+\textcolor{red}{
+    \input{literature/lr_data_mining.tex}
+}
 
-    \subsection{Initial Graphics Exchange Specification (IGES) file}
-    \label{lr_sc:iges}
-
-    \subsection{Non-Uniform Rational B-Spline (NURBS)}
-    \input{literature/lr_nurbs.tex}
 
 \section{Conclusions}

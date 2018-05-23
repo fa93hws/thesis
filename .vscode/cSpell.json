@@ -14,6 +14,7 @@
         "ANSYS",
         "IGABEM",
         "XFEM",
+        "RELU",
         // math
         "argmin",
         "argmax",
@@ -22,6 +23,8 @@
         "discretize",
         "eigenvector",
         "orthonormal",
+        "Jacobian",
+        "eigenvectors",
         // terms
         "meshless",
         "Isogeometric",
@@ -41,6 +44,14 @@
         "quadtree",
         "parallelize",
         "DOFs",
+        "inhomogeneous",
+        "discretised",
+        "dataset",
+        "feedforward",
+        "acyclic",
+        "minibatch",
+        "softplus",
+        "affine",
         // names
         "Kingma",
         "Bézier",
@@ -51,6 +62,8 @@
         "Kolosov",
         "Mises",
         "Newmark's",
+        "Riccati",
+        "Lyapunov",
         // command
         "pagebreak",
         "scalebox",

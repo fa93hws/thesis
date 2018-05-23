@@ -33,6 +33,7 @@
 % math
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{breqn}          % dmath
 \usepackage{siunitx}
 
 %algorithm
@@ -69,19 +70,60 @@
 \newcommand{\RN}[1]{
     \textup{\uppercase\expandafter{\romannumeral#1}}
 }
+
 %pdf plot
 % \pgfplotsset{compat=1.15}
 \begin{document}
+% roman page numbering for first few parts
+\pagenumbering{roman}
 
-% \tableofcontents
+% title page
+\begin{titlepage}
+    \begin{center}
+    \textsc{\large  School of Civil \& Environmental Engineering}\\[0.5cm]
+    \textsc{\large  Faculty of Engineering}\\[0.5cm]
+    \textsc{\large  Ph.D Thesis}\\[0.5cm]
+     \hrule 
+    \vspace{0.1in}
+    { \huge \bfseries Integrating geometry and structural analysis}\\[0.4cm]
+    \hrule
+    
+    \begin{figure*}
+    \centering
+    \scalebox{0.3}{\includegraphics{UNSW.png}}
+    \end{figure*}
+    \vspace{0.1in}
+    \begin{minipage}{0.4\textwidth}
+    \begin{flushleft} \large
+    \emph{Author:}\\
+    Junchao \textsc{Wang}\\
+    z3315263
+    \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \begin{flushright} \large
+    \vspace{0.2in}
+    \emph{Supervisors:} \\
+    Prof. Chongmin \textsc{Song}\\
+    \end{flushright}
+    \end{minipage}
+    
+    \vfill
+    {\large \today}
+    \end{center}
+\end{titlepage}
+% end of title
+\tableofcontents
 
-% \input{introduction/index.tex}
-% \input{literature/index.tex}
-% \input{isogeometric_sbfem/index.tex}    % chapter 3
+\chapter{Introduction}
+    \pagenumbering{arabic}
+    \input{introduction/index.tex}
+\input{literature/index.tex}
+\input{isogeometric_sbfem/index.tex}    % chapter 3
 \input{quadtree/index.tex}              % chapter 4
-% \input{adaptivity/index.tex}            % chapter 5
-% \input{octree/index.tex}
-% \input{conclusion/index.tex}
+\input{adaptivity/index.tex}            % chapter 5
+\input{octree/index.tex}
+\input{conclusion/index.tex}
 
 % reference
 \pagebreak

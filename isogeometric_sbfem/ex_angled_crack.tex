@@ -18,10 +18,11 @@ The convergence of mode \RN{1} and mode \RN{2} SIF with mesh size is shown in ta
 The influence of the order of the shape functions is also shown.
 It can be seen that increasing the number of degrees of freedom, the error in the numerical SIF decreases.
 A very good agreement is observed.
+
 \begin{table}
 \caption{Convergence of the generalized stress intensity factors $
-    (\mean{K_\RN{1}}, \mean{K_\RN{2}}) =
-    (K_\RN{1},K_\RN{2}) /
+    (\mean{K_{\mathrm I}}, \mean{K_{\mathrm{II}}}) =
+    (K_{\mathrm I},K_{\mathrm{II}}) /
     P\sqrt(\pi a)
     $}
 \label{iso_tab:angled_crack_convergence}
@@ -30,12 +31,12 @@ A very good agreement is observed.
     \multirow{2}{*}{Order}& & \multicolumn{3}{c}{Number of DOF} \\
     \cmidrule{3-5}
     & & 160 & 240 & 320 \\
-    \multirow{2}{*}{$2$}    &   $\mean{K_\RN{1}}$   &   1.2770  &   1.2723  &   1.2706  \\
-                            &   $\mean{K_\RN{2}}$   &   0.2918  &   0.2915  &   0.2913  \\
-    \multirow{2}{*}{$4$}    &   $\mean{K_\RN{1}}$   &   1.2700  &   1.2697  &   1.2697  \\
-                            &   $\mean{K_\RN{2}}$   &   0.2914  &   0.2913  &   0.2913  \\
-    \multirow{2}{*}{$6$}    &   $\mean{K_\RN{1}}$   &           &   1.2668  &   1.2670  \\
-                            &   $\mean{K_\RN{2}}$   &           &   0.2913  &   0.2913  \\                           
+    \multirow{2}{*}{$2$}    &   $\mean{K_{\mathrm I}}$   &   1.2770  &   1.2723  &   1.2706  \\
+                            &   $\mean{K_{\mathrm{II}}}$   &   0.2918  &   0.2915  &   0.2913  \\
+    \multirow{2}{*}{$4$}    &   $\mean{K_{\mathrm I}}$   &   1.2700  &   1.2697  &   1.2697  \\
+                            &   $\mean{K_{\mathrm{II}}}$   &   0.2914  &   0.2913  &   0.2913  \\
+    \multirow{2}{*}{$6$}    &   $\mean{K_{\mathrm I}}$   &           &   1.2668  &   1.2670  \\
+                            &   $\mean{K_{\mathrm{II}}}$   &           &   0.2913  &   0.2913  \\                           
     \midrule
     \bottomrule
 \end{tabularx}
@@ -47,11 +48,11 @@ The influence of the crack orientation α on the mode \RN{1} and mode \RN{2} SIF
 A total of 80 control points are used with different order of the NURBS basis functions.
 It can be seen that a very good agreement is observed.
 \begin{table}
-\caption{Generalized stress intensity factors $K_\RN{1}/P\sqrt{\pi a}$ of angled crack in rectangular orthotropic body}
+\caption{Generalized stress intensity factors $K_{\mathrm{I}} / P\sqrt{\pi a}$ of angled crack in rectangular orthotropic body}
 \label{iso_tab:angled_crack_sif_1}
 \begin{tabularx}{\textwidth}{XXXXX}
     \toprule
-    Angle   &   $K_\RN{1}$  &   \multicolumn{3}{c}{ }  \\
+    Angle   &   $K_{\mathrm{I}}$  &   \multicolumn{3}{c}{ }  \\
     \cmidrule{2-5} 
     $\alpha$&\cite{Banks2005}&  \multicolumn{3}{c}{Order of the curve}  \\
     \cmidrule{3-5} 
@@ -68,11 +69,11 @@ It can be seen that a very good agreement is observed.
 \end{table}
 
 \begin{table}
-    \caption{Generalized stress intensity factors $K_\RN{2}/P\sqrt{\pi a}$ of angled crack in rectangular orthotropic body}
+    \caption{Generalized stress intensity factors $K_{\mathrm{II}}/P\sqrt{\pi a}$ of angled crack in rectangular orthotropic body}
     \label{iso_tab:angled_crack_sif_2}
     \begin{tabularx}{\textwidth}{XXXXX}
         \toprule
-        Angle   &   $K_\RN{2}$  &   \multicolumn{3}{c}{ }\\
+        Angle   &   $K_{\mathrm{II}}$  &   \multicolumn{3}{c}{ }\\
         \cmidrule{2-5}
         $\alpha$&\cite{Banks2005}&  \multicolumn{3}{c}{Order of the curve}\\
         \cmidrule{3-5}
