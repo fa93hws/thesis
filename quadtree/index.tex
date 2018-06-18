@@ -17,6 +17,11 @@ The proposed method enhances the conventional SBFEM and the salient features of 
         \item Exact geometry will be retain
         \item High quality mesh from the quad-tree algorithm
     \end{itemize}
+\paragraph{}
+This chapter is organized as follows.
+The CAD output (iges files) will be introduced first.
+After that, an overview of the algorithm that can generate quadtree mesh will be provided.
+The accuracy and the convergence properties of the proposed techniques are demonstrated with benchmark problems in the context of linear elasticity, followed by concluding remarks in the last section.
 \pagebreak
 
 \section{CAD output in 2D}
@@ -41,3 +46,11 @@ The proposed method enhances the conventional SBFEM and the salient features of 
 \input{quadtree/ex_other_mesh.tex}
 
 \section{Conclusions}
+In this chapter, we employed the IGES file directly from the CAD output to generate the quadtree mesh automatically.
+The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark problems in linear elasticity mechanics.
+From the numerical studies, it can be observed that the quadtree mesh yield better accuracy when compared to uniform mesh with same degree of freedoms.
+The proposed methods provides a systematic and automatic mesh generation algorithm that can produce high quality mesh.
+CAD design file can be used directly and the exact geometry can also be retained, which can largely reduce human efforts involved in numerical analysis.
+Moreover, it can also help to reduce the analytical error as the difference in the geometric representation is minimized.
+Computational efficiency can also be improved via utilizing the pattern of the quadtree.
+
