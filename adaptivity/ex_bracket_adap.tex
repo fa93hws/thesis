@@ -1,3 +1,27 @@
+\paragraph{}
+In this example, a plane strain bracket with a downward uniform distributed load on the top is considered (see fig.~\ref{adp_fig:ex_bracket_geo_bc}).
+The material properties are: Young’s modulus $E = 2\times 10^5 N/m^2$ and Poisson’s ratio $\nu = 0.3$.
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{1\linewidth}
+            \centering
+            \scalebox{1.2}{
+                \includegraphics{quadtree/ex_images/ex_bracket_geo.eps}
+            }
+        \end{subfigure}
+        \begin{subfigure}[b]{1\linewidth}
+            \centering
+            \scalebox{1.3}{
+                \includegraphics{quadtree/ex_images/ex_bracket_load.eps}
+            }
+        \end{subfigure}
+        \caption{ Plane strain bracket: geometry and boundary conditions}
+        \label{adp_fig:ex_bracket_geo_bc}
+    \end{figure}
+
+\paragraph{}
+A total strain energy of $282.927$ is determined by ANSYS with the mesh shown in fig.~\ref{qdt_fig:ex_bracket_ansys_mesh}
+
 % /* cSpell:disable */
 % -1 - 282.927
 % 382*2  - 274.5638 (32-4/8-3)
@@ -49,3 +73,78 @@
 
 
 % /* cSpell:enable */
+\paragraph{}
+% result analysis
+The convergence rate in terms of the total strain energy is shown in Fig.~\ref{adap_fig:ex_bracket_conv} and corresponding mesh development are presented in Fig.~\ref{adap_fig:ex_bracket_mesh_sbfem} (SBFEM) and Fig.~\ref{adap_fig:ex_bracket_mesh_ansys} ( Ansys 4-node quadrilateral element ).
+Higher convergence rate compared to the result determined in ANSYS is observed.
+
+\begin{figure}[h!]
+    \centering
+    \scalebox{0.5}{
+        \includegraphics{adaptivity/ex_images/ex_adap_bracket_conv.eps}
+    }
+    \caption{Plane strain bracket: Convergence study}
+    \label{adap_fig:ex_bracket_conv}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \centering
+        \scalebox{0.6}{
+            \includegraphics{adaptivity/ex_images/ex_adap_bracket_530.png}
+        }
+        \caption{Initial mesh, 530 DOFs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \centering
+        \scalebox{0.6}{
+            \includegraphics{adaptivity/ex_images/ex_adap_bracket_1554.png}
+        }
+        \caption{1st refinement, 1554 DOFs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \centering
+        \scalebox{0.6}{
+            \includegraphics{adaptivity/ex_images/ex_adap_bracket_4208.png}
+        }
+        \caption{2nd refinement, 4208 DOFs}
+    \end{subfigure}
+    \caption{Plane strain bracket: Mesh development (SBFEM)}
+    \label{adap_fig:ex_bracket_mesh_sbfem}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \scalebox{0.4}{
+            \includegraphics{adaptivity/ex_images/ex_adp_bracket_ansys_185.png}
+        }
+        \caption{Initial mesh, 138 DOFs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \scalebox{0.4}{
+            \includegraphics{adaptivity/ex_images/ex_adp_bracket_ansys_650.png}
+        }
+        \caption{1st refinement, 482 DOFs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \scalebox{0.4}{
+            \includegraphics{adaptivity/ex_images/ex_adp_bracket_ansys_1227.png}
+        }
+        \caption{2nd refinement, 1794 DOFs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \scalebox{0.4}{
+            \includegraphics{adaptivity/ex_images/ex_adp_bracket_ansys_2405.png}
+        }
+        \caption{3rd refinement, 6914 DOFs}
+    \end{subfigure}
+    \caption{Plane strain bracket: Mesh development (Ansys)}
+    \label{adap_fig:ex_bracket_mesh_ansys}
+\end{figure}
