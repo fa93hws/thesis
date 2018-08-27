@@ -1,42 +1,37 @@
 %!TEX root = ../thesis.tex
 \chapter{Isogeometric enhanced SBFEM in 2D}
+\label{Iso_sec:main}
 \section{Introduction}
 \paragraph{}
-The main objective of this chapter is to combine the concepts of isogeometric analysis and the SBFEM.
+The main objective of this chapter is to combine the concept of isogeometric analysis and the SBFEM.
 Non-uniform rational B-splines (NURBS) basis functions are employed to approximate the unknown fields in the circumferential direction.
 This provides a seamless integration with the CAD model.
-We further extend the method to problems with singularities within the framework of linear elastic fracture mechanics and to dynamic analysis.
+The method is further extended to problems with singularities within the framework of linear elastic fracture mechanics and to dynamic analysis.
 The proposed method enhances the conventional IGA and the salient features of the method are:
     \begin{itemize}
-        \item No tensor-product patches as only the boundary information is required for the stress analysis.
-        \item Feasible to have a n-sided polygonal domain of mixed type/order of the element on the edges.
-                This leads to high flexibility in meshing and mesh transition.
-        \item Model strain/stress singularities without enrichment.
-        \item When employed to study the dynamic response at high frequencies, the proposed method does not need internal mesh.
+        \item No tensor-product patches as only the boundary information is required for the stress analysis
+        \item Feasible to have a n-sided polygonal domain of mixed type/order of the element on the edges, 
+                which leads to high flexibility in meshing and mesh transition
+        \item Model strain/stress singularities without enrichment
+        \item No internal mesh when studying the dynamic response at high frequencies
     \end{itemize}
 
-\paragraph{}
+
 This chapter is organized as follows.
-The non-uniform rational B-splines will be first introduced.
-After that, the non-uniform rational B-splines in 2D is introduced.
-Next section provides an overview of the SBFEM and important equations pertaining to linear elasticity are given, followed by extending the formulation to linear elastic fracture mechanics.
-The accuracy and the convergence properties of the proposed techniques are demonstrated with benchmark problems in the context of linear elasticity and linear elastic fracture mechanics in Section 5, followed by concluding remarks in the last section.
+Section.~\ref{iso_section:formulation} provides an overview of the SBFEM and important equations pertaining to linear elasticity,
+followed by extending the formulation to linear elastic fracture mechanics in Section~\ref{iso_section:fracture}.
+After that, methods that perform the interpolation of surface traction and displacement will be presented in Section~\ref{iso_section:surface_traction} and Section~\ref{iso_section:interpolation}.
+Numerical integration with NURBS will be mentioned in Section~\ref{iso_section:numerical_integration} before the accuracy and the convergence properties of the proposed techniques being demonstrated with benchmark problems in the context of linear elasticity and linear elastic fracture mechanics in Section~\ref{iso_section:examples}, followed by concluding remarks in the last section.
 \pagebreak
 %=================================================================================================================================%
-\section{2D NURBS curves}
-\input{isogeometric_sbfem/nurbs_numerical_integrations.tex}  
-
-\section{NURBS enhanced SBFEM}
 \input{isogeometric_sbfem/sbfem_formulation.tex}
-
 \input{isogeometric_sbfem/sbfem_linear_fracture.tex}
-
 \input{isogeometric_sbfem/sbfem_surface_traction.tex}
-
 \input{isogeometric_sbfem/sbfem_displacement_interpolation.tex}
-
+\input{isogeometric_sbfem/nurbs_numerical_integrations.tex}  
 %=================================================================================================================================%
 \section{Numerical examples}
+\label{iso_section:examples}
 \paragraph{}
 In this section, the accuracy and the convergence properties of the proposed method are demonstrated with a few
     benchmark problems.
@@ -65,7 +60,7 @@ The displacement norm is given by:
             \right]
         }
     \end{equation}
-
+%
 where $u^h$ is the numerical solution and $u$ is the analytical solution or a reference solution.
 The energy norm is given by
     \begin{equation}
@@ -81,9 +76,8 @@ The energy norm is given by
             \right]
         }
     \end{equation}
-
-For the purpose of numerical integration of NURBS basis functions, we employ higher order Gaussian quadrature
-    over each span of the NURBS basis functions.
+%
+For the purpose of numerical integration of NURBS basis functions, we employ higher order Gaussian quadrature over each span of the NURBS basis functions.
 Other quadrature rules are possible as outlined in \cite{Hug2010}.
 For Lagrange basis functions, conventional Gauss–Lobatto quadrature is employed.
 

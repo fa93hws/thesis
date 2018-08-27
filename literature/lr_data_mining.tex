@@ -1,4 +1,5 @@
 \section{Machine learning}
+\label{lr_sec:machine_learning}
 \paragraph{}
 A machine learning algorithm is such an algorithm that is able to learn from data and find regularities.
 The ``learning'' is defined as ``A computer program is said to learn from Experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.'' \cite{Mitchell:1997:ML:541177}
@@ -67,8 +68,7 @@ A neural network so far will never aim to simulate a brain perfectly as well, it
     \caption{A typical topology of a multilayer preceptron}
     \label{lr_fig:ml_mlp_intro}
 \end{figure}
-
-\paragraph{}
+%
 The key question of a MLP is how to find a proper non-linear mapping function $\phi_i$ that can calculate all units in $i+1$-th layer from the previous one.
 One of the options is to adopt a generic function, such as the Radial Basis Function(RBF)\cite{chang2010} kernel.
 Even though an RBF kernel is capable to fit the training data with infinite-dimensional function, the performance on the test set usually not as satisfactory as it is on the training set.
@@ -96,7 +96,7 @@ Fig.~\ref{lr_fig:ml_gradient_optimization} illustrates how the derivatives are u
     \caption{An example of gradient descent algorithm on a parabola}
     \label{lr_fig:ml_gradient_optimization}
 \end{figure}
-
+%
 In a two dimensional curve who can be expressed by function $y=f(x)$ with real numbers $x$ and $y$.
 The derivative $f^\prime=\frac{dy}{dx}$ is ultra useful to determine the global minimal value of a function as it stands for the slope and the slope tells whether $y$ is becoming smaller or larger when $x$ increase.
 The global minimal is proved to happen when the derivative equal to zeros or on the boundary if the function is continuous.
@@ -114,12 +114,14 @@ In order to minimize loss function $f$, it is expected to determine the directio
     = & \argmin_{\mathbf{u}} \cos\theta
     \end{aligned}
 \end{equation}
+%
 where $\mathbf{u}$ is a directional unit vector ($\mathbf{u}^T\mathbf{u}=1$) and $\theta$ is the angle between $\mathbf{u}$ and the gradient.
 it can be concluded that $f$ can be decrease in the fastest way in the direction of the reverse of the gradient which is called gradient descent in Eq.~\ref{lr_eq:ml_gradient_descent}.
 \begin{equation}
     x^\prime = x - \epsilon \nabla_x f(x)
     \label{lr_eq:ml_gradient_descent}
 \end{equation}
+%
 where $\epsilon > 0$ stands for the learning rate which decided the distance for each step.
 Several strategy exists to determine learning rate including using a tiny constant, adopting a large number at the beginning and decrease it during the iteration and try different learning rates and find the best (line search).
 
@@ -132,12 +134,14 @@ The cost function of a neural network can be written as followed when negative l
     \mathbf{J}(\theta) = E_{\mathbf{x},y\sim\hat{p}_{data}}\mathbf{L}(\mathbf{x},y,\theta)
     =\frac{1}{m}\sum^m_{i=1}L(\mathbf{x}^{i},y^{i},\theta)
 \end{equation}
+%
 where $L$ is the per-example loss $\mathbf{L}(\mathbf{x},y,\theta)=-log p(y|\mathbf{x},\theta)$.
 And the calculation of the gradient descent becomes:
 \begin{equation}
     \nabla_{\theta} \mathbf{J}(\theta)
     =\frac{1}{m}\sum^m_{i=1}\nabla_\theta \mathbf{L} (\mathbf{x},y,\theta)
 \end{equation}
+%
 It is clear that the computation of the gradient is an $O(m)$ operation where $m$ is the size of the training data.
 Considering the fact that it takes at least thousands iteration before a model converge and each iteration require an operation that takes prohibitively long time, some optimization must be taken.
 The main idea of the SGD is to treat the gradient as an expectation.
@@ -148,8 +152,7 @@ The gradient then can be calculated based on minibatch with $O(1)$ operation as
     g
     =\frac{1}{m^\prime} \sum^{m^\prime}_{i=1} \mathbf{L} (\mathbf{x},y,\theta)
 \end{equation}
-
-\paragraph{}
+%
 The most outstanding feature of the MLP compared to linear models is that it can capture non-linear features automatically which also result in a non-convex loss function.
 As a consequence, learning algorithm in MLP adopt SGD to solve the optimization problem iteratively, instead of finding it directly with a closed form mathematical solution or by convex optimization.
 This usually leads to a cost function with very low value rather than the global minimum.
@@ -165,6 +168,7 @@ It can be expressed as followed:
     \mathbf{J}(\theta) = -\mathbf{E}_{x,y\sim \hat{p}_{data}}  log   p_{model} (y|x)
     \label{lr_eq:ml_MLE}
 \end{equation}
+%
 One of the outstanding merits to adopt this method is that the design of cost function for other model is no longer necessary.
 Setting parameter for a model $p(x|y)$ and the cost function $log p(y|x)$ can be determined automatically.
 Another advantage using maximum likelihood function as cost function is because that it helps to prevent gradient vanishing.
@@ -185,6 +189,7 @@ By enforcing a constrain of $[0,1]$ on the probability, it becomes
 \begin{equation}
     P(y=1|x) = max{0,min{1, w^T h + b}}
 \end{equation}
+%
 assuming linear unit is adopted.
 Even though a valid probability is defined, there will be some issue during the training as the gradient becomes zero when $w^T h +b>1$.
 In gradient based learning algorithm, a zero gradient always cause problem because the algorithm may have very little information on how to improve the parameters.
@@ -197,16 +202,13 @@ where $\sigma$ is the logistic sigmoid function
 \begin{equation}
     \sigma = \frac{1}{1+e^{-x}}
 \end{equation}
-
-\paragraph{}
+%
 A sigmoid unit can be regarded as a combination of linear unit and a sigmoid activation function that convert the output from the linear component $z$ into a probability.
-%-- need refactor
-We omit the dependence on x for the moment to discuss how to define a probability distribution over y using the value $z$.
-The sigmoid can be motivated by constructing an unnormalized probability distribution $\tilde{P}(y)$, which does not sum to 1.
-We can then divide by an appropriate constant to obtain a valid probability distribution.
-If we begin with the assumption that the unnormalized log probabilities are linear in $y$ and $z$ , we can exponentiate to obtain the unnormalized probabilities.
-We then normalize to see that this yields a Bernoulli distribution controlled by a sigmoidal transformation of $z$:
-%-- need refactor
+The definition of the probability distribution over $y$ using the value $z$ will be discussed.
+The sigmoid can be motivated by building an unnormalized probability distribution $\tilde{P}(y)$, which does not sum to 1.
+A valid probability distribution then can be determined by dividing by a specific constant.
+The unnormalized probabilities can be determined if the unnormalized log probabilities are assumed to be linear in $y$ and $z$ at the beginning.
+It will be normalized to yield a Bernoulli distribution controlled by a sigmoidal transformation of $z$:
 \begin{equation}
     \begin{aligned}
         log \tilde{P} (y) &= yz \\
@@ -215,6 +217,7 @@ We then normalize to see that this yields a Bernoulli distribution controlled by
         P(y) = \sigma ((2y-1)z)
     \end{aligned}
 \end{equation}
+%
 Variable $z$ that define a distribution with normalization and exponentiation over binary variables is called logit
 
 \begin{equation}
@@ -224,18 +227,19 @@ Variable $z$ that define a distribution with normalization and exponentiation ov
         & = \zeta ((1-2y)z)
     \end{aligned}
 \end{equation}
+%
 where $\zeta(x)$ is the softplus function 
 \begin{equation}
     \zeta(x) = log(1+e^x)
 \end{equation}
-
-\paragraph{}
+%
 By rewrite the cost function in terms of softplus, it can be seen that saturation happens only when $(1-2y)z$ approaches negative infinity.
 In other words, it happens when $y=1$ and $z$ approaches positive infinity which means the prediction is correct, or when $y=0$ and $z$ approaches negative infinity which means the prediction is extremely wrong.
 In the later case, the softplus function can be simplified as
 \begin{equation}
     \zeta((1-2y)z) = \zeta(|z|)
 \end{equation}
+%
 And its derivative becomes $sign(z)$, which means the softplus function will not have gradient vanishing problem in the later case.
 It helps the gradient descent learning algorithms to function with stability.
 
@@ -251,8 +255,7 @@ RELU uses an activation function that maps $g(z)$ to $max\{0,z\}$ as shown in Fi
     \caption{Rectified linear units}
     \label{lr_fig:ml_relu}
 \end{figure}
-
-\paragraph{}
+%
 Although it is not differentiable at $z=0$, the gradient descent still act as expected in practice.
 This is because a numerical methods rarely find the local minimal, but end up with a point that is close enough to the local minimal.
 Based on the assumption that a strict zero gradient is not expected, undefined derivatives can be allowed on hidden units.
@@ -265,28 +268,27 @@ RELU are applied on top of the existing affine transformation:
 \begin{equation}
     \mathbf{h} = g( \mathbf{W}^T \mathbf{x} + \mathbf{b})
 \end{equation}
+%
 Initial values for the transformation matrix are suggested to set with a small positive value as it can make most of the RELU active and let the derivatives pass through.
 Because the output remain constant when it is inactive, the unit can not learn anything when it is not active.
 Improvements has been proposed recently.
 Absolute value rectification that map $g(z)$ to $|z|$ has been used in object recognition \cite{jarret2009}.
 Leaky RELU that give a small positive value for the derivatives \cite{maas2013} while parametric RELU regard this derivatives as a learnable parameter \cite{He2015}.
 Maxout units \cite{Goodfellow2013} is a further generalization of the RELU.
-% --------- need refactor
-instead of applying an element-wise function $g(z)$, maxout units divide $z$ into groups of $k$ values.
-Each maxout unit then outputs the maximum element of one of these groups:
+The maxout units divide $z$ into groups of $k$ values instead of applying an element-wise function $g(z)$.
+The maximum value of the output of all units will be used to represent this group:
 \begin{equation}
     g(z)_i = \max_{j\in G^{(i)}} z_j
 \end{equation}
+%
 where $G^{(i)}$ is the set of indices into the input for group $i, \{(i-1)k+1, \dots, ik \}$.
 This provides a way of learning a piecewise linear function that responds to multiple directions in the input $x$ space.
-% ---------- need refactor
 It can be regarded as learning the activation function as it actually learn a piecewise linear function.
 High fidelity and any convex function can be achieved by maxout units if a large $k$ is used.
 In practice, maxout units with $k=2$ usually have the same performance to traditional RELU, parametric RELU and Leaky RELU.
 Since every maxout unit need to learn its own parameter, the size of the training set must be large enough to support the learning algorithms, or keep the $k$ value low \cite{Cai2013}.
 
-\subsection{Architecture design}
-\subsection{Back-propagation algorithm}
+% \subsection{Back-propagation algorithm}
 
 
 
@@ -310,7 +312,7 @@ A confusion matrix is a matrix used to illustrate the outcome of a classificatio
                                 & \multicolumn{1}{|c}{Not refined} & \multicolumn{1}{|c|}{False Positive(FP)} & \multicolumn{1}{c|}{True Negative(TN)}  &  \\ \cline{2-4}
         \end{tabular}
     \end{table}
-
+%
 \subsubsection{Accuracy}
 \paragraph{}
 Accuracy may be the most intuitive indicator.
@@ -339,7 +341,7 @@ It is defined as the harmonic mean of them.
 
 \subsubsection{Receiver operating characteristic(ROC)}
 \paragraph{}
-ROC is a True Positive Rate(TPR) vs False Positive Rate(FPR) curve (fig.~\ref{lr_fig:performance_roc}) where $TPR=R$ and $FPR=FP/(FP+TN)$
+ROC is a True Positive Rate(TPR) vs False Positive Rate(FPR) curve (Fig.~\ref{lr_fig:performance_roc}) where $TPR=R$ and $FPR=FP/(FP+TN)$
 \begin{figure}[h!]
     \centering
     \scalebox{0.25}{
@@ -348,7 +350,7 @@ ROC is a True Positive Rate(TPR) vs False Positive Rate(FPR) curve (fig.~\ref{lr
     \caption{Receiver operating characteristic(ROC)}
     \label{lr_fig:performance_roc}
 \end{figure}
-
+%
 \subsubsection{Area under the curve(AUC)}
 \paragraph{}
 As can be seen from ROC, the larger the area under the curve, the better the classifier is.

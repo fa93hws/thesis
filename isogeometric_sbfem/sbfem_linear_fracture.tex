@@ -1,5 +1,6 @@
-\subsection{Application of isogeometric SBFEM to linear elastic fracture mechanics}
-An attractive feature of the SBFEM is that no a priori knowledge of the asymptotic solution is required to accurately handle the stress singularity at a crack tip.
+\section{Application of isogeometric SBFEM to linear elastic fracture mechanics}
+\label{iso_section:fracture}
+An attractive feature of the SBFEM is that no a priori knowledge of the asymptotic solution is required to accurately handle the stress singularity at a crack tip as shown in Fig.~\ref{lr_fig:sbfem_intro}.
 When modeling a cracked structure, a subdomain surrounding the crack tip is selected and the scaling center is placed at the crack tip.
 The boundary of the subdomain is divided into line elements.
 When the scaling center is placed at the crack tip, the solution for the stress field in Eq.\ref{lr_eq:sbfem_stress_field} is expressed, by using Eq.\ref{lr_eq:sbfem_transform}, as
@@ -16,16 +17,16 @@ Like the well-known William expansion \cite{Williams1957109}, Eq.~\ref{iso_eq:is
 The radial variation of each term of the series is expressed analytically by the power function $r^{-\lambda_i + 1}$.
 At discrete points along the boundary, the angular coordinates (see Eq.~\ref{lr_eq:sbfem_transform}) are arranged as a vector $\theta(\eta)$ and the stress modes $\psi_{\sigma_i}(\eta)$ are computed.
 $\psi_{\sigma_i}(\eta)$ and $\theta(\eta)$ from a parametric equation of the angular variation of stresses.
-The singular stress and the T-stress terms can be easily identified by the value of the exponent $-(lambda_i+1)$.
-When the real part of the exponent $-(lambda_i+1)$ of a term is negative, the stresses of this term at the crack tip, i.e. $\xi=0$, tend to infinity.
-When the exponent $(-\lambda_i+1)$ of a term is equal to 0, the stresses of this term are constant and contribute to the T-stress.
+The singular stress and the T-stress terms can be easily identified by the value of the exponent $-(\lambda_i+1)$.
+When the real part of the exponent $-(\lambda_i+1)$ of a term is negative, the stresses of this term at the crack tip, i.e. $\xi=0$, tend to infinity.
+When the exponent $-(\lambda_i+1)$ of a term is equal to 0, the stresses of this term are constant and contribute to the T-stress.
 \paragraph{}
 In the case of a crack in a homogeneous material or on a material interface, two singular terms exist in the solution.
 Denoting the singular stress modes as $\mathrm{I}$ and $\mathrm{II}$, the singular stress $\sigma^{s}(\xi,\eta)$ (superscript s for singular stresses) are obtained from Eq.~\ref{iso_eq:isosbfem_fracture_stress_field}:
 \begin{equation}
     \sigma^s(r,\eta)
     =\sum_{i,\mathrm{I},\mathrm{II}}
-    c_i r^{(-\lambda_i + 1)}
+    c_i r^{-(\lambda_i + 1)}
     (
         r_\eta^{(\lambda_i+1)}
         \psi_{\sigma_i}(\eta)
@@ -38,7 +39,7 @@ For convenience, the point on the boundary along the crack from $\theta=0$ is co
 The distance from the crack tip on the boundary is denoted as $L_0 = r_\eta(\theta=0)$.
 From Eq.~\ref{iso_eq:isosbfem_singular_stress}, the values of the singular stresses at this point are equal to:
 \begin{equation}
-    \sigma^s (L_0, \theta = 0) =
+    \sigma^s (L_0, \theta = 0)
     =\sum_{i,\mathrm{I},\mathrm{II}}
     c_i \psi_{\sigma_i}(\theta=0)
     \label{iso_eq:isosbfem_singular_stress_2}
@@ -48,32 +49,28 @@ It is obtained by interpolating $\psi_{\sigma_i}(\eta)$ at the discrete points o
 The stress intensity factors can be computed directly from their definition using the stresses in Eq.~\ref{iso_eq:isosbfem_singular_stress_2}.
 For a crack in a homogeneous medium, the classical definition of stress intensity factors $K_{\mathrm{I}}$ and $K_{\mathrm{II}}$ for mode $\mathrm{I}$ and $\mathrm{II}$ are expressed as:
 \begin{equation}
-    \left\{
-        \begin{Bmatrix}
-            K_{\mathrm{I}}\\
-            K_{\mathrm{II}}
-        \end{Bmatrix}
-    \right\}=\sqrt{2\pi r}\left\{
-        \begin{Bmatrix}
-            \sigma_{\theta\theta}^s(r,\theta=0) \\
-            \tau_{r\theta}^s(r,\theta=0)
-        \end{Bmatrix}
-    \right\}
+    \begin{Bmatrix}
+        K_{\mathrm{I}}\\
+        K_{\mathrm{II}}
+    \end{Bmatrix}
+    =\sqrt{2\pi r}
+    \begin{Bmatrix}
+        \sigma_{\theta\theta}^s(r,\theta=0) \\
+        \tau_{r\theta}^s(r,\theta=0)
+    \end{Bmatrix}
     \label{iso_eq:isosbfem_crack_homo}
 \end{equation}
 Formulating Eq.~\ref{iso_eq:isosbfem_crack_homo} at $r=L_0$ results in
 \begin{equation}
-    \left\{
-        \begin{Bmatrix}
-            K_{\mathrm{I}}\\
-            K_{\mathrm{II}}
-        \end{Bmatrix}
-    \right\}=\sqrt{2\pi L_0}\left\{
-        \begin{Bmatrix}
-            \sigma_{\theta\theta}^s(L_0,\theta=0) \\
-            \tau_{r\theta}^s(L_0,\theta=0)
-        \end{Bmatrix}
-    \right\}
+    \begin{Bmatrix}
+        K_{\mathrm{I}}\\
+        K_{\mathrm{II}}
+    \end{Bmatrix}
+    =\sqrt{2\pi L_0}
+    \begin{Bmatrix}
+        \sigma_{\theta\theta}^s(L_0,\theta=0) \\
+        \tau_{r\theta}^s(L_0,\theta=0)
+    \end{Bmatrix}
 \label{iso_eq:isosbfem_crack_homo_at_L}
 \end{equation}
 The stress intensity factors are then determined by substituting the stress components $\sigma_{\theta\theta}^s(L_0,\theta=0)$ and $\tau_{r\theta}^s(L_0,\theta=0)$ obtained from Eq.~\ref{iso_eq:isosbfem_singular_stress_2} into Eq.~\ref{iso_eq:isosbfem_crack_homo_at_L}.

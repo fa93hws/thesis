@@ -1,31 +1,30 @@
 \subsection{Cantilever beam}
 \paragraph{}
-A two-dimensional cantilever beam subjected to a parabolic shear load at the free end is examined as shown
-in fig.~\ref{qdt_fig:ex_cantilever_beam_geo_bc}.
+A two-dimensional cantilever beam subjected to a parabolic shear load at the free end is examined as shown in Fig.~\ref{qdt_fig:ex_cantilever_beam_geo_bc}.
     \begin{figure}[h!]
     \centering
         \scalebox{0.6}{\includegraphics{isogeometric_sbfem/images/cantilever_beam_geo_bc.eps}}
         \caption{ Cantilever beam: Geometry and boundary conditions.}
         \label{qdt_fig:ex_cantilever_beam_geo_bc}
     \end{figure}
-
+%
 The geometry is: length $L=8m$, height $D=4m$.
 The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ \nu =0.25$.
 The parabolic shear force is $P = 250 N$.
-The exact solutions for the displacements are given by \cite{Aug2008} as eq.~\ref{iso_eq:cantilever_beam_displacement_solution}.
+The exact solutions for the displacements are given by \cite{Aug2008} as Eq.~\ref{iso_eq:cantilever_beam_displacement_solution}.
 where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane stress and plane strain condition respectively.
-The stress $\sigma$ can be expressed as \cite{Aug2008} as eq.~\ref{iso_eq:cantilever_beam_stress_solution}.
-The strain energy can be derived from eq.~\ref{iso_eq:cantilever_beam_stress_solution} and eq.~\ref{iso_eq:cantilever_beam_displacement_solution} as eq.~\ref{iso_eq:cantilever_beam_energy_solution}.
+The stress $\sigma$ can be expressed as \cite{Aug2008} as Eq.~\ref{iso_eq:cantilever_beam_stress_solution}.
+The strain energy can be derived from Eq.~\ref{iso_eq:cantilever_beam_stress_solution} and Eq.~\ref{iso_eq:cantilever_beam_displacement_solution} as Eq.~\ref{iso_eq:cantilever_beam_energy_solution}.
 
 \paragraph{}
 In this example, rigid body motion is constrained by fixing 3 DOF on the left edge of the beam.
 $u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$.
-Stress from analytical solution in eq.~\ref{iso_eq:cantilever_beam_stress_solution} are applied on the boundary.
+Stress from analytical solution in Eq.~\ref{iso_eq:cantilever_beam_stress_solution} are applied on the boundaries.
 
 \paragraph{}
 Due to the fact that the geometry of the cantilever beam can be described by four points and four straight lines, drawing in AutoCAD may not be necessary.
 As a result, the input geometry is defined manually.
-Generated background mesh, coloring and the final result with $res=32$, $s_{max}=16$ and $s_{min}=1$ are shown in fig.~\ref{qdt_fig:ex_cantilever_beam_background_mesh}, fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_coloring} and fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_final}.
+Generated background mesh, coloring and the final result with $res=32$, $s_{max}=16$ and $s_{min}=1$ are shown in Fig.~\ref{qdt_fig:ex_cantilever_beam_background_mesh}, Fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_coloring} and Fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_final}.
 
     \begin{figure}
         \centering
@@ -58,8 +57,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
 % 178 - 0.0082845 (32,2)
 % 438 - 0.0027044 (64,2)
 % 1658- 0.00066929 (128,2)
-\paragraph{}
-Mesh with different parameters are plotted in fig.~\ref{qdt_fig:ex_cantilever_mesh_all} and the convergence study is plotted in fig.~\ref{qdt_fig:ex_cantilever_mesh_conv}
+Mesh with different parameters are plotted in Fig.~\ref{qdt_fig:ex_cantilever_mesh_all} and the convergence study is plotted in Fig.~\ref{qdt_fig:ex_cantilever_mesh_conv}
 
     \begin{figure}[h!]
         \begin{subfigure}[b]{1\linewidth}

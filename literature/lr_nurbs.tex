@@ -1,4 +1,5 @@
 \subsection{Non-Uniform Rational B-Spline (NURBS)}
+\label{lr_sec:NURBS}
 \paragraph{}
 In the proposed approach, the geometry and the unknown fields are represented by non-uniform rational B-splines (NURBS).
 In this section, we give a brief overview of NURBS.
@@ -100,6 +101,7 @@ where
 
 
 \subsubsection{Order elevation}
+\label{lr_sec:nurbs_order_ele}
 Let $
 \mathbf{C}(\eta) =  \sum_{i=0}^n
                     N_{i,p}(\eta)
@@ -152,6 +154,7 @@ A $p$th degree NURBS basis function is defined as follows:
             =   \frac{ N_{i,p}(\eta) w_i }{
                     \sum_{i=0}^{n} N_{i,p}(\eta)w_i
                 }
+\label{iso_eq:rational_basis_function}
 \end{equation}
 where $w_i$ are the weights for the $i$th basis function $N_{i,p}(\eta)$.
 Fig.~\ref{lr_fig:nurbs_rational_basis} shows the third order NURBS for an open knot vector.

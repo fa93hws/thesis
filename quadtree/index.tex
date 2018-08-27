@@ -1,21 +1,21 @@
 %!TEX root = ../thesis.tex
 \chapter{Quad-tree mesh in 2D analysis}
-
+\label{qdt_sec:main}
 \section{Introduction}
 \paragraph{}
-The main objective of this chapter is to introduce a way that can utilize the engineering design available in CAD or other popular commercial softwares for 2D case.
+The main objective of this chapter is to introduce a way that can utilize the engineering design available in the AutoCAD or other popular commercial softwares for 2D cases.
 The data format that used in almost all engineering design softwares that can represent the geometry exactly is IGES file.
 It will be used as a bridge between design and numerical analysis.
-
+%
 \paragraph{}
-After the NURBS represented exact geometry has been extracted from the IGES file, a quad-tree mesh generation algorithm described in \ref{qt_sc:quadtree} will be adopted to generate high quality mesh.
-Either the NURBS basis functions or the traditional shape function can be used as the shape function of the SBFEM solver.
+After the NURBS information representing the exact geometry has been extracted from the IGES file, the quad-tree mesh generation algorithm described in \ref{qt_sc:quadtree} will be adopted to generate a high quality mesh.
+Either the NURBS basis functions or the traditional shape functions can be used as the shape function of the SBFEM solver.
 % We further extend the method to problems with singularities within the framework of linear elastic fracture mechanics.
 The proposed method enhances the conventional SBFEM and the salient features of the method are:
     \begin{itemize}
-        \item No human effort need to generate the mesh
-        \item Exact geometry will be retain
-        \item High quality mesh from the quad-tree algorithm
+        \item No human effort involvement in mesh generation
+        \item Retained exact geometry
+        \item High quality mesh generated from the quad-tree algorithm
     \end{itemize}
 \paragraph{}
 This chapter is organized as follows.
@@ -53,4 +53,4 @@ The proposed methods provides a systematic and automatic mesh generation algorit
 CAD design file can be used directly and the exact geometry can also be retained, which can largely reduce human efforts involved in numerical analysis.
 Moreover, it can also help to reduce the analytical error as the difference in the geometric representation is minimized.
 Computational efficiency can also be improved via utilizing the pattern of the quadtree.
-
+\pagebreak

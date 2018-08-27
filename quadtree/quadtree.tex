@@ -1,8 +1,8 @@
 \paragraph{}
 After the geometry information is exported from the IGES file, it can be feed into the quad-tree algorithm to generate mesh of the problem domain.
-As an algorithm based on computational geometry, it require great amount of numerical operation and hence the result may be sensitive to the tolerance.
-An absolute tolerance may not be able to handle problem with very large or small geometric size.
-As a consequence, the first step is to normalize the geometry into a uniform space ($10\times10$ is used in this chapter).
+As an algorithm based on computational geometry, it requires great amount of numerical operations and hence the result may be sensitive to the tolerance.
+An absolute tolerance may not be able to handle problems with very large or small geometric size.
+As a consequence, the first step is to normalize the geometry into a uniformed space ($10\times10$ is used in this chapter).
 
 \subsection{Background mesh}
 \label{qdt_sc:qdt_background_mesh}
@@ -12,9 +12,10 @@ Its density is decided by the geometry.
 This section will introduce the procedure to generate the background mesh.
 \paragraph{}
 First of all, we start with one square which is the root of the tree.
-The size of it will be slightly larger than the normalized input geometry and it is selected as $16 \times 16$ in this chapter.
+The size of it will be slightly larger than the normalized geometric input and it is selected as $16 \times 16$ in this chapter.
+An adaptive mesh generation based on numerical error can be found in Sec.~\ref{adp_sec:main}
 After that, the root square will be divided into millions (defined by resolution, defined as $2^{res} \times 2^{res}$) smaller ones like pixels in the image.
-Then, $2^{s_{max}} \times 2^{s_{max}}$ ``pixels'' will be group into the first layer of the tree, or initial background mesh as shown in fig.~\ref{qdt_fig:qdt_initial_mesh}.
+Then, $2^{s_{max}} \times 2^{s_{max}}$ ``pixels'' will be group into the first level of the tree, or initial background mesh as shown in Fig.~\ref{qdt_fig:qdt_initial_mesh}.
 It is used to control the maximum allowable mesh size globally or separately for different material regions.
 
 \begin{figure}[h!]
@@ -28,15 +29,15 @@ It is used to control the maximum allowable mesh size globally or separately for
 
 \paragraph{}
 % generating the initial mesh without balance
-Criteria to decided whether each individual square in the initial mesh need to be refined or not is the seed points.
-The curve will be uniformly discretized into a given number of seed points uniformly and the mesh will be refined until the number of the seed points within the square is less than the threshold.
-However, finer mesh is expected at the region where geometry with high curvature appeared but the uniform discretization does not generate different number of points based on curvature.
-It can be solved by treating each segment of the polylines as an individual curve when generating seed points.
-Due to the fact that algorithm described in .~\ref{qdt_section:iges_output} guarantee the chord length to arc length ratio, polylines ought to have finer segments at the position where curvature is significant.
+The criteria to decided whether each individual square in the initial mesh need to be refined or not is based on the concept of seed point.
+The curve will be uniformly discretized into a given number so called seed points uniformly and the mesh will be refined until the number of the seed points within the square is less than the threshold.
+However, finer mesh is expected at the region where geometry with high curvature appears.
+It can be solved by treating each segment of the polylines as an individual curve.
+Due to the fact that algorithm described in .~\ref{qdt_section:iges_output} guarantees the chord length to arc length ratio, polylines ought to have finer segments at the position where curvature is significant.
 
 \paragraph{}
 % only two intersections allowed
-Although seed points provides a good guide on the mesh density, situations where high density mesh is required while few seed points appeared may happen as plotted in fig.~\ref{qdt_fig:qdt_seed_point_problem}.
+Although seed points provides a good guide on the mesh density, situations where high density mesh is required while few seed points appeared may happen as plotted in Fig.~\ref{qdt_fig:qdt_seed_point_problem}.
 The geometry limits the seed points due to the lack of curvature.
 While, it is expected that the square element will be refined at least once as one layer of mesh may not be appropriate to formulate a thin shell structure. 
     \begin{figure}[h!]
@@ -52,7 +53,7 @@ While, it is expected that the square element will be refined at least once as o
         \label{qdt_fig:qdt_seed_point_problem}
     \end{figure}
 As a result, another restriction will be adopted together with the seed points to prevent this kind of situation from happening.
-Element with more than two unique intersections will be tagged to be refined no matter how many seed points it contains.
+Element with more than two unique intersections will be tagged as ``need refinement'' no matter how many seed points it contains.
 In numerical calculation, two points may be regarded as one if they are close enough to each others.
 Normalization of the geometry described at the beginning of this section helps to define a meaningful tolerance to handle numerical error.
 
@@ -62,7 +63,7 @@ Normalization of the geometry described at the beginning of this section helps t
 \paragraph{}
 % balance in tree data structure
 Self-balancing is adopted by most of the tree data structure such as AVL, B/B+, Red-black tree and so on.
-Fig.~\ref{qdt_fig:tree_balance_avl} illustrates a self-balancing of an AVL tree.
+Fig.~\ref{qdt_fig:tree_balance_avl} illustrates a self-balancing operation of the AVL tree.
 Balancing by rotation is performed because difference in height of the leaf B and L is greater than the threshold.
     \begin{figure}
         \centering
@@ -72,11 +73,9 @@ Balancing by rotation is performed because difference in height of the leaf B an
         \caption{Balance of the AVL tree \cite{Roura2013}}
         \label{qdt_fig:tree_balance_avl}
     \end{figure}
-
-\paragraph{}
 % balance in quadtree
-Same idea is adopted in quadtree as well.
-a refinement will be performed to achieve a balanced tree if the difference in the height of the leaf (Cell A and B in fig.~\ref{qdt_fig:tree_balance_quadtree} for example) is larger than one.
+Same idea is adopted in the quadtree as well.
+A refinement will be performed to achieve the balance if the difference in the height of the leaf (Cell A and B in Fig.~\ref{qdt_fig:tree_balance_quadtree} for example) is larger than one.
     \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
@@ -95,14 +94,12 @@ a refinement will be performed to achieve a balanced tree if the difference in t
         \caption{Balance of quadtree: cell A is refined in order to balance the quadtree.}
         \label{qdt_fig:tree_balance_quadtree}
     \end{figure}
-
-\paragraph{}
 % reason behind balancing
 The reason why balancing is predominately adopted in tree data structure lies in the guarantee of an $O\left(log(n)\right)$ time complexity for searching in any case.
 Even thought computational cost on searching seems not to be significant during mesh generation using quadtree, a balanced tree provided some other attractive features that can be utilized in numerical analysis.
 One of the advantages is to improve the mesh quality.
 Any extremely small or large angle between the element and the scaling center may result in a bad quality mesh.
-Chances are that these poor quality mesh may appear without self-balancing, fig.~\ref{qdt_fig:sbfem_adv_1} for an example.
+Chances are that these poor quality mesh may appear without self-balancing, shown in Fig.~\ref{qdt_fig:sbfem_adv_1}.
     \begin{figure}[h!]
         \centering
         \scalebox{1}{
@@ -111,13 +108,13 @@ Chances are that these poor quality mesh may appear without self-balancing, fig.
         \caption{Small angle between element and scaling center may reduce the mesh quality}
         \label{qdt_fig:sbfem_adv_1}
     \end{figure}
-
-Another reason is to kept the pattern of the cells.
-If the threshold of the self-balancing is set to one ($2:1$ ratio), only six kinds of cells will appear before the cutting as illustrated in fig.~\ref{qdt_fig:sbfem_adv_2}.
+%
+Another reason for that is to kept the pattern of the cells.
+If the threshold of the self-balancing is set to one ($2:1$ ratio), only six kinds of the cells will appear before the cutting as illustrated in Fig.~\ref{qdt_fig:sbfem_adv_2}.
 Thanks to the geometric similarity, local stiffness matrix can be calculated and scaled directly when same kind of the cell appears which significantly reduce the computational cost.
-Hanging nodes in fig.~\ref{qdt_fig:sbfem_adv_2} can be a problem for traditional finite element to handle the displacement compatibility \cite{Tabarraei:2009:XFE} \cite{NME:NME3070} \cite{NME:NME2900} .
-Solution including triangulation \cite{4037344} \cite{BERN1994384} \cite{ijeas251083} , using special shape function \cite{NME:NME1620120104} and other methods are available but special treatment is required.
-As a comparison, SBFEM provides greater flexibility on the element, n-sides polygons with hanging nodes or curved edge can be treated natively.
+Hanging nodes in Fig.~\ref{qdt_fig:sbfem_adv_2} can be a problem for traditional finite element to handle the displacement compatibility \cite{Tabarraei:2009:XFE,NME:NME3070,NME:NME2900}.
+Solution including triangulation \cite{4037344,BERN1994384,ijeas251083}, using special shape function \cite{NME:NME1620120104} and other methods are available but special treatment is required.
+As a comparison, SBFEM provides greater flexibility on the element, n-sides polygons with hanging nodes or curved edges can be treated natively.
     \begin{figure}[h!]
         \centering
         \scalebox{1}{
@@ -130,17 +127,12 @@ As a comparison, SBFEM provides greater flexibility on the element, n-sides poly
             }
         \label{qdt_fig:sbfem_adv_2}
     \end{figure}
-
-
-\pagebreak
-
-
 %=====================================================================================================================%
 \subsection{Hard point treatment}
 \paragraph{}
 %introduction
-Hard point is a kind of point in the geometry that must be meshed as a node or scaling center.
-When more than two materials are involved, it is common to have some hard points to make sure the point shared by three material can be properly formulated as shown in fig.~\ref{qdt_fig:qdt_hard_point_demo}
+Hard points is a kind of point in the geometry that must be meshed as a node or scaling center.
+When more than two materials are involved, it is common to have some hard points to make sure the point shared by three material can be properly formulated as shown in Fig.~\ref{qdt_fig:qdt_hard_point_demo}
     \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
@@ -160,23 +152,23 @@ When more than two materials are involved, it is common to have some hard points
         \caption[Example of a hard point]{Example of a hard point, elements around the point shared by three material must be properly divided into three.}
         \label{qdt_fig:qdt_hard_point_demo}
     \end{figure}
-The difficulty in treating a hard point will be the position of itself in the background mesh.
+The difficulty in treating a hard point lies in its position in the background mesh.
 The further it is away from the geometric center of the background mesh, the poorer the quality of mesh will be generated.
-If the hard point in fig.~\ref{qdt_fig:qdt_hard_point_demo_sc} is located somewhere that is very close to the left boundary of the background mesh, the mesh for material one after cutting may be a quite elongated and twisted concave unit.
+If the hard point in Fig.~\ref{qdt_fig:qdt_hard_point_demo_sc} is located somewhere that is very close to the left boundary of the background mesh, the mesh for material one after cutting may be quite elongated and twisted.
 Besides, the requirement of the scaling center in the SBFEM can always be satisfied no matter where it is located in a convex polygon.
 The opposite is true for a concave polygon, special treatment must be adopted to fullfil this requirement.
-As a consequence, generally speaking, a convex mesh may always be preferred over a concave one and hard point can be the only source that will introduce concave polygons in most of the situation.
+As a consequence, generally speaking, a convex mesh may be preferred over a concave one and hard point can be the only source that will introduce concave polygons in most of the situations.
 Although algorithm finding qualified scaling center in a concave polygon exists, the quality of the mesh may not be satisfactory even the scaling center is located on the vertex.
 
 
 \paragraph{}
 % make sure the hard point is close to the center of the background mesh
-The first step to treat the hard point will be trying to locate the background mesh so that the hard point is close enough to its geometric center.
-The ideal size of the background mesh shall ensure that only one hard point is in it and that no points from any other curves should be located in it.
+The first step to treat the hard point will be trying to adjust the background mesh so that the hard point is close enough to the cell's geometric center in the background mesh.
+The ideal size of the background mesh shall ensure that only one hard point is contained and that no points from any other curves should be located in it.
 As a consequence, the size of the containing square $box\_size$ is set to be one third of the distance to the nearest curves or half of the distance to the nearest hard point, whichever is smaller.
 These parameter usually result in a valid and large enough background mesh that can treat the hard point easily. 
-When building the background cell containing hard point in the algorithm, it will be implemented by have a considerably fine mesh within the range of the hard point and merge all cells in that range into one larger cell to be the background one.
-Size of the ``considerably fine'' mesh $size\_field$ will be defined with the adjacent vertexes of the hard point as in eq.~\ref{qdt_eq:qdt_hard_point_size_field}
+When building the background cell containing hard points in the algorithm, it will be implemented by having a considerably fine mesh within the range of the hard point and merge all cells in that range into a larger one to be the background cell.
+Size of the ``considerably fine'' mesh $size\_field$ will be defined with the adjacent vertexes of the hard point derived in Eq.~\ref{qdt_eq:qdt_hard_point_size_field}
     \begin{equation}
         size\_field = \frac{box\_size}{
             2^{
@@ -187,7 +179,7 @@ Size of the ``considerably fine'' mesh $size\_field$ will be defined with the ad
         }
     \label{qdt_eq:qdt_hard_point_size_field}
     \end{equation}
-where $\alpha$ is the minimal angle $min(\alpha_1, \alpha_2, \dots, \alpha_n)$ in fig.~\ref{qdt_fig:qdt_hard_point_setp_1}.
+where $\alpha$ is the minimal angle $min(\alpha_1, \alpha_2, \dots, \alpha_n)$ in Fig.~\ref{qdt_fig:qdt_hard_point_setp_1}.
 As is exponentially related to the minimal angle $\alpha$, the $size\_field$ may always be small enough to capture thin shell.
     \begin{figure}
         \centering
@@ -197,34 +189,32 @@ As is exponentially related to the minimal angle $\alpha$, the $size\_field$ may
         \caption[Hard point treatment step 1]{Hard point treatment step1: find $box\_size$ and $size\_field$}
         \label{qdt_fig:qdt_hard_point_setp_1}
     \end{figure}
-
+%
 After the first step of the hard point treatment is done, the background cell shall have the following properties
     \begin{enumerate}
         \item Distance between hard point to geometric center of the background cell must be smaller than $\sqrt{2}size\_field$
         \item Element after cutting share the hard point as the node or it will be one element with scaling center located at the hard point
     \end{enumerate}
 With these two properties, the cell can be cut by simply connecting the intersections with the hard point later.
-\pagebreak
-
 
 %=====================================================================================================================%
 \subsection{Bucket sort algorithm}
 \paragraph{}
-When cutting the boundary, it is necessary to find the intersections between input geometry and the background mesh.
+When cutting the boundary, it is necessary to find the intersections between the polylines and the background mesh.
 Finding geometric relationship between each cell and each curve may be necessary.
 However, it could be computational expansive when quite a few curves are involved and a fine mesh is targeted.
 As a result, an algorithm inspired by buck sort is introduced in order to reduce the computational cost of this process.
 \paragraph{}
 % introduce bucket sort algorithm
 Bucket sort algorithm is a sorting algorithm that put an array of objects into different buckets and then sort the objects in each bucket.
-Objects in each bucket then are sorted by other sorting algorithm or by applying buckets sort recursively.
-Although the sort algorithm can not be adopted directly in finding the intersection, the idea ``divide and conquer'' can be utilized in order to help reduce the computational cost in finding the intersection.
+Objects in each bucket then are sorted by other sorting algorithm or by applying the buckets sort recursively.
+Although the sort algorithm can not be adopted directly in finding the intersection, the idea ``divide and conquer'' can be utilized in order to reduce the computational cost in finding the intersections.
 \paragraph{}
 % bucket sort in quadtree
 First step of this method would be very similar to the first step in generating the background mesh.
 The entire background square or the root of the quadtree will be divided evenly into $2^n \times 2^n$ smaller ones.
-A larger $n$ will result in more buckets and will detect more irrelevant curves but take more time.
-Trade off normally is not necessary and $n=8$ usually provide a good enough result so it can be fixed as $8$ unless special need is posed on.
+A larger $n$ will result in an increasing number of buckets and will detect more irrelevant curves but take more time.
+A trade off normally is not necessary and $n=8$ usually provides a good enough result so it can be fixed as $8$ unless special need is posed on.
 Fig.~\ref{qdt_fig:qdt_bucket_sort} illustrates an example of the algorithm ($n$ is taken as $4$ in this example in order to have a clear figure, it should usually be taken as no less than $6$).
 The end points of the curve are located in gird D2 and I5, as a consequence, the curve will be put in bucket ``D2-I5''.
 In other words, cells that are not in this region shall not have any intersections with the curve.
@@ -244,10 +234,10 @@ In other words, cells that are not in this region shall not have any intersectio
 \subsection{Cutting with boundary}
 \paragraph{}
 % 3cases of the cutting
-Generally, there are three situations where cutting is involved with one curve and they are sorted by the number of the intersections as shown in fig.~\ref{qdt_fig:qdt_cutting}.
-Due to the fact that the background cell is refined properly and hence curves can be regarded as straight lines.
-Case 3 in fig.~\ref{qdt_fig:qdt_cutting_3} is an exception as it shall not happen unless even the minimal allowable background cell may not able to catch the feature.
-Unfortunately, result from case 3 may not be as expected and increase the resolution or decrease the minimal allowable cell size can help to prevent case 3 from happening.
+Generally, there are three situations where cutting is involved with one curve and they are sorted by the number of the intersections as shown in Fig.~\ref{qdt_fig:qdt_cutting}.
+Due to the fact that the background cell is refined properly and hence the curves can be regarded as straight lines.
+Case 3 in Fig.~\ref{qdt_fig:qdt_cutting_3} is an exception as it shall not happen unless even the background cell with the minimal allowable size may not be able to catch the feature.
+Unfortunately, result from case 3 may not be as expected but increasing the resolution or decreasing the minimal allowable cell size can help to prevent case 3 from happening.
 \begin{figure}[h!]
     \begin{subfigure}[b]{0.3\linewidth}
         \scalebox{1}{
@@ -273,23 +263,21 @@ Unfortunately, result from case 3 may not be as expected and increase the resolu
     \caption[Situations in cutting]{Situations in cutting: one, two and more than two intersections}
     \label{qdt_fig:qdt_cutting}
 \end{figure}
-
-\paragraph{}
 % situation a (two intersections)
 % sup an alg
-In situation a (fig.~\ref{qdt_fig:qdt_cutting_2}) where two intersections are observed, cell can be split by connecting points $EF$.
-To start with, any vertex among A, B, C or D can be selected as the start point.
+In situation a (Fig.~\ref{qdt_fig:qdt_cutting_2}) where two intersections are observed, cell can be split by connecting points $EF$.
+To start with, any vertex among $A$, $B$, $C$ or $D$ can be selected as the starting point.
 After the point is selected, point A for example, another point from any of the line connected it will be chosen, point B for line AB for example.
-This procedure will be repeated recursively until intersection point E or F is found and next point will be E or F whichever is not selected at the moment.
+This procedure will be repeated recursively until the intersection points $E$ or $F$ is found and next point will be $E$ or $F$ whichever is not selected at the moment.
 Recursion will be continued until the starting point is found again.
 A closed region then will be formed by all selected points in sequence.
-Another cell can also be easily be found by finding the implement set.
-It should be noted that all cells split in situation must be convex.
+Another cell can also be easily found by finding the implement set.
+It should be noted that all cells split in this situation must be convex.
 
 \paragraph{}
 % situation b (one intersection)
 % sup an alg
-In case 2 where only one intersection will be detected, multiple curves with intersection should be observed as in fig.~\ref{qdt_fig:qdt_cutting_hard_point} and hard point must be involved (point H in fig.~\ref{qdt_fig:qdt_cutting_hard_point}).
+In case 2 where only one intersection will be detected, multiple curves with the intersections should be observed as in Fig.~\ref{qdt_fig:qdt_cutting_hard_point} and the hard points must be involved (point $H$ in Fig.~\ref{qdt_fig:qdt_cutting_hard_point}).
     \begin{figure}
         \centering
         \scalebox{1}{
@@ -299,17 +287,17 @@ In case 2 where only one intersection will be detected, multiple curves with int
         \label{qdt_fig:qdt_cutting_hard_point}
     \end{figure}
 Handling case 2 would be similar but slightly tricky compared to that in case 1.
-At the beginning, hard point is selected (point H in the example).
-After that, any intersection point is selected (F in this example).
-Then, the other point of any line segment that has F will be selected (D in this example).
-The former step will be performed recursively until another intersection point is found under which situation.
+At the beginning, the hard point is selected (point $H$ in the example).
+After that, any intersection point is selected ($F$ in this example).
+Then, the other point of any line segment that has $F$ will be selected ($D$ in this example).
+The former step will be performed recursively until another intersection point is found.
 Once the hard point is detected again, a closed region is found.
-Repeat the procedure can find all closed region cut by hard point and multiple curves.
+Repeating the procedure can help to find all closed regions cut by the hard point and multiple curves.
 
 \paragraph{}
 % situation c (more than two intersection)
 % no alg needed
-In case 3 where more than two intersections are found, result split cells may not be as expected as this situation shall not happen normally.
+In case 3 where more than two intersections are found, split cells may not be as expected as this situation shall not happen normally.
 If case 3 does happen, the first and the last intersection points will be selected and all other intersection points will be ignored.
 After that, method in case one can be applied directly.
 
@@ -320,7 +308,7 @@ After that, method in case one can be applied directly.
 \label{qdt_sc:point_moving}
 \paragraph{}
 % poor mesh quality
-Although all types of cells with intersections are able to be treated by the algorithm described above, quality of the mesh sometimes may out of control as example shown in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
+Although all types of cells with intersections are able to be treated by the algorithm described above, quality of the mesh sometimes may become out of control as example shown in Fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
     \begin{figure}[h!]
         \centering
         \scalebox{1}{
@@ -331,16 +319,16 @@ Although all types of cells with intersections are able to be treated by the alg
     \end{figure}
 \paragraph{}
 % point moving
-In order to improve the mesh quality, points moving is adopted.
-Generally there are two ways of moving the points, one is move closing points to the line (move point C to line AB in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}) and another is move points on the line to the closing point, e.g. point B will move to C in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
-Both method has its own advantages and disadvantage and will be discussed later.
+In order to improve the mesh quality, the point moving is adopted.
+Generally there are two ways of moving, one is moving the closest points to the line (move point $C$ to line $AB$ in Fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}) and another is moving points on the line to the closing point, e.g. point $B$ will be moved to $C$ in Fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality}.
+Both methods has its own advantages and disadvantages and they will be discussed later.
 \paragraph{}
 % mark node as intersection
-The recommended method is to mark the node that is close enough to the curve as intersection and project it back onto the curve at the end.
+The recommended method is to mark the nodes that are close enough to the curves as intersections and project them back onto the curves at the end.
 One significant advantage is that only convex cells may appear during cutting but special treatment need to be added in generating the background mesh.
 The algorithm for cutting a convex cell into two will always yield valid result in existing algorithm.
-For example, point C in fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality} will be marked as intersection and point A and B will be ignored.
-Point C will be projected back to the curve when the cutting is finished.
+For example, point $C$ in Fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality} will be marked as the intersection and point $A$ and $B$ will be ignored.
+Point $C$ will be projected back to the curve when the cutting is finished.
 The threshold usually is taken as a proportion to the length of the background cell size.
 When finding the intersection, another detection will be posed after.
 If the distance of the intersection to a node is smaller than $\epsilon a$ where $\epsilon$ is tolerance and $a$ is the size of the background cell, the intersection will be ignored and the nearest node will be marked as intersection instead.
@@ -352,16 +340,14 @@ If the distance of the intersection to a node is smaller than $\epsilon a$ where
     \caption[Treatment of cell cutting when point is moved]{Treatment of cell cutting when point is moved}
     \label{qdt_fig:qdt_cutting_point_moving_1}
 \end{figure}
-
-\paragraph{}
 Fig.~\ref{qdt_fig:qdt_cutting_point_moving_1} illustrates an example when points are moved toward one of the nodes.
-If both intersections are moved then cutting may not be needed.
+If both intersections are moved then cutting may not be necessary.
 When one is moved and another is retained, algorithm described in previous section can be adopted directly as the topology remain the same.
-The disadvantage is that it need to be taken into consideration when generating the background mesh as situation in fig.~\ref{qdt_fig:qdt_cutting_point_moving_problem}.
-Points A, B and C will be marked as intersections and it becomes situation 3 in fig.~\ref{qdt_fig:qdt_cutting_3}.
-However, background cell like it shall be refined otherwise unexpected behavior resulted from cutting algorithm may appear and such unexpected behavior shall be only allowed to happen when minimal allowable cell size in setting is too large to capture the local feature.
-As a consequence, when refining background mesh in section.~\ref{qdt_sc:qdt_background_mesh}, not only the number of intersections between curves with the origin cell need to be counted, but also that from the enlarged box need to be counted as well as shown in fig.~\ref{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}.
-Either more than two intersections are found in origin cell or the enlarged one in fig.~\ref{qdt_fig:qdt_cutting_enlarged_box} will result in the refinement of the cell.
+The disadvantage is that situation in Fig.~\ref{qdt_fig:qdt_cutting_point_moving_problem} when generating the background mesh need to be taken into consideration.
+Points $A$, $B$ and $C$ will be marked as intersections and it becomes situation 3 in Fig.~\ref{qdt_fig:qdt_cutting_3}.
+However, background cells like it shall be refined otherwise unexpected behavior resulted from cutting algorithm may appear and such unexpected behavior shall be only allowed to happen when minimal allowable cell size in setting is too large to capture the local feature.
+As a consequence, when refining background mesh in section.~\ref{qdt_sc:qdt_background_mesh}, not only the number of intersections between curves with the origin cell need to be counted, but also that from the enlarged box need to be counted as well as shown in Fig.~\ref{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}.
+Either more than two intersections are found in origin cell or the enlarged one in Fig.~\ref{qdt_fig:qdt_cutting_enlarged_box} will result in the refinement of the cell.
 \begin{figure}
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
@@ -382,13 +368,11 @@ Either more than two intersections are found in origin cell or the enlarged one 
     \caption[Problem in marking intersection]{Adopting enlarged box to ensure the background mesh is refined properly}
     \label{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}
 \end{figure}
-
-\paragraph{}
 % move points before cutting
-Another method is projecting the nodes in background mesh on to the curves before the cutting.
-Special treatment in generating the background mesh is no longer necessary but cutting concave cells may be inevitable.
+Another approach is projecting the nodes in background mesh on to the curves before the cutting.
+Special treatments in generating the background mesh is no longer necessary but cutting concave cells may be hard to treat.
 Fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave} illustrates an example of a concave cell resulted from point moving.
-An intersecting curve that is not a straight line even with a very small curvature, possibility exists that distance $a$ from the hanging node $A$ to the curve is slightly smaller than the tolerance while $b$ and $c$ are slightly larger than tolerance.
+An intersecting curve that is not a straight line (even with a very small curvature) leads to a possibility that the distance $a$ from the hanging node $A$ to the curve is slightly smaller than the tolerance while $b$ and $c$ are slightly larger than tolerance.
     \begin{figure}[h!]
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
@@ -409,17 +393,12 @@ An intersecting curve that is not a straight line even with a very small curvatu
         \caption[Concave cell resulted from points moving]{Concave cell resulted from point moving}
         \label{qdt_fig:qdt_cutting_point_moving_2_concave}
     \end{figure}
-
-\paragraph{}
 As a result, points $A$ will be moved on the curves but the other two nodes will not and hence cutting a concave cell need to be treated.
 This method is not recommended because special treatment on cutting concave cells need to be implemented and it could be much more complicated than that in previous method.
-First of all, more than two intersections will be observed in fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave_after} and it may be mixed with case 3 in fig.~\ref{qdt_fig:qdt_cutting_3}.
-Moreover, the concave cell will be cut into three instead of two which create extra difference.
-As a consequence, the sequence of all intersections may need to be recorded in order to distinguish it from case 3 in fig.~\ref{qdt_fig:qdt_cutting_3} and special treatment in cutting concave into more than three parts need to be implemented as well.
-Generally speaking, they may be much more complex than solving background mesh issue when moving points before cutting.
-
-
-\pagebreak
+First of all, more than two intersections will be observed in Fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave_after} and it may be mixed with case 3 in Fig.~\ref{qdt_fig:qdt_cutting_3}.
+Moreover, the concave cell may be cut into three instead of two which create extra difference.
+As a consequence, the sequence of all intersections may need to be recorded in order to distinguish it from case 3 in Fig.~\ref{qdt_fig:qdt_cutting_3} and special treatment in cutting concave into more than three parts need to be implemented as well.
+Generally speaking, this approach may be much more complex than solving background mesh issue when moving points before cutting.
 %=====================================================================================================================%
 % \subsection{Scaling center for concave elements}
 % later
@@ -430,18 +409,18 @@ Generally speaking, they may be much more complex than solving background mesh i
 \subsection{Color the region}
 \paragraph{}
 % intro
-Multiple material properties and holes may appear in the input and the programme is expected to assign each mesh with its corresponding material id, or color.
-Each different material will be related to one color and hole can be regarded as void material.
+Multiple material properties and holes may appear in the input and the programme is expected to assign each mesh with correct material id, or color.
+Each different material will be related to one color and the hole can be regarded as void material.
 There are two ways to achieve this goal: method based on geometry and that based on topology.
-Using geometric location to find the color is easy and not sensitive to the correctness of the mesh but may introduce error in coloring.
-While using topological property require more computational cost and is sensitive to validity of the mesh but usually provide correct coloring if former steps are correct.
-Considering the possibility of coloring being the bottle neck of the whole programme is too low to take time complexity into account and the fact that mesh are expected to be valid, topological property may be preferred in most of the cases.
+Using geometric location to find the color is easy to implemented and not sensitive to the correctness of the mesh but may introduce errors in coloring.
+While using topological property requires more computational cost and is sensitive to the validity of the mesh but usually provide correct coloring if former steps are correct.
+Considering the possibility of coloring becoming the bottle neck of the whole programme is rarely possible and the fact that the mesh are expected to be valid, topological property may be preferred in most of the cases.
 
 \paragraph{}
 % geometry
 Geometric location can provide a good reference of the color in most of the case but may fail in some situation.
-Calculating geometric geometric center and find which bounded area is it located is a computational cheap work and can be parallelize to utilize multiple thread.
-However it can fail in some case especially for a concave polygon whose geometric center is outside of itself as shown in fig.~\ref{qdt_fig:qdt_coloring_geo_problem}.
+Calculating geometric geometric center and finding which bounded area is it located is a computational cheap work and can be parallelize to utilize multiple thread or map-reducer using powerful clouding computing.
+However it can fail in some cases especially for a concave polygon whose geometric center is outside of itself as shown in Fig.~\ref{qdt_fig:qdt_coloring_geo_problem}.
 \begin{figure}[h!]
     \centering
     \scalebox{1.2}{
@@ -450,11 +429,11 @@ However it can fail in some case especially for a concave polygon whose geometri
     \caption[Coloring problem using location of geometric center in concave polygon]{Coloring problem using location of geometric center in concave polygon}
     \label{qdt_fig:qdt_coloring_geo_problem}
 \end{figure}
-
-Using scaling center which is always inside of the polygon instead of geometric center can not prevent it from happening.
-Fig.~\ref{qdt_fig:qdt_coloring_geo_problem_sc} discussed the possibility of coloring failure in convex cell where geometric center is coincide with scaling center.
+%
+Using the scaling center which is always inside of the polygon instead of geometric center can not prevent it from happening.
+Fig.~\ref{qdt_fig:qdt_coloring_geo_problem_sc} discusses the possibility of coloring failure in convex cell where the geometric center is coincide with scaling center.
 The coordinate of the scaling center of the rectangle in the left is $(\frac{l-a}{2},\frac{l}{2})$.
-If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is large enough so that point $C$ is not recognized as hard point and $a$ is not too large compared to $l$ so that point $A$ and $B$ will not merged to the node of the rectangle.
+If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is so significant that the point $C$ is not recognized as the hard point and $a$ is not so large compared to $l$ that the point $A$ and $B$ will not be merged to the node of the rectangle.
 
     \begin{figure}[h!]
         \centering
@@ -464,7 +443,7 @@ If the x coordinate of point $C$ is less than $\frac{l-a}{2}$, angle $\alpha$ is
         \caption[Coloring problem using location of scaling center]{Coloring problem using location of scaling center}
         \label{qdt_fig:qdt_coloring_geo_problem_sc}
     \end{figure}
-
+%
 In other words, coloring failure may happen if
     \begin{equation}
         \begin{aligned}
@@ -473,19 +452,19 @@ In other words, coloring failure may happen if
             \frac{l-a}{l} &> \epsilon_{2}
         \end{aligned}
     \end{equation}
-where $C_x$ refer to the x coordinate of the point $C$, $\epsilon_1$ is the tolerance used in define hard point and $\epsilon_2$ is the tolerance used for point moving in section.~\ref{qdt_sc:point_moving}.
-Assuming point $C$ just located on the geometric center of the rectangle in the left, or $C_x = \frac{l-a}{2}$, it is concluded that 
+where $C_x$ refer to the $x$ coordinate of the point $C$, $\epsilon_1$ is the tolerance used in hard point definition and $\epsilon_2$ is the tolerance used for point moving in section.~\ref{qdt_sc:point_moving}.
+Assuming the point $C$ is located on the geometric center of the rectangle in the left, or $C_x = \frac{l-a}{2}$, it is concluded that 
     \begin{equation}
         \begin{aligned}
             2 \arctan \frac{l}{l-a} &> \epsilon_1 \\
             \frac{l-a}{l} &> \epsilon_{2}
         \end{aligned}
     \end{equation}
-
+%
 Result of minimal $\epsilon_1$ with different $\epsilon_2$ is summarized in table.~\ref{qdt_tab:qdt_coloring_ep1_ep2}.
-Setting $\epsilon_1$ greater than $150^\circ$ may result in large amount of unexpected hard points and a $\epsilon_2 > 0.35$ could leads to significantly increased points moving.
+Setting $\epsilon_1$ greater than $150^\circ$ may result in large amount of unexpected hard points and a $\epsilon_2 > 0.35$ could lead to significantly increased points moving.
 A combination of $\epsilon_1 = 150^\circ$ and $\epsilon_2 = 0.3$ seems to be the only possible solution.
-However, stick on the parameters that produce some unexpected hard points and points moving may not surpass the advantage of this method.
+However, sticking on the parameters that produces some unexpected hard points and points moving may not surpass the advantage of this method.
 
     \begin{table}[h!]
         \centering
@@ -499,24 +478,22 @@ However, stick on the parameters that produce some unexpected hard points and po
             \bottomrule
         \end{tabular}
     \end{table}
-
-\paragraph{}
 % topology
-A method based on topology, on the other hand, color the polygons based on the connectivity rather than the geometric location and hence provide correct coloring in theory if the mesh generated is valid.
-It is assumed that the mesh generated before is valid, in other words, it satisfy following requirement:
+A method based on the topology, on the other hand, provides correct coloring in theory if the mesh generated is valid.
+In other words, the mesh satisfies the following requirements:
     \begin{itemize}
-        \item Background mesh shall be refined properly so that situation in fig.~\ref{qdt_fig:qdt_cutting_3} will not appear
-        \item Hard point is set properly
-        \item Input has ben properly scaled so that there is few margin around
+        \item The background mesh shall be refined properly so that situation in Fig.~\ref{qdt_fig:qdt_cutting_3} will not appear
+        \item The Hard points are set properly
+        \item The input has ben properly scaled so that there is a few outer margin
     \end{itemize}
-The coloring algorithm then will utilize a breadth-first search to find color for each of the cell.
+The coloring algorithm will utilize a breadth-first search algorithm to find color for each of the cell.
 Any polygon can be picked as the root element of the search tree.
 For convenience, the most bottom-left element is defined as the root of the search tree.
-All neighbor polygons will be added to the parent node as children nodes recursively until a cell whose boundary shared by another color.
-Once such a cell is found, the algorithm then consider the whole branch share same color id which can be found based on the color id information about the boundary.
-The loops stops when there are not any unvisited polygons found under available parent node. 
-Any uncolored polygons will have the same color as its youngest parent with known color.
-Take fig.~\ref{qdt_fig:qdt_color_example} as an example,
+All neighbor polygons will be added as child nodes recursively until a cell whose boundary is shared by another color is found.
+Once such a cell is found, the algorithm then consider the whole branch share same color.
+The loops stops when there are not any unvisited polygons found under all available parent nodes. 
+Any uncolored polygons will have the same color as its youngest parent's.
+Take Fig.~\ref{qdt_fig:qdt_color_example} as an example,
 
 \begin{figure}[h!]
     \begin{subfigure}[b]{0.5\linewidth}
@@ -536,13 +513,12 @@ Take fig.~\ref{qdt_fig:qdt_color_example} as an example,
     \caption{Example for coloring}
     \label{qdt_fig:qdt_color_example}
 \end{figure}
-\paragraph{}
 % step 1
-The root element will be polygon $0$ and its neighbor polygon $1$ and $4$ will be added to its children node.
+The root element will be the polygon $0$ and its neighbor polygons $1$ and $4$ will be appended as child node.
 Since no boundary of polygon $1$ and $4$ is the border between two materials, the recursion goes on.
-Polygon $15$ then will be found as the child node of polygon $1$, the recursion will pause before polygon $5$ being added to polygon $1$ as child node.
-The hypotenuse of polygon $15$ is border between color $1$ and $-1$, considering the fact that the known color of its youngest parent (polygon $0$) is $1$, whole branch (polygon $0,1$ and $15$) will be marked as color $1$.
-By knowing the hypotenuse of polygon $15$ can only be contained in one other polygon, next child node, polygon $2$, will be marked as color $-1$ in next recursion.
+The polygon $15$ then will be found as the child node of the polygon $1$, the recursion will pause before polygon $5$ being append to polygon $1$.
+The hypotenuse of the polygon $15$ is the border between the color $1$ and $-1$, considering the fact that the known color of its youngest parent (the polygon $0$) is $1$, whole branch (the polygon $0,1$ and $15$) will be marked as color $1$.
+By knowing the hypotenuse of the polygon $15$ can only be contained in one other polygon, next child node, polygon $2$, will be marked as color $-1$ in next recursion.
     \begin{figure}[h!]
         \centering
         \scalebox{1}{
@@ -551,16 +527,14 @@ By knowing the hypotenuse of polygon $15$ can only be contained in one other pol
         \caption[Tree for example for coloring: step 1]{tree for example for coloring: step 1}
         \label{qdt_fig:qdt_color_tree_0}
     \end{figure}
-
-\paragraph{}
 % step 2
-The recursion resumes for polygon $1$ and polygon $5$ shall be added to its children and polygon $4$ find $5$ and $12$.
-Due to the fact that polygon $5$ is visited by polygon $1$, it will not be added to polygon $4$'s child.
-After that, polygon $15$ find polygon $2$, whose bottom boundary is border between color $1$ and $-1$ (background color is set as $1$ and hence it is assumed color outside of the bonding box is $1$).
-The oldest node with known color is itself, polygon $2$ and as a result the branch with single element will be marked as color $-1$.
-Bottom edge of polygon $2$ is contained in itself only, which implies the termination of the branch.
-As another child node of polygon $15$, polygon $6$ , whose hypotenuse is border between two colors and the youngest parent with known color will be polygon $15$ which is marked as color $1$.
-Polygon $13$ will be marked as color $-1$ in next recursion.
+The recursion resumes for the polygon $1$ and the polygon $5$ shall be appended and the polygon $4$ find $5$ and $12$.
+Due to the fact that the polygon $5$ is visited by the polygon $1$, it will not be added to the polygon $4$'s child.
+After that, the polygon $15$ find the polygon $2$, whose bottom boundary is the border between the color $1$ and $-1$ (background color is set as $1$ and hence it is assumed color outside of the bonding box is $1$).
+The oldest node with known color is itself, the polygon $2$ and as a result the branch with single element will be marked as color $-1$.
+Bottom edge of the polygon $2$ is contained in itself only, which implies the termination of the branch.
+As another child node of polygon $15$, the polygon $6$ , whose hypotenuse is border between two colors and the youngest parent with known color will be polygon $15$ which is marked as color $1$.
+The polygon $13$ will be marked as color $-1$ in next recursion.
 
     \begin{figure}[h!]
         \centering
@@ -570,8 +544,6 @@ Polygon $13$ will be marked as color $-1$ in next recursion.
         \caption[Tree for example for coloring: step 2]{tree for example for coloring: step 2}
         \label{qdt_fig:qdt_color_tree_1}
     \end{figure}
-
-\paragraph{}
 % done
 Fig.~\ref{qdt_fig:qdt_color_tree_2} illustrates the final search tree after a few more recursion.
 End node polygon $11$ and $3$ do not trigger the termination process normally will be marked with color in the end with the youngest parent rule, which gives branch $11,10,12,4$ and branch $3$ the same color as polygon $0$ and $2$.

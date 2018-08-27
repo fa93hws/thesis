@@ -28,5 +28,13 @@
     "\\$.+?\\$"
   ],
   "latex-workshop.debug.showUpdateMessage": true,
-  "latex-workshop.message.update.show": true
+  "latex-workshop.message.update.show": true,
+  "cSpell.words": [
+    "Maxout",
+    "Natarajan",
+    "elastostatics",
+    "interpolants",
+    "splitted",
+    "unnormalized"
+  ]
 }

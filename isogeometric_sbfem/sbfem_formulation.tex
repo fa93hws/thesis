@@ -1,17 +1,18 @@
-\subsection{Formulation of the isogeometric SBFEM}
-The nodal coordinates on the boundary are denoted as $\mathbf{x}_b$. As in a standard 1D iso-parametric finite element, the geometry of the element described by the coordinates $\mathbf{x}_b(η)$, is expressed as
+\section{Formulation of the isogeometric SBFEM}
+\label{iso_section:formulation}
+The nodal coordinates on the boundary are denoted as $\mathbf{x}_b$. As in a standard 1D iso-parametric finite element, the geometry of the element described by the coordinates $\mathbf{x}_b(\eta)$ as shown in Fig.~\ref{lr_fig:sbfem_intro}, is expressed as
 \begin{equation}
     \mathbf{x}_b(\eta) = \mathbf{N}(\eta) \mathbf{x}_b
     \label{lr_eq:sbfem_boundary_interpolate}
 \end{equation}
-
+%
 where $\mathbf{N}(\eta)$ is the shape function matrix.
 Without loss of generality, the origin of the Cartesian coordinate system is chosen at the scaling center.
 The geometry of the subdomain, described by $x$, is formed by scaling the boundary (Eq.~\ref{lr_eq:sbfem_boundary_interpolate})
 \begin{equation}
     \mathbf{x} = \xi \mathbf{x}_b (\eta)
 \end{equation}
-
+%
 where $\xi$ is the normalized radial coordinate running from the scaling center towards the boundary, with $\xi=0$ at the scaling center and $\xi=1$ on the boundary.
 The coordinates $\xi$ and $\eta$ are the so-called scaled boundary coordinates.
 They are related to the polar coordinates $r$ and $\theta$.
@@ -23,30 +24,32 @@ The transformation is expressed as
     \label{lr_eq:sbfem_transform}
 \end{aligned}
 \end{equation}
-
+%
 where $r_b$ is the distance from the scaling center to a point on the boundary.
 The transformation between the Cartesian coordinates and the scaled boundary coordinates is similar to the coordinate transformation in the constructing iso-parametric finite elements.
+The scaling center must be placed at the position so that all boundary of the domain is visible from the point.
+This limitation can be easily solved by using a mesh generation algorithm described in Sec.~\ref{qdt_sec:main}.
 
 The displacement at any point are approximated by
 \begin{equation}
     \mathbf{u}(\xi,\eta) = \mathbf{N}(\eta) \mathbf{u}(\xi)
     \label{lr_eq:sbfem_disp_interpolation}
 \end{equation}
-
+%
 where $\mathbf{N}(\eta)$ are the shape functions of elements on the boundary and $\mathbf{u(\xi)}$ is the displacement along the radial lines, represented by a set of N analytical functions.
 By substituting Eq.~\ref{lr_eq:sbfem_disp_interpolation} into the definition of strain-displacement relations, the strain $\epsilon(\xi,\eta)$ are expressed as
 \begin{equation}
     \epsilon(\xi,\eta) = \mathbf{Lu}(\xi,\eta)
     \label{lr_eq:sbfem_strain_disp_relation}
 \end{equation}
-
+%
 where $\mathbf{L}$ is a linear operator matrix formulated in the scaled boundary coordinates
 \begin{equation}
     \mathbf{L} =    \mathbf{b}_1(\eta) \frac{\partial}{\partial \xi} +
                     \frac{1}{\xi} \mathbf{b}_2(\eta)
     \label{lr_eq:sbfem_l_operator}
 \end{equation}
-
+%
 and
 \begin{equation}
     \begin{aligned}
@@ -65,14 +68,14 @@ and
     \end{aligned}
     \label{lr_eq:sbfem_little_b}
 \end{equation}
-
+%
 The determinant of the Jacobian matrix is
 \begin{equation}
     |J| = x_b(\eta)y_b(\eta),_{\eta}
         - y_b(\eta)x_b(\eta),_{\eta}
     \label{lr_eq:sbfem_Jdet}
 \end{equation}
-
+%
 where $x_b(\eta)$ and $y_b(\eta)$ are given by Eq.~\ref{lr_eq:sbfem_boundary_interpolate}.
 The stresses $\sigma(\xi,\eta)$ are given by:
 \begin{equation}
@@ -80,7 +83,7 @@ The stresses $\sigma(\xi,\eta)$ are given by:
                         \frac{1}{\xi} \mathbf{DB}_2(\eta) \mathbf{u}(\xi)
     \label{lr_eq:sbfem_stress}
 \end{equation}
-
+%
 where in the above equation, the definition of strain and the linear operator matrix given by Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem_l_operator} are used with
 \begin{equation}
     \begin{aligned}
@@ -89,8 +92,8 @@ where in the above equation, the definition of strain and the linear operator ma
         \label{lr_eq:sbfem_captial_b}
     \end{aligned}
 \end{equation}
-
-substituting Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem_stress} in the virtual work statement for elastostatics and following the derivation in \cite{Deeks2002}
+%
+substituting Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem_stress} in the virtual work statement for elastostatics \cite{Deeks2002} and following the derivation
 \begin{equation}
     \begin{aligned}
         \delta \mathbf{u}(\xi)^{T} \left(
@@ -105,19 +108,19 @@ substituting Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem
     \end{aligned}
     \label{lr_eq:sbfem_virtual_work}
 \end{equation}
-
+%
 where $\mathbf{u}(\xi)$ is the nodal displacement vector and $\mathbf{F}$ is the vector of equivalent boundary nodal forces, given by:
 \begin{equation}
     \mathbf{F} = (\mathbf{E}_0 \xi \mathbf{u}(\xi),_{\xi} + \mathbf{E}_1^T \mathbf{u}(\xi))|_{\xi=1}
     \label{lr_eq:sbfem_nodal forces}
 \end{equation}
-
+%
 By considering the arbitrariness of $\delta \mathbf{u}(\xi)$, the following ODE is obtained:
 \begin{equation}
     \mathbf{E}_0 \xi^2 \mathbf{u}(\xi),{\xi\xi} + (\mathbf{E}_0 + \mathbf{E}_1^T - \mathbf{E}_1)\xi \mathbf{u}(\xi),_{\xi} - \mathbf{E}_2 \mathbf{u}(\xi) = 0
     \label{lr_eq:sbfem_ODE}
 \end{equation}
-
+%
 where $\mathbf{E}_0$, $\mathbf{E}_1$ and $\mathbf{E}_2$ are known as the coefficient matrices and are given by:
 \begin{equation}
     \begin{aligned}
@@ -127,7 +130,7 @@ where $\mathbf{E}_0$, $\mathbf{E}_1$ and $\mathbf{E}_2$ are known as the coeffic
     \end{aligned}
     \label{lr_eq:sbfem_coe_matrix}
 \end{equation}
-
+%
 Eq.~\ref{lr_eq:sbfem_ODE} is a homogeneous second-order differential equation.
 Its solution is obtained by introducing the variable $\mathbf{\chi}(\xi)$
 \begin{equation}
@@ -139,26 +142,26 @@ Its solution is obtained by introducing the variable $\mathbf{\chi}(\xi)$
     \right\}
     \label{lr_eq:sbfem_ODE_soltion}
 \end{equation}
-
+%
 where $\mathbf{q}(\xi)$ is the internal force vector
 \begin{equation}
     \mathbf{q}(\xi) =   \mathbf{E}_0 \xi \mathbf{u}(\xi),_{\xi} +
                         \mathbf{E}_1^T \mathbf{u}(\xi)
     \label{lr_eq:sbfem_internal_force}
 \end{equation}
-
+%
 The boundary nodal forces are related to the displacement functions by:
 \begin{equation}
     \mathbf{F} = \mathbf{q}(\xi=1) = (\mathbf{E}_0\xi \mathbf{u}(\xi),_{\xi} + \mathbf{E}_1^T\mathbf{u}(\xi))|_{\xi=1}
     \label{lr_eq:sbfem_boundary_nodal_force}
 \end{equation}
-
+%
 This allows Eq.~\ref{lr_eq:sbfem_ODE} to be transformed into a first order ordinary differential equation with twice the number of unknowns as:
 \begin{equation}
     \xi \mathbf{\chi}(\xi),_{\xi} = -\mathbf{Z} \mathbf{\chi}(\xi)
     \label{lr_eq:sbfem_1stODE}
 \end{equation}
-
+%
 where $\mathbf{Z}$ is a Hamiltonian matrix
 \begin{equation}
     \mathbf{Z} = \begin{bmatrix}
@@ -167,7 +170,7 @@ where $\mathbf{Z}$ is a Hamiltonian matrix
     \end{bmatrix}
     \label{lr_eq:sbfem_zmatrix}
 \end{equation}
-
+%
 An eigenvalue decomposition of $\mathbf{Z}$ is performed and it yields:
 \begin{equation}
     \mathbf{Z} \begin{bmatrix}
@@ -179,7 +182,7 @@ An eigenvalue decomposition of $\mathbf{Z}$ is performed and it yields:
     \end{bmatrix} \mathbf{\Lambda}_n
     \label{lr_eq:sbfem_eigen_decomp}
 \end{equation}
-
+%
 In Eq.~\ref{lr_eq:sbfem_eigen_decomp}, $\mathbf{\Lambda}_n$ $=$ diag$(\lambda_1$, $\lambda_2$, $\dots$, $\lambda_n)$ contains only the eigenvalues with negative real part.
 $\mathbf{\Phi}_u$ and $\mathbf{\Phi}_q$ are the subsets of the eigenvectors corresponding to $\mathbf{Lambda}_n$.
 They represent the modal displacements and forces, respectively.
@@ -190,22 +193,22 @@ The general solution of Eq.~\ref{lr_eq:sbfem_1stODE} is given by:
     \mathbf{q}(\xi) &= \mathbf{\Phi}_q \xi^{-\mathbf{\Lambda_n}} \mathbf{c}
     \label{lr_eq:sbfem_general_sol_str}
 \end{align}
-
+%
 where $\mathbf{c}$ are integration constants that are obtained from the nodal displacements $\mathbf{u}_b = \mathbf{u}(\xi=1)$ as:
 \begin{equation}
     \mathbf{c} = \mathbf{\Phi}_u^{-1} \mathbf{u}_b
     \label{lr_eq:sbfem_int_constant}
 \end{equation}
-
+%
 The complete displacement field of a point defined by the sector covered by a line element on the boundary is obtained by substituting Eq.~\ref{lr_eq:sbfem_general_sol_str} into Eq.~\ref{lr_eq:sbfem_disp_interpolation} resulting in:
 \begin{equation}
     \mathbf{u}(\xi,\eta) = \mathbf{R}(\eta) \mathbf{\Phi}_u \xi ^{-\mathbf{\Lambda}_n} c
     \label{lr_eq:sbfem_displacement_field}
 \end{equation}
-
+%
 Taking the derivative of $\mathbf{u}(\xi)$ with respect to $\xi$ and substituting into Eq.~\ref{lr_eq:sbfem_stress} the stress field $\sigma(\xi,\eta)$ can be expressed as:
 \begin{equation}
-    \mathbf{\sigma}(\xi,\eta) = \mathbf{\Psi}_\alpha (\eta) \xi^{-\mathbf\Lambda}_n - \mathbf{I} \mathbf{c}
+    \sigma(\xi,\eta) = \mathbf{\Psi}_\alpha (\eta) \xi^{-\mathbf\Lambda}_n - \mathbf{I} \mathbf{c}
     \label{lr_eq:sbfem_stress_field}
 \end{equation}
 
@@ -270,7 +273,7 @@ For this purpose, it is expressed as
 \end{equation}
 
 In Eq.~\ref{lr_eq:sbfem_dynamic_stiffness}, the first two terms represent the low-frequency expansion of the dynamic stiffness, whereas the third term corresponds to the residual of the low-frequency approximation.
-Substituting Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} in Eq.~\ref{lr_eq:sbfem_dynamic_1stODE} and equating terms in increasing order of powers of ω to zero yields equations for $\mathbf{K}$ ,$\mathbf{M}$  and $\mathbf{R}^{(1)}$.
+Substituting Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} in Eq.~\ref{lr_eq:sbfem_dynamic_1stODE} and equating terms in increasing order of powers of $\omega$ to zero yields equations for $\mathbf{K}$ ,$\mathbf{M}$  and $\mathbf{R}^{(1)}$.
 Setting the constant terms equal to zero yields an algebraic Riccati equation for the static stiffness matrix $\mathbf{K}$, which is equivalent to the solution process described earlier.
 Setting all terms in $\omega^2$ equal to zero yields a Lyapunov equation for the low-order mass matrix $\mathbf{M}$.
 The solution procedure of that Lyapunov equation is described in detail in \cite{Son1997}.
@@ -284,7 +287,7 @@ Eq.~\ref{lr_eq:sbfem_dynamic_R} is analogous to the expansion of the dynamic sti
 Equations for $\mathbf{S}^{(1)}_0$ and $\mathbf{S}^{(1)}_1$ are found by substituting Eq.~\ref{lr_eq:sbfem_dynamic_R} into the equation for $\mathbf{R}^{(1)}$.
 This procedure is continued until the residual $\mathbf{R}^{M_{cf}+1}$ can be neglected.
 The symbol of $M_{cf}$ denotes the order of continued-fraction expansion.
-Substituting all terms of the expansion back int Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} yields:
+Substituting all terms of the expansion back into Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} yields:
 \begin{dmath}
     \mathbf{S}(\omega) =    \mathbf{K} - \omega^2 \mathbf{M} + \omega^4 \left(
                                 \mathbf{S}_0^{(1)} - \omega^2 \mathbf{S}^{(1)} + \omega^4 \left(

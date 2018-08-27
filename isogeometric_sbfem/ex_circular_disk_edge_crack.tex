@@ -1,9 +1,9 @@
 \subsection{Circular disk with an edge crack in tension}
 
 \paragraph{}
-Next,we apply the present formulation to problems with strong discontinuities and singularities.
-The unique feature of the proposed framework is that geometry is exactly represented by using NURBS and the singularities are captured semi-analytically without a priori knowledge of the asymptotic fields.
-In the first example, consider a circular disk with an edge crack (see fig.~\ref{iso_fig:circular_disk_geo_bc}) with Young’s modulus $E=1N/m^2$ and Poisson's ratio $\nu=0.3$.
+Next, the present formulation is applied to problems with strong discontinuities and singularities.
+The unique feature of the proposed framework is that the geometry is exactly represented by using NURBS and the singularities are captured semi-analytically without a priori knowledge of the asymptotic fields.
+In the first example, consider a circular disk with an edge crack (see Fig.~\ref{iso_fig:circular_disk_geo_bc}) with Young’s modulus $E=1N/m^2$ and Poisson's ratio $\nu=0.3$.
     \begin{figure}[h!]
         \centering
         \scalebox{0.4}{
@@ -43,7 +43,7 @@ The analytical displacements solution for mode \RN{1} are given by:
         \end{align}
     \end{subequations}
 
-where $\kappa$ is the Kolosov constant defined in eq.~\ref{iso_eq:kolosov_constant}.
+where $\kappa$ is the Kolosov constant defined in Eq.~\ref{iso_eq:kolosov_constant}.
 
 The analytical stress solution for mode \RN{1} are given by:
     \begin{subequations}
@@ -101,7 +101,7 @@ The analytical stress solution for mode \RN{1} are given by:
 
 \paragraph{}
 In this example, the circular disk is represented by NURBS.
-The control net and the location of control points are shown in fig.~\ref{iso_fig:circular_disk_mesh} for different NURBS order.
+The control net and the location of control points are shown in Fig.~\ref{iso_fig:circular_disk_mesh} for different NURBS orders.
     \begin{figure}
         \begin{subfigure}[b]{0.5\linewidth}
             \centering
@@ -139,7 +139,7 @@ The control net and the location of control points are shown in fig.~\ref{iso_fi
 \paragraph{}
 The circular disk is subjected to a far field tension and the displacement and the stress modes are computed by the proposed isogeometric SBFEM.
 It is noted that only the boundary of the circular disk is discretized using the NURBS and no tensor product of the corresponding knot vectors is required to represent the unknown fields inside the domain.
-The convergence of the numerical stress intensity factor (SIF) and the T-stress with mesh refinement is shown in Table 1.
+The convergence of the numerical stress intensity factor (SIF) and the T-stress with mesh refinement is shown in Tab.~\ref{iso_tab:circular_disk_res}.
 
 \begin{table}[]
 \caption{T-stress and stress intensity factors for circular disk with an edge crack.}
@@ -166,8 +166,8 @@ The terms $\left(
         r_\eta^{\lambda_i+1}(\eta)
         \boldsymbol{\psi}_{\sigma_i}(\eta)
     \right)$
-in eq.~\ref{iso_eq:isosbfem_fracture_stress_field} together with $\theta(\eta)$ in eq.~\ref{iso_eq:isosbfem_coordinate_transformation} are the stress modes describing the angular distribution at a constant radial coordinate $r$.
-For the converged result, fig.~\ref{iso_fig:circular_disk_modes} shows the displacement and the stress distribution at a constant radial coordinate r around the crack tip for mode \RN{1} fracture.
+in Eq.~\ref{iso_eq:isosbfem_fracture_stress_field} together with $\theta(\eta)$ in Eq.~\ref{lr_eq:sbfem_transform} are the stress modes describing the angular distribution at a constant radial coordinate $r$.
+For the converged result, Fig.~\ref{iso_fig:circular_disk_modes} shows the displacement and the stress distribution at a constant radial coordinate r around the crack tip for mode \RN{1} fracture.
 Each of the stress modes is normalized with its value of $\sigma_{yy}=0^\circ$ .
     \begin{figure}[h!]
         \begin{subfigure}[b]{1\linewidth}
@@ -189,8 +189,8 @@ Each of the stress modes is normalized with its value of $\sigma_{yy}=0^\circ$ .
     \end{figure}
 
 \paragraph{}
-The results from the scaled boundary formulation are compared with the analytical solutions and a very good agreement is observed.
-The convergence of the displacement and stress modes with h and p refinement is shown in fig.~\ref{iso_fig:circular_disk_convergence}.
+The stress modes from the scaled boundary formulation are compared with the analytical solutions and a very good agreement is observed in Tab.~\ref{iso_tab:circular_disk_res}.
+The convergence of the displacement and stress modes with h and p refinement is shown in Fig.~\ref{iso_fig:circular_disk_convergence}.
 It can be seen that with refinement the solution converges monotonically.
     \begin{figure}[h!]
         \begin{subfigure}[b]{1\linewidth}

@@ -1,7 +1,7 @@
 \subsection{Infinite plate with a circular hole}
 \paragraph{}
 In this example, an infinite plate with a traction free hole under uniaxial tension $(\sigma = 1 N/m^2 )$
-along x-axis (see fig.~\ref{iso_fig:circular_hole_geo_bc}) is considered.
+along x-axis (see Fig.~\ref{iso_fig:circular_hole_geo_bc}) is considered.
 
     \begin{figure}[h!]
         \centering
@@ -11,8 +11,8 @@ along x-axis (see fig.~\ref{iso_fig:circular_hole_geo_bc}) is considered.
         \caption{ Infinite plate with a circular hole: geometry and boundary conditions}
         \label{iso_fig:circular_hole_geo_bc}
     \end{figure}
-    
-The exact solution of the principal stresses in Cartesian coordinate $(r,\theta)$ is given by \cite{Sukumar2001}:
+%
+The exact solution of the stresses in polar coordinate $(r,\theta)$ is given by \cite{Sukumar2001}:
     \begin{subequations}
         \begin{align}
             \sigma_{x}(r,\theta) &= 1 - \frac{a^2}{r^2} \left(
@@ -33,7 +33,7 @@ The exact solution of the principal stresses in Cartesian coordinate $(r,\theta)
         \end{align}
         \label{iso_eq:ex_chole_stress_sol}
     \end{subequations}
-
+%
 where $a$ is the radius of the hole.
 Owing to symmetry, only one quarter of the plate is modeled.
 % Fig. 10 shows a typical control net used for the study.
@@ -60,8 +60,8 @@ The closed form displacement in Cartesian coordinate is given as
         \end{align}
     \label{iso_eq:ex_chole_disp_sol}
     \end{subequations}
-
-Where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
+%
+where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
     \begin{equation}
         \kappa = \left\{
             \begin{aligned}   
@@ -71,15 +71,15 @@ Where $G$ is the shear modulus and $\kappa$ (Kolosov constant) is defined as
         \right.
     \label{iso_eq:kolosov_constant}
     \end{equation}
-
-In this example, analytical tractions are applied on the boundary.
-The left and bottom boundary are enforced with a roller boundary condition. $u_x=0$ where $y=0$ and $u_y=0$ where $x=0$.
+%
+In this example, analytical tractions in Eq.~\ref{iso_eq:ex_chole_stress_sol} are applied on the boundary.
+The left and bottom boundaries are constrained with a roller boundary condition. $u_x=0$ where $y=0$ and $u_y=0$ where $x=0$.
 
 \paragraph{}
 % result analysis
-The convergence rate in terms of the displacement norm is shown in fig.~\ref{iso_fig:circular_hole_convergence}
+The convergence rate in terms of the displacement norm is shown in Fig.~\ref{iso_fig:circular_hole_convergence}
 It is observed that the error decreases as the order of the shape functions is increased.
-Another unique feature of the proposed method is that the method allows mixed type or order of shape functions to be employed for each line segment.
+Another unique feature of the proposed method is that the method allows different type or order of shape functions to be employed for different segments of the boundary.
 For example, in Fig.~\ref{iso_fig:circular_hole_mesh}, the arc A–B and the line segment B–C can be represented by different basis functions, i.e., the arc can be represented by NURBS and the line segment can be represented by conventional Lagrange basis functions.
 Fig.~\ref{iso_fig:circular_hole_basis} shows the plot of the NURBS basis and Lagrange basis functions.
 It can be seen that at point B, the shape function is continuous.
