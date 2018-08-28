@@ -1,5 +1,5 @@
 \section{Capsule Cutting From the Cuboid with Bending}
-The example is a capsule section cutting from the cuboid with bending as illustrated in fig.~\ref{oct_fig:ex_caplus_layout} and the corresponding mesh is illustrated in fig.~\ref{oct_fig:ex_caplus_mesh1.png}.
+The example is a capsule section cutting from the cuboid with bending as illustrated in Fig.~\ref{oct_fig:ex_caplus_layout} and the corresponding mesh is illustrated in Fig.~\ref{oct_fig:ex_caplus_mesh1.png}.
 \begin{figure}[h!]
   \centering
   \scalebox{.5}{\includegraphics{octree/ex_images/oct_ex_caplus_rect.eps}}
@@ -48,7 +48,7 @@ The displacement analytical solution \cite{Tim1951} is applied on the outer surf
   \label{eqn:caplus_stress}
 \end{equation}
 
-In the numerical calculation, The dimension of the outer cuboid will not affect the result because of the independence of the analytical solution (eq.\ref{eqn:capluse_displacement}). 6-nodes triangle element is used to achieve an exact solution. $l=100,r=17.5,\nu=0.2,E=30$. The error of the displacement are calculated as followed.
+In the numerical calculation, The dimension of the outer cuboid will not affect the result because of the independence of the analytical solution (Eq.\ref{eqn:capluse_displacement}). 6-nodes triangle element is used to achieve an exact solution. $l=100,r=17.5,\nu=0.2,E=30$. The error of the displacement are calculated as followed.
 \begin{subequations}
 \begin{align}
 e_u &= \frac{||u_{ex} - u||}{||u_{ex}||}\\

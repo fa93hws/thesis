@@ -1,6 +1,7 @@
 \section{Pressurized hollow sphere}
 \paragraph{}
-The problem is a pressurized hollow sphere subjected to internal pressure. The geometry of the problem is described in fig.\ref{oct_fig:ex_pre-hollow-sphere}. 
+The problem is a pressurized hollow sphere subjected to internal pressure.
+The geometry of the problem is described in Fig.\ref{oct_fig:ex_pre-hollow-sphere}. 
 
 \begin{figure}[h!]
   \centering
@@ -10,7 +11,10 @@ The problem is a pressurized hollow sphere subjected to internal pressure. The g
 \end{figure}
 
 \paragraph{}
-In the example, the external pressure is set to be zero so that only the internal one is considered. $a=20, b=150, p_a = 10,p_b = 0, E=200,\nu=0.3$. Instead of a quarter of a hollow sphere, a cubic with a spherical hole is analysed. Displacement boundary condition is applied on all of the boundary surface. First order tetrahedral element is adopted to calculated the displacement and stress and compared to the exact solution as in eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
+In the example, the external pressure is set to be zero so that only the internal one is considered. $a=20, b=150, p_a = 10,p_b = 0, E=200,\nu=0.3$.
+Instead of a quarter of a hollow sphere, a cubic with a spherical hole is analysed.
+Displacement boundary condition is applied on all of the boundary surface.
+First order tetrahedral element is adopted to calculated the displacement and stress and compared to the exact solution as in Eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
 
 \begin{subequations}
 \begin{align}
@@ -23,7 +27,7 @@ In the example, the external pressure is set to be zero so that only the interna
 \end{subequations}
 
 \paragraph{}
-The tensor transformation from spherical coordinate to cartesian coordinate can be written as eq.~\ref{eqn:transformation} with according to fig.~\ref{octree_fig:oct_ex_hollow_sphere_tran}.
+The tensor transformation from spherical coordinate to cartesian coordinate can be written as Eq.~\ref{eqn:transformation} with according to Fig.~\ref{octree_fig:oct_ex_hollow_sphere_tran}.
 \begin{subequations}
   \begin{align}
     \begin{bmatrix}
@@ -53,7 +57,8 @@ The tensor transformation from spherical coordinate to cartesian coordinate can 
   \end{figure}
   
 \paragraph{}
-In the example, $a = 10,b = 50, E=20,\nu = 0.2,P_a = 10$. For simplification, only a quarter of the sphere is analysed as shown in fig.~\ref{oct_fig:ex_hollow_sphere_meshP}
+In the example, $a = 10,b = 50, E=20,\nu = 0.2,P_a = 10$.
+For simplification, only a quarter of the sphere is analysed as shown in Fig.~\ref{oct_fig:ex_hollow_sphere_meshP}
 
 \begin{figure}[h!]
   \centering
