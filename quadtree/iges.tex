@@ -25,7 +25,7 @@ Boundary representation will be kept as the data structure to describe the geome
 However, some fields apart from the curves or the surfaces will be added.
 In the output file, the geometry will be organized in key points, polylines and surfaces.
 The key points define the coordinates of all points and polylines are used to represent all curves including NURBS curves for simplification.
-NURBS curves can be used directly by the mesh generator as well in \ref{qt_sc:nurbs} but it is found that the computational cost in the calculation of the distance between points to NURBS curves surpasses the merits of using it directly.
+NURBS curves introduced in in \ref{lr_sec:NURBS} can be used directly by the mesh generator as well but it is found that the computational cost in the calculation of the distance between points to NURBS curves surpasses the merits of using it directly.
 The exact geometry can be retained by projecting the nodes on the boundary back to the origin NURBS curves at the end of the algorithm.
 
 \paragraph{}
@@ -207,7 +207,7 @@ The arc length of the NURBS curve defined on $u \in [u_0, u_n]$ can be expressed
         L = \int_{u_0} ^{u_n} \sqrt{C_x^2(u) + C_y^2(u)} du
     \end{equation}
 %
-The integration can be solved by the help of the numerical integration quadrature described in \ref{iso_subsection:numerical_integration} as:
+The integration can be solved by the help of the numerical integration quadrature described in \ref{iso_section:numerical_integration} as:
     \begin{equation}
         L = \sum_{i=0}^n a_i \sqrt{C_x^2(u_i) + C_y^2(u_i)}
     \end{equation}

@@ -32,8 +32,7 @@
 
 \subsection{Short cantilever beam}
 \paragraph{}
-A two-dimensional short cantilever beam subjected to a uniformly distributed load at the top is examined as shown
-in Fig.~\ref{adp_fig:ex_cantilever_beam_geo_bc}.
+A two-dimensional short cantilever beam subjected to a uniformly distributed load at the top is examined as shown in Fig.~\ref{adp_fig:ex_cantilever_beam_geo_bc}.
     \begin{figure}[h!]
     \centering
         \scalebox{0.5}{\includegraphics{adaptivity/ex_images/ex_short_cant_geo_bc.eps}}
@@ -44,10 +43,10 @@ in Fig.~\ref{adp_fig:ex_cantilever_beam_geo_bc}.
 The geometry is: length $L = \SI{1}{\meter} $, height $ D = \SI{1}{\meter} $.
 The material properties are: Young’s modulus $ E = \SI{20}{\newton \per \meter^2} $ , Poisson’s ratio $ \nu =0.3 $.
 The uniformly distributed load is $w = \SI{10}{\newton \per \meter} $.
-Plane stress is assumed.
+Plane stress condition is assumed.
 
-The reference strain energy of \SI{4.02079}{\joule} is determined by the help of ANSYS.
-In ANSYS, a mesh with $17930$ DOF using 2 \textsuperscript{nd} order plane element 183 is used to calculate the result.
+The reference strain energy of \SI{4.02079}{\joule} is determined by the help of the ANSYS.
+In the ANSYS, a mesh with $17930$ DOF using 2 \textsuperscript{nd} order plane element $183$ is used to calculate the result.
 
 Due to the fact that the geometry of the cantilever beam can be described by four points and four straight lines, drawing in AutoCAD may not be necessary.
 As a result, the input geometry is defined manually.
@@ -55,7 +54,7 @@ As a result, the input geometry is defined manually.
 
 \paragraph{}
 The numerical convergence of the the relative error in the energy norm is shown in Fig.~\ref{adap_fig:ex_short_cantilever_convergence}.
-It can be observed that data mining based adaptive SBFEM yield superior convergence rate when compared to result calculated in ANSYS.
+It can be observed that data mining based adaptive SBFEM yields superior convergence rate when compared to the result calculated in ANSYS.
 
 \begin{figure}[h!]
     \centering
@@ -67,7 +66,7 @@ It can be observed that data mining based adaptive SBFEM yield superior converge
 \end{figure}
 
 Corresponding mesh development are plotted in Fig.~\ref{adap_fig:ex_short_cantilever_mesh_develpment} (SBFEM 1\textup{st} order element) and Fig.~\ref{adap_fig:ex_short_cantilever_mesh_develpment_ansys} (ANSYS 9-node quadrilateral element).
-Stress contour plot in ANSYS using 9-node quadrilateral elements (17930 DOFs) are shown in Fig.~\ref{adap_fig:ex_chole_stress_ansys}
+Stress contour plotted in ANSYS using 9-node quadrilateral elements (17930 DOFs) are shown in Fig.~\ref{adap_fig:ex_chole_stress_ansys}
 \begin{figure}[h!]
 \centering
     \begin{subfigure}[b]{0.4\linewidth}

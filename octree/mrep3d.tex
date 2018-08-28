@@ -1,43 +1,48 @@
-\subsection{Matrix Representation for Rational Bezier Surface} 
+\subsection{Matrix Representation for Rational Bézier Surface}
+\label{oct_sec:mrep}
 \paragraph{}
-A tensor-product rational Bézier surface of degree $(p_1,p_2)$ can be expressed as
-\begin{equation*}
+The intersection between a straight line and a NURBS surface is calculated using matrix representation method.
+The method in 2D (NURBS curve) has been introduced in Sec.~\ref{adap_sec:mrep}.
+A tensor-product rational bézier surface of degree $(p_1,p_2)$ can be expressed as
+\begin{equation}
 	\phi(u,v)\in\mathbf{R}^2 \rightarrow \frac{\sum_{i=0}^{p_1}\sum_{j=0}^{p_2}w_{i,j}\mathbf{P}_{i,j}B_i^{p_1}(t)B_j^{p_2}(t) }{\sum_{i=0}^{p_1}\sum_{j=0}^{p_2}w_{i,j}B_i^{p_1}(t)B_j^{p_2}(t)}
-\end{equation*}
+\end{equation}
+%
 For the surface, $\mathbf{L}$ and $\mathbf{R}$ with order $(v_1,v_2)$
-\begin{equation*}
+\begin{subequations}
+\begin{align}
 	\mathbf{L} =
 	\begin{bmatrix}
 		B_0^{v_1+p_1}(u)B_0^{v_2+p_2}(v) & B_1^{v_1+p_1}(u)B_0^{v_2+p_2}(v) & \dots & B_{v_1+p_1}^{v_1+p_1}(u)B_{v_2+p_2}^{v_2+p_2}(v)
-	\end{bmatrix}
-\end{equation*}
-\begin{equation*}
+	\end{bmatrix} \\
 	\mathbf{R} =
 	\begin{bmatrix}
 		B_0^{v_1}(u)B_0^{v_2}(v)f_0(u,v) & B_0^{v_1}(u)B_1^{v_2}(v)f_0(u,v) & \dots & B_{v_1}^{v_1}(u)B_{v_2}^{v_2}(v)f_3(u,v)
 	\end{bmatrix}
-\end{equation*}
-Following the same manner in the previous section, it can be derived that 
+\end{align}
+\end{subequations}
+%
+Following the same manner in Sec.~\ref{adap_sec:mrep}, it can be derived that 
 \begin{equation}
 	\mathbf{S}_{\left( (i+k)(v_2+p_2+1)+j+l, l(v1+1)+k\right)} = 
 	\frac{\mathbf{C}_k^{v_1}\mathbf{C}_l^{v_2}\mathbf{C}_i^{p_1}\mathbf{C}_j^{p_2}} 
 		{\mathbf{C}_{i+k}^{v_1+d_2}\mathbf{C}_{j+l}^{v_2+d_2}}c_{(i,j)}
 \end{equation}
-
-\subsection{Property of $\mathbf{M_v}$ Matrix}
+%
+\subsection{Properties of the $\mathbf{M_v}$ Matrix}
 As described in the previous sections, the $\mathbf{M_v}$ matrix is defined so that
-\begin{equation*}
+\begin{equation}
 	\begin{bmatrix}
 	\psi_1(t_0) \dots \psi_{m_v}(t_0)
 	\end{bmatrix}
 	\times
 	\mathbf{M_v(\mathbf{P})}
 	= \vec{0}
-\end{equation*}
-where $\mathbf{P}$ is a point on the rational bezier curve/surface.
+\end{equation}
+where $\mathbf{P}$ is a point on the rational bézier curve/surface.
 The order $v$ shall be no less than a critical value and it is proofed to be
 \begin{itemize}
-	\item $v>max(p-1,1)$ for rational bezier curve
+	\item $v>max(p-1,1)$ for rational bézier curve
 	\item $(v_1,v_2) > (2p_1 -1, p_2 -1)$ or  $(v_1,v_2) > (p_1 -1, 2p_2 -1)$
 \end{itemize}
 The following properties are proofed in \cite{Laurent2014}
@@ -47,9 +52,9 @@ The following properties are proofed in \cite{Laurent2014}
 	\item $\delta\mathbf{M_v}(\mathbf{P}) = 0$ if $\mathbf{P} \in\overline{Im}(\phi)$
 \end{enumerate}
 where 
-\begin{equation*}
+\begin{equation}
 	\delta\mathbf{M_v}(\mathbf{P}) = \prod_{i=1}^{m_v}\sigma_i(\mathbf{M_v}(\mathbf{P}))
-\end{equation*}
+\end{equation}
 and $\sigma_i$ is the diagonal of $\Sigma$ in the SVD decomposition of $\mathbf{M_v}(\mathbf{P})=U\Sigma V^T$
 
 \begin{enumerate}
@@ -58,55 +63,55 @@ and $\sigma_i$ is the diagonal of $\Sigma$ in the SVD decomposition of $\mathbf{
 	\item $\forall\mathbf{P}\in\mathbf{R}^3$, $\delta\mathbf{M_v}(\mathbf{P})^{n_2}\leq c_2 d(\mathbf{P},\overline{Im}(\phi))^{n_2} $
 \end{enumerate}
 where $c_1,c_2,n_1,n_2$ are constant.\\
-These two properties give a distance function like function of the $M_v$ matrix. When the point get away to the surface, $\delta\mathbf{M_v}$ is getting larger and vice versa.vise visa.
+These two properties give a distance function like function of the $M_v$ matrix. When the point get away to the surface, $\delta\mathbf{M_v}$ is getting larger and vice versa.
 \paragraph{}
 If the point is on the curve/surface, in which case $\delta\mathbf{M_v}(\mathbf{P}) = 0$, the corresponding parameter value on the curve/surface can be easily found by a SVD numerically.\\
 The computation of the null space of $\mathbf{M_v}(\mathbf{P}) $ will give a single vector $V=[v_1,v_2,\dots,v_{m_v}]$based on 2 and $V$ will be proportional to 
-\begin{equation*}
+\begin{equation}
 	\begin{bmatrix}
 	\psi_1(t_0) \dots \psi_{m_v}(t_0)
 	\end{bmatrix}
-\end{equation*}
+\end{equation}
 More specifically, it will be proportional to
-\begin{equation*}
+\begin{equation}
 	\begin{bmatrix}
 		B_0^v & B_1^v & \dots
 	\end{bmatrix}
-\end{equation*}
+\end{equation}
 for the rational bézier curves and
-\begin{equation*}
+\begin{equation}
 	\begin{bmatrix}
 		B_0^{v1}B_0^{v2} & B_0^{v1}B_1^{v2} & \dots
 	\end{bmatrix}
-\end{equation*}
+\end{equation}
 for the rational bézier surfaces.
 
 The calculation of the intersection is described in detail in \cite{Buse2010} and \cite{Ba2009}.
 All intersections can be calculated at once by using matrix representation of the algebraic curve/surface.
 \paragraph{} 
 Given a rational curve/surface $C1$
-\begin{equation*}
+\begin{equation}
 	\mathbf{P}^1 \xrightarrow{\phi_1} \mathbf{P}^n: (u,v) \rightarrow(f_0,f_1,f_2,f_3)(u,v)
-\end{equation*}
-the aim of fing the intersection via matrix representation method between it with another ration curve $C2$
+\end{equation}
+the aim is to find the intersection via matrix representation method between it with another ration curve $C2$
 \begin{equation}
 	\mathbf{P}^1 \xrightarrow{\phi_2} \mathbf{P}^n: (t) \rightarrow(g_0,g_1,g_2,g_3)(t)
 \end{equation}
 is to find
-\begin{equation*}
+\begin{equation}
 	\mathbf{M}_{v1}(\phi_2(t) = 0
-\end{equation*}
+\end{equation}
 which leads to
 \begin{equation}
 	\mathbf{M_0}g_0 + \mathbf{M_1}g_1 + \mathbf{M_2}g_2 + \mathbf{M_3}g_3 = 0
 	\label{mRep_intec_base}
 \end{equation}
-By knowing $g_n$ is a polynomial function with order $p$, eq.~\eqref{mRep_intec_base} can be rearranged as
-\begin{equation*}
+By knowing $g_n$ is a polynomial function with order $p$, Eq.~\eqref{mRep_intec_base} can be rearranged as
+\begin{equation}
 	\mathbf{M}(t) = \sum_{i=0}^p \mathbf{M_i}t^i
-\end{equation*}
-After that, wthe generalized companion $q\times p$-matrices $A,B$ with rank $\rho$are introduced
-\begin{equation*}
+\end{equation}
+After that, the generalized companion $q\times p$-matrices $A,B$ with rank $\rho$are introduced
+\begin{equation}
 	A = 
 	\begin{bmatrix}
 		0		&I 		&\dots 		&\dots 		&0 		\\
@@ -115,8 +120,8 @@ After that, wthe generalized companion $q\times p$-matrices $A,B$ with rank $\rh
 		0 		&0 		&\dots		&\dots 		&I 		\\
 		M_0^t 	&M_1^t 	&\dots 		&\dots 		&M_{d-1}^t
 	\end{bmatrix}
-\end{equation*}
-\begin{equation*}
+\end{equation}
+\begin{equation}
 	B = 
 	\begin{bmatrix}
 		I 		&0 		&\dots 		&\dots 		&0 		\\
@@ -125,30 +130,30 @@ After that, wthe generalized companion $q\times p$-matrices $A,B$ with rank $\rh
 		0 		&0 		&\dots 		&I 			&0 		\\
 		0 		&0 		&\dots 		&\dots 		&-M_d^t \\		
 	\end{bmatrix}
-\end{equation*}
-Before the eigen values are calculated, the regular part of a non-square pencil of the matrices shall be extracted first which is done by the following step
+\end{equation}
+Before the eigenvalues are calculated, the regular part of a non-square pencil of the matrices shall be extracted first which is done by the following step
 \paragraph{} 
 \textbf{Step 1}
-	Transform B into its column echelon form. It is claimed to be performed by adopting LU-decomposition, but I relly don't know how that is accomplished so SVD-decomposition is used in my case
-	\begin{equation*}
+	Transform B into its column echelon form by SVD-decomposition.
+	\begin{equation}
 	\begin{aligned}
 		B_1 = BV_0 = [\underbrace{B_{1,1}}_{\rho} |\underbrace{0}_{q-\rho}]	\\
 		A_1 = AV_0 = [\underbrace{A_{1,1}}_{\rho} |\underbrace{A_{1,2}}_{q-\rho}]
 	\end{aligned}
-	\end{equation*}
+	\end{equation}
 \paragraph{} 
 \textbf{Step 2}
 	Transform $A_{1,2}$ into its row echelon form
-	\begin{equation*}
+	\begin{equation}
 		U_1A_{1,2} = 
 		\begin{bmatrix}
 			\underline{A^\prime_{1,2}}\\
 			0
 		\end{bmatrix}
-	\end{equation*}
+	\end{equation}
 	where $A^\prime_{1,2}$ is in full row rank.\\
 	At the end of step 2, matrix $A$ and $B$ can be represented as
-	\begin{equation*}
+	\begin{equation}
 	\begin{aligned}
 	A^\prime_1 &=
 	\begin{bmatrix}
@@ -163,7 +168,7 @@ Before the eigen values are calculated, the regular part of a non-square pencil 
 		B_2 & 0
 	\end{bmatrix}
 	\end{aligned}
-	\end{equation*}
+	\end{equation}
 where $A^\prime_{1,2}$ has full row rank\\
 $
 \begin{bmatrix}
@@ -180,8 +185,4 @@ $ and $B_2$ are in echelon form
 \paragraph{}
 $A_2$ and $B_2$ will be the new $A$ and $B$ matrices for next iteration until $B$ has full rank. If $B$ has full row rank but not full rank, $A=A^T$, $B=B^T$.
 \paragraph{}
-After these process, $A$ and $B$ become two square matrices and $B$ is invertible so that the solution for the intersection parameter $t$ can be determined from the eigen value of the matrix $AB^{-1}$
-\paragraph{}
-This method is proofed to be valid in most of the cases and the line/ NURBS curve/ NURBS surface problem is addressed in our cases. However, the method may fail when the intersection is under the case where nearly tangential geometric conditions happens and return two empty matrices. It is addressed by adding another step after extracting the real part of the $A$ and $B$ if the results are empty matrices\cite{Shen2016}.\\
-If the input matrix $A$ and $B$ are not in full row rank or full column rank, it is considered that $C1 \cap C2 = C2$.\\
-If the input matrix $A$ and $B$ are in full row rank or full column rank, a rank $m$ square sub-pencil is extracted assuming $A$ and $B$ have a rank of $m$. Then the eigenvalues yield a intersection.
+After these process, $A$ and $B$ become two square matrices and $B$ is invertible so that the solution for the intersection parameter $t$ can be determined from the eigenvalue of the matrix $AB^{-1}$

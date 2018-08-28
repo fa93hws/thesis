@@ -11,6 +11,7 @@ Without loss of generality, the origin of the Cartesian coordinate system is cho
 The geometry of the subdomain, described by $x$, is formed by scaling the boundary (Eq.~\ref{lr_eq:sbfem_boundary_interpolate})
 \begin{equation}
     \mathbf{x} = \xi \mathbf{x}_b (\eta)
+    \label{lr_eq:sbfem_scaling}
 \end{equation}
 %
 where $\xi$ is the normalized radial coordinate running from the scaling center towards the boundary, with $\xi=0$ at the scaling center and $\xi=1$ on the boundary.
@@ -117,7 +118,7 @@ where $\mathbf{u}(\xi)$ is the nodal displacement vector and $\mathbf{F}$ is the
 %
 By considering the arbitrariness of $\delta \mathbf{u}(\xi)$, the following ODE is obtained:
 \begin{equation}
-    \mathbf{E}_0 \xi^2 \mathbf{u}(\xi),{\xi\xi} + (\mathbf{E}_0 + \mathbf{E}_1^T - \mathbf{E}_1)\xi \mathbf{u}(\xi),_{\xi} - \mathbf{E}_2 \mathbf{u}(\xi) = 0
+    \mathbf{E}_0 \xi^2 \mathbf{u}(\xi),_{\xi\xi} + (\mathbf{E}_0 + \mathbf{E}_1^T - \mathbf{E}_1)\xi \mathbf{u}(\xi),_{\xi} - \mathbf{E}_2 \mathbf{u}(\xi) = 0
     \label{lr_eq:sbfem_ODE}
 \end{equation}
 %

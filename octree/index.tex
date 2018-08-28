@@ -3,13 +3,26 @@
 \chapter{Isogeometric enhanced SBFEM in 3D}
 \input{octree/introduction.tex}
 
-\section{Points projection on NURBS surface}
+\section{Projection}
 \input{octree/surface_division.tex}
+\input{octree/projection.tex}
+\input{octree/convex_hull.tex}
+
+\section{Intersection}
+\paragraph{}
+Instead of projected all points located on the boundary surfaces to the NURBS surfaces, the exact geometry can be retained by calculating the intersection points directly.
+By utilizing the work from Sec.~\ref{oct_sc:surface_division}, the number of the surfaces which may contain the intersection can be limited to a few by determine the relationship between their convex hulls and the line.
+Only surfaces whose convex hull has intersection with the line will be selected as candidates.
+The number of the candidates increase when the mesh becomes coarser as a longer line segment tends to intersect more convex hulls.
+On the other hand, when the mesh is refined and the line segment becomes significantly shorter, the number of the candidates decreases at the same time.
+A considerable improvement in computational cost can be expected as the time complexity is only meaningful when numerous intersections are calculated.
+Only a few intersections need to be determined when the mesh is coarse hence having quite a few candidates at this circumstance may not significantly increase the computational time.
 \input{octree/mrep3d.tex}
 
 
 
 \section{Introduction of SBFEM in 3D}
+\input{octree/sbfem3d.tex}
 
 \section{Numerical examples}
 \input{octree/ex_sphere_hole3d.tex}

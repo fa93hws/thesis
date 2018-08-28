@@ -1,14 +1,14 @@
 \paragraph{}
-Due to the fact that there are a few error indicators, it could be hard to determine the relationship between them and whether a subdomain need refinement or not.
-As a result, specific technique is required in order to search for patterns in the data to find this relationship.
-After that a final decision which is a binary classification in this case as each subdomain will be labeled as ``refine'' or ``not refine'' can be made based on the input of the error indicators explained before.
-Hence, the discovery of regularities plays a key role in adaptive analysis and an automatic discovery of regularities is usually associated with pattern recognition by the help of algorithms.
+Due to the fact that there are a few error indicators, it could be hard to determine the relationship between them and whether a subdomain needs refinement or not.
+As a result, specific technique is required in order to search for the patterns in the data to find this relationship.
+After that, the final decision which is a binary classification in this case as each subdomain will be labeled as ``refine'' or ``not refine'' can be made based on the input of the error indicators explained in Sec.~\ref{adap_sec:error_indicator}.
+Hence, the discovery of regularities plays a key role in the adaptive analysis and an automatic discovery of regularities is usually associated with pattern recognition by the help of algorithms.
 
 %   ----    %
 \subsection{Training Set}
 \paragraph{}
-The training set is determined by numerical examples in fig.~\ref{adap_fig:svm_train_chole} and fig.~\ref{adap_fig:svm_train_cantilever}.
-The training data is annotated with whether a subdomain is refined or not and the model can study the data and learn to classify each subdomain based on all four features explained in \ref{adap_error_indicator}.
+The training set is determined by numerical examples in Fig.~\ref{adap_fig:svm_train_chole} and Fig.~\ref{adap_fig:svm_train_cantilever}.
+The training data is annotated with whether a subdomain is refined or not and the model can study the data and learn to classify each subdomain based on all four features explained in \ref{adap_sec:error_indicator}.
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.5\linewidth}
@@ -48,9 +48,8 @@ The training data is annotated with whether a subdomain is refined or not and th
     \caption{Mesh refinement of a short cantilever beam \cite{Zienkiewicz2005500}}
     \label{adap_fig:svm_train_cantilever}    
 \end{figure}
-
-\paragraph{}
-With the same examples, uniform mesh of quadtree is conducted and the same region are marked as refined as shown in fig.~\ref{adap_fig:svm_train_my}.
+%
+With the same examples, uniform mesh of quadtree is conducted and the same region are marked as refined as shown in Fig.~\ref{adap_fig:svm_train_my}.
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{1\linewidth}
@@ -72,7 +71,7 @@ With the same examples, uniform mesh of quadtree is conducted and the same regio
     \caption[Training data for SVM]{Training data for SVM: Cells in black is marked as refined.}
     \label{adap_fig:svm_train_my}
 \end{figure}
-
+%
 Criteria taken into consideration are: 
 \begin{enumerate}
     \item Ratio of the area of the cell to the total area
@@ -80,18 +79,18 @@ Criteria taken into consideration are:
     \item Eigenvalue error indicator for displacement
     \item Eigenvalue error indicator for stress
 \end{enumerate}
-
-%  ----------------------------------------------------------------------------- %
+%
 \subsection{Regularization for MLP}
 \paragraph{Bagging}
+\label{adp_sec:ml_bagging}
 Bagging is a technique that utilize multiple models in order to increase the accuracy of the prediction \cite{Breiman1996}.
 The principle of idea of that is simple: training multiple models separately and let them vote for the prediction.
 It is adopted vastly in machine learning.
-The reason that model averaging works is that different models will usually not make all the same errors on the test set.
-Consider for example a set of k regression models.
-Suppose that each model makes an error $\epsilon_i$ on each example, with the errors drawn from a zero-mean multivariate normal distribution with variances $E[\epsilon_i^2]$ = $\nu$ and covariances $E[\epsilon_i \epsilon_j]$=$c$.
-Then the error made by the average prediction of all ensemble models is $\frac{1}{k}\sum_i \epsilon_i$.
-The expected squared error of the ensemble predictor is 
+The idea behind the optimization technique is that different models often make different errors on the same test set.
+Take a set of $k$ regression models for an example, error $\epsilon_i$ is made by each model on each example.
+The errors are drawn from a zero-mean multivariate normal distribution with variances $E[\epsilon_i^2]$ = $\nu$ and covariances $E[\epsilon_i \epsilon_j]$=$c$.
+As a result, the overall error determined by averaging of all models is $\frac{1}{k}\sum_i \epsilon_i$.
+The expected squared error of the ensemble predictor is
 \begin{equation}
     \begin{aligned}
     E[(\frac{1}{k} \sum_i \epsilon)^2] &=
@@ -103,151 +102,147 @@ The expected squared error of the ensemble predictor is
     &= \frac{1}{k}\nu + \frac{k-1}{k}c
     \end{aligned}
 \end{equation}
-In the case where the errors are perfectly correlated and $c=\nu$, the mean squared error reduces to $\nu$, so the model averaging does not help at all.
-In the case where the errors are perfectly uncorrelated and $c=0$, the expected squared error of the ensemble is only $\frac{1}{k}\nu$.
-This means that the expected squared error of the ensemble decreases linearly with the ensemble size.
-In other words, on average, the ensemble will perform at least as well as any of its members, and if the members make independent errors, the ensemble will perform significantly better than its members.
+%
+The bagging technique does not help if the errors are highly correlated and $c=\nu$ as the mean squared error can reduce to $\nu$.
+On the other hand, the effect of this technique may be significant if the errors are highly uncorrelated and $c=0$, in which situation the overall mean squared error becomes $\frac{1}{k}\nu$.
+In other words, the overall mean squared error decreases linearly with the model size.
+To conclude, the performance of this technique must not be worse than any of its individual model and a significant improvement can be expected if its members make independent errors.
+
 \paragraph{}
-Different ensemble methods construct the ensemble of the models in different ways.
-For example, each member of the ensemble could be formed by training a completely different kind of model using a different algorithm or objective function.
-Bagging is a methods that allows the same kind of model, training algorithm and objective function ot be reused serval times.
+There are several different methods to train ensemble.
+For instance, each member of the ensemble can be trained with same training set but different algorithms or different training set with same algorithm.
+The reuse of the same kind of models and algorithms is allowed thanks to the bagging.
+The bagging technique used in the proposed method is constructing $k$ different training set.
+Each training is built by sampling the original data set randomly.
+In other words, each individual model may have some dataset which is not appear in any other models.
+There is also some dataset are shared by multiple models.
+
 \paragraph{}
-Specifically, bagging involves constructing $k$ different datasets.
-Each dataset has the same number of example as the original dataset, but each dataset is constructed by sampling with replacement from the original dataset.
-This means that, with high probability, each dataset is missing some of the examples from the original dataset and also contains several duplicate examples(on average around 2/3 of the examples from the original dataset are found in the resulting training set, if it has the same size as original).
-Model $i$ is then trained on dataset $i$.
-The differences between which examples are included in each dataset result in differences between the trained models.
-\paragraph{}
-Neural networkds reach a wide enough variety of solution points that they can often benefit from model averaging even if all of the models are trained on the same datase.
-Differences in random initialization, random selection of minibatches, differences in hyperparameters, or different outcomes of non-deterministic implementations of neural networks are often enough to cause different members of the ensemble to make partially independent errors.
-\paragraph{}
-Model averaging is an extremely powerful and reliable method for reducing generalization error.
-Machine learning contests are usually won by methods using model averaging over dozens of models.
-A recent prominent example is Netflix Grand Price \cite{koren2009}.
+Due to the large number of initialization parameter for a neural network, bagging technique can be extremely effective because the random selection of parameters such as initialized weight, mini-batches, hyper-parameters and so on leads to a different outcome even with the same training data.
+The method is proved to be reliable and powerful for minimizing the generalization error.
+Averaging dozens of models is widely adopted in those who won the machine learning contests and a recent example is Netflix Grand Price \cite{koren2009}.
+
 
 \paragraph{Dropout}
-Dropout \cite{JMLR:v15:srivastava14a} provides a computationally inexpensive but powerful method of regularizing a broad family of models.
-To a first approximation, dropout can be thought of as a method of making bagging practical for ensembles of very many large neural networks.
-Bagging involves training multiple models, and evaluating multiple models on each test example.
-This seems impractical when each model is a large neural network, since training and evaluating such networks is costly in terms of runtime and memory.
-It is common to use ensembles of five to ten neural networks and six models were used to win the ILSVRC \cite{DBLP:journals/corr/SzegedyLJSRAEVR14}.
-Dropout provides an inexpensive approximation to training and evaluating a bagged ensemble of exponentially many neural networks.
+Dropout \cite{JMLR:v15:srivastava14a} is another optimization approach used in the proposed method.
+An effective but computationally cheap regularizing technique is provided.
+Roughly speaking, the dropout can be regarded as one method to create different models in bagging described in Sec.~\ref{adp_sec:ml_bagging} by training multiple models.
+One problem in bagging is that it could be impractical when each model is so large that the training can be computationally expensive in terms of time and space complexity.
+Hence, the number of models used in ensembles tends to be in the range of $5$ and $10$ and the winner of ILSVRC \cite{DBLP:journals/corr/SzegedyLJSRAEVR14} used $6$ models.
+As a comparison, dropout provides an cheap algorithm that can train and evaluate a large number of bagged ensemble.
+
 \paragraph{}
-Specifically, dropout trains the ensemble consisting of all sub-networks that can be formed by removing non-output units from an underlying base network.
-In most modern neural networks, based on a series of affine transformations and nonlinearities, we can effectively remove a unit from a network by multiplying its output value by zero.
-This procedure requires some slight modification for models such as radial basis function networks, which take the difference between the units state and some reference value.
-The algorithm of the dropout is presented in terms of multiplication by zero for simplicity, but it can be trivially modified to work with other operations that remove a unit from the network.
+In dropout, random hidden units are disabled during the training, which can be easily achieved by manually setting the weight to zero.
+By doing so, the contribution of this hidden unit is ignored based on the fact that matrix production is used.
+It can also be implemented by removing the unit completely from the network.
+In bagging technique, $k$ different models with different training data are trained.
+This is shared by the dropout as well, while dropout supports larger number of neural networks.
+During the training process using dropout, a minibatch-based learning algorithm introduced in Sec.~\ref{lr_sec:ml_sgd} is used to make insignificant steps.
+Whenever a sample is loaded into the minibatch, a random binary mask is applied to all of the inputs and hidden units in the network.
+The probability a unit be disabled is independent from others and shall be determined from the user input as one of the hyperparameter.
+In the proposed method, an input units has $20\%$ chance of being disabled and the number is $50\%$ for the hidden units.
+
+
 \paragraph{}
-Recall that to learn with bagging, k different models are defined and k different datasets by sampling from the traning set with replacement are constructed.
-After that, each model will be trained based on individual model.
-Dropout aims to approximate this process, but with an exponentially large number of neural networks.
-Specifically, to train with dropout, we use a minibatch-based learning algorithm that makes small steps, such as stochastic gradient descent.
-Each time we load an example into a minibatch, we randomly sample a different binary mask to apply to all of the input and hidden units in the network.
-The mask for each unit is sampled independently from all of the others.
-The probability of sampling a mask value of one (causing a unit to be included) is hyperparameter fixed before training begins.
-It is not a function of the current value of the model parameters or the input example.
-Typically, an input unit is included with probability 0.8 and a hidden unit is included with probability 0.5.
-We then run forward propagation, back-propagation, and the learning update as usual.
+More formally, assume that a mask vector $\mu$ specifies which units to include and $J(\theta,\mu)$ defines the cost of the model defined by parameters $\theta$ and mask $\mu$ \cite{Goodfellow-et-al-2016}.
+After that, the training of the dropout becomes minimizing $E_\nu J(\theta,\mu)$.
+The expectation may includes great number of terms while it could be possible to determine an unbiased estimation of its gradient by sampling values of $\mu$.
+
 \paragraph{}
-More formally, suppose that a mask vector $\mu$ specifies which units to include and $J(\theta,\mu)$ defines the cost of the model defined by parameters $\theta$ and mask $\mu$.
-Then dropout training consisits in minimizing $E_\nu J(\theta,\mu)$.
-The expectation contains exponentially many terms but we can obtain an unbiased estimate of its gradient by sampling values of $\mu$.
-\paragraph{}
-Dropput training is not quite the same as bagging training.
-In the case of bagging, the models share parameters, with each model inheriting a different subset of parameters from the parent neural network.
-This parameter sharing makes it possible to represent an exponential number of models with a tratable amount of memory.
-In the case of bagging, each model is trained to convergence on its respective training set.
-In the case of dropout, typically most models are not explicitly trained at all.
-Usually, the model is large enough that it would be infeasible to sample all possible sub-networks within the lifetime of the universe.
-Instead, a tiny fraction of the possible sub-networks are each trained for a single step, and the parameter sharing causes the remaining sub-networks to arrive at good settings of the parameters.
-These are the only differences.
-Beyond these, dropout follows the bagging algorithms.
-For example, the training set encountered by each sub-network is indeed a subset of the original training set sampled with replacement.
-To make a prediction, a bagged ensemble must accumulate votes from all of its member.
-We refer to this process as inference in this context.
-Bagging and dropout has not required that the model be explicitly probabilistic.
-It is assumed that the role of the model is to output a probability distribution.
-In the case of bagging, each model $i$ produces a probability distribution $p^{(i)}(y|x)$.
-The preidiction of the ensemble is given by the arithmetic mean of all these distributions,
+The training of the dropout is quite different to that of bagging.
+Models use same parameters but different training data in bagging as shared parameters help to represent numerous number of models without occupying too many memory.
+During the training using bagging, individual model is trained until convergence while during the training using dropout, most of the models are not explicitly trained.
+That is because the number of the possible sub-network in dropout is too significant to finish the training within the lifetime of the universe.
+Instead, only minor proportion are trained for a single step.
+Parameter sharing guarantee that the remaining sub-networks are able to arrive at good settings.
+The bagging algorithms are followed after that.
+For instance, the training data used by individual model actually is sampled from the original training set.
+Simple majority of the votes from all members are adopted to determine the prediction of the ensemble.
+Although bagging and dropout does not require a explicitly probabilistic model, it is assumed that a probability distribution $p^{(i)}(y|x)$ will be the output.
+The prediction of the ensemble is given by averaging all these distributions,
 \begin{equation}
     \frac{1}{k} \sum_{i=1}^k (y|x)
 \end{equation}
-In the case of dropout, each sub-model defined by mask vector $\mu$ defines a probability distribution $p(y|x, \mu)$.
+%
+For dropout, individual model with a mask vector $\mu$ defines a probability distribution $p(y|x, \mu)$.
 The arithmetic mean over all masks is given by
 \begin{equation}
     \sum_\mu p(\mu) p(y|x, \mu)
+    \label{adap_eq:ml_dropout_sum}
 \end{equation}
-where $p(\mu)$ is the probability distribution that was used to sample $\mu$ at training time.
-Because the sum includes an exponential number of terms, it is intractable to evalute except in cases where the structure of the model permits som form of simplification.
-Deep neural networks are not known to permit an tractable simplification.
-Instead, we can approximate the inference with sampling, by averaging together the output from many masks.
-Even 10-20 masks are often sufficient to obtain good performance.
+%
+where $p(\mu)$ is the probability distribution used to sample $\mu$ during the training.
+Since numerous number of terms are involved in the summation, it could be difficult to calculate Eq.~\ref{adap_eq:ml_dropout_sum} without simplification.
+However, a deep neural network do not allow such simplification.
+Instead, it is possible to approximate the simplification with sampling by calculate the mean value from many masks.
+It is suggested that around $15$ masks are able to provide satisfactory performance \cite{Goodfellow-et-al-2016}
+
 \paragraph{}
-However, there is an even better approach, that allows us to obtain a good approximation to the predictions of the entire ensemble, at the cost of only one forward propagation.
-To do so,we change to using the geometric mean rather than the arithmetic mean of the ensemble member's predicted distributions.
-Arguments and empirical evidence that the geometric mean performs comparably to the arithmetic mean are presented in the context \cite {WardeFarley2014SelfinformedNN}.
-\paragraph{}
-The geometric mean of multiple probability distributions is not guaranteed to be a probability distribution.
-To guarantee that the result is a probability distribution, we impose the requirement that none of the sub-models assigns probability 0 to any event, and we renormalize the resuliting distribution.
-The unnormalized probability distribution defined directly by the geometric mean is given by:
+Yet, the existence of a better approach allows the determination of a satisfactory approximation to the predictions of the ensemble at the cost of one forward propagation.
+It can be achieved by adopting geometric mean instead of the arithmetic mean of the ensemble member's predicted distributions \cite{WardeFarley2014SelfinformedNN}.
+However, using the geometric mean instead of the arithmetic mean leads to the result which is not guaranteed to be a probability distribution.
+In order to enforce a probability distribution as the result, the requirement that all sub-models must assign a non-zero probability to all events is imposed.
+After that, the resulted distribution is normalized again.
+The unnormalized probability distribution from geometric mean is:
 \begin{equation}
     \tilde{p}_{ensemble}(y|x) = 2^d \sqrt{\prod_\mu p(y|x,\mu)}
 \end{equation}
-where d is the number of units that my be dropped.
-A uniform distribution over $\mu$ is used in order to simplify the presentation, but non0uniform distributions are also possible.
-To make predictions a re-normalize need to be performed on the ensemble:
+%
+where $d$ is the number of units that my be dropped.
+To simplify the presentation, a uniform distribution over $\mu$ is adopted.
+But it should be noted that non-uniform distributions can be treated as well.
+Eq.~\ref{adap_eq:ml_renormalize} need to be performed on the ensemble in order to determine the prediction
 \begin{equation}
     p_{ensemble}(y|x) = \frac{
         \tilde{p}_{ensemble}(y|x)
     }{
         \sum_{y^\prime} \tilde{p}_{ensemble}(y^\prime|x)
     }
+    \label{adap_eq:ml_renormalize}
 \end{equation}
-A key insight involved in dropout is that we can approximate $p_{ensemble}$ by evaluating $p(y|x)$ in one model: the model with all units but with the weights going out of unit $i$ multiplied by the probability of including unit $i$ \cite{hinton2012}.
-The motivation for this modification is to capture the right expected value of the output from that unit.
-It is called weight scaling inference rule.
-There is not yet any theoretical argument for the accuracy of this approximate inference rule in deep nonlinear networks, but empirically it performs very well.
+%
+The key idea behind the dropout is to approximate $p_{ensemble}$ by calculating $p(y|x)$ in one model \cite{hinton2012}.
+The aim of this improvement is to capture the correct output from that unit.
+It is called weight scaling inference rule which shows outstanding performance empirically.
 \paragraph{}
-Because we usually use an inclusion probability of $\frac{1}{2}$, the weight scaling rule usually amounts to dividing the weights by 2 at the end of training, and then using the model as usual.
-Another way to achieve the same result is to multiply the states of the units by 2 during training.
-Either way, the goal is to make sure that the expected total input to a unit at test time is roughly the same as the expected total input to that unit at train time, even though half the unis at train time are missing on average.
-\paragraph{}
-For many classes of models that do not have nonlinear hidden units, the weight scaling inference rule is exact.
-For a simple example, consider a softmax regression classifier with $n$ input variables represented by the vector v:
+Since an inclusion probability of $\frac{1}{2}$ is widely adopted, the weight scaling rule tends to half the weights after training.
+The model is used as usual after that.
+It can also be achieved by multiplying the states of the units by $2$ during training.
+Both of these two methods are to narrow the difference between the expected total input to a unit at test time and that at the training when approximately half of the hidden units are dropped.
+For those models without nonlinear hidden units, the weight scaling inference rule gives exact result.
+For instance, a softmax regression classifier with $n$ input variables represented by the vector $v$ is considered:
 \begin{equation}
     P(y=y|v)=softmax(W^Tv+b)_y
 \end{equation}
-We can index into the family of sub-models by element-wise multiplication of the input with a binary vector d:
+%
+They can be indexed into the family of sub-models by element-wise multiplication of the input with a binary vector $d$:
 \begin{equation}
     P(y=y|v;d) = softmax(W^T(d \odot v)+b)_y
 \end{equation}
 
 
-
-
-
-%  ----------------------------------------------------------------------------- %
 \subsubsection{Indicator used in adaptivity}
 \paragraph{}
+All terms used in the performance indicators in machine learning are introduced in Sec.~\ref{lr_ml:indicators}
 The balance of the indicators is highly dependent on classifiers' objective.
 Take the spam detector for an example, a false positive can be more dangerous than a false negative as an important e-mail being marked as spam can be a disaster.
 While in adaptivity, there may be no favour over either of them.
-It is because refine a cell with lower error or leave a cell with higher error unrefined may not produce significant influence on the final result.
+It is because the refinement of a cell with lower error or leaving a cell with higher error unrefined may not produce significant influence on the final result.
 As a result, F1 score can be the most important indicator as it takes both recall rate and precision into consideration.
 
 
 \subsection{Result}
 \paragraph{}
-All training data are standardized by eq.~\ref{adap_eq:svm_standardized} where $\overline{x}$ and $\sigma$ is the mean and standard deviation of the data.
+All training data are standardized by Eq.~\ref{adap_eq:svm_standardized} where $\overline{x}$ and $\sigma$ is the mean and standard deviation of the data.
 It makes features in training data have zero means and unit variance.
-Cell that need to be refined are labeled as $1$ and the rest are labeled as $0$.
-Radial basis function with $\sigma=0.7624$ is adopted as kernel function.
+Cells that need to be refined are labeled as $1$ and the rest are labeled as $0$.
+Radial basis function with $\sigma=0.7624$ is adopted as kernel function in SVM.
     \begin{equation}
         x^\prime = \frac{x-\overline{x}}{\sigma}
         \label{adap_eq:svm_standardized}
     \end{equation}
-Half of the training data (320 out of 640) are used to train the model and the reset are used as a cross validation.
-Different class weight is set for testing different performance in regard to all indicators in fig.~\ref{adap_fig:svm_performance_0}.
+Half of the training data ($320$ out of $640$) are used to train the model and the reset are used for cross validation.
+Different class weights are set for testing different performance in regard to all indicators in Fig.~\ref{adap_fig:svm_performance_0}.
 \begin{figure}[h!]
     \centering
     \scalebox{0.3}{
@@ -256,11 +251,12 @@ Different class weight is set for testing different performance in regard to all
     \caption{Accuracy, precision, recall rate and F1 score vs different class weight}
     \label{adap_fig:svm_performance_0}
 \end{figure}
-A class weight is a vector that influence the predict directly.
+%
+A class weight is a vector that influence the predication directly.
 The model will calculate the probability for each classification based on the input and the one with higher probability will be chosen as the result in default situation.
-Change class weight to $1:2$ will force the model to choose first class when its probability is more than $66.67\%$ instead of $50\%$.
-A class weight of $3:7$ was chosen from fig.~\ref{adap_fig:svm_performance_0} to guarantee a balance between precision and recall rate.
-The corresponding result is listed in tab.~\ref{adap_tab:svm_result}.
+Change class weight to $1:2$ will force the model to choose first class when its probability is higher than $66.67\%$ instead of $50\%$.
+A class weight of $3:7$ was chosen from Fig.~\ref{adap_fig:svm_performance_0} to guarantee a balance between precision and recall rate.
+The corresponding result is listed in Tab.~\ref{adap_tab:svm_result}.
 \begin{table}[h!]
     \centering
     \caption{Result of cross validation}

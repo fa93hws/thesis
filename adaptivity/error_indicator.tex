@@ -1,13 +1,16 @@
 \paragraph{}
-This section details the proposed technique for adaptive scaled boundary finite element analysis. In comparison with the works in \cite{NME:NME439}, no stress recovery is required. This reduces the computational effort and leads to an efficient adaptive analysis. The error estimation is directly invoked from the scaled boundary finite element solutions.
+This section details the proposed error indicators for adaptive scaled boundary finite element analysis.
+In comparison with the works in \cite{NME:NME439}, no stress recovery is required.
+This reduces the computational effort and leads to an efficient adaptive analysis.
+The error estimation is directly invoked from the scaled boundary finite element solutions.
 
 %   ----    %
 \subsection{Mesh Size}
 \paragraph{}
-The area of a subdomain will apparently influence the accuracy of the result.
-Generally speaking, a larger subdomain tends to have a higher error.
-The area of any polygon in fig.~\ref{adap_fig:ei_polygon} can be calculated as 
-
+The area of a subdomain will apparently influences the accuracy of the result.
+Generally speaking, a larger subdomain tends to lead to a higher error.
+The area of any polygon in Fig.~\ref{adap_fig:ei_polygon} can be calculated as 
+%
 \begin{equation}
     S = \frac{1}{2}
         \sum_{k=1}
@@ -15,7 +18,7 @@ The area of any polygon in fig.~\ref{adap_fig:ei_polygon} can be calculated as
             x_k y_{k+1} - x_{k+1} y_k
         \right)
 \end{equation}
-
+%
 \begin{figure}[h!]
     \centering
     \scalebox{1}{
@@ -24,13 +27,13 @@ The area of any polygon in fig.~\ref{adap_fig:ei_polygon} can be calculated as
     \caption{A polygon with $n$ vertexes}
     \label{adap_fig:ei_polygon}
 \end{figure}
-
+%
 %   ----    %
 \subsection{Mesh Quality}
 \paragraph{}
-Mesh quality is another important factor that influence the accuracy.
-In SBFEM, mesh quality is highly related to the minimal angle formed by the intersecting lines connected by scaling center and adjacent polygon vertexes.
-An extremely smaller angel may raise numerical stability issue and hence decrease the accuracy of the result.
+Mesh quality is another important factor that influences the accuracy.
+In SBFEM, the mesh quality is highly related to the minimal angle formed by the intersecting lines connected to the scaling center and the adjacent polygon vertexes.
+An extremely smaller angel as shown in Fig.~\ref{adap_fig:ei_mesh_quality} may raises numerical stability issue and hence decreases the accuracy of the result.
 
 \begin{figure}[h!]
     \begin{subfigure}[b]{0.5\linewidth}
@@ -47,26 +50,26 @@ An extremely smaller angel may raise numerical stability issue and hence decreas
         }
         \caption{Unacceptable}
     \end{subfigure}
-    \label{adap_fig:ei_mesh_quality}
     \caption[Mesh quality in SBFEM]{Scaling center (
         \tikz[baseline=-0.5ex]\draw[black,fill=black] (0,0) circle (0.7ex);
     ), minimal angle $\alpha$}
+    \label{adap_fig:ei_mesh_quality}
 \end{figure}
-
+%
 %   ----    %
-
+%
 \subsection{Eigenvalue in SBFEM}
 \paragraph{}
-From eq.~\ref{lr_eq:sbfem_displacement_field} ,the displacement SBFEM can be calculated as
+From Eq.~\ref{lr_eq:sbfem_displacement_field} ,the displacement SBFEM can be calculated as
 \begin{equation}
     u(\xi) = c_1 \xi ^{-\lambda_1} \phi_u^1
             +c_2 \xi ^{-\lambda_2} \phi_u^2
             +\dots
 \label{adap_eq:ei_terms}
 \end{equation}
-where $\phi_u^i$ stands for the eigenvector corresponding to the $i$th eigenvalue in the eigenvalue matrix $\Lambda^{n}$ in eq.~\ref{lr_eq:sbfem_eigen_decomp}.
-The contribution of each mode is represented by every individual term in eq.~\ref{adap_eq:ei_terms} \cite{Deeks2002}.
-On the other hand, after the displacement solution is calculated on the boundary nodes by eq.~\ref{lr_eq:sbfem_general_sol_disp} with $\xi=1$, displacement solution in circumferential direction then is interpolated by the help of the $p$-th order shape function $R(\eta)$ in eq.~\ref{lr_eq:sbfem_displacement_field}.
+where $\phi_u^i$ stands for the eigenvector corresponding to the $i$th eigenvalue in the eigenvalue matrix $\Lambda^{n}$ in Eq.~\ref{lr_eq:sbfem_eigen_decomp}.
+The contribution of each mode is represented by every individual term in Eq.~\ref{adap_eq:ei_terms} \cite{Deeks2002}.
+On the other hand, after the displacement solution is calculated on the boundary nodes by Eq.~\ref{lr_eq:sbfem_general_sol_disp} with $\xi=1$, displacement solution in circumferential direction then is interpolated by the help of the $p$-th order shape function $R(\eta)$ in Eq.~\ref{lr_eq:sbfem_displacement_field}.
 As a result, terms corresponding to the eigenvalue $\lambda_i \leq p$ can be exactly interpolated by the shape function.
 These terms can be regarded as exact.
 However, therms corresponding to the eigenvalue $\lambda_i > p$ indicates the shape function is not capable to interpolate the displacement exactly and thus shall be taken as error terms.

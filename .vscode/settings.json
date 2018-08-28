@@ -32,8 +32,11 @@
   "cSpell.words": [
     "Maxout",
     "Natarajan",
+    "Raphson",
+    "covariances",
     "elastostatics",
     "interpolants",
+    "softmax",
     "splitted",
     "unnormalized"
   ]

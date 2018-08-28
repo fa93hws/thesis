@@ -58,12 +58,14 @@ The stress $\sigma$ can be expressed as \cite{Aug2008}
     \end{subequations}
 %
 The strain energy can be derived from Eq.~\ref{iso_eq:cantilever_beam_stress_solution} and Eq.~\ref{iso_eq:cantilever_beam_displacement_solution} as
-$\epsilon = 
+\begin{equation}
+\epsilon = 
     \frac{1}{2} \left(
         \frac{D^3 L^3 P^2}{36EI^2} + 
         \frac{D^5LP^2(1+v)}{60EI^2}
     \right)
-$
+    \label{iso_eq:cantilever_beam_energy_solution}
+\end{equation}
 \paragraph{}
 In this example, rigid body motion is constrained by fixing 3 DOF on the left edge of the beam.
 $u_x=0$ for points at $(0,-D/2)$ and $(0,D/2)$ and $u_y =0$ for point at $(0,0)$.

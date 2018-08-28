@@ -1,0 +1,177 @@
+\subsection{Projection algorithm}
+\paragraph{}
+Point projection algorithm is to find the nearest point in parameter $(u, v)$ on the NURBS surface of the test point.
+In the proposed method, all points on the surface is generated based on STL file and are not exactly on the surface.
+Some $O(logN)$ algorithms were developed \cite{Edelsbrunner:1985:CED:4007.4011, Chin1983OptimalAF} while presumably large number of tests on polygons is imposed.
+Furthermore, the accuracy is out of satisfactory for computer graphics and CAD communities.
+As a consequence, a projection algorithm \cite{MA200379} using Newton-Raphson method is introduced to tackle this problem.
+
+\paragraph{}
+For a given point $P=(x,y,z)$, its projection on the surface $S(u, v)$ so that the distance $|P-S(u,v)|$ is minimum is targeted.
+However, in the proposed method, the existence of the large number of the possible surfaces increase the computational cost significantly.
+The projection point for the test point $P$ need to be determined for every existing surface and the one with the smallest minimum distance will be selected.
+One possible improvement could be limit the possible surfaces to only a few by utilizing the fact that the NURBS surfaces has been divided into multiple sub-surfaces without interior knot in Sec.~\ref{oct_sc:surface_division}.
+Another property that can be utilized is that most of the test point $P$ is expected to be extremely close to its projection on the surface $S(u,v)$.
+
+\paragraph{}
+As a consequence, the strong convex hull property can be adopted to limit the number of possible surfaces to less than $2$.
+The building of the convex hull is explained in detail in Sec.~\ref{oct_sec:convex_hull}.
+The signed distance of the test point to all surfaces' convex hull is calculated and only the surfaces with negative signed distance which indicate that the point is in the convex hull will be selected as candidates.
+If no negative distance is detected, a few number (taken as $3$ in the proposed method) of surfaces with minimum signed distance will be selected.
+
+\paragraph{}
+In order to find the projection of the test point $P$ on the surface $S$, the vector $r$ is defined as
+\begin{equation}
+    \mathbf{r} (u, v) =
+    \mathbf{S} (u, v) -
+    \mathbf{P}
+\end{equation}
+%
+and two scalars $f$ and $g$ are defined as
+\begin{equation}
+    \left\{
+        \begin{array}{rl}
+            f (u, v) =
+            \mathbf{r}(u, v) \mathbf{\cdot} \mathbf{S}_u (u, v)
+            = 0 & \\
+            g (u, v) =
+            \mathbf{r}(u, v) \mathbf{\cdot} \mathbf{S}_v (u, v)
+            = 0 &
+        \end{array}
+    \right.
+\label{oct_eq:projection_function}
+\end{equation}
+%
+In order to solve Eq.~\ref{oct_eq:projection_function}, several notations are introduced
+\begin{align*}
+    \delta_i &=
+        \begin{bmatrix}
+            \Delta u \\
+            \Delta v
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            u_{i+1} - u_i \\
+            v_{i+1} - v_i
+        \end{bmatrix} \\
+    J_i &=
+        \begin{bmatrix}
+            f_u & f_v \\
+            g_u & g_v
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            \boldmath
+            |S_u|^2 + r \cdot S_{uu}        &       S_u \cdot S_v + r \cdot S_{uv} \\
+            S_u \cdot S_v + r \cdot S_{uv}  &       |S_v|^2 + r \cdot S_{vv}
+        \end{bmatrix} \\
+    \kappa_i & = -
+        \begin{bmatrix}
+            f(u_i, v_i) \\
+            g(u_i, v_i)
+        \end{bmatrix}
+\end{align*}
+%
+Where all values in matrix $j_i$ can be evaluated at $(u_i, v_i)$.
+$2$ by $2$ matrix $\delta_i$ can be determined at step $i$ as
+\begin{equation}
+    J_i \delta_i = \kappa_i
+\end{equation}
+%
+It can be derived by utilizing $\delta_i$ so that
+\begin{subequations}
+\begin{align}
+    u_{i+1} & = u_i + \Delta u \\
+    v_{i+1} & = v_i + \Delta v
+\end{align}
+\label{oct_eq:projection_iteration}
+\end{subequations}
+%
+The iteration can be concluded as
+\paragraph{1}
+Is the point coincide with $S(u_i, v_i)$
+\begin{equation*}
+    |\mathbf{S} (u_i, v_i) - \mathbf{P}| \leq \epsilon_1
+\end{equation*}
+%
+where $\epsilon_1$ stands for the tolerance for distance in Euclidean space.
+\paragraph{2}
+Is the cosine zero
+\begin{align*}
+    \frac{
+        |\mathbf{S}_u (u_i, v_i) \cdot
+        \left(
+            \mathbf{S}(u_i, v_i) - \mathbf{P}
+        \right)|
+    }{
+        |\mathbf{S}_u (u_i, v_i)|
+        |\mathbf{S}(u_i, v_i) - \mathbf{P}|
+    } & \leq \epsilon_2 \\
+    \frac{
+        |\mathbf{S}_v (u_i, v_i) \cdot
+        \left(
+            \mathbf{S}(u_i, v_i) - \mathbf{P}
+        \right)|
+    }{
+        |\mathbf{S}_v (u_i, v_i)|
+        |\mathbf{S}(u_i, v_i) - \mathbf{P}|
+    } & \leq \epsilon_2
+\end{align*}
+%
+where $\epsilon_2$ stands for the tolerance for cosine.
+If either of these conditions are met, the iteration is terminated.
+Otherwise Eq.~\ref{oct_eq:projection_iteration} is performed to find the parameters $u_{i+1}$ and $v_{i+1}$ for next iteration.
+\paragraph{3}
+Make sure $u$ and $v$ are within there domains
+\begin{align*}
+    u_{i+1} & \in [a,b] \\
+    v_{i+1} & \in [c,d]
+\end{align*}
+%
+where $a$, $b$, $c$ and $d$ are the lower and upper bounds for the knot vectors of surface $S$.
+If the surface is open in $u$ direction
+\begin{equation}
+    \left\{
+        \begin{array}{rl}
+            u_{i+1} = a & u_{i+1} < a \\
+            u_{i+1} = b & u_{i+1} > b
+        \end{array}
+    \right.
+\end{equation}
+%
+If the surface is open in $v$ direction
+\begin{equation}
+    \left\{
+        \begin{array}{rl}
+            v_{i+1} = c & v_{i+1} < c \\
+            v_{i+1} = d & v_{i+1} > d
+        \end{array}
+    \right.
+\end{equation}
+%
+If the surface is closed in $u$ direction
+\begin{equation}
+    \left\{
+        \begin{array}{rl}
+            u_{i+1} = b - ( a - u_{i+1} ) & u_{i+1} < a \\
+            u_{i+1} = a + ( u_{i+1} - b ) & u_{i+1} > b
+        \end{array}
+    \right.
+\end{equation}
+%
+If the surface is closed in $v$ direction
+\begin{equation}
+    \left\{
+        \begin{array}{rl}
+            v_{i+1} = d - ( c - v_{i+1} ) & v_{i+1} < c \\
+            v_{i+1} = c + ( v_{i+1} - d ) & v_{i+1} > d
+        \end{array}
+    \right.
+\end{equation}
+%
+\paragraph{4}
+The difference between the new parameters $u_{i+1}$ and $v_{i+1}$ and the old ones $u_i$ and $v_i$ is insignificant
+\begin{equation*}
+    |u(i+1) - u_i| \mathbf{S}_u (u_i, v_i) +
+    (v_{i+1} - v_i) \mathbf{S}_v (u_i, v_i) |
+    \leq \epsilon_1
+\end{equation*}
+The iteration will be terminated if this condition is meet.

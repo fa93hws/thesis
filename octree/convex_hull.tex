@@ -1,0 +1,14 @@
+\subsection{Convex hull in 3D}
+\label{oct_sec:convex_hull}
+\paragraph{}
+The convex hull property of the NURBS surface indicates that all points on the surface must be contained within the convex hull constructed by its control points \cite{SELIMOVIC2009772}
+The algorithm in 3D can be very similar to that in 2D as introduced in Sec.~\ref{qdt_sc:convex_hull}.
+\begin{enumerate}
+    \item Find the most left and right points (points with minimal and maximum $x$) since they are proved to be part of the convex hull.
+    \item Connect these two points and use the line to separate other points into two group.
+    \item Find the point with maximum distance to the line in step 2 in any group.
+    \item Construct a triangle with two points in step 2 and the point in step 3.
+    \item Find the point with maximum distance to the triangle in step 4. %5
+    \item Construct a tetrahedron with the triangle in step 4 and the point in step 5.
+    \item Follow the same procedures in Sec.~\ref{qdt_sc:convex_hull}
+\end{enumerate}

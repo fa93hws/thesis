@@ -1,17 +1,18 @@
 \subsection{Surfaces division}
+\label{oct_sc:surface_division}
 \paragraph{}
-Mapping points back to NURBS surfaces in 3D can be extremely time consuming as there is no known close form mathematical solution for it.
-Every point that require projection takes about ten to hundreds iterations before it can find the nearest projection point on the NURBS surface, depending on the size of the projection surface.
+Mapping points back to NURBS surfaces in 3D can be extremely time consuming as there is no known close form mathematical solution.
+Every point takes about ten to hundreds iterations before it can find the nearest projection point on the NURBS surface, depending on the size of the projection surface.
 However, in the problem that the proposed method is targeting, reasonably complex geometry will be expected.
-As a result, points projection back to such kind of NURBS surfaces may takes much more computational time than any others do and it may be necessary to find a more complicated but more computational efficient algorithm other than the naive implementation.
+As a result, points projection back to such kind of NURBS surfaces may takes much more computational time than any others do and it may be necessary to find a more complicated but computational efficient algorithm other than the naive implementation.
 
 \paragraph{}
 One concept that can be utilized to improve the efficiency here is the ``divided and conquer''.
-As the time complexity of the naive algorithm is $O(n^3)$ where $n$ is directly correlated to the order and number of control points used to describe the NURBS surfaces, dividing a surface into two generally will make the projection algorithm four times faster than it is before.
+As the time complexity of the naive algorithm is $O(n^3)$ where $n$ is directly correlated to the order and the number of control points used to describe the NURBS surfaces, dividing a surface into two generally will make the projection algorithm four times faster than it is before.
 Consequently, breaking the origin NURBS surfaces into as many as it can could be a one of the practical practices.
 
 \paragraph{}
-Surfaces division can be done by the help of knot insertion (\ref{lr_sec:nurbs_knot_ins}).
+Surfaces division can be performed by the help of knot insertion (\ref{lr_sec:nurbs_knot_ins}).
 Assuming a NURBS surface defined by two knot vectors\\
 $
 V_1 = [-1, -1, -1, a_1, a_2, \dots, a_n , 1, 1, 1]
@@ -29,7 +30,7 @@ and
 $
 V_2^\prime = [-1, -1, -1, b_1, b_1, b_1, b_2, b_2, b_2, \dots, b_m, 1, 1, 1]
 $.\\
-Extraction then can be done by take the sub-matrix from the generated control points matrix $P^\prime$ and weight matrix $w^\prime$.
+Extraction then can be conducted by take the sub-matrix from the generated control points matrix $P^\prime$ and weight matrix $w^\prime$.
 
 \paragraph{}
 Fig.~\ref{oct_fig:nurbs_division} shows a sub-division of breaking a cylinder surface into four smaller ones.

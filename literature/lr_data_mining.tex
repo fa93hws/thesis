@@ -126,6 +126,7 @@ where $\epsilon > 0$ stands for the learning rate which decided the distance for
 Several strategy exists to determine learning rate including using a tiny constant, adopting a large number at the beginning and decrease it during the iteration and try different learning rates and find the best (line search).
 
 \subsection{Stochastic gradient descent (SGD)}
+\label{lr_sec:ml_sgd}
 SGD is an extension of the gradient descent method described above in order to significantly decrease the computational time without lose the accuracy.
 One commonly accepted way to improve the effectiveness of a MLP model is to increase the training set.
 However, an increasingly large training set require more computational costs.
@@ -295,7 +296,8 @@ Since every maxout unit need to learn its own parameter, the size of the trainin
 
 % ----------------------------------------------------------------- %
 
-\subsection{Performance indicator}
+\subsection{Performance indicators}
+\label{lr_ml:indicators}
 \subsubsection{Confusion matrix}
 A confusion matrix is a matrix used to illustrate the outcome of a classification model on a set of test data whose actual results are known.
     % Please add the following required packages to your document preamble:
