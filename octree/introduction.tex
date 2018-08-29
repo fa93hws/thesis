@@ -1,9 +1,10 @@
 \section{Introduction}
 \paragraph{}
 The existing method is able to generate the mesh based on the STL file for a 3D model.
-Yet, most of the points on the boundary other than plane will be close to the origin surfaces but not exactly on it.
+However, due to the fact that triangular surfaces in STL is not exactly on the original surfaces, most of the points on the boundary other than plane will be close to the origin surfaces but not exactly on it.
 This geometric imperfection may have significant influence on the accuracy.
 As a result, the algorithm that can extract geometric information directly from engineering design and the method that project points on the original boundary will be introduced.
+Alternatively, the exact geometry can be retained by calculating the intersection between the line with the NURBS surface during the cutting stage of the mesh generation instead of perform a projection afterwards.
 
 \paragraph{}
 IGES introduced in Sec.~\ref{lr_sec:IGES} files will be extracted from the engineering design file in this chapter and information about NURBS surfaces and curves will be extracted from the files.

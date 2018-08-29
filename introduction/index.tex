@@ -4,12 +4,12 @@
 The Finite element method (FEM) constitutes a general tool for the numerical solution of partial differential equations in engineering and applied science \citep{Ucb2010}.
 It did not achieve enormous popularity until early 1950s, when digital computer was developed.
 After that, the method was refined with the help of variational methods from Lord Rayleigh (1870) and W. Ritz (1909) as well as the Galerkin's weighted-residual approach \citep{Fel1994}.
-Then, great amount of research has been conducted on FEM in terms of mathematics and applications, contributing to its dominance over numerical method in solid mechanics and structural analysis by the beginning of the 1990s \citep{Clo1980}.
+Then, great amount of research has been conducted on the FEM in terms of mathematics and applications, contributing to its dominance over numerical method in solid mechanics and structural analysis by the beginning of the 1990s \citep{Clo1980}.
 Although it is a principle method for solving complex problems in the engineering field, deficiency in geometric representation has been detected.
 Besides, inability to formulate unbounded domain restricts the FEM in some area.
 
 \paragraph{}
-In the existing computational mechanics methods, the geometry is interpolated by high order polynomials and the exact geometry is neglected due to its intricacy. However, the accuracy of adopting it into computational mechanics seems to be limited \citep{Sza2004}.
+In the existing computational methods, the geometry is interpolated by high order polynomials and the exact geometry is neglected due to its intricacy. However, the accuracy of adopting it into computational mechanics seems to be limited \citep{Sza2004}.
 Convergence study (Fig.~\ref{intro_fig:geolimit}) exhibits the inability for error to decrease at some level with an increasing order.
 In Fig.~\ref{intro_fig:geolimit2}, there is hardly any difference in results between the order of $4$ and $8$.
 That proves the geometric error cannot be prevented by the elevation of order.
@@ -23,7 +23,7 @@ Besides, low-order elements are used widely in finite element analysis which inc
 \end{figure}
 %
 Geometrical imperfection can lead to imprecise estimates. This is shown by comparing the buckling load.
-Error results from geometric imperfection swells significantly in Fig.~\ref{intro_fig:geolimit2}.
+Error from geometric imperfection swells significantly in Fig.~\ref{intro_fig:geolimit2}.
 %
 \begin{figure}
     \centering
@@ -33,7 +33,7 @@ Error results from geometric imperfection swells significantly in Fig.~\ref{intr
 \end{figure}
 %
 \paragraph{}
-Tensor product Non-Uniform Rational B-spline (NURBS) is a well-known curve and surface representation method and has been adopted as a standard in computer graphics, computer-aided-design (CAD) \citep{Nas2003} and Initial Graphics Exchange Specification (IGES) standard since 1983 \citep{IGES1983}.
+Tensor product Non-Uniform Rational B-spline (NURBS) is a well-known curve and surface representation method and has been adopted as a standard in computer graphics, computer-aided-design (CAD) \citep{Nas2003} and Initial Graphics Exchange Specification (IGES) since 1983 \citep{IGES1983}.
 Nowadays, the employment of rational polynomial functions in description of geometry in CAD/CAM applications is becoming more and more extensive \citep{Pie1987}.
 A general sculptured surface can be built easily with the help of NURBS \citep{Rog2001}.
 One of its strongest reasons for that is its ability to represent any conic curves and surfaces precisely.
@@ -53,7 +53,7 @@ Furthermore, frequent design modifications in fast pace, modern society restrict
 Creation of mesh in FEM can be expensive in terms of time and human resource.
 One possible solution is trying to replace the geometric modelling tool in FEM by something more CAD-like.
 NURBS, for example, is a standard mathematical model utilized in CAD industry.
-Exact CAD geometric boundaries are achieved with the help of the NURBS curve and surface.
+Exact CAD geometric boundary is achieved with the help of the NURBS curve and surface.
 This idea to be geometrically exact with a minimum discretization is adopted in Isogeometric analysis developed in 2005 \citep{Hug2005b} and further refined recently \citep{Zhang2007,Hug2005b,Cot2006,Cot2009,Baz2006a,Baz2006b}.
 Furthermore, a simplified mesh refinement method by omitting the necessity for communication with the CAD geometry once the initial shape is received is also targeted \citep{Cot2007}.
 It shows advantage in the structure analysis (Fig.~\ref{intro_fig:thinshell}), fluid mechanics \citep{Buf2011} and dynamics (Fig.~\ref{intro_fig:Femvsnurbs}).
@@ -111,10 +111,11 @@ Consequently, it could be necessary to develop automatic mesh generation algorit
 
 % adaptive mesh refinement
 \paragraph{}
+% The accuracy of the result calculated by SBFEM is highly relevant to the mesh quality.
 Mesh refinement is a common process during numerical analysis to improve the accuracy and ensure the result is converging.
-A naive uniform refinement may leads to not only over-refined in area contributes few to the improvement of the accuracy which can be computationally inefficiency but also under-refined which results the omission of localized phenomena.
+A naive uniform refinement may lead to not only over-refined in area contributes few to the improvement of the accuracy which can be computationally inefficiency but also under-refined which results the omission of localized phenomena.
 This motivates the idea of adaptive mesh refinement which try to determine whether an element need refined based on a ``posteriori error estimator''.
-Numerous research has been conducted on such an error estimator and it has been developed in the FEM \citep{Duval2018, doi:10.1002/gamm.201490020,PRUDHOMME20091887}, the Boundary Element Method (BEM) \citep{Zhao1998, Guiggiani1990, KAMIYA1992223} and the SBFEM \citep{NME:NME439}.
+Numerous research has been conducted on such an error estimator and it has been developed in the FEM \citep{Duval2018, doi:10.1002/gamm.201490020,PRUDHOMME20091887}, the BEM \citep{Zhao1998, Guiggiani1990, KAMIYA1992223} and the SBFEM \citep{NME:NME439}.
 However, some of these error estimator requires extra work such as stress recovery.
 Besides, it could be difficult to determine the most suitable error indicator to a given problem.
 Furthermore, the threshold is taken manually which limits the usage of several indicators as the number of the threshold grows quadratically as the number of the estimators increases.
@@ -126,10 +127,10 @@ Furthermore, the threshold is taken manually which limits the usage of several i
 \paragraph{}
 As discussed in Sec.~\ref{intro_sec:problem}, there are several limitations associated with the existing numerical methods.
 This thesis aims at developing a complete and systematic numerical method where all procedures are conducted without human involvement for an arbitrary geometric input in both 2D and 3D situations.
-After the design file (IGES file) are delivered in electronic form, the proposed method shall be able to parse the geometric input, generate the mesh (quadtree in 2D and octree in 3D), determine the result using SBFEM and refine the mesh based on the error estimator by the help of machine learning algorithm automatically.
+After the design files (IGES file and STL file in 3D) are delivered in electronic form, the proposed method shall be able to parse the geometric input, generate the mesh (quadtree in 2D and octree in 3D), determine the result using SBFEM and refine the mesh based on the error estimator automatically.
 The main objectives of this thesis are as follows
 \begin{enumerate}
-    \item Minimize human effort spent on stress/displacement analysis
+    \item Minimize human effort spent on engineering mechanics analysis
     \item Be compatible with arbitrary geometric input in 2D and 3D
     \item Generate high quality mesh
     \item Retain exact geometry

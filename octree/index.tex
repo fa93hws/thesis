@@ -31,3 +31,8 @@ Only a few intersections need to be determined when the mesh is coarse hence hav
 \input{octree/ex_other_meshes.tex}
 
 \section{Conclusions}
+\paragraph{}
+In this chapter, a projection is conducted after the mesh is generated from STL file using octree or calculating the intersection between the line and the original NURBS surface to retain the exact geometry.
+In order to utilize the strong hull property of the NURBS surface, a quick hull algorithm in 3D is introduced.
+As a consequence, the computational efficiency of the points projection and the intersection calculation are improved significantly.
+The proposed method is able to generate the mesh from an arbitrary geometric input and shows higher accuracy compared to conventional method.

@@ -2,3 +2,83 @@
 
 \chapter{Conclusions and recommendation}
 \section{Summary}
+\paragraph{}
+In this thesis, a systematic numerical method where all procedures are conducted without human involvement for an arbitrary geometric input in both 2D and 3D situations has been developed based on the SBFEM.
+The SBFEM is a semi-analytical method which combines the main advantages of the finite element method and the boundary element method but also has unique features of its own.
+In contrast to the FEM, only the boundary is discretized using the conventional FEM interpolating function which leads to a decline in the number of unknowns.
+It also allows solving the problem involving bimaterial interfaces and crack faces without the discretization of them.
+Compared to the BEM, the fundamental solution is no longer required.
+The infinite boundary can be achieved naturally as the radiation condition at infinity is satisfied in the SBFEM .
+As only the boundary information is required in SBFEM and hence provides a seamless integration with the CAD modeling compared to conventional Isogeometric Method.
+The discretization of the boundary can be based on the standard finite element interpolation functions for computational efficiency or NURBS basis function for exact geometry.
+
+\paragraph{}
+The preprocessing of the proposed method is conducted automatically without losing exact geometric representation.
+In 2D problems, the geometric information from the IGES file exported from CAD design is extracted and a quad-tree based mesh will be generated.
+High mesh quality and reduced computational cost in the calculation of the element stiffness matrix can be expected. 
+For 3D cases, both of the STL and the IGES files are exported from the CAD design and an octree based mesh will be generated based on STL file.
+Since the STL file represents the triangulation of the geometric surfaces, intersections calculated during cutting stage is supposed to be located on the triangular plane instead of the original surface.
+As a consequence, a point projection algorithm is adopted to move the points back to the NURBS surfaces after the mesh has been generated.
+Then, an arbitrary geometric shape in 2D and 3D can be meshed automatically with high quality mesh and solved by the SBFEM.
+
+\paragraph{}
+After the solution is determined from the SBFEM, a mesh refinement may be necessary to improve the accuracy and check the convergence.
+In order to find out the scaled boundary finite element which improve the accuracy significant after refinement, an adaptive mesh refinement algorithm is required.
+Expressions related to the eigenvalues of the SBFEM formulation are adopted as the physical error indicator to prevent extra work such as stress recovery.
+Some key geometric error estimator including area of the subdomain, minimal angel and so on are also included.
+The decision based on numerous error estimator are conducted by the help of a machine learning algorithm.
+The proposed adaptive mesh refinement exhibits higher rate of convergence compared to an uniform mesh refinement using SBFEM.
+
+\paragraph{}
+The thesis commences with an introduction to the research topic in Chapter 1.
+A background and motivation for the research are presented followed by the objective and outline of the research.
+In Chapter 2, the linear theory of the Isogeometric analysis, together with a brief introduction on NURBS and its mathematical backgrounds, potentials and limitation is summarized.
+A brief introduction on the IGES file is also presented.
+Due to the dimensional mismatch, the SBFEM is the technique which can provide a seamless integration with the CAD modeling.
+The concept of adaptive mesh refinement and its limitation is presented as well.
+The MLP then is introduced to overcome this limitation by the adoption of multiple error indicators.
+Finally, algorithms used to generate octree mesh in 3D from STL file is presented.
+
+\paragraph{}
+In Chapter 3, the NURBS basis functions are employed to approximate the unknown fields in the circumferential direction within the framework of the SBFEM.
+The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark problems in linear elasticity and linear elastic fracture mechanics.
+From the numerical studies, it can be observed that the NURBS basis functions yield superior accuracy when compared to Lagrange basis functions of the same order.
+The proposed method overcomes the disadvantages of both the isogeometric finite element analysis and the isogeometric boundary element method. 
+When applied to problems with singularities, the proposed method does not require additional functions to span the solution space.
+Moreover, the proposed framework does not require internal discretization to study the dynamic response at high frequencies.
+However, for complicated geometries, to meet the star convexity, subdivision into smaller sub-domains is required.
+
+\paragraph{}
+In Chapter 4, the IGES file is employed directly from the CAD output to generate the quadtree mesh automatically.
+The proposed methods provides a systematic and automatic mesh generation algorithm that can produce high quality mesh.
+CAD design file can be used directly and the exact geometry can also be retained, which can largely reduce human efforts involved in numerical analysis.
+Moreover, it can also help to reduce the analytical error as the difference in the geometric representation is minimized.
+The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark problems in linear elasticity mechanics.
+From the numerical studies, it can be observed that the quadtree mesh yield better accuracy when compared to uniform mesh with same degree of freedoms.
+
+\paragraph{}
+Chapter 5 adopts a machine learning algorithm to develop an extensible and flexible error indicator.
+A MLP trained error estimator that concludes expressions related to the eigenvalues of the SBFEM formulation and some key geometric properties of the scaled boundary finite element gives a higher convergence rate compared to the uniform refinement.
+
+\paragraph{}
+In Chapter 6, a projection is conducted after the mesh is generated from STL file using octree or calculating the intersection between the line and the original NURBS surface to retain the exact geometry.
+In order to utilize the strong hull property of the NURBS surface, a quick hull algorithm in 3D is introduced.
+As a consequence, the computational efficiency of the points projection and the intersection calculation are improved significantly.
+The proposed method is able to generate the mesh from an arbitrary geometric input and shows higher accuracy compared to conventional method.
+
+
+\section{Future work}
+\paragraph{}
+As discussed in Chapter 3, there is no exact numerical integration for the NURBS basis function at the moment as its rational property currently.
+Furthermore, the computational cost of calculating a value of NURBS basis function can be $10$ times higher than that of the traditional Legendre polynomials.
+In chapters after Chapter 3, the conventional shape functions are adopted instead of the NURBS basis functions to avoid too many expensive computational operation when the number of the elements grow drastically.
+Future work can be performed on derive an exact and efficient numerical integration quadrature to prevent extra error.
+Algorithm that evaluate the NURBS basis function can also be optimized so that the whole programme can be much more efficient as it is involved in almost all NURBS operation.
+
+\paragraph{}
+As discussed in Chapter 4, one of the most outstanding advantages of using machine learning algorithm to train the model responsible for making decision whether an element need to be refined lies in the allowance of unlimited number of error indicators.
+The effectiveness of the deep neural network is closely related to the quantity of the training data.
+In Chapter 4, less than a thousand of the training data is used, which limits the depth of the neural network and the number of the error indicators.
+Future work can concentrate on building a platform so the cloud computing can be utilized and the service can be available to the whole community.
+By having a platform, number of the training data can be solved naturally as any request of calculation contributes to one extra training data.
+A large training set then motive the scholars adding any error indicator.
