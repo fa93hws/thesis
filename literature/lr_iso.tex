@@ -1,0 +1,34 @@
+\paragraph{}
+In a traditional approach, geometric design and analysis were treated as separate modules requiring different methods and interpretations.
+For example, the geometric design module employed non-uniform rational B-splines (NURBS) introduced in Sec.~\ref{lr_sec:NURBS} to describe the geometry, whilst the analysis module consisted of one of the following
+\begin{enumerate}
+    \item Mesh based discrete models, such as the finite element method (FEM) \citep{doi:10.1111/j.1467-8667.1989.tb00025.x}
+    \item Boundary based methods, such as the boundary element method (BEM) \citep{book}, scaled boundary finite element method (SBFEM) \citep{Son1997}
+    \item Meshless methods \citep{article123213eds}
+\end{enumerate}
+The approximation space employed in the analysis module to describe both the geometry and the fields is different from that used in the CAD system.
+Hence it requires repetitive conversion between the CAD and the analysis and in this process errors are inevitable.
+Moreover, the analysis module employs polynomials that do not lead to exact representation of the geometry, whilst the geometric module employs Bézier representations that use Bernstein polynomials or B-splines and NURBS that employ de Boor polynomials \citep{Pie1997}.
+The above representations utilize basis functions and control points to represent the geometry, in addition to this, B-splines and NURBS also utilize a vector
+of knots.
+NURBS further use weights to control points to model intricate shapes.
+
+\paragraph{}
+As a consequence, the concept of isogeometric analysis is proposed \citep{Hug2005}, in which the conventional Lagrange polynomials are replaced with the NURBS basis functions.
+The concept of isogeometric analysis (IGA) has revolutionized the analysis procedure.
+The IGA provides a natural link with the CAD model.
+A key feature of this framework is that the geometry is represented exactly by NURBS and the isoparametric concept is invoked to define the field variables.
+Since its inception, the method has been applied to a variety of problems such as plates and shells \citep{NGUYENTHANH20113410,NGUYENXUAN2014222,HOSSEINI20141}, as
+cohesive elements \citep{NGUYEN2014193}, for shape optimization \citep{WALL20082976}, fluid–structure interaction problems \citep{BAZILEVS201228}, problems with strong discontinuities and singularities \citep{doi:10.1093/imamat/hxu004, doi:10.1002/nme.4580, BAZILEVS201228}, optimization problems \citep{GHASEMI2014463} to name a few.
+Jia et al. \citep{JIA2013342} by incorporating reproducing kernel approximation methods, alleviated the instabilities of the conventional triangular B-spline element.
+The new approach yielded improved convergence rate and accuracy when compared to the conventional triangular B-spline element.
+This seems to be a promising alternative to NURBS and T-splines where considerable effort is required for local refinements. 
+In the conventional IGA, the surfaces/volumes are represented by the tensor product of the corresponding knot vectors.
+This requires the domain to be discretized with standard shapes and leads to a restricted number of boundary curves/surfaces.
+Also, this leads to excessive overhead of control points with refinement.
+This can be circumvented by adopting local refinement as proposed \citep{NGUYENTHANH20111892} or by employing T-splines \citep{Sederberg:2003:TT:882262.882295}.
+Recently, Simpson et al. \citep{Sim2013, SIMPSON201287} proposed the isogeometric boundary element method (IGABEM), in which the NURBS functions were used to approximate the unknown fields.
+This framework circumvents the need to discretize the domain, as required by the IGAFEM.
+It was shown that the IGABEM is more accurate than the conventional BEM with polynomial interpolations.
+Furthermore, Scott et al. \citep{Sco2013} and Simpson et al. \citep{SIMPSON2014265} combined the collocated IGABEM with T-splines for linear elastostatics and acoustic analysis, respectively.
+The concept of IGABEM was further extended to damage tolerance assessment \citep{PengXuan;AtroshchenkoElena;Bordas2014} and shape sensitivity analysis \citep{LianHaojie;SimpsonRobert;Bordas2013}.

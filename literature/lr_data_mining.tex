@@ -1,8 +1,9 @@
-\section{Machine learning}
+% !TeX root = ../thesis.tex
+\subsection{Machine learning}
 \label{lr_sec:machine_learning}
 \paragraph{}
 A machine learning algorithm is such an algorithm that is able to learn from data and find regularities.
-The ``learning'' is defined as ``A computer program is said to learn from Experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.'' \cite{Mitchell:1997:ML:541177}
+The ``learning'' is defined as ``A computer program is said to learn from Experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.'' \citep{Mitchell:1997:ML:541177}
 \paragraph{}
 The tasks T refer to the task that are too hard to solve with fixed programs.
 For example, if a robot is designed to be able to walk, it can be done by a program that help the robot learn how to walk or by a program written manually to tell the robot how to walk.
@@ -27,7 +28,7 @@ It is depends on what kind of experience it has during the learning process.
 Unsupervised learning algorithms experience a dataset that have a series of features.
 It is expected to learn useful properties of this dataset.
 While supervised learning algorithms experience a dataset that not only have many features, but also have a label or target.
-For example, in Iris Fisher data set \cite{Fisher1936}, fish species of each iris plant will be included as well as features of the fish. 
+For example, in Iris Fisher data set \citep{Fisher1936}, fish species of each iris plant will be included as well as features of the fish. 
 
 \paragraph{}
 Several supervised machine learning algorithms targeting classification problems will be introduced later.
@@ -35,7 +36,7 @@ Several supervised machine learning algorithms targeting classification problems
 % ------------------------------------------------------------------------------------ %
 \subsection{Multilayer perceptron(MLP)}
 \paragraph{}
-There are plenty of machine learning algorithms such as Support Vector Machine (SVM)\cite{Boser1996,Cortes1995}, decision tree\cite{Olshen1984} and random forest\cite{Ho1995} that can be adopted in all kinds of situation.
+There are plenty of machine learning algorithms such as Support Vector Machine (SVM)\citep{Boser1996,Cortes1995}, decision tree\citep{Olshen1984} and random forest\citep{Ho1995} that can be adopted in all kinds of situation.
 Multilayer Perceptron(MLP), also known as feedforward neural networks or deep feedforward networks will be introduced in detail in this section as it is the method adopted in Chapter 5.
 
 \paragraph{}
@@ -70,7 +71,7 @@ A neural network so far will never aim to simulate a brain perfectly as well, it
 \end{figure}
 %
 The key question of a MLP is how to find a proper non-linear mapping function $\phi_i$ that can calculate all units in $i+1$-th layer from the previous one.
-One of the options is to adopt a generic function, such as the Radial Basis Function(RBF)\cite{chang2010} kernel.
+One of the options is to adopt a generic function, such as the Radial Basis Function(RBF)\citep{chang2010} kernel.
 Even though an RBF kernel is capable to fit the training data with infinite-dimensional function, the performance on the test set usually not as satisfactory as it is on the training set.
 Some advanced example can not be solved as not enough prior information is encoded and generic feature mappings drawn from the local smoothness is used only.
 Another widely-accepted approach before the concept of deep learning being popular is to set the function manually.
@@ -273,9 +274,9 @@ RELU are applied on top of the existing affine transformation:
 Initial values for the transformation matrix are suggested to set with a small positive value as it can make most of the RELU active and let the derivatives pass through.
 Because the output remain constant when it is inactive, the unit can not learn anything when it is not active.
 Improvements has been proposed recently.
-Absolute value rectification that map $g(z)$ to $|z|$ has been used in object recognition \cite{jarret2009}.
-Leaky RELU that give a small positive value for the derivatives \cite{maas2013} while parametric RELU regard this derivatives as a learnable parameter \cite{He2015}.
-Maxout units \cite{Goodfellow2013} is a further generalization of the RELU.
+Absolute value rectification that map $g(z)$ to $|z|$ has been used in object recognition \citep{jarret2009}.
+Leaky RELU that give a small positive value for the derivatives \citep{maas2013} while parametric RELU regard this derivatives as a learnable parameter \citep{He2015}.
+Maxout units \citep{Goodfellow2013} is a further generalization of the RELU.
 The maxout units divide $z$ into groups of $k$ values instead of applying an element-wise function $g(z)$.
 The maximum value of the output of all units will be used to represent this group:
 \begin{equation}
@@ -287,7 +288,7 @@ This provides a way of learning a piecewise linear function that responds to mul
 It can be regarded as learning the activation function as it actually learn a piecewise linear function.
 High fidelity and any convex function can be achieved by maxout units if a large $k$ is used.
 In practice, maxout units with $k=2$ usually have the same performance to traditional RELU, parametric RELU and Leaky RELU.
-Since every maxout unit need to learn its own parameter, the size of the training set must be large enough to support the learning algorithms, or keep the $k$ value low \cite{Cai2013}.
+Since every maxout unit need to learn its own parameter, the size of the training set must be large enough to support the learning algorithms, or keep the $k$ value low \citep{Cai2013}.
 
 % \subsection{Back-propagation algorithm}
 

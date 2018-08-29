@@ -17,12 +17,12 @@ The proposed method enhances the conventional IGA and the salient features of th
     \end{itemize}
 
 
-This chapter is organized as follows.
+This chapter organized as follows.
 Section.~\ref{iso_section:formulation} provides an overview of the SBFEM and important equations pertaining to linear elasticity,
 followed by extending the formulation to linear elastic fracture mechanics in Section~\ref{iso_section:fracture}.
 After that, methods that perform the interpolation of surface traction and displacement will be presented in Section~\ref{iso_section:surface_traction} and Section~\ref{iso_section:interpolation}.
 Numerical integration with NURBS will be mentioned in Section~\ref{iso_section:numerical_integration} before the accuracy and the convergence properties of the proposed techniques being demonstrated with benchmark problems in the context of linear elasticity and linear elastic fracture mechanics in Section~\ref{iso_section:examples}, followed by concluding remarks in the last section.
-\pagebreak
+This chapter is published \citep{NATARAJAN2015733}.
 %=================================================================================================================================%
 \input{isogeometric_sbfem/sbfem_formulation.tex}
 \input{isogeometric_sbfem/sbfem_linear_fracture.tex}
@@ -44,7 +44,7 @@ In the latter part of the section, problems involving strong discontinuities (e.
     angled crack in an orthotropic body) are solved to illustrate the effectiveness of the proposed method.
 It is noted that, when the proposed method is applied to problems involving strong discontinuities, no special 
     treatment is required, such as, the augmentation of finite element basis or IGA with asymptotic functions
-    \cite{Benson2010} \cite{De2011}.
+    \citep{Benson2010} \citep{De2011}.
 For the purpose of error estimation and convergence studies, the relative error, L 2 and H 1 norms are used.
 The displacement norm is given by:
     \begin{equation}
@@ -78,7 +78,7 @@ The energy norm is given by
     \end{equation}
 %
 For the purpose of numerical integration of NURBS basis functions, we employ higher order Gaussian quadrature over each span of the NURBS basis functions.
-Other quadrature rules are possible as outlined in \cite{Hug2010}.
+Other quadrature rules are possible as outlined in \citep{Hug2010}.
 For Lagrange basis functions, conventional Gauss–Lobatto quadrature is employed.
 
 \input{isogeometric_sbfem/ex_cantilever_beam.tex}
@@ -98,7 +98,7 @@ For Lagrange basis functions, conventional Gauss–Lobatto quadrature is employe
 %=================================================================================================================================%
 \section{Conclusions}
 \paragraph{}
-In this chapter, we employed the NURBS basis functions to approximate the unknown fields in the circumferential direction within the framework of the SBFEM.
+In this chapter,the NURBS basis functions are employed to approximate the unknown fields in the circumferential direction within the framework of the SBFEM.
 The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark problems in linear elasticity and linear elastic fracture mechanics.
 From the numerical studies, it can be observed that the NURBS basis functions yield superior accuracy when compared to Lagrange basis functions of the same order.
 The proposed method overcomes the disadvantages of both the isogeometric finite element analysis and the isogeometric boundary element method. 

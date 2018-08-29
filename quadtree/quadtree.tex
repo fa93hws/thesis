@@ -70,7 +70,7 @@ Balancing by rotation is performed because difference in height of the leaf B an
         \scalebox{0.25}{
             \includegraphics{quadtree/images/qdt_avl_balance.png}
         }
-        \caption{Balance of the AVL tree \cite{Roura2013}}
+        \caption{Balance of the AVL tree \citep{Roura2013}}
         \label{qdt_fig:tree_balance_avl}
     \end{figure}
 % balance in quadtree
@@ -112,8 +112,8 @@ Chances are that these poor quality mesh may appear without self-balancing, show
 Another reason for that is to kept the pattern of the cells.
 If the threshold of the self-balancing is set to one ($2:1$ ratio), only six kinds of the cells will appear before the cutting as illustrated in Fig.~\ref{qdt_fig:sbfem_adv_2}.
 Thanks to the geometric similarity, local stiffness matrix can be calculated and scaled directly when same kind of the cell appears which significantly reduce the computational cost.
-Hanging nodes in Fig.~\ref{qdt_fig:sbfem_adv_2} can be a problem for traditional finite element to handle the displacement compatibility \cite{Tabarraei:2009:XFE,NME:NME3070,NME:NME2900}.
-Solution including triangulation \cite{4037344,BERN1994384,ijeas251083}, using special shape function \cite{NME:NME1620120104} and other methods are available but special treatment is required.
+Hanging nodes in Fig.~\ref{qdt_fig:sbfem_adv_2} can be a problem for traditional finite element to handle the displacement compatibility \citep{Tabarraei:2009:XFE,NME:NME3070,NME:NME2900}.
+Solution including triangulation \citep{4037344,BERN1994384,ijeas251083}, using special shape function \citep{NME:NME1620120104} and other methods are available but special treatment is required.
 As a comparison, SBFEM provides greater flexibility on the element, n-sides polygons with hanging nodes or curved edges can be treated natively.
     \begin{figure}[h!]
         \centering
@@ -328,7 +328,7 @@ The recommended method is to mark the nodes that are close enough to the curves 
 One significant advantage is that only convex cells may appear during cutting but special treatment need to be added in generating the background mesh.
 The algorithm for cutting a convex cell into two will always yield valid result in existing algorithm.
 For example, point $C$ in Fig.~\ref{qdt_fig:qdt_cutting_poor_mesh_quality} will be marked as the intersection and point $A$ and $B$ will be ignored.
-Point $C$ will be projected back to the curve when the cutting is finished.
+Point $C$ will be projected back using algorithm introduced in Sec.~\ref{qt_sc:projection} to the curve when the cutting is finished.
 The threshold usually is taken as a proportion to the length of the background cell size.
 When finding the intersection, another detection will be posed after.
 If the distance of the intersection to a node is smaller than $\epsilon a$ where $\epsilon$ is tolerance and $a$ is the size of the background cell, the intersection will be ignored and the nearest node will be marked as intersection instead.
@@ -369,7 +369,7 @@ Either more than two intersections are found in origin cell or the enlarged one 
     \label{qdt_fig:qdt_cutting_enlarged_box_point_moving_problem}
 \end{figure}
 % move points before cutting
-Another approach is projecting the nodes in background mesh on to the curves before the cutting.
+Another approach is projecting the nodes in background mesh on to the curves before the cutting using algorithm introduced in Sec.~\ref{qt_sc:projection}.
 Special treatments in generating the background mesh is no longer necessary but cutting concave cells may be hard to treat.
 Fig.~\ref{qdt_fig:qdt_cutting_point_moving_2_concave} illustrates an example of a concave cell resulted from point moving.
 An intersecting curve that is not a straight line (even with a very small curvature) leads to a possibility that the distance $a$ from the hanging node $A$ to the curve is slightly smaller than the tolerance while $b$ and $c$ are slightly larger than tolerance.

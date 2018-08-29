@@ -21,6 +21,7 @@ The proposed method enhances the conventional SBFEM and the salient features of 
 This chapter is organized as follows.
 The CAD output (iges files) will be introduced first.
 After that, an overview of the algorithm that can generate quadtree mesh will be provided.
+Furthermore, a point projection which project intersection point back to the NURBS surface is presented.
 The accuracy and the convergence properties of the proposed techniques are demonstrated with benchmark problems in the context of linear elasticity, followed by concluding remarks in the last section.
 \pagebreak
 
@@ -32,9 +33,9 @@ The accuracy and the convergence properties of the proposed techniques are demon
 \label{qt_sc:quadtree}
 \input{quadtree/quadtree.tex}
 
-% \section{NURBS utilization}
-% \label{qt_sc:nurbs}
-% \input{quadtree/nurbs.tex}
+\section{Points projection}
+\label{qt_sc:projection}
+\input{quadtree/projection.tex}
 
 
 \section{Numerical Examples}

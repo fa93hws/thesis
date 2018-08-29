@@ -23,7 +23,7 @@ The training data is annotated with whether a subdomain is refined or not and th
         }
         \caption{Mesh and displacement field after refinement}
     \end{subfigure}
-    \caption{Mesh refinement for square plate with circular hole \cite{Duval2018}}
+    \caption{Mesh refinement for square plate with circular hole \citep{Duval2018}}
     \label{adap_fig:svm_train_chole}
 \end{figure}
 
@@ -45,7 +45,7 @@ The training data is annotated with whether a subdomain is refined or not and th
             \includegraphics{adaptivity/images/adap_svm_train_cantilever_2.png}
         }
     \end{subfigure}
-    \caption{Mesh refinement of a short cantilever beam \cite{Zienkiewicz2005500}}
+    \caption{Mesh refinement of a short cantilever beam \citep{Zienkiewicz2005500}}
     \label{adap_fig:svm_train_cantilever}    
 \end{figure}
 %
@@ -83,7 +83,7 @@ Criteria taken into consideration are:
 \subsection{Regularization for MLP}
 \paragraph{Bagging}
 \label{adp_sec:ml_bagging}
-Bagging is a technique that utilize multiple models in order to increase the accuracy of the prediction \cite{Breiman1996}.
+Bagging is a technique that utilize multiple models in order to increase the accuracy of the prediction \citep{Breiman1996}.
 The principle of idea of that is simple: training multiple models separately and let them vote for the prediction.
 It is adopted vastly in machine learning.
 The idea behind the optimization technique is that different models often make different errors on the same test set.
@@ -120,15 +120,15 @@ There is also some dataset are shared by multiple models.
 \paragraph{}
 Due to the large number of initialization parameter for a neural network, bagging technique can be extremely effective because the random selection of parameters such as initialized weight, mini-batches, hyper-parameters and so on leads to a different outcome even with the same training data.
 The method is proved to be reliable and powerful for minimizing the generalization error.
-Averaging dozens of models is widely adopted in those who won the machine learning contests and a recent example is Netflix Grand Price \cite{koren2009}.
+Averaging dozens of models is widely adopted in those who won the machine learning contests and a recent example is Netflix Grand Price \citep{koren2009}.
 
 
 \paragraph{Dropout}
-Dropout \cite{JMLR:v15:srivastava14a} is another optimization approach used in the proposed method.
+Dropout \citep{JMLR:v15:srivastava14a} is another optimization approach used in the proposed method.
 An effective but computationally cheap regularizing technique is provided.
 Roughly speaking, the dropout can be regarded as one method to create different models in bagging described in Sec.~\ref{adp_sec:ml_bagging} by training multiple models.
 One problem in bagging is that it could be impractical when each model is so large that the training can be computationally expensive in terms of time and space complexity.
-Hence, the number of models used in ensembles tends to be in the range of $5$ and $10$ and the winner of ILSVRC \cite{DBLP:journals/corr/SzegedyLJSRAEVR14} used $6$ models.
+Hence, the number of models used in ensembles tends to be in the range of $5$ and $10$ and the winner of ILSVRC \citep{DBLP:journals/corr/SzegedyLJSRAEVR14} used $6$ models.
 As a comparison, dropout provides an cheap algorithm that can train and evaluate a large number of bagged ensemble.
 
 \paragraph{}
@@ -144,7 +144,7 @@ In the proposed method, an input units has $20\%$ chance of being disabled and t
 
 
 \paragraph{}
-More formally, assume that a mask vector $\mu$ specifies which units to include and $J(\theta,\mu)$ defines the cost of the model defined by parameters $\theta$ and mask $\mu$ \cite{Goodfellow-et-al-2016}.
+More formally, assume that a mask vector $\mu$ specifies which units to include and $J(\theta,\mu)$ defines the cost of the model defined by parameters $\theta$ and mask $\mu$ \citep{Goodfellow-et-al-2016}.
 After that, the training of the dropout becomes minimizing $E_\nu J(\theta,\mu)$.
 The expectation may includes great number of terms while it could be possible to determine an unbiased estimation of its gradient by sampling values of $\mu$.
 
@@ -175,11 +175,11 @@ where $p(\mu)$ is the probability distribution used to sample $\mu$ during the t
 Since numerous number of terms are involved in the summation, it could be difficult to calculate Eq.~\ref{adap_eq:ml_dropout_sum} without simplification.
 However, a deep neural network do not allow such simplification.
 Instead, it is possible to approximate the simplification with sampling by calculate the mean value from many masks.
-It is suggested that around $15$ masks are able to provide satisfactory performance \cite{Goodfellow-et-al-2016}
+It is suggested that around $15$ masks are able to provide satisfactory performance \citep{Goodfellow-et-al-2016}
 
 \paragraph{}
 Yet, the existence of a better approach allows the determination of a satisfactory approximation to the predictions of the ensemble at the cost of one forward propagation.
-It can be achieved by adopting geometric mean instead of the arithmetic mean of the ensemble member's predicted distributions \cite{WardeFarley2014SelfinformedNN}.
+It can be achieved by adopting geometric mean instead of the arithmetic mean of the ensemble member's predicted distributions \citep{WardeFarley2014SelfinformedNN}.
 However, using the geometric mean instead of the arithmetic mean leads to the result which is not guaranteed to be a probability distribution.
 In order to enforce a probability distribution as the result, the requirement that all sub-models must assign a non-zero probability to all events is imposed.
 After that, the resulted distribution is normalized again.
@@ -201,7 +201,7 @@ Eq.~\ref{adap_eq:ml_renormalize} need to be performed on the ensemble in order t
     \label{adap_eq:ml_renormalize}
 \end{equation}
 %
-The key idea behind the dropout is to approximate $p_{ensemble}$ by calculating $p(y|x)$ in one model \cite{hinton2012}.
+The key idea behind the dropout is to approximate $p_{ensemble}$ by calculating $p(y|x)$ in one model \citep{hinton2012}.
 The aim of this improvement is to capture the correct output from that unit.
 It is called weight scaling inference rule which shows outstanding performance empirically.
 \paragraph{}

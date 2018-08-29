@@ -94,7 +94,7 @@ where in the above equation, the definition of strain and the linear operator ma
     \end{aligned}
 \end{equation}
 %
-substituting Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem_stress} in the virtual work statement for elastostatics \cite{Deeks2002} and following the derivation
+substituting Eq.~\ref{lr_eq:sbfem_strain_disp_relation} and Eq.~\ref{lr_eq:sbfem_stress} in the virtual work statement for elastostatics \citep{Deeks2002} and following the derivation
 \begin{equation}
     \begin{aligned}
         \delta \mathbf{u}(\xi)^{T} \left(
@@ -235,7 +235,7 @@ From Eq.~\ref{lr_eq:sbfem_kmat_previous}, the stiffness matrix $\mathbf{K}$ can 
     \label{lr_eq:sbfem_kmat}
 \end{equation}
 
-The SBFEM has recently been extended to dynamic analysis in bounded domains \cite{Song2009}.
+The SBFEM has recently been extended to dynamic analysis in bounded domains \citep{Song2009}.
 Assuming time-harmonic behavior, the scaled boundary equation in displacement is extended as:
 \begin{equation}
     \mathbf{E}_0 \xi^2 \mathbf{u}(\xi),_{\xi\xi} +
@@ -277,7 +277,7 @@ In Eq.~\ref{lr_eq:sbfem_dynamic_stiffness}, the first two terms represent the lo
 Substituting Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} in Eq.~\ref{lr_eq:sbfem_dynamic_1stODE} and equating terms in increasing order of powers of $\omega$ to zero yields equations for $\mathbf{K}$ ,$\mathbf{M}$  and $\mathbf{R}^{(1)}$.
 Setting the constant terms equal to zero yields an algebraic Riccati equation for the static stiffness matrix $\mathbf{K}$, which is equivalent to the solution process described earlier.
 Setting all terms in $\omega^2$ equal to zero yields a Lyapunov equation for the low-order mass matrix $\mathbf{M}$.
-The solution procedure of that Lyapunov equation is described in detail in \cite{Son1997}.
+The solution procedure of that Lyapunov equation is described in detail in \citep{Son1997}.
 The remaining equation for the residual is solved by expanding  $\mathbf{R}^{(1)}$ as
 \begin{equation}
     \mathbf{R}^{(1)} = \mathbf{S}_0^{(1)} - \omega^2 \mathbf{S}_1^{(1)} + \omega^4 [\mathbf{R}^{(2)}]^{-1}
@@ -302,4 +302,4 @@ Substituting all terms of the expansion back into Eq.~\ref{lr_eq:sbfem_dynamic_s
 \end{dmath}
 
 The coefficients $\mathbf{S}^{(i)}_0$ and $\mathbf{S}^{(i)}_1$ in Eq.~\ref{lr_eq:sbfem_dynamic_s_full} are calculated following a recursive procedure.
-A more detailed derivation can be found in \cite{Song2009}.
+A more detailed derivation can be found in \citep{Song2009}.

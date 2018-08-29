@@ -1,0 +1,39 @@
+% !TeX root = ./thesis.tex
+\chapter*{Abstract}
+\paragraph{}
+The Finite element method (FEM) constitutes a general tool for the numerical solution of partial differential equations in engineering and applied science.
+Great amount of research has been conducted on FEM in terms of mathematics and applications, contributing to its dominance over numerical method in solid mechanics and structural analysis.
+Although it is a principle method for solving complex problems in the engineering field, deficiency in geometric representation has been detected.
+Besides, it could be expensive in terms of time and human resource to create the mesh required by the FEM.
+The research towards integrating geometry and analysis has led to the ‘Isogeometric Analysis’ (IGA) (Hughes et al., 2005).
+However, as the CAD model provides information only of the boundary, a 2D/3D stress analysis is still one major step away.
+
+\paragraph{}
+This thesis presents a simple and efficient technique based on the combination of the scales boundary finite element method (SBFEM), automatic mesh generation and adaptive refinement algorithms to reduce the human efforts in the structural analysis.
+In the SBFEM, only the boundary information is required and hence a seamless integration can be provided with the CAD modelling.
+The NURBS basis functions are adopted to discretise the unknown fields in the circumferential direction within the proposed framework, whilst analytical solution is sought in the radial direction.
+This framework will also be further extended to problems with singularities and to dynamic analysis.
+
+\paragraph{}
+To mode problems with complex geometries, the problems domains are divided into a mesh of scaled boundary finite elements.
+A quad-tree based mesh generation algorithm is developed. High quality mesh will be generated with the help of the algorithm and the computational cost will also be improved due to the utilization of the patterns in the quad-tree.
+Furthermore, no human efforts are required for the pre-processing as the output of the CAD software (i.e. IGES file) will be used to determine the geometric information automatically.
+Any mismatch between the geometric representation in design and in numerical analysis may be prevented as the design is used directly.
+
+\paragraph{}
+To ensure a controllable accuracy and minimal computational cost, an adaptive and robust mesh refinement algorithm is also developed to prevent unnecessary refinement in the region which contributes little to the improvement to the accuracy.
+The expressions related to the eigen-values of the SBFEM formulation representing the quantity of the error in the interpolation are adopted as one of the error indicators, together with the area and other geometric properties of the Scaled Boundary Finite Element.
+A machine learning model using the Multilayer Perceptron (MLP) is trained to determine whether a Scaled Boundary Finite Element needs refinement or not based on all these information.
+
+\paragraph{}
+The proposed method is further extended to 3D with an initial mesh generated based on the STL file and octree algorithm.
+The octree mesh provides a high quality mesh in 3D for SBFEM and the IGES file from the CAD software will be adopted in order to map intersection points back to NURBS surfaces to preserve an exact geometry.
+The convex hull properties of the NURBS are utilized to accelerate the algorithm.
+
+\paragraph{}
+Numerical examples are presented to verify the proposed technique with the results from the literature and the numerical results obtained using the commercial software ANSYS.
+The accuracy and the convergence properties of the proposed method are demonstrated with benchmark problems in the context of linear elasticity and linear elastic fracture mechanics.
+The presented results show a higher accuracy and rate of convergence of the proposed method.
+
+
+

@@ -30,14 +30,24 @@
   "latex-workshop.debug.showUpdateMessage": true,
   "latex-workshop.message.update.show": true,
   "cSpell.words": [
+    "Delaunay",
+    "Galerkin's",
     "Maxout",
     "Natarajan",
     "Raphson",
+    "SBFE",
+    "Unigraphics",
     "covariances",
+    "elastostatic",
     "elastostatics",
     "interpolants",
+    "isoparametric",
+    "multigrid",
+    "posteriori",
+    "quadratically",
     "softmax",
     "splitted",
-    "unnormalized"
+    "unnormalized",
+    "voxel"
   ]
 }

@@ -1,6 +1,6 @@
 \paragraph{}
 This section details the proposed error indicators for adaptive scaled boundary finite element analysis.
-In comparison with the works in \cite{NME:NME439}, no stress recovery is required.
+In comparison with the works in \citep{NME:NME439}, no stress recovery is required.
 This reduces the computational effort and leads to an efficient adaptive analysis.
 The error estimation is directly invoked from the scaled boundary finite element solutions.
 
@@ -68,7 +68,7 @@ From Eq.~\ref{lr_eq:sbfem_displacement_field} ,the displacement SBFEM can be cal
 \label{adap_eq:ei_terms}
 \end{equation}
 where $\phi_u^i$ stands for the eigenvector corresponding to the $i$th eigenvalue in the eigenvalue matrix $\Lambda^{n}$ in Eq.~\ref{lr_eq:sbfem_eigen_decomp}.
-The contribution of each mode is represented by every individual term in Eq.~\ref{adap_eq:ei_terms} \cite{Deeks2002}.
+The contribution of each mode is represented by every individual term in Eq.~\ref{adap_eq:ei_terms} \citep{Deeks2002}.
 On the other hand, after the displacement solution is calculated on the boundary nodes by Eq.~\ref{lr_eq:sbfem_general_sol_disp} with $\xi=1$, displacement solution in circumferential direction then is interpolated by the help of the $p$-th order shape function $R(\eta)$ in Eq.~\ref{lr_eq:sbfem_displacement_field}.
 As a result, terms corresponding to the eigenvalue $\lambda_i \leq p$ can be exactly interpolated by the shape function.
 These terms can be regarded as exact.
@@ -104,6 +104,6 @@ The energy can be calculated by the
 \end{equation}
 The relative error for energy can be calculated as $\frac{U_a}{U}$ and the same logic for displacement and stress. 
 \paragraph{}
-In order to obtain satisfactory solutions within certain accuracy, the contribution of $U_a$ towards $U$ should be minimized and $U_a$ should also be distributed evenly to all cells. This is, in fact, similar to the relative energy norm error used in the literature \cite{NME:NME1620280411}.
+In order to obtain satisfactory solutions within certain accuracy, the contribution of $U_a$ towards $U$ should be minimized and $U_a$ should also be distributed evenly to all cells. This is, in fact, similar to the relative energy norm error used in the literature \citep{NME:NME1620280411}.
 
 \pagebreak
