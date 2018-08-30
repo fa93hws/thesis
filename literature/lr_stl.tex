@@ -2,12 +2,12 @@
 \label{lr_sec:stl}
 \paragraph{}
 STL file is another popular format which is used to represent the surfaces in CAD industry other than NURBS introduced in Sec.~\ref{lr_sec:NURBS}, especially in 3D printing and rapid prototyping \citep{Rengier2010,doi:10.1080/10426910902997571}.
-One of the most promising advantage of the STL format is its simplicity.
+One of the most promising advantages of the STL format is its simplicity.
 Surfaces are divided into unstructured triangles but unexpected behaviors such as ill-shaped, overlapping and self-intersecting are allowed.
 Although the STL can not represent the geometric information exactly, it has gained more popularity and wider application than that of NURBS.
 
 \paragraph{}
-As a result, several surface re-meshing methods \citep{BECHET20021,Wang2007227} are proposed in order to conduct the mesh generation from the STL files.
+As a result, several surface re-meshing methods \citep{BECHET20021,Wang2007227} were proposed in order to conduct the mesh generation from the STL files.
 When used as the geometric input of the numerical method, a check of the unexpected behaviors including ill-shaped, overlapping and self-intersecting must be performed.
 A mesh repairing \citep{Attene:2013:PMR:2431211.2431214} can be adopted when these behaviors are observed.
 Furthermore, the elements generated will be in tetrahedral and the accuracy could be inferior to that determined from hexahedral elements even though high-quality triangular surface meshes is observed.

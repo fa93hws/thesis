@@ -14,27 +14,28 @@ The discretization of the boundary can be based on the standard finite element i
 
 \paragraph{}
 The preprocessing of the proposed method is conducted automatically without losing exact geometric representation.
-In 2D problems, the geometric information from the IGES file exported from CAD design is extracted and a quad-tree based mesh will be generated.
+In 2D problems, the geometric information from the IGES file exported from CAD design is extracted and a quad-tree based mesh will be generated automatically.
 High mesh quality and reduced computational cost in the calculation of the element stiffness matrix can be expected. 
 For 3D cases, both of the STL and the IGES files are exported from the CAD design and an octree based mesh will be generated based on STL file.
 Since the STL file represents the triangulation of the geometric surfaces, intersections calculated during cutting stage is supposed to be located on the triangular plane instead of the original surface.
 As a consequence, a point projection algorithm is adopted to move the points back to the NURBS surfaces after the mesh has been generated.
 Then, an arbitrary geometric shape in 2D and 3D can be meshed automatically with high quality mesh and solved by the SBFEM.
+The geometric exact can also be achieved by replacing the distance calculation with finding that between the edge of the element and the NURBS surface directly. 
 
 \paragraph{}
 After the solution is determined from the SBFEM, a mesh refinement may be necessary to improve the accuracy and check the convergence.
-In order to find out the scaled boundary finite element which improve the accuracy significant after refinement, an adaptive mesh refinement algorithm is required.
+In order to find out the scaled boundary finite element which improves the accuracy significant after refinement, an adaptive mesh refinement algorithm is required.
 Expressions related to the eigenvalues of the SBFEM formulation are adopted as the physical error indicator to prevent extra work such as stress recovery.
 Some key geometric error estimator including area of the subdomain, minimal angel and so on are also included.
-The decision based on numerous error estimator are conducted by the help of a machine learning algorithm.
+The decision based on numerous error estimators are conducted by the help of a machine learning algorithm.
 The proposed adaptive mesh refinement exhibits higher rate of convergence compared to an uniform mesh refinement using SBFEM.
 
 \paragraph{}
 The thesis commences with an introduction to the research topic in Chapter 1.
 A background and motivation for the research are presented followed by the objective and outline of the research.
-In Chapter 2, the linear theory of the Isogeometric analysis, together with a brief introduction on NURBS and its mathematical backgrounds, potentials and limitation is summarized.
+In Chapter 2, the linear theory of the Isogeometric analysis, together with a brief introduction on the NURBS and its mathematical backgrounds, potentials and limitations are summarized.
 A brief introduction on the IGES file is also presented.
-Due to the dimensional mismatch, the SBFEM is the technique which can provide a seamless integration with the CAD modeling.
+Due to the dimensional mismatch between the FEM and the CAD, the SBFEM is the technique which can provide a seamless integration with the CAD modeling.
 The concept of adaptive mesh refinement and its limitation is presented as well.
 The MLP then is introduced to overcome this limitation by the adoption of multiple error indicators.
 Finally, algorithms used to generate octree mesh in 3D from STL file is presented.
@@ -49,19 +50,25 @@ Moreover, the proposed framework does not require internal discretization to stu
 However, for complicated geometries, to meet the star convexity, subdivision into smaller sub-domains is required.
 
 \paragraph{}
-In Chapter 4, the IGES file is employed directly from the CAD output to generate the quadtree mesh automatically.
-The proposed methods provides a systematic and automatic mesh generation algorithm that can produce high quality mesh.
-CAD design file can be used directly and the exact geometry can also be retained, which can largely reduce human efforts involved in numerical analysis.
-Moreover, it can also help to reduce the analytical error as the difference in the geometric representation is minimized.
+In Chapter 4, the IGES file is employed directly from the CAD output to represent the geometry during the preprocessing.
+The proposed methods provides a systematic and automatic mesh generation algorithm  where high quality mesh is produced efficiently.
+The CAD design file can be used directly and the exact geometry can also be retained, which largely reduce the human efforts involved in numerical analysis.
+Moreover, it helps to reduce the analytical error as the difference in the geometric representation is minimized.
+Computational efficiency is improved via utilizing the pattern of the quadtree to prevent repeated calculation.
+Points projection algorithm is accelerated using the strong convex hull property of the NURBS curve.
 The accuracy, effectiveness and the convergence properties of the proposed method are demonstrated with benchmark problems in linear elasticity mechanics.
 From the numerical studies, it can be observed that the quadtree mesh yield better accuracy when compared to uniform mesh with same degree of freedoms.
 
 \paragraph{}
 Chapter 5 adopts a machine learning algorithm to develop an extensible and flexible error indicator.
+Any other error estimators can be added to the existing framework and their effects can be detected based on the performance indicators in machine learning.
 A MLP trained error estimator that concludes expressions related to the eigenvalues of the SBFEM formulation and some key geometric properties of the scaled boundary finite element gives a higher convergence rate compared to the uniform refinement.
+In order to improve the learning effectiveness of the MLP, regularization methods including bagging and dropout are utilized.
+Due to the lack of the eigenvalue error indicator in the first order triangular element, method that eliminates these situation is developed.
+A matrix representation of the NURBS curves is presented to achieve a higher efficiency and stability in calculating the intersections between edge of the element and the NURBS curve.
 
 \paragraph{}
-In Chapter 6, a projection is conducted after the mesh is generated from STL file using octree or calculating the intersection between the line and the original NURBS surface to retain the exact geometry.
+In Chapter 6, a projection is conducted after the mesh is generated from STL file using octree or calculating the intersection between the edge of the element and the original NURBS surface to retain the exact geometry.
 In order to utilize the strong hull property of the NURBS surface, a quick hull algorithm in 3D is introduced.
 As a consequence, the computational efficiency of the points projection and the intersection calculation are improved significantly.
 The proposed method is able to generate the mesh from an arbitrary geometric input and shows higher accuracy compared to conventional method.

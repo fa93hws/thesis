@@ -2,35 +2,35 @@
 \label{oct_sc:surface_division}
 \paragraph{}
 Mapping points back to NURBS surfaces in 3D can be extremely time consuming as there is no known close form mathematical solution.
-Every point takes about ten to hundreds iterations before it can find the nearest projection point on the NURBS surface, depending on the size of the projection surface.
-However, in the problem that the proposed method is targeting, reasonably complex geometry will be expected.
+Every point takes about ten to hundreds iterations before the nearest projection point on the NURBS surface is found, depending on the size of the projection surface.
+However, in the problem that the proposed method is targeting, reasonably complex geometry is expected.
 As a result, points projection back to such kind of NURBS surfaces may takes much more computational time than any others do and it may be necessary to find a more complicated but computational efficient algorithm other than the naive implementation.
 
 \paragraph{}
 One concept that can be utilized to improve the efficiency here is the ``divided and conquer''.
-As the time complexity of the naive algorithm is $O(n^3)$ where $n$ is directly correlated to the order and the number of control points used to describe the NURBS surfaces, dividing a surface into two generally will make the projection algorithm four times faster than it is before.
-Consequently, breaking the origin NURBS surfaces into as many as it can could be a one of the practical practices.
+As the time complexity of the naive algorithm is $O(n^3)$ where $n$ is directly correlated to the order of the basis function and the number of control points used to describe the NURBS surfaces, dividing a surface into two generally will make the projection algorithm four times faster.
+Consequently, breaking the origin NURBS surfaces into multiple smaller ones could be one of the practical practices.
 
 \paragraph{}
-Surfaces division can be performed by the help of knot insertion (\ref{lr_sec:nurbs_knot_ins}).
+Surfaces division can be performed by the help of knot insertion (Sec.~\ref{lr_sec:nurbs_knot_ins}).
 Assuming a NURBS surface defined by two knot vectors\\
 $
-V_1 = [-1, -1, -1, a_1, a_2, \dots, a_n , 1, 1, 1]
+\Xi_1 = [-1, -1, -1, a_1, a_2, \dots, a_n , 1, 1, 1]
 $\\
 and
 $
-V_2 = [-1, -1, -1, b_1, b_2, \dots, b_m, 1, 1, 1]
+\Xi_2 = [-1, -1, -1, b_1, b_2, \dots, b_m, 1, 1, 1]
 $.\\
-Several knots will be inserted into these two vector so that all interior knots will repeated $p+1$ times and $p$ stands for the order of the NURBS surface in that direction.
+Several knots will be inserted into these two vector so that all interior knots will repeated $p+1$ times and $p$ stands for the order of the NURBS basis function in that direction.
 After knot insertion, the same NURBS surface will now be described by two new vectors\\
 $
-V_1^\prime = [-1, -1, -1, a_1, a_1, a_1, a_2, a_2, a_2, \dots, a_n , 1, 1, 1]
+\Xi_1^\prime = [-1, -1, -1, a_1, a_1, a_1, a_2, a_2, a_2, \dots, a_n , 1, 1, 1]
 $\\
 and
 $
-V_2^\prime = [-1, -1, -1, b_1, b_1, b_1, b_2, b_2, b_2, \dots, b_m, 1, 1, 1]
+\Xi_2^\prime = [-1, -1, -1, b_1, b_1, b_1, b_2, b_2, b_2, \dots, b_m, 1, 1, 1]
 $.\\
-Extraction then can be conducted by take the sub-matrix from the generated control points matrix $P^\prime$ and weight matrix $w^\prime$.
+Extraction then can be conducted by taking the sub-matrix from the generated control points matrix $P^\prime$ and weight matrix $w^\prime$.
 
 \paragraph{}
 Fig.~\ref{oct_fig:nurbs_division} shows a sub-division of breaking a cylinder surface into four smaller ones.

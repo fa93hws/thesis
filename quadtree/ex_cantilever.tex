@@ -8,9 +8,9 @@ A two-dimensional cantilever beam subjected to a parabolic shear load at the fre
         \label{qdt_fig:ex_cantilever_beam_geo_bc}
     \end{figure}
 %
-The geometry is: length $L=8m$, height $D=4m$.
-The material properties are: Young’s modulus $E$ = $3 \times 10^7 N/m^2$ , Poisson’s ratio $ \nu =0.25$.
-The parabolic shear force is $P = 250 N$.
+The geometry is: length $L=\SI{8}{\meter}$, height $D=\SI{4}{\meter}$.
+The material properties are: Young’s modulus $E = \SI{3e7}{\newton \per \square \meter}$ , Poisson’s ratio $ \nu =0.25$.
+The parabolic shear force is $P = \SI{250}{\newton}$.
 The exact solutions for the displacements are given by \citep{Aug2008} as Eq.~\ref{iso_eq:cantilever_beam_displacement_solution}.
 where $I=D^3/12$ is the moment of inertia, $\mean{E}=E$, $\mean{\nu}=\nu$ and $\mean{E}=E/(1-\nu^2)$, $\mean{\nu}=nu/(1-nu)$ for plane stress and plane strain condition respectively.
 The stress $\sigma$ can be expressed as \citep{Aug2008} as Eq.~\ref{iso_eq:cantilever_beam_stress_solution}.
@@ -25,7 +25,7 @@ Stress from analytical solution in Eq.~\ref{iso_eq:cantilever_beam_stress_soluti
 Due to the fact that the geometry of the cantilever beam can be described by four points and four straight lines, drawing in AutoCAD may not be necessary.
 As a result, the input geometry is defined manually.
 Generated background mesh, coloring and the final result with $res=32$, $s_{max}=16$ and $s_{min}=1$ are shown in Fig.~\ref{qdt_fig:ex_cantilever_beam_background_mesh}, Fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_coloring} and Fig.~\ref{qdt_fig:ex_cantilever_beam_mesh_final}.
-
+%
     \begin{figure}
         \centering
         \scalebox{0.4}{
@@ -34,7 +34,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
         \caption[Background mesh of cantilever beam]{Background mesh of cantilever beam : Bold lines represents the input geometry}
         \label{qdt_fig:ex_cantilever_beam_background_mesh}
     \end{figure}
-
+%
     \begin{figure}
         \centering
         \scalebox{0.4}{
@@ -43,7 +43,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
         \caption[Mesh coloring of cantilever beam]{Mesh coloring of cantilever beam : Grey area represents the cantilever beam}
         \label{qdt_fig:ex_cantilever_beam_mesh_coloring}
     \end{figure}
-
+%
     \begin{figure}
         \centering
         \scalebox{0.3}{
@@ -58,7 +58,7 @@ Generated background mesh, coloring and the final result with $res=32$, $s_{max}
 % 438 - 0.0027044 (64,2)
 % 1658- 0.00066929 (128,2)
 Mesh with different parameters are plotted in Fig.~\ref{qdt_fig:ex_cantilever_mesh_all} and the convergence study is plotted in Fig.~\ref{qdt_fig:ex_cantilever_mesh_conv}
-
+%
     \begin{figure}[h!]
         \begin{subfigure}[b]{1\linewidth}
             \centering
@@ -86,8 +86,8 @@ Mesh with different parameters are plotted in Fig.~\ref{qdt_fig:ex_cantilever_me
         \caption[Mesh of the cantilever beam]{Mesh of the cantilever beam}
         \label{qdt_fig:ex_cantilever_mesh_all}
     \end{figure}
-
-
+%
+%
     \begin{figure}[H]
         \centering
         \scalebox{0.6}{
@@ -96,5 +96,3 @@ Mesh with different parameters are plotted in Fig.~\ref{qdt_fig:ex_cantilever_me
         \caption[Convergence of the cantilever beam]{Convergence of the cantilever beam}
         \label{qdt_fig:ex_cantilever_mesh_conv}
     \end{figure}
-
-    

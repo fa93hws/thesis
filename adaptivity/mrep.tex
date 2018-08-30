@@ -5,7 +5,8 @@ Matrix representation of a parameterized algebraic curve allows an easy way to c
 For an algebraic curve $t \in \mathbf{R}^1 \xrightarrow{\phi} \left( \frac{f_1(t)}{f_0(t)}, \frac{f_2(t)}{f_0(t)},\frac{f_3(t)}{f_0(t)} \right) \in \mathbf{R}^3$, $f_0,f_1,f_2$ and $f_3$ are polynomials functions in parameter $t$ with degree $\leq p$.
 The procedure of constructing the matrix representation for NURBS curves are explained detail in \citep{Laurent2014}.
 \paragraph{}
-The aim of this method is to find 4-tuples of polynomials $\left( g_0(t),g_1(t),g_2(t),g_3(t) \right)$ with order $v$ so that
+The aim of this method is to find 4-tuples of polynomials\\
+$\left( g_0(t),g_1(t),g_2(t),g_3(t) \right)$ with order $v$ so that
 \begin{equation}
     \sum_{i=0}^3 g_i(t) f_i(t) \equiv 0
     \label{adap_eq_mRep_eq0}

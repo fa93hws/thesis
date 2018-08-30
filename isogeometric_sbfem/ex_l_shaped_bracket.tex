@@ -14,8 +14,8 @@ Plain strain conditions are assumed.
         \label{iso_fig:l_with_fillet_geo_bc}         
     \end{figure}
 %
-The dimension of the example is: $L=14m$, $W=4m$ and $R=1m$.
-While the material properties are: Young's modulus $E=10^3MPa$ and poisson's ratio $\nu=0.3$.
+The dimension of the example is: $L=\SI{14}{\meter}$, $W=\SI{4}{\meter}$ and $R=\SI{1}{\meter}$.
+While the material properties are: Young's modulus $E=\SI{1e3}{\mega\pascal}$ and poisson's ratio $\nu=0.3$.
 This problem was studied in \citep{LIPTON2010357} by employing the conventional IGA.
 In their study, the fillet was modeled as a separate path using biquadratic NURBS with nine control points.
 
@@ -71,7 +71,7 @@ It should be noted that, the proposed method is computationally less intensive t
             }
             \caption{Isogeometric SBFEM}
         \end{subfigure}
-        \caption{Von Mises equivalent stress contours for L-shaped bracket without and with fillet. The stress values are in Mpa}
+        \caption[Von Mises equivalent stress contours for L-shaped bracket without and with fillet]{Von Mises equivalent stress contours for L-shaped bracket without and with fillet. The stress values are in Mpa}
         \label{iso_fig:l_stress_contour}
     \end{figure}
 %
@@ -100,10 +100,11 @@ The dimensions and the boundary conditions are shown in Fig.~\ref{iso_fig:l_dyna
     \end{figure}
 %
 \paragraph{}
-In the example, $b=1m$ and $r=0.2m$.
+In the example, $b=\SI{1}{\meter}$ and $r=\SI{0.2}{\meter}$.
 A state of plane stress is considered and the material properties are:
-    Young’s modulus $E = 1 N/m^2$ , poisson’s ratio, $\nu = 1/3$ and mass density, $\rho = 1 kg/m^3$.
-    The shear wave velocity is $c_s=\sqrt{3/8}m/s$ and the dilatational wave velocity $c_p=\sqrt{9/8}m/s$
+    Young’s modulus $E = \SI{1}{\newton \per \square \meter}$ , poisson’s ratio, $\nu = 1/3$ and mass density, $\rho = \SI{1}{\kilo \gram \per \cubic \meter}$.
+    The shear wave velocity is $c_s=\SI[parse-numbers = false]{\sqrt{3/8}}{\meter \per \second}$
+    and the dilatational wave velocity $c_p=\SI[parse-numbers = false]{\sqrt{9/8}}{\meter \per \second}$
 The order of the continued fraction used in Eq.~\ref{lr_eq:sbfem_dynamic_s_full} is chosen as $M_{cf} = 6$.
 A uniform pressure $p(t)$ is applied at the side BC of the bracket.
 The pressure varies as a triangular impulse in the time domain.

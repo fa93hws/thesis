@@ -10,7 +10,7 @@
 
 \section{Intersection}
 \paragraph{}
-Instead of projected all points located on the boundary surfaces to the NURBS surfaces, the exact geometry can be retained by calculating the intersection points directly.
+Instead of projecting all points located on the boundary surfaces to the NURBS surfaces, the exact geometry can be retained by calculating the intersection points directly.
 By utilizing the work from Sec.~\ref{oct_sc:surface_division}, the number of the surfaces which may contain the intersection can be limited to a few by determine the relationship between their convex hulls and the line.
 Only surfaces whose convex hull has intersection with the line will be selected as candidates.
 The number of the candidates increase when the mesh becomes coarser as a longer line segment tends to intersect more convex hulls.
@@ -32,7 +32,7 @@ Only a few intersections need to be determined when the mesh is coarse hence hav
 
 \section{Conclusions}
 \paragraph{}
-In this chapter, a projection is conducted after the mesh is generated from STL file using octree or calculating the intersection between the line and the original NURBS surface to retain the exact geometry.
-In order to utilize the strong hull property of the NURBS surface, a quick hull algorithm in 3D is introduced.
-As a consequence, the computational efficiency of the points projection and the intersection calculation are improved significantly.
+In this chapter, a projection is conducted after the octree mesh is generated from the STL file.
+Geometric exact is retained by projecting the intersection on the triangular surface back to original NURBS surface or by replacing the distance calculation with finding that between the edge of the element and the NURBS surface directly. 
+Both of the projecting and the intersection calculating are accelerated by utilizing the strong convex hull property of the NURBS.
 The proposed method is able to generate the mesh from an arbitrary geometric input and shows higher accuracy compared to conventional method.

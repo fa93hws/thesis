@@ -1,20 +1,20 @@
 \paragraph{}
 The IGES\citep{IGES1983} files introduced in Sec.~\ref{lr_sec:IGES} are used as the bridge between the engineering design and the numerical analysis in the proposed method.
 As a standard file format in engineering design industry, it is supported by almost all design softwares all over the world.
-Consequently, it offers a possibility to minimize the human effort spent on mesh generation.
+Consequently, it offers a possibility to minimize the human efforts spent on geometric modeling.
 
 \subsection{Parse geometry in IGES file}
 \paragraph{}
 The IGES file provides all information that describe the geometric input.
-Abstract structure of the IGES file that describe the 2D geometry can be regarded as a simple curve-surface structure.
-In other words, it defines the geometric input as certain number of surfaces with their boundaries in different colors, which represent different materials in engineering practice.
+Abstract structure of the IGES file that describes the 2D geometry can be regarded as a simple curve-surface structure.
+In other words, it defines the geometric input as certain number of surfaces with their boundaries in different colors, which represents different materials in engineering practice.
 Each surface contains a list of curve indices which are corresponding to the curve information described in IGES file.
 
 \paragraph{}
 When the IGES file is feed into the programme, each line in the directory entry will be parsed entity by entity.
-Parameter in directory entry describe the type and reference to other useful values for the entity.
+Parameters in directory entry describe the type and reference to other useful values for the entity.
 An entity may refer to one or many entities in directory entry.
-Detail of the specification of each entity is explained in \citep{Nasr2007} in detail.
+Detail of the specification of each entity is explained in \cite{Nasr2007}.
 
 %=====================================================================================================================%
 \subsection{Output to mesh generator}
@@ -26,7 +26,7 @@ However, some fields apart from the curves or the surfaces will be added.
 In the output file, the geometry will be organized in key points, polylines and surfaces.
 The key points define the coordinates of all points and polylines are used to represent all curves including NURBS curves for simplification.
 NURBS curves introduced in in \ref{lr_sec:NURBS} can be used directly by the mesh generator as well but it is found that the computational cost in the calculation of the distance between points to NURBS curves surpasses the merits of using it directly.
-The exact geometry can be retained by projecting the nodes on the boundary back to the origin NURBS curves at the end of the algorithm.
+The exact geometry can be retained by projecting the nodes on the boundary back to the origin NURBS curves after the mesh is generated.
 
 \paragraph{}
 Representing a straight line with polyline can be natural, first and the last points will be enough to achieve an exact representation.

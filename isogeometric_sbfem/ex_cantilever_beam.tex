@@ -74,7 +74,7 @@ Surface tractions determined from the analytical solution of stress in Eq.~\ref{
 \paragraph{}
 From the description in Section~\ref{iso_section:surface_traction}, the expression of the surface tractions must be transformed into NURBS-like representation before they can be applied.
 The control points that describe a second order function as surface tractions in this example can be solved mathematically.
-Assume the knot vector is evenly spaced and the shape functions is in second order, i.e. knot vector $K=[0,0,0,1,1,1]$.
+Assume the knot vector is evenly spaced and the shape functions is in second order, i.e. knot vector $\Xi=[0,0,0,1,1,1]$.
 Weight vector will be uniform because only the straight line is being interpolated, i.e. weight vector $w=[1,1,1]$.
 Three basis functions used in B-Spline will be
     \begin{equation}
@@ -136,7 +136,6 @@ $m$ and $n$ then can be solved as
         \right.
     \end{equation}
 %
-\paragraph{}
 The numerical convergence of the relative error in the displacement norm and the relative error in the energy norm are shown in Fig.~\ref{iso_fig:cantilever_beam_convergence} for various order of NURBS basis functions with refinement.
 Fig.~\ref{iso_fig:cantilever_beam_convergence} also shows the error in the displacement norm when quadratic Lagrange shape functions are used along each edge within the scaled boundary formulation.
 It can be observed that NURBS basis functions yield superior accuracy when compared to Lagrange basis functions of the same order.

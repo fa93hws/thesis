@@ -1,15 +1,16 @@
 % /* cspell:disable */
-\documentclass[a4paper,12pt]{book}
+\documentclass[a4paper,12pt,oneside]{book}
 
 % import package
 \usepackage{graphics}   % include graphics
 \usepackage{float}      % h!
+\usepackage{pdfpages}
+\usepackage{longtable}
 
 % font
 \usepackage{helvet}
 \usepackage{color}
 \renewcommand{\familydefault}{\sfdefault}
-
 
 % caption
 \usepackage[labelfont=bf,font=sf]{caption}
@@ -48,8 +49,8 @@
 \fancyhead{}
 \fancyhead[LO]{\bfseries\rightmark}
 \fancyhead[RO]{}
-\fancyhead[RE]{\bfseries\leftmark}
-\fancyhead[LE]{}
+% \fancyhead[RE]{\bfseries\leftmark}
+% \fancyhead[LE]{}
 
 %table
 \usepackage{multirow}
@@ -74,46 +75,35 @@
 %pdf plot
 % \pgfplotsset{compat=1.15}
 \begin{document}
+\includepdf[pages=-]{thesisdissertation_sheet.pdf}
 % roman page numbering for first few parts
 \pagenumbering{roman}
-\input{preload.tex}
 % title page
-% \begin{titlepage}
-%     \begin{center}
-%     \textsc{\large  School of Civil \& Environmental Engineering}\\[0.5cm]
-%     \textsc{\large  Faculty of Engineering}\\[0.5cm]
-%     \textsc{\large  Ph.D Thesis}\\[0.5cm]
-%      \hrule 
-%     \vspace{0.1in}
-%     { \huge \bfseries Integrating geometry and structural analysis}\\[0.4cm]
-%     \hrule
-    
-%     \begin{figure*}
-%     \centering
-%     \scalebox{0.3}{\includegraphics{UNSW.png}}
-%     \end{figure*}
-%     \vspace{0.1in}
-%     \begin{minipage}{0.4\textwidth}
-%     \begin{flushleft} \large
-%     \emph{Author:}\\
-%     Junchao \textsc{Wang}\\
-%     z3315263
-%     \end{flushleft}
-%     \end{minipage}
-%     \begin{minipage}{0.4\textwidth}
-%     \begin{flushright} \large
-%     \vspace{0.2in}
-%     \emph{Supervisors:} \\
-%     Prof. Chongmin \textsc{Song}\\
-%     \end{flushright}
-%     \end{minipage}
-    
-%     \vfill
-%     {\large \today}
-%     \end{center}
-% \end{titlepage}
+\begin{titlepage}
+    \begin{center}
+    \linespread{1.5}
+    { \huge \bfseries Integrating CAD Geometry and Scaled Boundary Finite Element Analysis \par }
+    \vspace{1.5cm}
+    % \\[1.5cm]
+    { \large \bfseries Junchao Wang }
+    \\[1.5cm]
+    { \it A thesis in fulfilment of the requirements for the degree of }\\
+    { \it Doctor of Philosophy } \\
+
+    \begin{figure*}[h!]
+        \centering
+        \scalebox{0.3}{\includegraphics{UNSW.png}}
+    \end{figure*}
+
+    { School of Civil \& Environmental Engineering}\\
+    { Faculty of Engineering}
+    \\[1.5cm]
+    { \today }
+
+    \end{center}
+\end{titlepage}
 % end of title
-\tableofcontents
+\input{preload.tex}
 
 \chapter{Introduction}
     \pagenumbering{arabic}

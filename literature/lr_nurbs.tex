@@ -1,8 +1,8 @@
 \subsection{Non-Uniform Rational B-Spline (NURBS)}
 \label{lr_sec:NURBS}
 \paragraph{}
-In the proposed approach, the geometry and the unknown fields are represented by non-uniform rational B-splines (NURBS).
-In this section, we give a brief overview of NURBS.
+In the proposed approach, the geometry and the unknown fields are represented by the NURBS.
+In this section, a brief overview is given.
 For more detailed description and implementation aspects, interested readers can refer to \citep{Pie1997,NGUYEN201589}.
 \paragraph{}
 % basis function
@@ -17,8 +17,8 @@ The key ingredients in the construction of B-spline functions are: the knot vect
     \begin{aligned}
         N_{i,0}(\eta) &=
             \begin{cases}
-                1   & \text{if } \eta_i \leq \eta \leq \eta_{i+1}    \\
-                0   & \text{else}
+                1   & \eta \in [\eta_i, \eta_{i+1}]   \\
+                0   & \eta \in (-\infty, \eta_i) \cup (\eta_{i+1}, \infty )
             \end{cases}\\
         N_{i,p}(\eta) &= 
             \frac{\eta - \eta_i}{\eta_{i+p}-\eta_i}     N_{i,p-1}(\eta) - 
@@ -26,21 +26,19 @@ The key ingredients in the construction of B-spline functions are: the knot vect
     \end{aligned}
     \label{lr_nurbs_basis}
 \end{equation}
-
+%
 The first derivative of the B-spline basis function can be computed recursively from lower order basis functions as:
 \begin{equation}
     \frac{d}{d\eta} N_{i,p}(\eta) =
         \frac{p}{\eta_{i+p} - \eta_i} N_{i,p-1}(\eta) -
         \frac{p}{\eta_{i+p+1} - \eta_{i+1}} N_{i+1,p-1}(\eta)
 \end{equation}
-
-\paragraph{}
-% basis properties
+%
 The B-spline basis functions has the following properties:
 \begin{enumerate}
     \item Non-negativity
     \item Partition of unity, $\sum_i N_{i,p}=1$
-    \item Interpolatory at the end points. The last point requires special treatment when imposing non-homogeneous Dirichlet boundary conditions [58].
+    \item Interpolatory at the end points. The last point requires special treatment when imposing non-homogeneous Dirichlet boundary conditions \citep{NGUYEN201589}.
 \end{enumerate}
 
 
@@ -54,7 +52,7 @@ Given $n + 1$ control points $(P_0 ,P_1,\dots,P_n )$ and a knot vector
 \begin{equation}
     C(\eta) = \sum_{i=0}^n P_i N_{i,p} (\eta)
 \end{equation}
-
+%
 where $P_i$ are the control points.
 A B-spline curve has the following information: $n+1$ control points, $m+1$ knots and a degree $p$.
 It is noted that $n$,$m$ and $p$ must satisfy $m = n + p + 1$.
@@ -102,6 +100,7 @@ where
 
 \subsubsection{Order elevation}
 \label{lr_sec:nurbs_order_ele}
+\paragraph{}
 Let $
 \mathbf{C}(\eta) =  \sum_{i=0}^n
                     N_{i,p}(\eta)
@@ -164,7 +163,10 @@ Fig.~\ref{lr_fig:nurbs_rational_basis} shows the third order NURBS for an open k
     \scalebox{0.5}{
         \includegraphics{literature/images/lr_nurbs_rational_basis.png}
     }
-    \caption{3rd NURBS for an open knot vector $\Xi$ = \{ -1, -1, -1, -1, -1/3, -1/3, -1/3, 0, 1/3, 1, 1, 1, 1 \}. Note that the functions are only interpolatory at the end points}
+    \caption[3rd NURBS basis function]{
+        3rd NURBS basis function for an open knot vector $\Xi$ = \{ -1, -1, -1, -1, -1/3, -1/3, -1/3, 0, 1/3, 1, 1, 1, 1 \}.
+        Note that the functions are only interpolatory at the end points
+    }
     \label{lr_fig:nurbs_rational_basis}
 \end{figure}
 

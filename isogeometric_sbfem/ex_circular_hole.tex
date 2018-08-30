@@ -1,8 +1,8 @@
 \subsection{Infinite plate with a circular hole}
 \paragraph{}
-In this example, an infinite plate with a traction free hole under uniaxial tension $(\sigma = 1 N/m^2 )$
+In this example, an infinite plate with a traction free hole under uniaxial tension $(\sigma = \SI{1}{\newton \per \square \meter} )$
 along x-axis (see Fig.~\ref{iso_fig:circular_hole_geo_bc}) is considered.
-
+%
     \begin{figure}[h!]
         \centering
         \scalebox{0.5}{
@@ -37,7 +37,7 @@ The exact solution of the stresses in polar coordinate $(r,\theta)$ is given by 
 where $a$ is the radius of the hole.
 Owing to symmetry, only one quarter of the plate is modeled.
 % Fig. 10 shows a typical control net used for the study.
-The material properties are: Young’s modulus $E = 100 N/m^2$ and Poisson’s ratio $\nu = 0.3$.
+The material properties are: Young’s modulus $E = \SI{100}{\newton \per \square \meter}$ and Poisson’s ratio $\nu = 0.3$.
 The closed form displacement in Cartesian coordinate is given as
     \begin{subequations}
         \begin{align}
@@ -147,7 +147,7 @@ The results from both the approaches converge with mesh refinement
         \scalebox{0.5}{
             \includegraphics{isogeometric_sbfem/images/circular_hole_basis.png}
         }
-        \caption{NURBS basis functions and Lagrange basis functions. It can be seen that at Point $B$, the shape functions are continuous}
+        \caption[NURBS basis functions and Lagrange basis functions]{NURBS basis functions and Lagrange basis functions. It can be seen that at Point $B$, the shape functions are continuous}
         \label{iso_fig:circular_hole_basis}
     \end{figure}
 
@@ -156,7 +156,7 @@ The results from both the approaches converge with mesh refinement
         \scalebox{0.5}{
             \includegraphics{isogeometric_sbfem/images/circular_hole_shape_function_convergence.png}
         }
-        \caption{
+        \caption[Infinite plate with a circular hole: Convergence results]{
             Infinite plate with a circular hole: Convergence results for the relative error in the displacement norm ($L^2$) and
                 the relative error in the energy norm. In this case, the arc is represented with NURBS and Lagrange shape functions.
         }

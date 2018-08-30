@@ -1,7 +1,7 @@
 \paragraph{}
 In this example, a plane strain bracket with a downward uniform distributed load on the top is considered (see Fig.~\ref{adp_fig:ex_bracket_geo_bc}).
-The material properties are: Young’s modulus $E = 2\times 10^5 N/m^2$ and Poisson’s ratio $\nu = 0.3$.
-    \begin{figure}[H]
+The material properties are: Young’s modulus $E = \SI{2e5}{\newton \per \square \meter}$ and Poisson’s ratio $\nu = 0.3$.
+    \begin{figure}
         \centering
         \begin{subfigure}[b]{1\linewidth}
             \centering
@@ -9,6 +9,8 @@ The material properties are: Young’s modulus $E = 2\times 10^5 N/m^2$ and Pois
                 \includegraphics{quadtree/ex_images/ex_bracket_geo.eps}
             }
         \end{subfigure}
+    \end{figure}
+    \begin{figure}\ContinuedFloat
         \begin{subfigure}[b]{1\linewidth}
             \centering
             \scalebox{1.3}{
@@ -20,7 +22,7 @@ The material properties are: Young’s modulus $E = 2\times 10^5 N/m^2$ and Pois
     \end{figure}
 
 \paragraph{}
-A total strain energy of $282.927$ is determined by ANSYS with the mesh shown in Fig.~\ref{qdt_fig:ex_bracket_ansys_mesh}
+A total strain energy of $\SI{282.927}{\joule}$ is determined by ANSYS with the mesh shown in Fig.~\ref{qdt_fig:ex_bracket_ansys_mesh}
 
 % /* cSpell:disable */
 % -1 - 282.927
@@ -102,10 +104,10 @@ Higher convergence rate compared to the result determined in ANSYS is observed.
             \includegraphics{adaptivity/ex_images/ex_adap_bracket_1554.png}
         }
         \caption{1st refinement, 1554 DOFs}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.4\linewidth}
+    \end{subfigure} \\
+    \begin{subfigure}[b]{1\linewidth}
         \centering
-        \scalebox{0.6}{
+        \scalebox{0.8}{
             \includegraphics{adaptivity/ex_images/ex_adap_bracket_4208.png}
         }
         \caption{2nd refinement, 4208 DOFs}

@@ -33,10 +33,7 @@ In other words, all nodes that determine the shape function in traditional FEM o
 However, this is not the case in NURBS curves where it is the control points that play the same role as the nodes in existing shape function.
 In NURBS curves, apart from the first and the last points, the control points are not necessarily on the curves as illustrated in Fig.~\ref{lr_fig:nurbs_knotins}.
 This prevent us from adopting the physical value on the nodes as $\Phi_n$ in Eq.~\ref{iso_eq:neumann_bc_numerical}.
-Instead, a set of ``control stress'' $\Phi_c$, the control points of another NURBS curve that represent the surface traction
-    geometrically, need to be determined as \footnote{$\argmin_x f(x) = \left\{
-        x | x \in S \wedge \forall y \in S : f(y) \geq f(x)
-    \right\}$}
+Instead, a set of ``control stress'' $\Phi_c$, the control points of another NURBS curve that represent the surface traction geometrically, need to be determined as 
     \begin{equation}
         \Phi_c = \argmin_{\Phi_c}
             \frac{1}{2}

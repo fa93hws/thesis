@@ -1,5 +1,6 @@
 \section{Formulation of the isogeometric SBFEM}
 \label{iso_section:formulation}
+\paragraph{}
 The nodal coordinates on the boundary are denoted as $\mathbf{x}_b$. As in a standard 1D iso-parametric finite element, the geometry of the element described by the coordinates $\mathbf{x}_b(\eta)$ as shown in Fig.~\ref{lr_fig:sbfem_intro}, is expressed as
 \begin{equation}
     \mathbf{x}_b(\eta) = \mathbf{N}(\eta) \mathbf{x}_b
@@ -30,14 +31,13 @@ where $r_b$ is the distance from the scaling center to a point on the boundary.
 The transformation between the Cartesian coordinates and the scaled boundary coordinates is similar to the coordinate transformation in the constructing iso-parametric finite elements.
 The scaling center must be placed at the position so that all boundary of the domain is visible from the point.
 This limitation can be easily solved by using a mesh generation algorithm described in Sec.~\ref{qdt_sec:main}.
-
 The displacement at any point are approximated by
 \begin{equation}
     \mathbf{u}(\xi,\eta) = \mathbf{N}(\eta) \mathbf{u}(\xi)
     \label{lr_eq:sbfem_disp_interpolation}
 \end{equation}
 %
-where $\mathbf{N}(\eta)$ are the shape functions of elements on the boundary and $\mathbf{u(\xi)}$ is the displacement along the radial lines, represented by a set of N analytical functions.
+where $\mathbf{N}(\eta)$ are the shape functions of elements on the boundary and $\mathbf{u}(\xi)$ is the displacement along the radial lines, represented by a set of N analytical functions.
 By substituting Eq.~\ref{lr_eq:sbfem_disp_interpolation} into the definition of strain-displacement relations, the strain $\epsilon(\xi,\eta)$ are expressed as
 \begin{equation}
     \epsilon(\xi,\eta) = \mathbf{Lu}(\xi,\eta)
@@ -185,7 +185,7 @@ An eigenvalue decomposition of $\mathbf{Z}$ is performed and it yields:
 \end{equation}
 %
 In Eq.~\ref{lr_eq:sbfem_eigen_decomp}, $\mathbf{\Lambda}_n$ $=$ diag$(\lambda_1$, $\lambda_2$, $\dots$, $\lambda_n)$ contains only the eigenvalues with negative real part.
-$\mathbf{\Phi}_u$ and $\mathbf{\Phi}_q$ are the subsets of the eigenvectors corresponding to $\mathbf{Lambda}_n$.
+$\mathbf{\Phi}_u$ and $\mathbf{\Phi}_q$ are the subsets of the eigenvectors corresponding to $\mathbf{\Lambda}_n$.
 They represent the modal displacements and forces, respectively.
 The general solution of Eq.~\ref{lr_eq:sbfem_1stODE} is given by:
 \begin{align}
@@ -212,7 +212,7 @@ Taking the derivative of $\mathbf{u}(\xi)$ with respect to $\xi$ and substitutin
     \sigma(\xi,\eta) = \mathbf{\Psi}_\alpha (\eta) \xi^{-\mathbf\Lambda}_n - \mathbf{I} \mathbf{c}
     \label{lr_eq:sbfem_stress_field}
 \end{equation}
-
+%
 where the stress mode $\mathbf{\Psi}_\sigma(\eta)$ is defined as:
 \begin{equation}
     \mathbf{\Psi}_\alpha(\eta) =    \mathbf{D}(
@@ -221,20 +221,20 @@ where the stress mode $\mathbf{\Psi}_\sigma(\eta)$ is defined as:
                                     )
     \label{lr_eq:sbfem_stress_mode}
 \end{equation}
-
+%
 The stiffness matrix of an element is obtained by first substituting Eq.~\ref{lr_eq:sbfem_int_constant} into Eq.~\ref{lr_eq:sbfem_general_sol_str} at $\xi=1$.
 This results in:
 \begin{equation}
     \mathbf{F} = \mathbf{\Phi}_q \mathbf{\Phi}_u^{-1} \mathbf{u}_b
     \label{lr_eq:sbfem_kmat_previous}
 \end{equation}
-
+%
 From Eq.~\ref{lr_eq:sbfem_kmat_previous}, the stiffness matrix $\mathbf{K}$ can be identified to be given by the expression
 \begin{equation}
     \mathbf{K} = \mathbf{\Phi}_q \mathbf{\Phi}_u^{-1}
     \label{lr_eq:sbfem_kmat}
 \end{equation}
-
+%
 The SBFEM has recently been extended to dynamic analysis in bounded domains \citep{Song2009}.
 Assuming time-harmonic behavior, the scaled boundary equation in displacement is extended as:
 \begin{equation}
@@ -243,13 +243,13 @@ Assuming time-harmonic behavior, the scaled boundary equation in displacement is
     \mathbf{E}_2 \mathbf{u}(\xi) + \omega^2 \mathbf{M}_0 \xi^2 \mathbf{u}(\xi) = 0
     \label{lr_eq:sbfem_dynamic}
 \end{equation}
-
+%
 Where $\mathbf{M}_0$ is a coefficient matrix defined as
 \begin{equation}
     \mathbf{M}_0 = \int_\eta \mathbf{N}^T \rho \mathbf{N}|J| d\eta
     \label{lr_eq:sbfem_dynamic_mass}
 \end{equation}
-
+%
 Using Eq.~\ref{lr_eq:sbfem_internal_force} and Eq.~\ref{lr_eq:sbfem_boundary_nodal_force}, Eq.~\ref{lr_eq:sbfem_dynamic_mass} can be transformed into an equivalent first-order non-linear differential equation in dynamic stiffness $\mathbf{S}(\omega)$,
 \begin{equation}
     (\mathbf{S}(\omega)-\mathbf{E}_1)\mathbf{E}_0^{-1}
@@ -257,13 +257,13 @@ Using Eq.~\ref{lr_eq:sbfem_internal_force} and Eq.~\ref{lr_eq:sbfem_boundary_nod
     \omega \mathbf{S}(\omega),_\omega + \omega^2 \mathbf{M}_0 = 0
     \label{lr_eq:sbfem_dynamic_1stODE}
 \end{equation}
-
+%
 The dynamic stiffness matrix $\mathbf{S}(\omega)$ relates the nodal forces to the displacements at the boundary as,
 \begin{equation}
     \mathbf{F} = \mathbf{S}(\omega) \mathbf{u}(\xi=1)
     \label{lr_eq:sbfem_dynamic_nodal_force}
 \end{equation}
-
+%
 Eq.~\ref{lr_eq:sbfem_dynamic_1stODE} is solved by expanding the dynamic stiffness into a series of continued fractions.
 For this purpose, it is expressed as
 \begin{equation}
@@ -272,7 +272,7 @@ For this purpose, it is expressed as
     \right]^{-1}
     \label{lr_eq:sbfem_dynamic_stiffness}
 \end{equation}
-
+%
 In Eq.~\ref{lr_eq:sbfem_dynamic_stiffness}, the first two terms represent the low-frequency expansion of the dynamic stiffness, whereas the third term corresponds to the residual of the low-frequency approximation.
 Substituting Eq.~\ref{lr_eq:sbfem_dynamic_stiffness} in Eq.~\ref{lr_eq:sbfem_dynamic_1stODE} and equating terms in increasing order of powers of $\omega$ to zero yields equations for $\mathbf{K}$ ,$\mathbf{M}$  and $\mathbf{R}^{(1)}$.
 Setting the constant terms equal to zero yields an algebraic Riccati equation for the static stiffness matrix $\mathbf{K}$, which is equivalent to the solution process described earlier.
@@ -283,7 +283,7 @@ The remaining equation for the residual is solved by expanding  $\mathbf{R}^{(1)
     \mathbf{R}^{(1)} = \mathbf{S}_0^{(1)} - \omega^2 \mathbf{S}_1^{(1)} + \omega^4 [\mathbf{R}^{(2)}]^{-1}
     \label{lr_eq:sbfem_dynamic_R}
 \end{equation}
-
+%
 Eq.~\ref{lr_eq:sbfem_dynamic_R} is analogous to the expansion of the dynamic stiffness, Eq.~\ref{lr_eq:sbfem_dynamic_stiffness}, where the coefficients $\mathbf{S}^{(1)}_0$ and $\mathbf{S}^{(1)}_1$ correspond to the `stiffness' and `mass' term of $\mathbf{R}^{(1)}$, respectively.
 Equations for $\mathbf{S}^{(1)}_0$ and $\mathbf{S}^{(1)}_1$ are found by substituting Eq.~\ref{lr_eq:sbfem_dynamic_R} into the equation for $\mathbf{R}^{(1)}$.
 This procedure is continued until the residual $\mathbf{R}^{M_{cf}+1}$ can be neglected.
@@ -300,6 +300,6 @@ Substituting all terms of the expansion back into Eq.~\ref{lr_eq:sbfem_dynamic_s
                             \right)^{-1}
 \label{lr_eq:sbfem_dynamic_s_full}
 \end{dmath}
-
+%
 The coefficients $\mathbf{S}^{(i)}_0$ and $\mathbf{S}^{(i)}_1$ in Eq.~\ref{lr_eq:sbfem_dynamic_s_full} are calculated following a recursive procedure.
 A more detailed derivation can be found in \citep{Song2009}.

@@ -1,6 +1,6 @@
 \paragraph{}
 A polyhedral cell can be regarded as one of the subdomain in the SBFEM as plotted in Fig.~\ref{oct_fig:sbfem_intro}.
-Similar to SBFEM in 2D which has been introduced in Sec.~\ref{iso_section:formulation}, only the boundary surfaces require discretization and a scaling center $O$ located at the place where all boundary surfaces of the subdomain are visible is necessary.
+Similar to SBFEM in 2D which has been introduced in Sec.~\ref{iso_section:formulation}, only the boundary surface requires discretization and a scaling center $O$ located at the place where all boundary surfaces of the subdomain are visible is necessary.
 
 \begin{figure}
     \centering
@@ -19,10 +19,10 @@ Similar to SBFEM in 2D which has been introduced in Sec.~\ref{iso_section:formul
         \label{oct_fig:sbfem_intro_b}
     \end{subfigure}
     \caption[Polyhedral SBFEM subdomain in 3D]{Polyhedral subdomain in SBFEM}
-    \label{oct_fig:sbfem_intro_a}
+    \label{oct_fig:sbfem_intro}
 \end{figure}
 %
-A scaling center on the edge as shown in Fig.~\ref{oct_fig:sbfem_intro_b} is also valid which increase the flexibility and allow the concave subdomain.
+A scaling center on the edge as shown in Fig.~\ref{oct_fig:sbfem_intro_b} is also valid which increases the flexibility and allow the concave subdomain.
 In this situation, the triangulated faces containing the scaling center will not be discretized.
 
 \paragraph{}
@@ -181,14 +181,14 @@ An eigenvalue decomposition of Eq.~\ref{oct_eq:sbfem_z} is performed and it yiel
         \Phi_{u1}   &   \Phi_{u2} \\
         \Phi_{q1}   &   \Phi_{q2}
     \end{bmatrix}
-    \begin{matrix}
+    \begin{bmatrix}
         \xi^{-\lambda}  &   0 \\
         0   &   \xi^{\lambda}
-    \end{matrix}
-    \begin{matrix}
+    \end{bmatrix}
+    \begin{bmatrix}
         \mathbf{c}_1  &   0   \\
         0   &   \mathbf{c}_2
-    \end{matrix}
+    \end{bmatrix}
 \label{oct_eq:sbfem_eigenvalue}
 \end{equation}
 %

@@ -23,7 +23,7 @@ It is used to control the maximum allowable mesh size globally or separately for
     \scalebox{0.6}{
         \includegraphics{quadtree/images/qdt_initial_mesh.eps}
     }
-    \caption{An example of the background initial mesh: $16 \times 16$ square are divided into $2^4 \times 2^4$ pixels (dashed lines, $res=4$) and $2^2 \times 2^2$ pixels form the initial mesh (solid lines, $s_{max}=2$)}
+    \caption[Initial background mesh]{An example of the background initial mesh: $16 \times 16$ square are divided into $2^4 \times 2^4$ pixels (dashed lines, $res=4$) and $2^2 \times 2^2$ pixels form the initial mesh (solid lines, $s_{max}=2$)}
     \label{qdt_fig:qdt_initial_mesh}
 \end{figure}
 
@@ -524,7 +524,7 @@ By knowing the hypotenuse of the polygon $15$ can only be contained in one other
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_0.eps}
         }
-        \caption[Tree for example for coloring: step 1]{tree for example for coloring: step 1}
+        \caption{Example for coloring: step 1}
         \label{qdt_fig:qdt_color_tree_0}
     \end{figure}
 % step 2
@@ -535,13 +535,13 @@ The oldest node with known color is itself, the polygon $2$ and as a result the 
 Bottom edge of the polygon $2$ is contained in itself only, which implies the termination of the branch.
 As another child node of polygon $15$, the polygon $6$ , whose hypotenuse is border between two colors and the youngest parent with known color will be polygon $15$ which is marked as color $1$.
 The polygon $13$ will be marked as color $-1$ in next recursion.
-
+%
     \begin{figure}[h!]
         \centering
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_1.eps}
         }
-        \caption[Tree for example for coloring: step 2]{tree for example for coloring: step 2}
+        \caption{Example for coloring: step 2}
         \label{qdt_fig:qdt_color_tree_1}
     \end{figure}
 % done
@@ -553,7 +553,7 @@ End node polygon $11$ and $3$ do not trigger the termination process normally wi
         \scalebox{1}{
             \includegraphics{quadtree/images/qdt_coloring_example_tree_2.eps}
         }
-        \caption[Tree for example for coloring: final tree]{tree for example for coloring: final tree}
+        \caption{Example for coloring: final tree}
         \label{qdt_fig:qdt_color_tree_2}
     \end{figure}
 

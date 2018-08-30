@@ -1,6 +1,6 @@
 \section{Pressurized hollow sphere}
 \paragraph{}
-The problem is a pressurized hollow sphere subjected to internal pressure.
+The problem is a pressurized hollow sphere subjected to the internal pressure.
 The geometry of the problem is described in Fig.\ref{oct_fig:ex_pre-hollow-sphere}. 
 
 \begin{figure}[h!]
@@ -11,10 +11,13 @@ The geometry of the problem is described in Fig.\ref{oct_fig:ex_pre-hollow-spher
 \end{figure}
 
 \paragraph{}
-In the example, the external pressure is set to be zero so that only the internal one is considered. $a=20, b=150, p_a = 10,p_b = 0, E=200,\nu=0.3$.
-Instead of a quarter of a hollow sphere, a cubic with a spherical hole is analysed.
-Displacement boundary condition is applied on all of the boundary surface.
-First order tetrahedral element is adopted to calculated the displacement and stress and compared to the exact solution as in Eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
+In the example, the external pressure is set to be zero so that only the internal one is considered.
+The geometric properties are: $a=\SI{10}{\meter}$ and $b=\SI{50}{\meter}$.
+The boundary condition is: $p_a = \SI{10}{\newton \per \square \meter}$ ,$p_b = 0$ and the rigid body motion is prevented.
+The material properties are: $E=\SI{200}{\newton \per \square \meter}$ and $\nu=0.3$.
+For simplification, only a quarter of the sphere is analysed as shown in Fig.~\ref{oct_fig:ex_hollow_sphere_mesh_1716}
+Analytical surface traction is applied on all of the boundary surfaces.
+First order tetrahedral element is adopted to calculated the displacement and stress and they are compared to the exact solution as in Eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
 
 \begin{subequations}
 \begin{align}
@@ -25,8 +28,6 @@ First order tetrahedral element is adopted to calculated the displacement and st
   \label{oct_eq:ex_hollow_sphere_ana_sol}
 \end{align}
 \end{subequations}
-
-\paragraph{}
 The tensor transformation from spherical coordinate to cartesian coordinate can be written as Eq.~\ref{eqn:transformation} with according to Fig.~\ref{octree_fig:oct_ex_hollow_sphere_tran}.
 \begin{subequations}
   \begin{align}
@@ -48,24 +49,83 @@ The tensor transformation from spherical coordinate to cartesian coordinate can 
 \end{align}
 \label{eqn:transformation}
 \end{subequations}
-
+%
 \begin{figure}[h!]
     \centering
     \scalebox{0.5}{\includegraphics{octree/ex_images/oct_ex_tran.png}}
     \caption{Coordinate transformation}
     \label{octree_fig:oct_ex_hollow_sphere_tran}
   \end{figure}
-  
-\paragraph{}
-In the example, $a = 10,b = 50, E=20,\nu = 0.2,P_a = 10$.
-For simplification, only a quarter of the sphere is analysed as shown in Fig.~\ref{oct_fig:ex_hollow_sphere_meshP}
-
-\begin{figure}[h!]
-  \centering
-  \scalebox{0.3}{\includegraphics{octree/ex_images/oct_ex_mesh.png}}
-  \caption{Mesh of the problem}
-  \label{oct_fig:ex_hollow_sphere_meshP}
+%
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_1716_out.eps}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_1716_side.eps}
+        }
+    \end{subfigure}\\
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{octree/ex_images/hollow_sphere_1716_front.eps}
+        }
+    \end{subfigure}
+    \caption{Mesh of the hollow sphere with 1716 DOFs}
+    \label{oct_fig:ex_hollow_sphere_mesh_1716}
 \end{figure}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_3896_out.eps}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_3896_side.eps}
+        }
+    \end{subfigure}\\
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{octree/ex_images/hollow_sphere_3896_front.eps}
+        }
+    \end{subfigure}
+    \caption{Mesh of the hollow sphere with 3896 DOFs}
+    \label{oct_fig:ex_hollow_sphere_mesh_3896}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_12078_out.eps}
+        }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \scalebox{0.25}{
+            \includegraphics{octree/ex_images/hollow_sphere_12078_side.eps}
+        }
+    \end{subfigure}\\
+    \begin{subfigure}[b]{1\linewidth}
+        \centering
+        \scalebox{0.5}{
+            \includegraphics{octree/ex_images/hollow_sphere_12078_front.eps}
+        }
+    \end{subfigure}
+    \caption{Mesh of the hollow sphere with 12078 DOFs}
+    \label{oct_fig:ex_hollow_sphere_mesh_12078}
+\end{figure}
+% \begin{figure}[h!]
+%   \centering
+%   \scalebox{0.3}{\includegraphics{octree/ex_images/oct_ex_mesh.png}}
+%   \caption{Mesh of the hollow sphere}
+%   \label{oct_fig:ex_hollow_sphere_meshP}
+% \end{figure}
 
 Stress boundary in Eq.~\ref{oct_eq:ex_sphere_hole_bond_str} condition is applied on two spherical surfaces.
 \begin{subequations}
@@ -77,11 +137,11 @@ Stress boundary in Eq.~\ref{oct_eq:ex_sphere_hole_bond_str} condition is applied
   \end{align}
 \label{oct_eq:ex_sphere_hole_bond_str}
 \end{subequations}
-
-The convergence study is plotted in Fig.~\ref{oct_fig:ex_hollow_sphere_conv}
+%
+The convergence study is plotted in Fig.~\ref{oct_fig:ex_hollow_sphere_conv} and the mesh with corresponding DOFs are plotted in Fig.~\ref{oct_fig:ex_hollow_sphere_mesh_1716}, Fig.~\ref{oct_fig:ex_hollow_sphere_mesh_3896} and Fig.~\ref{oct_fig:ex_hollow_sphere_mesh_12078}
 \begin{figure}[h!]
     \centering
-    \scalebox{0.5}{\includegraphics{octree/ex_images/ex_sphere_hole_conv.eps}}
+    \scalebox{0.75}{\includegraphics{octree/ex_images/ex_sphere_hole_conv.eps}}
     \caption{Convergence of displacement error}
     \label{oct_fig:ex_hollow_sphere_conv}
-  \end{figure}
+\end{figure}
