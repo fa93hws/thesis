@@ -11,9 +11,9 @@
 \section{Intersection}
 \paragraph{}
 Instead of projecting all points located on the boundary surfaces to the NURBS surfaces, the exact geometry can be retained by calculating the intersection points directly.
-By utilizing the work from Sec.~\ref{oct_sc:surface_division}, the number of the surfaces which may contain the intersection can be limited to a few by determine the relationship between their convex hulls and the line.
+By utilizing the work from Sec.~\ref{oct_sc:surface_division}, the number of the surfaces which may contain the intersection can be limited to a few by \hl{determining} the relationship between their convex hulls and the line.
 Only surfaces whose convex hull has intersection with the line will be selected as candidates.
-The number of the candidates increase when the mesh becomes coarser as a longer line segment tends to intersect more convex hulls.
+The number of the candidates increase\hl{s} when the mesh becomes coarser as a longer line segment tends to intersect more convex hulls.
 On the other hand, when the mesh is refined and the line segment becomes significantly shorter, the number of the candidates decreases at the same time.
 A considerable improvement in computational cost can be expected as the time complexity is only meaningful when numerous intersections are calculated.
 Only a few intersections need to be determined when the mesh is coarse hence having quite a few candidates at this circumstance may not significantly increase the computational time.
@@ -33,6 +33,6 @@ Only a few intersections need to be determined when the mesh is coarse hence hav
 \section{Conclusions}
 \paragraph{}
 In this chapter, a projection is conducted after the octree mesh is generated from the STL file.
-Geometric exact is retained by projecting the intersection on the triangular surface back to original NURBS surface or by replacing the distance calculation with finding that between the edge of the element and the NURBS surface directly. 
+Geometric exact is retained by projecting intersections on the triangular surfaces back to original NURBS surfaces or by replacing the intersection calculation with finding that between the edge of the element and the NURBS surface directly. 
 Both of the projecting and the intersection calculating are accelerated by utilizing the strong convex hull property of the NURBS.
 The proposed method is able to generate the mesh from an arbitrary geometric input and shows higher accuracy compared to conventional method.

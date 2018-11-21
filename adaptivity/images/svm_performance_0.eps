@@ -1,1699 +1,607 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%Creator: (MATLAB, The Mathworks, Inc. Version 8.6.0.267246 \(R2015b\). Operating System: Windows 7)
-%%Title: D:/private/mesh_refinement_BPANN/matlab/svm_performance_0.eps
-%%CreationDate: 2018-03-13T02:00:15
-%%Pages: (atend)
-%%BoundingBox: 0 0 762 595
+%%Creator: cairo 1.15.10 (http://cairographics.org)
+%%CreationDate: Thu Oct 25 19:34:57 2018
+%%Pages: 1
+%%DocumentData: Clean7Bit
 %%LanguageLevel: 2
+%%BoundingBox: 0 0 762 595
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset (Apache XML Graphics Std ProcSet) 1.2 0
-%%Version: 1.2 0
-%%Copyright: (Copyright 2001-2003,2010 The Apache Software Foundation. License terms: http://www.apache.org/licenses/LICENSE-2.0)
-/bd{bind def}bind def
-/ld{load def}bd
-/GR/grestore ld
-/M/moveto ld
-/LJ/setlinejoin ld
-/C/curveto ld
-/f/fill ld
-/LW/setlinewidth ld
-/GC/setgray ld
-/t/show ld
-/N/newpath ld
-/CT/concat ld
-/cp/closepath ld
-/S/stroke ld
-/L/lineto ld
-/CC/setcmykcolor ld
-/A/ashow ld
-/GS/gsave ld
-/RC/setrgbcolor ld
-/RM/rmoveto ld
-/ML/setmiterlimit ld
-/re {4 2 roll M
-1 index 0 rlineto
-0 exch rlineto
-neg 0 rlineto
-cp } bd
-/_ctm matrix def
-/_tm matrix def
-/BT { _ctm currentmatrix pop matrix _tm copy pop 0 0 moveto } bd
-/ET { _ctm setmatrix } bd
-/iTm { _ctm setmatrix _tm concat } bd
-/Tm { _tm astore pop iTm 0 0 moveto } bd
-/ux 0.0 def
-/uy 0.0 def
-/F {
-  /Tp exch def
-  /Tf exch def
-  Tf findfont Tp scalefont setfont
-  /cf Tf def  /cs Tp def
-} bd
-/ULS {currentpoint /uy exch def /ux exch def} bd
-/ULE {
-  /Tcx currentpoint pop def
-  gsave
-  newpath
-  cf findfont cs scalefont dup
-  /FontMatrix get 0 get /Ts exch def /FontInfo get dup
-  /UnderlinePosition get Ts mul /To exch def
-  /UnderlineThickness get Ts mul /Tt exch def
-  ux uy To add moveto  Tcx uy To add lineto
-  Tt setlinewidth stroke
-  grestore
-} bd
-/OLE {
-  /Tcx currentpoint pop def
-  gsave
-  newpath
-  cf findfont cs scalefont dup
-  /FontMatrix get 0 get /Ts exch def /FontInfo get dup
-  /UnderlinePosition get Ts mul /To exch def
-  /UnderlineThickness get Ts mul /Tt exch def
-  ux uy To add cs add moveto Tcx uy To add cs add lineto
-  Tt setlinewidth stroke
-  grestore
-} bd
-/SOE {
-  /Tcx currentpoint pop def
-  gsave
-  newpath
-  cf findfont cs scalefont dup
-  /FontMatrix get 0 get /Ts exch def /FontInfo get dup
-  /UnderlinePosition get Ts mul /To exch def
-  /UnderlineThickness get Ts mul /Tt exch def
-  ux uy To add cs 10 mul 26 idiv add moveto Tcx uy To add cs 10 mul 26 idiv add lineto
-  Tt setlinewidth stroke
-  grestore
-} bd
-/QT {
-/Y22 exch store
-/X22 exch store
-/Y21 exch store
-/X21 exch store
-currentpoint
-/Y21 load 2 mul add 3 div exch
-/X21 load 2 mul add 3 div exch
-/X21 load 2 mul /X22 load add 3 div
-/Y21 load 2 mul /Y22 load add 3 div
-/X22 load /Y22 load curveto
-} bd
-/SSPD {
-dup length /d exch dict def
-{
-/v exch def
-/k exch def
-currentpagedevice k known {
-/cpdv currentpagedevice k get def
-v cpdv ne {
-/upd false def
-/nullv v type /nulltype eq def
-/nullcpdv cpdv type /nulltype eq def
-nullv nullcpdv or
-{
-/upd true def
-} {
-/sametype v type cpdv type eq def
-sametype {
-v type /arraytype eq {
-/vlen v length def
-/cpdvlen cpdv length def
-vlen cpdvlen eq {
-0 1 vlen 1 sub {
-/i exch def
-/obj v i get def
-/cpdobj cpdv i get def
-obj cpdobj ne {
-/upd true def
-exit
-} if
-} for
-} {
-/upd true def
-} ifelse
-} {
-v type /dicttype eq {
-v {
-/dv exch def
-/dk exch def
-/cpddv cpdv dk get def
-dv cpddv ne {
-/upd true def
-exit
-} if
-} forall
-} {
-/upd true def
-} ifelse
-} ifelse
-} if
-} ifelse
-upd true eq {
-d k v put
-} if
-} if
-} if
-} forall
-d length 0 gt {
-d setpagedevice
-} if
-} bd
-%%EndResource
-%%BeginResource: procset (Apache XML Graphics EPS ProcSet) 1.0 0
-%%Version: 1.0 0
-%%Copyright: (Copyright 2002-2003 The Apache Software Foundation. License terms: http://www.apache.org/licenses/LICENSE-2.0)
-/BeginEPSF { %def
-/b4_Inc_state save def         % Save state for cleanup
-/dict_count countdictstack def % Count objects on dict stack
-/op_count count 1 sub def      % Count objects on operand stack
-userdict begin                 % Push userdict on dict stack
-/showpage { } def              % Redefine showpage, { } = null proc
-0 setgray 0 setlinecap         % Prepare graphics state
-1 setlinewidth 0 setlinejoin
-10 setmiterlimit [ ] 0 setdash newpath
-/languagelevel where           % If level not equal to 1 then
-{pop languagelevel             % set strokeadjust and
-1 ne                           % overprint to their defaults.
-{false setstrokeadjust false setoverprint
-} if
-} if
-} bd
-/EndEPSF { %def
-count op_count sub {pop} repeat            % Clean up stacks
-countdictstack dict_count sub {end} repeat
-b4_Inc_state restore
-} bd
-%%EndResource
-%FOPBeginFontDict
-%%IncludeResource: font Courier-Bold
-%%IncludeResource: font Helvetica
-%%IncludeResource: font Courier-BoldOblique
-%%IncludeResource: font Courier-Oblique
-%%IncludeResource: font Times-Roman
-%%IncludeResource: font Helvetica-BoldOblique
-%%IncludeResource: font Helvetica-Bold
-%%IncludeResource: font Helvetica-Oblique
-%%IncludeResource: font Times-BoldItalic
-%%IncludeResource: font Courier
-%%IncludeResource: font Times-Italic
-%%IncludeResource: font Times-Bold
-%%IncludeResource: font Symbol
-%%IncludeResource: font ZapfDingbats
-%FOPEndFontDict
-%%BeginResource: encoding WinAnsiEncoding
-/WinAnsiEncoding [
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /.notdef /.notdef /.notdef
-/.notdef /.notdef /space /exclam /quotedbl
-/numbersign /dollar /percent /ampersand /quotesingle
-/parenleft /parenright /asterisk /plus /comma
-/hyphen /period /slash /zero /one
-/two /three /four /five /six
-/seven /eight /nine /colon /semicolon
-/less /equal /greater /question /at
-/A /B /C /D /E
-/F /G /H /I /J
-/K /L /M /N /O
-/P /Q /R /S /T
-/U /V /W /X /Y
-/Z /bracketleft /backslash /bracketright /asciicircum
-/underscore /quoteleft /a /b /c
-/d /e /f /g /h
-/i /j /k /l /m
-/n /o /p /q /r
-/s /t /u /v /w
-/x /y /z /braceleft /bar
-/braceright /asciitilde /bullet /Euro /bullet
-/quotesinglbase /florin /quotedblbase /ellipsis /dagger
-/daggerdbl /circumflex /perthousand /Scaron /guilsinglleft
-/OE /bullet /Zcaron /bullet /bullet
-/quoteleft /quoteright /quotedblleft /quotedblright /bullet
-/endash /emdash /asciitilde /trademark /scaron
-/guilsinglright /oe /bullet /zcaron /Ydieresis
-/space /exclamdown /cent /sterling /currency
-/yen /brokenbar /section /dieresis /copyright
-/ordfeminine /guillemotleft /logicalnot /sfthyphen /registered
-/macron /degree /plusminus /twosuperior /threesuperior
-/acute /mu /paragraph /middot /cedilla
-/onesuperior /ordmasculine /guillemotright /onequarter /onehalf
-/threequarters /questiondown /Agrave /Aacute /Acircumflex
-/Atilde /Adieresis /Aring /AE /Ccedilla
-/Egrave /Eacute /Ecircumflex /Edieresis /Igrave
-/Iacute /Icircumflex /Idieresis /Eth /Ntilde
-/Ograve /Oacute /Ocircumflex /Otilde /Odieresis
-/multiply /Oslash /Ugrave /Uacute /Ucircumflex
-/Udieresis /Yacute /Thorn /germandbls /agrave
-/aacute /acircumflex /atilde /adieresis /aring
-/ae /ccedilla /egrave /eacute /ecircumflex
-/edieresis /igrave /iacute /icircumflex /idieresis
-/eth /ntilde /ograve /oacute /ocircumflex
-/otilde /odieresis /divide /oslash /ugrave
-/uacute /ucircumflex /udieresis /yacute /thorn
-/ydieresis
-] def
-%%EndResource
-%FOPBeginFontReencode
-/Courier-Bold findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Courier-Bold exch definefont pop
-/Helvetica findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Helvetica exch definefont pop
-/Courier-BoldOblique findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Courier-BoldOblique exch definefont pop
-/Courier-Oblique findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Courier-Oblique exch definefont pop
-/Times-Roman findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Times-Roman exch definefont pop
-/Helvetica-BoldOblique findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Helvetica-BoldOblique exch definefont pop
-/Helvetica-Bold findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Helvetica-Bold exch definefont pop
-/Helvetica-Oblique findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Helvetica-Oblique exch definefont pop
-/Times-BoldItalic findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Times-BoldItalic exch definefont pop
-/Courier findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Courier exch definefont pop
-/Times-Italic findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Times-Italic exch definefont pop
-/Times-Bold findfont
-dup length dict begin
-  {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding WinAnsiEncoding def
-  currentdict
-end
-/Times-Bold exch definefont pop
-%FOPEndFontReencode
+50 dict begin
+/q { gsave } bind def
+/Q { grestore } bind def
+/cm { 6 array astore concat } bind def
+/w { setlinewidth } bind def
+/J { setlinecap } bind def
+/j { setlinejoin } bind def
+/M { setmiterlimit } bind def
+/d { setdash } bind def
+/m { moveto } bind def
+/l { lineto } bind def
+/c { curveto } bind def
+/h { closepath } bind def
+/re { exch dup neg 3 1 roll 5 3 roll moveto 0 rlineto
+      0 exch rlineto 0 rlineto closepath } bind def
+/S { stroke } bind def
+/f { fill } bind def
+/f* { eofill } bind def
+/n { newpath } bind def
+/W { clip } bind def
+/W* { eoclip } bind def
+/BT { } bind def
+/ET { } bind def
+/BDC { mark 3 1 roll /BDC pdfmark } bind def
+/EMC { mark /EMC pdfmark } bind def
+/cairo_store_point { /cairo_point_y exch def /cairo_point_x exch def } def
+/Tj { show currentpoint cairo_store_point } bind def
+/TJ {
+  {
+    dup
+    type /stringtype eq
+    { show } { -0.001 mul 0 cairo_font_matrix dtransform rmoveto } ifelse
+  } forall
+  currentpoint cairo_store_point
+} bind def
+/cairo_selectfont { cairo_font_matrix aload pop pop pop 0 0 6 array astore
+    cairo_font exch selectfont cairo_point_x cairo_point_y moveto } bind def
+/Tf { pop /cairo_font exch def /cairo_font_matrix where
+      { pop cairo_selectfont } if } bind def
+/Td { matrix translate cairo_font_matrix matrix concatmatrix dup
+      /cairo_font_matrix exch def dup 4 get exch 5 get cairo_store_point
+      /cairo_font where { pop cairo_selectfont } if } bind def
+/Tm { 2 copy 8 2 roll 6 array astore /cairo_font_matrix exch def
+      cairo_store_point /cairo_font where { pop cairo_selectfont } if } bind def
+/g { setgray } bind def
+/rg { setrgbcolor } bind def
+/d1 { setcachedevice } bind def
+/cairo_data_source {
+  CairoDataIndex CairoData length lt
+    { CairoData CairoDataIndex get /CairoDataIndex CairoDataIndex 1 add def }
+    { () } ifelse
+} def
+/cairo_flush_ascii85_file { cairo_ascii85_file status { cairo_ascii85_file flushfile } if } def
+/cairo_image { image cairo_flush_ascii85_file } def
+/cairo_imagemask { imagemask cairo_flush_ascii85_file } def
 %%EndProlog
+%%BeginSetup
+%%BeginResource: font f-0-0
+%!FontType1-1.1 f-0-0 1.0
+11 dict begin
+/FontName /f-0-0 def
+/PaintType 0 def
+/FontType 1 def
+/FontMatrix [0.001 0 0 0.001 0 0] readonly def
+/FontBBox {0 -15 520 709                                     } readonly def
+/Encoding 256 array
+0 1 255 {1 index exch /.notdef put} for
+dup 46 /period put
+dup 48 /zero put
+dup 49 /one put
+dup 50 /two put
+dup 51 /three put
+dup 52 /four put
+dup 53 /five put
+dup 54 /six put
+dup 55 /seven put
+dup 56 /eight put
+dup 57 /nine put
+readonly def
+currentdict end
+currentfile eexec
+f983ef0097ece636fb4a96c74d26ab84185f6dfa4a16a7a1c27bbe3f1156aea698df336d20b467
+b10e7f33846656653c5ac6962759d3056cbdb3190bac614b984bf5a132dc418192443014ba63de
+800d392b6fea026574bb2535fd7bb5338f35bf15a88ea328fdaa49670c7852e3d060f3c5d6b07f
+2ef6d0f22646c5d18e19a2ae3ee120390f6dd96f76dcf1e127de5e9299077a00c17c0d71e36e5b
+9d5ec58fceda57739a6a4214d4b79d6c48d2784b60c320323c7acddddf34db833cac0cf109f799
+69d114a330d372e5c978a66acc84e3fe5557f6240856a013ffaa0199444e5c5036f775eba4a5c5
+8cde66cf604b9aca2178431127b8a1ff7ed633a65c04600af5f573483112251caca58a17e699cd
+2766bc78db0b6f567873ef5f087c2938ba392f51a656b56a295964903bf4f172e9326a92a55334
+49a416a605becc3e8f17deb7c07a9fd4973ca92ed45897d1d42fede70e7dd8c7a3cab079b104f2
+c796bba5971920a731e0072491403ce2280c7b40229bc73cfa0101b5254165d76dfb65d904358d
+f84b15fd2c0191c249c3af0349fc61065fe7536d4b6f9669513015b8835e19d8c0c8d20ef0d09a
+c0bcf6f4a8096d68148de8830830398fe3bd0c666bf536f6224210a3939bb23ddb4600dfb6f275
+ff0a70df6471f95fa2c0d32aaf49e73a76eab2c63ded021f5419acce766355fd030246ac687822
+cfbbbbe581500bc2109002347a1f02a853208be4267ca7839c256757ae5674d13964b6f78205b7
+9c9793f61517eb418de7272195227bc24268ad5d12ab75bd2d85445328903b1e109238b75f3df8
+9e232b9e3a50b9a0aced7ed54829dea5d82dd24e3f6e78f140c7b1c897fafaa4db0f962dbf20ed
+6ca129b729fd5b52aec0eea8ba4559600b13e4c95e6bb006e66c63c392f53d355add7b4f996a3c
+61551b6bc26c609cdb00206966d133c64c8c6d1f6ff4ae32648022493586ca2daad0b43e991a45
+66239f0c16fa4ffffd7a68fc533a8a30c984ab26444ad887a939b588848b5bb057d4c095f37a0f
+1866a5ff6dd02b1122f0f0beaaed99f873896c516d2b1e9877d715480b80fabc1022e3a6ec6fb8
+7bd0fa0eb7a1f4543cd689953cf37b53ed8ffa1ea51fa17bcde65696c99cf91c9e52550a182605
+005a07515dbc0d9cb8b8193ec3dcc7dc91ba2081a4573cd1c6d1e36c092c84354f9f6f408cae1e
+e4a3c1edcc1d41abe16c692b0c21baf5cdc8c24c8d661366bdabdd3580848ac3f37eab65cbabab
+6b3e61ac639d9546b3777fba0963c521cc33c29f387adbb36ec5426859efe53138e30e292ed656
+a77e623685b5e36d74299e136f3a723f900d93d0a1530e317c0f3e93cd8e0c1ce7062c2c9a7df4
+d7213857122d75657dd6669464f070c951612edbf60eb9b62250b2d8999b885cb4171f166c4ce9
+8fc2ef2a9bc5ac5f674976e2f4b705566e13630d3f281251508abb7e74e7769c1818704e9c58c7
+340702bd8b0706ee5a07b99cd9e172d95b5b37142026146523bb4fb588cac37e7d17be765ece24
+ad830d62f770dbaa51450850211bc5f6b6fc1f6d97d9e005a0ffecc8a7d0d582ebecfdc69e3401
+7e530b37e11e7b3e08323742bbb10fe4121d39733f018ef3f42763a2b658e64a74cf2da98a0d21
+7d5b71a9b8079996782f6933dabed5e52c500952423efaffee35a93b7e27a9bf829baebb1a62b7
+c8782493abbe1f28c28c68d78f779d4df0a7080e25e8690c5bb557313e61139f67582d1f349fcc
+97f6f403a901837f0024bd8e73cd021835cc5abef6059a665738681a5ab58f16e2388cfa8f46fe
+9abf1b8044dbb17a0b39c823aceb4a75eb5edb29357e2233788857f3d04e77c77e25750064e358
+f3717ac4c0e82ade78aeda798b16aa43f4ec790ab7445b3a9ff84b053d01040d6ddddf11a17ee9
+e03504af126800dca170f841ff67a2b02a2f67f2824cfbadf7898a5ebd19832da8b1b056b284c3
+4db02acd10d6d578a948a7f6b6875bbb8fa9be2be319479399e42694de382eb1a942e6d95fd4ad
+2c89677137f46b18326d95112ebb224a639c345dd105b655b9427bc9120bfbeef0e3bbea1ddf4a
+ead9c2ea1dd3465aa9379a4b65788a4e340be300ae0604ffa41c161d18b14aa3e6b93c9aa16417
+5d474b02ebb2a769e2772a471344b83e864bd00e8707f44634e75a9cc37359693b1234e8da11ec
+4c4cc0f336eb48b23a9ca9922528dc33deb0cf207ab81305808e22c18a3f4e9434797b75b58adc
+7b82142ce0a191706243fa1bba7fbe150cf6923bafbf726dfe7bad3778bfde60a56f837afcb27a
+43b4f00000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+cleartomark
+%%EndResource
+%%BeginResource: font DejaVuSans
+11 dict begin
+/FontType 42 def
+/FontName /DejaVuSans def
+/PaintType 0 def
+/FontMatrix [ 1 0 0 1 0 0 ] def
+/FontBBox [ 0 0 0 0 ] def
+/Encoding 256 array def
+0 1 255 { Encoding exch /.notdef put } for
+Encoding 32 /space put
+Encoding 49 /one put
+Encoding 70 /F put
+Encoding 97 /a put
+Encoding 99 /c put
+Encoding 101 /e put
+Encoding 105 /i put
+Encoding 108 /l put
+Encoding 110 /n put
+Encoding 111 /o put
+Encoding 112 /p put
+Encoding 114 /r put
+Encoding 115 /s put
+Encoding 117 /u put
+Encoding 121 /y put
+/CharStrings 16 dict dup begin
+/.notdef 0 def
+/F 1 def
+/one 2 def
+/space 3 def
+/s 4 def
+/c 5 def
+/o 6 def
+/r 7 def
+/e 8 def
+/a 9 def
+/l 10 def
+/p 11 def
+/i 12 def
+/n 13 def
+/u 14 def
+/y 15 def
+end readonly def
+/sfnts [
+<0001000000090080000300106376742000691d3900000aa4000001fe6670676d7134766a0000
+0ca4000000ab676c79665b8e0f460000009c00000a08686561640d1447cc00000d5000000036
+686865610d9f077d00000d8800000024686d7478440208e800000dac000000406c6f63610000
+498400000dec000000446d617870047d067100000e3000000020707265703b07f10000000e50
+0000056800020066fe96046605a400030007001a400c04fb0006fb0108057f0204002fc4d4ec
+310010d4ecd4ec301311211125211121660400fc73031bfce5fe96070ef8f2720629000100c9
+0000042305d50009002940120695040295008104ad08050107031c00040a10fcec32d4c43100
+2fecf4ec10ee30b20f0b01015d13211521112115211123c9035afd700250fdb0ca05d5aafe48
+aafd3700000100e10000045a05d5000a004040154203a00402a005810700a009081f061c0300
+1f010b10d44bb00f5458b9000100403859ecc4fcec31002fec32f4ecd4ec304b5358592201b4
+0f030f04025d3721110535253311211521fe014afe990165ca014afca4aa047348b848fad5aa
+00000001006fffe303c7047b002700e7403c0d0c020e0b531f1e080902070a531f1f1e420a0b
+1e1f041500860189041486158918b91104b925b8118c281e0a0b1f1b0700521b080e07081422
+452810fcc4ecd4ece4111239393939310010e4f4ec10fef5ee10f5ee121739304b535807100e
+ed111739070eed1117395922b2002701015d406d1c0a1c0b1c0c2e092c0a2c0b2c0c3b093b0a
+3b0b3b0c0b200020012402280a280b2a132f142f152a16281e281f292029212427860a860b86
+0c860d12000000010202060a060b030c030d030e030f03100319031a031b031c041d09272f29
+3f295f297f2980299029a029f029185d005d7101152e012322061514161f011e011514062322
+2627351e013332363534262f012e01353436333216038b4ea85a898962943fc4a5f7d85ac36c
+66c661828c65ab40ab98e0ce66b4043fae282854544049210e2a99899cb62323be353559514b
+50250f2495829eac1e00000000010071ffe303e7047b0019003f401b00860188040e860d880a
+b91104b917b8118c1a07120d004814451a10fce432ec310010e4f4ec10fef4ee10f5ee30400b
+0f1b101b801b901ba01b05015d01152e0123220615141633323637150e012322001110002132
+1603e74e9d50b3c6c6b3509d4e4da55dfdfed6012d010655a20435ac2b2be3cdcde32b2baa24
+24013e010e0112013a23000000020071ffe30475047b000b0017004a401306b91200b90cb812
+8c1809120f51031215451810fcecf4ec310010e4f4ec10ee3040233f197b007b067f077f087f
+097f0a7f0b7b0c7f0d7f0e7f0f7f107f117b12a019f01911015d012206151416333236353426
+273200111000232200111000027394acab9593acac93f00112feeef0f1feef011103dfe7c9c9
+e7e8c8c7e99cfec8feecfeedfec701390113011401380000000100ba0000034a047b00110030
+4014060b0700110b03870eb809bc070a06080008461210fcc4ec3231002fe4f4ecc4d4cc1112
+3930b450139f1302015d012e012322061511231133153e0133321617034a1f492c9ca7b9b93a
+ba85132e1c03b41211cbbefdb20460ae66630505000000020071ffe3047f047b0014001b0070
+4024001501098608880515a90105b90c01bb18b912b80c8c1c1b1502081508004b02120f451c
+10fcecf4ecc4111239310010e4f4ece410ee10ee10f4ee1112393040293f1d701da01dd01df0
+1d053f003f013f023f153f1b052c072f082f092c0a6f006f016f026f156f1b095d71015d0115
+211e0133323637150e01232000111000333200072e0123220607047ffcb20ccdb76ac76263d0
+6bfef4fec70129fce20107b802a5889ab90e025e5abec73434ae2a2c0138010a01130143fedd
+c497b4ae9e000002007bffe3042d047b000a002500bc4027191f0b17090e00a91706b90e1120
+861fba1cb923b8118c170c001703180d09080b1f030814452610fcecccd4ec32321139393100
+2fc4e4f4fcf4ec10c6ee10ee11391139123930406e301d301e301f3020302130223f27401d40
+1e401f402040214022501d501e501f50205021502250277027851d871e871f87208721852290
+27a027f0271e301e301f30203021401e401f40204021501e501f50205021601e601f60206021
+701e701f70207021801e801f80208021185d015d0122061514163332363d01371123350e0123
+2226353436332135342623220607353e0133321602bedfac816f99b9b8b83fbc88accbfdfb01
+02a79760b65465be5af3f00233667b6273d9b4294cfd81aa6661c1a2bdc0127f8b2e2eaa2727
+fc00000100c100000179061400030022b7009702010800460410fcec31002fec30400d100540
+05500560057005f00506015d13331123c1b8b80614f9ec00000200bafe5604a4047b0010001c
+003e401b1ab9000e14b90508b80e8c01bd03bc1d11120b471704000802461d10fcec3232f4ec
+310010e4e4e4f4c4ec10c4ee304009601e801ea01ee01e04015d2511231133153e0133320011
+10022322260134262322061514163332360173b9b93ab17bcc00ffffcc7bb10238a79292a7a7
+9292a7a8fdae060aaa6461febcfef8fef8febc6101ebcbe7e7cbcbe7e7000000000200c10000
+0179061400030007002b400e06be04b100bc020501080400460810fc3cec3231002fe4fcec30
+400b1009400950096009700905015d1333112311331523c1b8b8b8b80460fba00614e9000001
+00ba00000464047b001300364019030900030e0106870e11b80cbc0a010208004e0d09080b46
+1410fcec32f4ec31002f3ce4f4c4ec1112173930b46015cf1502015d01112311342623220615
+11231133153e013332160464b87c7c95acb9b942b375c1c602a4fd5c029e9f9ebea4fd870460
+ae6564ef000200aeffe30458047b00130014003b401c030900030e0106870e118c0a01bc14b8
+0c0d0908140b4e020800461510fcecf439ec3231002fe4e432f4c4ec1112173930b46f15c015
+02015d1311331114163332363511331123350e0123222601aeb87c7c95adb8b843b175c1c801
+cf01ba02a6fd619f9fbea4027bfba0ac6663f003a8000001003dfe56047f0460000f018b4043
+0708020911000f0a110b0a00000f0e110f000f0d110c0d00000f0d110e0d0a0b0a0c110b0b0a
+420d0b0910000b058703bd0e0bbc100e0d0c0a09060300080f040f0b1010d44bb00a544bb008
+545b58b9000b004038594bb0145458b9000bffc03859c4c4111739310010e432f4ec11391139
+1239304b5358071005ed071008ed071008ed071005ed071008ed0705ed173259220140f00600
+05080609030d160a170d100d230d350d490a4f0a4e0d5a095a0a6a0a870d800d930d120a000a
+09060b050c0b0e0b0f1701150210041005170a140b140c1a0e1a0f2700240124022004200529
+082809250a240b240c270d2a0e2a0f201137003501350230043005380a360b360c380d390e39
+0f30114100400140024003400440054006400740084209450a470d490e490f40115400510151
+025503500450055606550756085709570a550b550c590e590f501166016602680a690e690f60
+117b08780e780f89008a09850b850c890d890e890f9909950b950c9a0e9a0fa40ba40cab0eab
+0fb011cf11df11ff11655d005d050e012b01353332363f01013309013302934e947c936c4c54
+3321fe3bc3015e015ec368c87a9a488654044efc94036c000000013500b800cb00cb00c100aa
+009c01a600b800660000007100cb00a002b20085007500b800c301cb0189022d00cb00a600f0
+00d300aa008700cb03aa0400014a003300cb000000d9050200f4015400b4009c013901140139
+07060400044e04b4045204b804e704cd0037047304cd04600473013303a2055605a605560539
+03c5021200c9001f00b801df007300ba03e9033303bc0444040e00df03cd03aa00e503aa0404
+000000cb008f00a4007b00b80014016f007f027b0252008f00c705cd009a009a006f00cb00cd
+019e01d300f000ba018300d5009803040248009e01d500c100cb00f600830354027f00000333
+026600d300c700a400cd008f009a0073040005d5010a00fe022b00a400b4009c00000062009c
+0000001d032d05d505d505d505f0007f007b005400a406b80614072301d300b800cb00a601c3
+01ec069300a000d3035c037103db0185042304a80448008f0139011401390360008f05d5019a
+0614072306660179046004600460047b009c00000277046001aa00e904600762007b00c5007f
+027b000000b4025205cd006600bc00660077061000cd013b01850389008f007b0000001d00cd
+074a042f009c009c0000077d006f0000006f0335006a006f007b00ae00b2002d0396008f027b
+00f600830354063705f6008f009c04e10266008f018d02f600cd03440029006604ee00730000
+140000960000b707060504030201002c2010b002254964b040515820c859212d2cb002254964
+b040515820c859212d2c20100720b00050b00d7920b8ffff5058041b0559b0051cb0032508b0
+042523e120b00050b00d7920b8ffff5058041b0559b0051cb0032508e12d2c4b505820b0fd45
+4459212d2cb002254560442d2c4b5358b00225b0022545445921212d2c45442d2cb00225b002
+2549b00525b005254960b0206368208a108a233a8a10653a2d000001000000025eb82604e7b0
+5f0f3cf5001f080000000000d3d94ef700000000d3d94ef7f7d6fc4c0e5909dc000000080000
+00010000000000010000076dfe1d00000efef7d6fa510e590001000000000000000000000000
+0000001004cd0066049a00c9051700e1028b0000042b006f0466007104e50071034a00ba04ec
+007104e7007b023900c1051400ba023900c1051200ba051200ae04bc003d0000000000000044
+0000009800000108000001080000026800000300000003a400000414000004e8000006140000
+0650000006f000000740000007b80000083c00000a080001000000100354002b0068000c0002
+00100099000800000415021600080004b8028040fffbfe03fa1403f92503f83203f79603f60e
+03f5fe03f4fe03f32503f20e03f19603f02503ef8a4105effe03ee9603ed9603ecfa03ebfa03
+eafe03e93a03e84203e7fe03e63203e5e45305e59603e48a4105e45303e3e22f05e3fa03e22f
+03e1fe03e0fe03df3203de1403dd9603dcfe03db1203da7d03d9bb03d8fe03d68a4105d67d03
+d5d44705d57d03d44703d3d21b05d3fe03d21b03d1fe03d0fe03cffe03cefe03cd9603cccb1e
+05ccfe03cb1e03ca3203c9fe03c6851105c61c03c51603c4fe03c3fe03c2fe03c1fe03c0fe03
+bffe03befe03bdfe03bcfe03bbfe03ba1103b9862505b9fe03b8b7bb05b8fe03b7b65d05b7bb
+03b78004b6b52505b65d40ff03b64004b52503b4fe03b39603b2fe03b1fe03b0fe03affe03ae
+6403ad0e03acab2505ac6403abaa1205ab2503aa1203a98a4105a9fa03a8fe03a7fe03a6fe03
+a51203a4fe03a3a20e05a33203a20e03a16403a08a4105a096039ffe039e9d0c059efe039d0c
+039c9b19059c64039b9a10059b19039a1003990a0398fe0397960d0597fe03960d03958a4105
+95960394930e05942803930e0392fa039190bb0591fe03908f5d0590bb039080048f8e25058f
+5d038f40048e25038dfe038c8b2e058cfe038b2e038a8625058a410389880b05891403880b03
+878625058764038685110586250385110384fe038382110583fe0382110381fe0380fe037ffe
+0340ff7e7d7d057efe037d7d037c64037b5415057b25037afe0379fe03780e03770c03760a03
+75fe0374fa0373fa0372fa0371fa0370fe036ffe036efe036c21036bfe036a1142056a530369
+fe03687d036711420566fe0365fe0364fe0363fe0362fe03613a0360fa035e0c035dfe035bfe
+035afe0359580a0559fa03580a035716190557320356fe035554150555420354150353011005
+531803521403514a130551fe03500b034ffe034e4d10054efe034d10034cfe034b4a13054bfe
+034a4910054a1303491d0d05491003480d0347fe0346960345960344fe0343022d0543fa0342
+bb03414b0340fe033ffe033e3d12053e14033d3c0f053d12033c3b0d053c40ff0f033b0d033a
+fe0339fe033837140538fa033736100537140336350b05361003350b03341e03330d0332310b
+0532fe03310b03302f0b05300d032f0b032e2d09052e10032d09032c32032b2a25052b64032a
+2912052a25032912032827250528410327250326250b05260f03250b0324fe0323fe03220f03
+210110052112032064031ffa031e1d0d051e64031d0d031c1142051cfe031bfa031a42031911
+420519fe031864031716190517fe031601100516190315fe0314fe0313fe031211420512fe03
+11022d05114203107d030f64030efe030d0c16050dfe030c0110050c16030bfe030a100309fe
+0308022d0508fe030714030664030401100504fe03401503022d0503fe0302011005022d0301
+100300fe0301b80164858d012b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b002b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b
+2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b1d00>
+] def
+/f-1-0 currentdict end definefont pop
+%%EndResource
+%%EndSetup
 %%Page: 1 1
-%%PageBoundingBox: 0 0 762 595
 %%BeginPageSetup
-[1 0 0 -1 0 595] CT
+%%PageBoundingBox: 0 0 762 595
 %%EndPageSetup
-GS
-[0.75 0 0 0.75 0 0.25] CT
-N
-0 0 M
-1016 0 L
-1016 793 L
-0 793 L
-0 0 L
-cp
-clip
-1 GC
-N
-0 0 1016 793 re
-f
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-1 GC
-N
-0 0 1016 793 re
-f
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-1 GC
-N
-132 706 M
-919 706 L
-919 59 L
-132 59 L
-cp
-f
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 706 M
-919 706 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 59 M
-919 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 706 M
-132 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-210.7 706 M
-210.7 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-289.4 706 M
-289.4 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-368.1 706 M
-368.1 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-446.8 706 M
-446.8 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-525.5 706 M
-525.5 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-604.2 706 M
-604.2 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-682.9 706 M
-682.9 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-761.6 706 M
-761.6 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-840.3 706 M
-840.3 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 706 M
-919 698.13 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 59 M
-132 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-210.7 59 M
-210.7 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-289.4 59 M
-289.4 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-368.1 59 M
-368.1 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-446.8 59 M
-446.8 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-525.5 59 M
-525.5 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-604.2 59 M
-604.2 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-682.9 59 M
-682.9 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-761.6 59 M
-761.6 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-840.3 59 M
-840.3 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 59 M
-919 66.87 L
-S
-GR
-GS
-[0.75 0 0 0.75 99 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--4 14 moveto 
-1 -1 scale
-(0) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 158.025 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(10) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 217.05 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(20) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 276.075 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(30) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 335.09999 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(40) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 394.125 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(50) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 453.15001 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(60) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 512.17502 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(70) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 571.19998 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(80) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 630.22499 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--7.5 14 moveto 
-1 -1 scale
-(90) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 689.25 533.74998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--11 14 moveto 
-1 -1 scale
-(100) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 706 M
-132 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 706 M
-919 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 706 M
-139.87 706 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 641.3 M
-139.87 641.3 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 576.6 M
-139.87 576.6 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 511.9 M
-139.87 511.9 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 447.2 M
-139.87 447.2 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 382.5 M
-139.87 382.5 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 317.8 M
-139.87 317.8 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 253.1 M
-139.87 253.1 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 188.4 M
-139.87 188.4 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 123.7 M
-139.87 123.7 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-132 59 M
-139.87 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 706 M
-911.13 706 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 641.3 M
-911.13 641.3 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 576.6 M
-911.13 576.6 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 511.9 M
-911.13 511.9 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 447.2 M
-911.13 447.2 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 382.5 M
-911.13 382.5 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 317.8 M
-911.13 317.8 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 253.1 M
-911.13 253.1 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 188.4 M
-911.13 188.4 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 123.7 M
-911.13 123.7 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-2 setlinecap
-1 LJ
-0.667 LW
-N
-919 59 M
-911.13 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 95 529.75] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--8 5.5 moveto 
-1 -1 scale
-(0) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 481.22499] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.1) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 432.69998] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.2) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 384.175] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.3) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 335.64999] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.4) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 287.125] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.5) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 238.59999] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.6) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 190.075] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.7) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 141.55] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.8) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 93.02501] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--19 5.5 moveto 
-1 -1 scale
-(0.9) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 95 44.5] CT
-0.149 GC
-/Helvetica 13 F
-GS
-[1 0 0 1 0 0] CT
--8 5.5 moveto 
-1 -1 scale
-(1) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0 0.447 0.741 RC
-1 LJ
-0.667 LW
-N
-139.87 562.447 M
-147.74 562.447 L
-155.61 562.447 L
-163.48 562.447 L
-171.35 562.447 L
-179.22 245.013 L
-187.09 236.925 L
-194.96 226.816 L
-202.83 224.794 L
-210.7 220.75 L
-218.57 220.75 L
-226.44 222.772 L
-234.31 220.75 L
-242.18 216.706 L
-250.05 204.575 L
-257.92 204.575 L
-265.79 190.422 L
-273.66 192.444 L
-281.53 188.4 L
-289.4 180.313 L
-297.27 180.313 L
-305.14 176.269 L
-313.01 172.225 L
-320.88 170.203 L
-328.75 168.181 L
-336.62 158.072 L
-344.49 156.05 L
-352.36 158.072 L
-360.23 158.072 L
-368.1 160.094 L
-375.97 158.072 L
-383.84 158.072 L
-391.71 156.05 L
-399.58 156.05 L
-407.45 156.05 L
-415.32 158.072 L
-423.19 160.094 L
-431.06 158.072 L
-438.93 156.05 L
-446.8 154.028 L
-454.67 158.072 L
-462.54 160.094 L
-470.41 158.072 L
-478.28 156.05 L
-486.15 154.028 L
-494.02 154.028 L
-501.89 158.072 L
-509.76 162.116 L
-517.63 160.094 L
-525.5 158.072 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0 0.447 0.741 RC
-1 LJ
-0.667 LW
-N
-517.63 160.094 M
-525.5 158.072 L
-533.37 162.116 L
-541.24 160.094 L
-549.11 162.116 L
-556.98 164.138 L
-564.85 166.159 L
-572.72 166.159 L
-580.59 164.138 L
-588.46 164.138 L
-596.33 164.138 L
-604.2 164.138 L
-612.07 172.225 L
-619.94 170.203 L
-627.81 170.203 L
-635.68 170.203 L
-643.55 172.225 L
-651.42 176.269 L
-659.29 176.269 L
-667.16 178.291 L
-675.03 180.313 L
-682.9 180.313 L
-690.77 178.291 L
-698.64 182.334 L
-706.51 186.378 L
-714.38 190.422 L
-722.25 192.444 L
-730.12 196.487 L
-737.99 196.487 L
-745.86 198.509 L
-753.73 198.509 L
-761.6 198.509 L
-769.47 200.531 L
-777.34 200.531 L
-785.21 200.531 L
-793.08 200.531 L
-800.95 202.553 L
-808.82 202.553 L
-816.69 202.553 L
-824.56 202.553 L
-832.43 202.553 L
-840.3 202.553 L
-848.17 202.553 L
-856.04 202.553 L
-863.91 202.553 L
-871.78 202.553 L
-879.65 202.553 L
-887.52 202.553 L
-895.39 202.553 L
-903.26 202.553 L
-911.13 202.553 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.851 0.325 0.098 RC
-1 LJ
-0.667 LW
-N
-139.87 562.447 M
-147.74 562.447 L
-155.61 562.447 L
-163.48 562.447 L
-171.35 562.447 L
-179.22 428.094 L
-187.09 420.428 L
-194.96 410.63 L
-202.83 408.859 L
-210.7 404.391 L
-218.57 404.391 L
-226.44 407.385 L
-234.31 405.07 L
-242.18 400.616 L
-250.05 385.218 L
-257.92 385.218 L
-265.79 365.17 L
-273.66 367.928 L
-281.53 359.626 L
-289.4 345.042 L
-297.27 345.042 L
-305.14 336.286 L
-313.01 326.724 L
-320.88 322.314 L
-328.75 317.8 L
-336.62 293.538 L
-344.49 285.87 L
-352.36 288.855 L
-360.23 288.855 L
-368.1 289.438 L
-375.97 280.829 L
-383.84 277.838 L
-391.71 271.448 L
-399.58 271.448 L
-407.45 271.448 L
-415.32 274.667 L
-423.19 277.985 L
-431.06 267.71 L
-438.93 260.525 L
-446.8 253.1 L
-454.67 259.793 L
-462.54 263.316 L
-470.41 255.411 L
-478.28 247.218 L
-486.15 238.722 L
-494.02 238.722 L
-501.89 240.16 L
-509.76 235.455 L
-517.63 224.512 L
-525.5 213.048 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.851 0.325 0.098 RC
-1 LJ
-0.667 LW
-N
-517.63 224.512 M
-525.5 213.048 L
-533.37 220.75 L
-541.24 208.308 L
-549.11 192.206 L
-556.98 196.242 L
-564.85 200.531 L
-572.72 200.531 L
-580.59 184.226 L
-588.46 184.226 L
-596.33 184.226 L
-604.2 184.226 L
-612.07 202.778 L
-619.94 166.833 L
-627.81 166.833 L
-635.68 147.227 L
-643.55 127.105 L
-651.42 135.118 L
-659.29 135.118 L
-667.16 139.875 L
-675.03 145.267 L
-682.9 145.267 L
-690.77 105.214 L
-698.64 59 L
-706.51 59 L
-714.38 59 L
-722.25 59 L
-730.12 59 L
-737.99 59 L
-745.86 59 L
-753.73 59 L
-761.6 59 L
-769.47 59 L
-777.34 59 L
-785.21 59 L
-793.08 59 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.929 0.694 0.125 RC
-1 LJ
-0.667 LW
-N
-139.87 59 M
-147.74 59 L
-155.61 59 L
-163.48 59 L
-171.35 59 L
-179.22 122.789 L
-187.09 122.789 L
-194.96 131.901 L
-202.83 141.014 L
-210.7 141.014 L
-218.57 141.014 L
-226.44 159.239 L
-234.31 159.239 L
-242.18 168.352 L
-250.05 168.352 L
-257.92 168.352 L
-265.79 168.352 L
-273.66 177.465 L
-281.53 223.028 L
-289.4 223.028 L
-297.27 223.028 L
-305.14 232.141 L
-313.01 241.254 L
-320.88 241.254 L
-328.75 241.254 L
-336.62 241.254 L
-344.49 250.366 L
-352.36 259.479 L
-360.23 259.479 L
-368.1 277.704 L
-375.97 286.817 L
-383.84 295.93 L
-391.71 295.93 L
-399.58 295.93 L
-407.45 295.93 L
-415.32 305.042 L
-423.19 314.155 L
-431.06 323.268 L
-438.93 323.268 L
-446.8 323.268 L
-454.67 341.493 L
-462.54 350.606 L
-470.41 350.606 L
-478.28 350.606 L
-486.15 350.606 L
-494.02 350.606 L
-501.89 377.944 L
-509.76 414.394 L
-517.63 414.394 L
-525.5 414.394 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.929 0.694 0.125 RC
-1 LJ
-0.667 LW
-N
-517.63 414.394 M
-525.5 414.394 L
-533.37 432.62 L
-541.24 432.62 L
-549.11 459.958 L
-556.98 469.07 L
-564.85 478.183 L
-572.72 478.183 L
-580.59 478.183 L
-588.46 478.183 L
-596.33 478.183 L
-604.2 478.183 L
-612.07 514.634 L
-619.94 523.746 L
-627.81 523.746 L
-635.68 532.859 L
-643.55 551.084 L
-651.42 569.31 L
-659.29 569.31 L
-667.16 578.423 L
-675.03 587.535 L
-682.9 587.535 L
-690.77 587.535 L
-698.64 614.873 L
-706.51 633.099 L
-714.38 651.324 L
-722.25 660.437 L
-730.12 678.662 L
-737.99 678.662 L
-745.86 687.775 L
-753.73 687.775 L
-761.6 687.775 L
-769.47 696.887 L
-777.34 696.887 L
-785.21 696.887 L
-793.08 696.887 L
-800.95 706 L
-808.82 706 L
-816.69 706 L
-824.56 706 L
-832.43 706 L
-840.3 706 L
-848.17 706 L
-856.04 706 L
-863.91 706 L
-871.78 706 L
-879.65 706 L
-887.52 706 L
-895.39 706 L
-903.26 706 L
-911.13 706 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.494 0.184 0.557 RC
-1 LJ
-0.667 LW
-N
-139.87 471.028 M
-147.74 471.028 L
-155.61 471.028 L
-163.48 471.028 L
-171.35 471.028 L
-179.22 329.564 L
-187.09 322.593 L
-194.96 315.943 L
-202.83 316.544 L
-210.7 312.725 L
-218.57 312.725 L
-226.44 319.731 L
-234.31 317.8 L
-242.18 316.48 L
-250.05 304.179 L
-257.92 304.179 L
-265.79 288.809 L
-273.66 293.626 L
-281.53 302.576 L
-289.4 292.855 L
-297.27 292.855 L
-305.14 290.642 L
-313.01 288.316 L
-320.88 285.656 L
-328.75 282.962 L
-336.62 268.954 L
-344.49 268.838 L
-352.36 274.667 L
-360.23 274.667 L
-368.1 283.653 L
-375.97 283.844 L
-383.84 287.079 L
-391.71 284.043 L
-399.58 284.043 L
-407.45 284.043 L
-415.32 290.409 L
-423.19 296.868 L
-431.06 297.368 L
-438.93 294.273 L
-446.8 291.13 L
-454.67 304.76 L
-462.54 311.734 L
-470.41 308.63 L
-478.28 305.476 L
-486.15 302.272 L
-494.02 302.272 L
-501.89 321.008 L
-509.76 345.93 L
-517.63 342.772 L
-525.5 339.558 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.494 0.184 0.557 RC
-1 LJ
-0.667 LW
-N
-517.63 342.772 M
-525.5 339.558 L
-533.37 356.27 L
-541.24 353.091 L
-549.11 373.257 L
-556.98 382.5 L
-564.85 391.922 L
-572.72 391.922 L
-580.59 388.843 L
-588.46 388.843 L
-596.33 388.843 L
-604.2 388.843 L
-612.07 428.714 L
-619.94 433.579 L
-627.81 433.579 L
-635.68 441.634 L
-643.55 461.578 L
-651.42 485.432 L
-659.29 485.432 L
-667.16 497.77 L
-675.03 510.395 L
-682.9 510.395 L
-690.77 508.094 L
-698.64 546.247 L
-706.51 574.962 L
-714.38 605.169 L
-722.25 620.868 L
-730.12 653.541 L
-737.99 653.541 L
-745.86 670.548 L
-753.73 670.548 L
-761.6 670.548 L
-769.47 688.028 L
-777.34 688.028 L
-785.21 688.028 L
-793.08 688.028 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-1 GC
-N
-770 167 M
-770 96 L
-875 96 L
-875 167 L
-cp
-f
-GR
-GS
-[0.75 0 0 0.75 616.5 80.21262] CT
-/Helvetica 12 F
-GS
-[1 0 0 1 0 0] CT
-0 5 moveto 
-1 -1 scale
-(accuracy) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0 0.447 0.741 RC
-1 LJ
-0.667 LW
-N
-778 106.617 M
-818 106.617 L
-S
-GR
-GS
-[0.75 0 0 0.75 616.5 92.6542] CT
-/Helvetica 12 F
-GS
-[1 0 0 1 0 0] CT
-0 5 moveto 
-1 -1 scale
-(precision) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.851 0.325 0.098 RC
-1 LJ
-0.667 LW
-N
-778 123.206 M
-818 123.206 L
-S
-GR
-GS
-[0.75 0 0 0.75 616.5 105.09579] CT
-/Helvetica 12 F
-GS
-[1 0 0 1 0 0] CT
-0 5 moveto 
-1 -1 scale
-(recall) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.929 0.694 0.125 RC
-1 LJ
-0.667 LW
-N
-778 139.794 M
-818 139.794 L
-S
-GR
-GS
-[0.75 0 0 0.75 616.5 117.53738] CT
-/Helvetica 12 F
-GS
-[1 0 0 1 0 0] CT
-0 5 moveto 
-1 -1 scale
-(F1 score) t 
-GR
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.494 0.184 0.557 RC
-1 LJ
-0.667 LW
-N
-778 156.383 M
-818 156.383 L
-S
-GR
-GS
-[0.75 0 0 0.75 0 0.25] CT
-0.149 GC
-10.0 ML
-0.667 LW
-N
-770 167 M
-770 96 L
-875 96 L
-875 167 L
-cp
-S
-GR
+q 0 0 762 595 rectclip
+1 0 0 -1 0 595 cm q
+Q q
+q
+0 0 762 595 re W n
+[ 1 0 0 1 0 0 ] concat
+  q
+1 g
+0 0.25 762 594.75 re f
+  Q
+Q
+Q q
+1 g
+0 0.25 762 594.75 re f
+99 46 590.25 485.25 re f
+0.14902 g
+0.50025 w
+2 J
+1 j
+[] 0.0 d
+10 M q 1 0 0 -1 0 0 cm
+99 -529.75 m 689.25 -529.75 l S Q
+q 1 0 0 -1 0 0 cm
+99 -44.5 m 689.25 -44.5 l S Q
+q 1 0 0 -1 0 0 cm
+99 -529.75 m 99 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+158.023 -529.75 m 158.023 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+217.051 -529.75 m 217.051 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+276.074 -529.75 m 276.074 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+335.102 -529.75 m 335.102 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+394.125 -529.75 m 394.125 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+453.148 -529.75 m 453.148 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+512.176 -529.75 m 512.176 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+571.199 -529.75 m 571.199 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+630.227 -529.75 m 630.227 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -529.75 m 689.25 -523.848 l S Q
+q 1 0 0 -1 0 0 cm
+99 -44.5 m 99 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+158.023 -44.5 m 158.023 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+217.051 -44.5 m 217.051 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+276.074 -44.5 m 276.074 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+335.102 -44.5 m 335.102 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+394.125 -44.5 m 394.125 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+453.148 -44.5 m 453.148 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+512.176 -44.5 m 512.176 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+571.199 -44.5 m 571.199 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+630.227 -44.5 m 630.227 -50.402 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -44.5 m 689.25 -50.402 l S Q
+BT
+9.75 0 0 -9.75 95.999998 544.249999 Tm
+/f-0-0 1 Tf
+[(0)-5229(10)]TJ
+11.83847 0 Td
+[(20)-4942(30)-4942(40)]TJ
+18.161549 0 Td
+[(50)-4942(60)-4942(70)]TJ
+18.161552 0 Td
+[(80)-4942(90)-4672(100)]TJ
+ET
+q 1 0 0 -1 0 0 cm
+99 -529.75 m 99 -44.5 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -529.75 m 689.25 -44.5 l S Q
+q 1 0 0 -1 0 0 cm
+99 -529.75 m 104.902 -529.75 l S Q
+q 1 0 0 -1 0 0 cm
+99 -481.227 m 104.902 -481.227 l S Q
+q 1 0 0 -1 0 0 cm
+99 -432.699 m 104.902 -432.699 l S Q
+q 1 0 0 -1 0 0 cm
+99 -384.176 m 104.902 -384.176 l S Q
+q 1 0 0 -1 0 0 cm
+99 -335.648 m 104.902 -335.648 l S Q
+q 1 0 0 -1 0 0 cm
+99 -287.125 m 104.902 -287.125 l S Q
+q 1 0 0 -1 0 0 cm
+99 -238.602 m 104.902 -238.602 l S Q
+q 1 0 0 -1 0 0 cm
+99 -190.074 m 104.902 -190.074 l S Q
+q 1 0 0 -1 0 0 cm
+99 -141.551 m 104.902 -141.551 l S Q
+q 1 0 0 -1 0 0 cm
+99 -93.023 m 104.902 -93.023 l S Q
+q 1 0 0 -1 0 0 cm
+99 -44.5 m 104.902 -44.5 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -529.75 m 683.348 -529.75 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -481.227 m 683.348 -481.227 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -432.699 m 683.348 -432.699 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -384.176 m 683.348 -384.176 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -335.648 m 683.348 -335.648 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -287.125 m 683.348 -287.125 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -238.602 m 683.348 -238.602 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -190.074 m 683.348 -190.074 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -141.551 m 683.348 -141.551 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -93.023 m 683.348 -93.023 l S Q
+q 1 0 0 -1 0 0 cm
+689.25 -44.5 m 683.348 -44.5 l S Q
+BT
+9.75 0 0 -9.75 88.999998 533.874999 Tm
+/f-0-0 1 Tf
+(0)Tj
+-0.846154 4.976923 Td
+(0.1)Tj
+0 4.976923 Td
+(0.2)Tj
+0 4.976922 Td
+(0.3)Tj
+0 4.976924 Td
+(0.4)Tj
+0 4.976922 Td
+(0.5)Tj
+0 4.976922 Td
+(0.6)Tj
+0 4.976922 Td
+(0.7)Tj
+0 4.976926 Td
+(0.8)Tj
+0 4.976922 Td
+(0.9)Tj
+0.846154 4.976922 Td
+(1)Tj
+ET
+0 0.447059 0.741176 rg
+0 J
+q 1 0 0 -1 0 0 cm
+104.902 -422.086 m 128.512 -422.086 l 134.414 -184.012 l 140.316 -177.945
+ l 146.219 -170.363 l 152.121 -168.844 l 158.023 -165.812 l 163.926 -165.812
+ l 169.828 -167.328 l 175.73 -165.812 l 181.637 -162.777 l 187.539 -153.68
+ l 193.441 -153.68 l 199.344 -143.066 l 205.246 -144.582 l 211.148 -141.551
+ l 217.051 -135.484 l 222.953 -135.484 l 228.855 -132.453 l 234.758 -129.418
+ l 246.562 -126.387 l 252.465 -118.805 l 258.367 -117.285 l 264.27 -118.805
+ l 270.172 -118.805 l 276.074 -120.32 l 281.977 -118.805 l 287.879 -118.805
+ l 293.781 -117.285 l 305.59 -117.285 l 311.488 -118.805 l 317.395 -120.32
+ l 323.297 -118.805 l 329.199 -117.285 l 335.102 -115.77 l 341.004 -118.805
+ l 346.906 -120.32 l 352.809 -118.805 l 358.711 -117.285 l 364.613 -115.77
+ l 370.516 -115.77 l 376.418 -118.805 l 382.32 -121.836 l 394.125 -118.805
+ l S Q
+q 1 0 0 -1 0 0 cm
+388.223 -120.32 m 394.125 -118.805 l 400.027 -121.836 l 405.93 -120.32 
+l 411.832 -121.836 l 417.734 -123.355 l 423.637 -124.867 l 429.539 -124.867
+ l 435.441 -123.355 l 453.148 -123.355 l 459.051 -129.418 l 464.953 -127.902
+ l 476.762 -127.902 l 482.664 -129.418 l 488.566 -132.453 l 494.469 -132.453
+ l 506.273 -135.484 l 512.176 -135.484 l 518.078 -133.969 l 523.98 -137 
+l 529.883 -140.035 l 535.785 -143.066 l 541.688 -144.582 l 547.59 -147.613
+ l 553.492 -147.613 l 559.395 -149.133 l 571.199 -149.133 l 577.102 -150.648
+ l 594.809 -150.648 l 600.715 -152.164 l 683.348 -152.164 l S Q
+0.85098 0.32549 0.0980392 rg
+q 1 0 0 -1 0 0 cm
+104.902 -422.086 m 128.512 -422.086 l 134.414 -321.32 l 140.316 -315.57
+ l 146.219 -308.223 l 152.121 -306.895 l 158.023 -303.543 l 163.926 -303.543
+ l 169.828 -305.789 l 175.73 -304.051 l 181.637 -300.711 l 187.539 -289.164
+ l 193.441 -289.164 l 199.344 -274.129 l 205.246 -276.195 l 211.148 -269.969
+ l 217.051 -259.031 l 222.953 -259.031 l 228.855 -252.465 l 234.758 -245.293
+ l 240.66 -241.984 l 246.562 -238.602 l 252.465 -220.402 l 258.367 -214.652
+ l 264.27 -216.891 l 270.172 -216.891 l 276.074 -217.328 l 281.977 -210.871
+ l 287.879 -208.629 l 293.781 -203.836 l 305.59 -203.836 l 311.488 -206.25
+ l 317.395 -208.738 l 323.297 -201.031 l 329.199 -195.645 l 335.102 -190.074
+ l 341.004 -195.094 l 346.906 -197.738 l 352.809 -191.809 l 358.711 -185.664
+ l 364.613 -179.289 l 370.516 -179.289 l 376.418 -180.371 l 382.32 -176.84
+ l 388.223 -168.633 l 394.125 -160.035 l S Q
+q 1 0 0 -1 0 0 cm
+388.223 -168.633 m 394.125 -160.035 l 400.027 -165.812 l 405.93 -156.48
+ l 411.832 -144.402 l 417.734 -147.434 l 423.637 -150.648 l 429.539 -150.648
+ l 435.441 -138.422 l 453.148 -138.422 l 459.051 -152.336 l 464.953 -125.375
+ l 470.855 -125.375 l 476.762 -110.672 l 482.664 -95.578 l 488.566 -101.59
+ l 494.469 -101.59 l 500.371 -105.156 l 506.273 -109.199 l 512.176 -109.199
+ l 518.078 -79.16 l 523.98 -44.5 l 594.809 -44.5 l S Q
+0.929412 0.694118 0.12549 rg
+q 1 0 0 -1 0 0 cm
+104.902 -44.5 m 128.512 -44.5 l 134.414 -92.344 l 140.316 -92.344 l 146.219
+ -99.176 l 152.121 -106.012 l 163.926 -106.012 l 169.828 -119.68 l 175.73
+ -119.68 l 181.637 -126.516 l 199.344 -126.516 l 205.246 -133.348 l 211.148
+ -167.52 l 222.953 -167.52 l 234.758 -181.191 l 252.465 -181.191 l 258.367
+ -188.023 l 264.27 -194.859 l 270.172 -194.859 l 276.074 -208.527 l 287.879
+ -222.199 l 305.59 -222.199 l 311.488 -229.031 l 317.395 -235.867 l 323.297
+ -242.699 l 335.102 -242.699 l 341.004 -256.371 l 346.906 -263.203 l 370.516
+ -263.203 l 376.418 -283.707 l 382.32 -311.047 l 394.125 -311.047 l S Q
+q 1 0 0 -1 0 0 cm
+388.223 -311.047 m 394.125 -311.047 l 400.027 -324.715 l 405.93 -324.715
+ l 411.832 -345.219 l 417.734 -352.051 l 423.637 -358.887 l 453.148 -358.887
+ l 459.051 -386.227 l 464.953 -393.059 l 470.855 -393.059 l 476.762 -399.895
+ l 488.566 -427.23 l 494.469 -427.23 l 506.273 -440.902 l 518.078 -440.902
+ l 523.98 -461.406 l 535.785 -488.742 l 541.688 -495.578 l 547.59 -509.246
+ l 553.492 -509.246 l 559.395 -516.082 l 571.199 -516.082 l 577.102 -522.914
+ l 594.809 -522.914 l 600.715 -529.75 l 683.348 -529.75 l S Q
+0.494118 0.184314 0.556863 rg
+q 1 0 0 -1 0 0 cm
+104.902 -353.52 m 128.512 -353.52 l 134.414 -247.422 l 140.316 -242.195
+ l 146.219 -237.207 l 152.121 -237.656 l 158.023 -234.793 l 163.926 -234.793
+ l 169.828 -240.047 l 175.73 -238.602 l 181.637 -237.609 l 187.539 -228.383
+ l 193.441 -228.383 l 199.344 -216.855 l 205.246 -220.469 l 211.148 -227.184
+ l 217.051 -219.891 l 222.953 -219.891 l 228.855 -218.23 l 234.758 -216.488
+ l 240.66 -214.492 l 246.562 -212.473 l 252.465 -201.965 l 258.367 -201.879
+ l 264.27 -206.25 l 270.172 -206.25 l 276.074 -212.988 l 281.977 -213.133
+ l 287.879 -215.559 l 293.781 -213.281 l 305.59 -213.281 l 311.488 -218.059
+ l 317.395 -222.902 l 323.297 -223.277 l 329.199 -220.953 l 335.102 -218.598
+ l 341.004 -228.82 l 346.906 -234.051 l 352.809 -231.723 l 358.711 -229.355
+ l 364.613 -226.953 l 370.516 -226.953 l 376.418 -241.008 l 382.32 -259.699
+ l 388.223 -257.328 l 394.125 -254.918 l S Q
+q 1 0 0 -1 0 0 cm
+388.223 -257.328 m 394.125 -254.918 l 400.027 -267.453 l 405.93 -265.066
+ l 411.832 -280.191 l 417.734 -287.125 l 423.637 -294.191 l 429.539 -294.191
+ l 435.441 -291.883 l 453.148 -291.883 l 459.051 -321.785 l 464.953 -325.434
+ l 470.855 -325.434 l 476.762 -331.477 l 482.664 -346.434 l 488.566 -364.324
+ l 494.469 -364.324 l 500.371 -373.578 l 506.273 -383.047 l 512.176 -383.047
+ l 518.078 -381.32 l 523.98 -409.934 l 529.883 -431.473 l 535.785 -454.129
+ l 541.688 -465.902 l 547.59 -490.406 l 553.492 -490.406 l 559.395 -503.16
+ l 571.199 -503.16 l 577.102 -516.27 l 594.809 -516.27 l S Q
+1 g
+553.492 72.25 102.758 75.363 re f
+0.14902 g
+1.05515 w
+0 j
+q 1 0 0 -1 0 0 cm
+514.488 -183.059 158.422 -117.766 re S Q
+0 g
+BT
+20 0 0 -20 571.804722 283.746587 Tm
+/f-1-0 1 Tf
+[(F1 sc)-3(or)21(e)]TJ
+ET
+0 0.447059 0.741176 rg
+0.70222 w
+1 j
+q 1 0 0 -1 0 0 cm
+530.805 -204.805 m 560.805 -204.805 l h
+530.805 -204.805 m S Q
+0.85098 0.32549 0.0980392 rg
+q 1 0 0 -1 0 0 cm
+530.805 -229.32 m 560.805 -229.32 l S Q
+0.929412 0.694118 0.12549 rg
+q 1 0 0 -1 0 0 cm
+530.805 -253.836 m 560.805 -253.836 l S Q
+0.494118 0.184314 0.556863 rg
+q 1 0 0 -1 0 0 cm
+530.805 -278.352 m 560.805 -278.352 l S Q
+0 g
+BT
+20 0 0 -20 571.050132 260.95877 Tm
+/f-1-0 1 Tf
+[(r)21(ecall)]TJ
+-0.0359814 1.291688 Td
+[(pr)21(ecision)]TJ
+-0.0163672 1.272563 Td
+[(accu)-3(rac)-3(y)]TJ
+ET
+Q Q
+showpage
 %%Trailer
-%%Pages: 1
+end
 %%EOF

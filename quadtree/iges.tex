@@ -20,16 +20,16 @@ Detail of the specification of each entity is explained in \cite{Nasr2007}.
 \subsection{Output to mesh generator}
 \label{qdt_section:iges_output}
 \paragraph{}
-The output file that the mesh generator read in will be a shorter summary of the geometric input.
+The output file that the mesh generator read in will be a short summary of the geometric input.
 Boundary representation will be kept as the data structure to describe the geometric input.
 However, some fields apart from the curves or the surfaces will be added.
 In the output file, the geometry will be organized in key points, polylines and surfaces.
 The key points define the coordinates of all points and polylines are used to represent all curves including NURBS curves for simplification.
-NURBS curves introduced in in \ref{lr_sec:NURBS} can be used directly by the mesh generator as well but it is found that the computational cost in the calculation of the distance between points to NURBS curves surpasses the merits of using it directly.
+NURBS curves introduced in in \ref{lr_sec:NURBS} can be used directly by the mesh generator as well but it is found that the computational cost in the calculation of the distance\hl{s} between points to NURBS curves surpasses the merits of using it directly.
 The exact geometry can be retained by projecting the nodes on the boundary back to the origin NURBS curves after the mesh is generated.
 
 \paragraph{}
-Representing a straight line with polyline can be natural, first and the last points will be enough to achieve an exact representation.
+Representing a straight line with polyline can be natural, \hl{the} first and the last points will be enough to achieve an exact representation.
 However, that is not the case for curves whose curvature is not always zero.
 Although adding more key points can increase the quality of polyline representation, computational cost in calculating the distance increases at the same time.
 Yet, having only few key points may result in a bad polyline representation which leads to a poor mesh quality.
@@ -91,8 +91,8 @@ Since the order of each subdivided NURBS curve used in engineering softwares are
     \label{qt_fig:iges_chord_ratio_nurbs}
     \end{figure}
 %
-In order to determine the target NURBS curve is convex one or concave one, a cross product will be conducted.
-by assuming the subdivided NURBS curve is cubic, there will be four control points $P_1,P_2,P_3$ and $P_4$.
+In order to determine \hl{whether} the target NURBS curve is convex or concave, a cross product will be conducted.
+By assuming the subdivided NURBS curve is cubic, there will be four control points $P_1,P_2,P_3$ and $P_4$.
 If the signs of $cross(\overrightarrow{P_1P_2},\overrightarrow{P_2P_3})$ and $cross(\overrightarrow{P_1P_2},\overrightarrow{P_2P_3})$ are the same, then the curve is convex.
 Otherwise it will be concave.
 
@@ -100,7 +100,7 @@ Otherwise it will be concave.
 \subsubsection{Convex curves}
 \label{qt_ssc:convex_curves}
 \paragraph{}
-Start with the simple case, in the situation illustrated in Fig.~\ref{qt_fig:iges_chord_split_convex_sum} where line $C(u_0)C(u_n)$ and the NURBS curve form a convex set, we are looking for a point $C(u_m)$ on the curve so that $C'(u_m)$ is parallel to $\overrightarrow{C(u_0)C(u_n)}$
+Start with the simple case, in the situation illustrated in Fig.~\ref{qt_fig:iges_chord_split_convex_sum} where line $C(u_0)C(u_n)$ and the NURBS curve form a convex set, we are looking for a point $C(u_m)$ on the curve so that $C'(u_m)$ is parallel to $\overrightarrow{C(u_0)C(u_n)}$.
     \begin{figure}[h!]
         \centering
         \scalebox{0.6}{

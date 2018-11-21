@@ -1,9 +1,9 @@
 \section{Numerical integrations}
 \label{iso_section:numerical_integration}
 \paragraph{}
-When computing the coefficient matrix (Eq.~\ref{lr_eq:sbfem_coe_matrix}) in SBFEM , numerical integrations tends to be overwhelmingly preferred over the mathematical deduction.
+When computing the coefficient matrix (Eq.~\ref{lr_eq:sbfem_coe_matrix}) in SBFEM , numerical integrations tend to be overwhelmingly preferred over the mathematical deduction.
 The reason behind lies in the flexibility of the numerical method and that deduction of exact integrations scheme to any given shape functions may not be feasible. 
-Due to the fact that the polynomials are adopted as the shape function, the numerical integration methods such as Legendre Quadrature or Gauss Quadrature provides possibility for an exact integration numerically.
+Due to the fact that the polynomials are adopted as the shape function, the numerical integration methods such as Legendre Quadrature or Gauss Quadrature provide possibility for an exact integration numerically.
 An integration quadrature is normally defined as followed:
     \begin{equation}
         \int_{-1}^{1}
@@ -14,7 +14,7 @@ An integration quadrature is normally defined as followed:
     \end{equation}
 %
 The integration of any targeted polynomial function defined on $[-1,1]$ can be explicitly expressed as series.
-A set of integration points $\left\{ x_1, x_2, \dots, x_n \right\} \in \left[-1,1\right]$ and the corresponding weight $\left\{ a_1, a_2, \dots, a_n \right\} \in \mathbb{R}$ determined from the integration quadrature can be adopted to perform an exact integration on the given function.
+A set of integration points $\left\{ x_1, x_2, \dots, x_n \right\} \in \left[-1,1\right]$ and the corresponding weight\hl{s} $\left\{ a_1, a_2, \dots, a_n \right\} \in \mathbb{R}$ determined from the integration quadrature can be adopted to perform an exact integration on the given function.
 \paragraph{}
 Although shape functions used in NURBS are not polynomials, they can be separated into several spans within which the basis functions are rational polynomials.
 Based on this property, the numerical integration quadrature on each of these spans can be applied to achieve a reasonably accurate result.

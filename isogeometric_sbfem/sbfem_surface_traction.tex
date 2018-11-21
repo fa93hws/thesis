@@ -14,7 +14,7 @@ A surface traction $\Phi$ can be regarded as a Neumann boundary condition which 
 where $[N]$ describe the shape functions and $\Phi_n$ is the surface tractions on the nodes.
 
 \paragraph{}
-As mentioned in \ref{iso_section:numerical_integration}, numerical integration would be preferred over mathematical deduction when the target function is an input.
+As mentioned in \hl{Sec.}~\ref{iso_section:numerical_integration}, numerical integration would be preferred over mathematical deduction when the target function is an input.
 In the flavour of numerical integration, Eq.~\ref{iso_eq:neumann_bc} can be expressed as followed.
     \begin{equation}
         {F}=-\sum_{i=1}^n
@@ -32,7 +32,7 @@ In conventional FEM or SBFEM, $\Phi_n$ can be determined as the real values on t
 In other words, all nodes that determine the shape function in traditional FEM or SBFEM must be on the interpolating function.
 However, this is not the case in NURBS curves where it is the control points that play the same role as the nodes in existing shape function.
 In NURBS curves, apart from the first and the last points, the control points are not necessarily on the curves as illustrated in Fig.~\ref{lr_fig:nurbs_knotins}.
-This prevent us from adopting the physical value on the nodes as $\Phi_n$ in Eq.~\ref{iso_eq:neumann_bc_numerical}.
+This prevent\hl{s} us from adopting physical value\hl{s} on the nodes as $\Phi_n$ in Eq.~\ref{iso_eq:neumann_bc_numerical}.
 Instead, a set of ``control stress'' $\Phi_c$, the control points of another NURBS curve that represent the surface traction geometrically, need to be determined as 
     \begin{equation}
         \Phi_c = \argmin_{\Phi_c}
@@ -48,7 +48,7 @@ Instead, a set of ``control stress'' $\Phi_c$, the control points of another NUR
     \end{equation}
 %
 It means that ``control stress'' $\Phi_c$ describe a minimum mean squared error between surface traction NURBS curve and the real traction $\Phi$.
-One of the simplest mathematical method to determine $\Phi_c$ will be the least square method.
+One of the simplest mathematical method\hl{s} to determine $\Phi_c$ will be the least square method.
 Given the fact that the shape functions of this NURBS curve will be the same as that describe the geometry, $\left[ N(\xi) \right]$ can be considered as known.
 By selecting $n$ sample points over the domain of the $\Phi$, Eq.~\ref{iso_eq:surface_traction_fitting} can be rewrite as
     \begin{equation}

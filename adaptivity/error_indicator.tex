@@ -1,7 +1,7 @@
 \paragraph{}
 This section details the proposed error indicators for adaptive scaled boundary finite element analysis.
 In comparison with the works in \citep{NME:NME439}, no stress recovery is required.
-This reduces the computational effort and leads to an efficient adaptive analysis.
+This reduces the computational effort\hl{s} and leads to an efficient adaptive analysis.
 The error estimation is directly invoked from the scaled boundary finite element solutions.
 
 %   ----    %
@@ -33,8 +33,7 @@ The area of any polygon in Fig.~\ref{adap_fig:ei_polygon} can be calculated as
 \paragraph{}
 Mesh quality is another important factor that influences the accuracy.
 In SBFEM, the mesh quality is highly related to the minimal angle formed by the intersecting lines connected to the scaling center and the adjacent polygon vertexes.
-An extremely smaller angel as shown in Fig.~\ref{adap_fig:ei_mesh_quality} may raises numerical stability issue and hence decreases the accuracy of the result.
-
+An extremely small \hl{angle} as shown in Fig.~\ref{adap_fig:ei_mesh_quality} may raise numerical stability issues and hence decrease the accuracy of the result.
 \begin{figure}[h!]
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
@@ -60,7 +59,7 @@ An extremely smaller angel as shown in Fig.~\ref{adap_fig:ei_mesh_quality} may r
 %
 \subsection{Eigenvalue in SBFEM}
 \paragraph{}
-From Eq.~\ref{lr_eq:sbfem_displacement_field} ,the displacement SBFEM can be calculated as
+From Eq.~\ref{lr_eq:sbfem_displacement_field}, the displacement in the SBFEM can be calculated as
 \begin{equation}
     u(\xi) = c_1 \xi ^{-\lambda_1} \phi_u^1
             +c_2 \xi ^{-\lambda_2} \phi_u^2
@@ -72,7 +71,7 @@ The contribution of each mode is represented by every individual term in Eq.~\re
 On the other hand, after the displacement solution is calculated on the boundary nodes by Eq.~\ref{lr_eq:sbfem_general_sol_disp} with $\xi=1$, displacement solution in circumferential direction then is interpolated by the help of the $p$-th order shape function $R(\eta)$ in Eq.~\ref{lr_eq:sbfem_displacement_field}.
 As a result, terms corresponding to the eigenvalue $\lambda_i \leq p$ can be exactly interpolated by the shape function.
 These terms can be regarded as exact.
-However, therms corresponding to the eigenvalue $\lambda_i > p$ indicates the shape function is not capable to interpolate the displacement exactly and thus shall be taken as error terms.
+However, therms corresponding to the eigenvalue $\lambda_i > p$ indicate the shape functions are not capable to interpolate the displacement exactly and thus shall be taken as error.
 Consequently, displacement on the boundary $u(\xi=1)$ can be expressed with exact terms and approximation terms as followed
 \begin{equation}
     u_b = u_e (\xi=1) + u_a(\xi=1)

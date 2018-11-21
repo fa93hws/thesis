@@ -4,7 +4,7 @@
 \paragraph{}
 Structural engineering is one of the aspects in civil engineering that aims at the design of the structure which supports the loads without failure.
 The loads imposed may be any physical forces due to gravity, wind action, vibration, temperature change, etc.
-In the ancient age, it helped the people to build and maintain mega-structure such as pyramid and sphinx in Egypt.
+In the ancient age, it helped the people to build and maintain mega-structure\hl{s} such as pyramid and sphinx in Egypt.
 Nowadays, thanks to the tremendous development in mathematics and material science, an increasingly wider range of different complex structures becomes possible to analysis.
 
 % 2.	Computer aided-design and its application in structural engineering and others
@@ -24,7 +24,7 @@ After that, the method was refined with the help of variational methods from Lor
 Then, great amount of research has been conducted on the FEM in terms of mathematics and applications, contributing to its dominance over numerical method in solid mechanics and structural analysis by the beginning of the 1990s \citep{Clo1980}.
 Although it is a principle method for solving complex problems in the engineering field, lack of the local mesh refinement and the inability to formulate unbounded domain restrict the usage of the FEM in some area.
 As a consequence, other numerical methods such as Boundary Element Method (BEM) \citep{Li2011,WARDLE1984525} and the Extended FEM (X-FEM) \citep{Moes1999} were proposed.
-In BEM, only the boundary was discretised, contributing to a reduction of the spatial dimension by one.
+In \hl{the} BEM, only the boundary was discretised, contributing to a reduction of the spatial dimension by one.
 Besides, the problem involves the unbounded domain can be solved naturally.
 Nevertheless, the fundamental solution satisfying the governing differential equations in the domain must be available.
 Unfortunately, this fundamental solution may be extremely complex.
@@ -42,7 +42,7 @@ Numerous studies have been conducted for an automatic mesh generation algorithm 
 % 5.	Adaptive finite element analysis
 \paragraph{}
 When complex geometric input is involved, chances are that a considerably fine mesh is required to capture the localized phenomena.
-However, a naive implemented mesh generation algorithm usually produce a uniform mesh where small elements are created even though they are only necessary in limited areas.
+However, a naive implemented mesh generation algorithm usually produce\hl{s} a uniform mesh where small elements are created even though they are only necessary in limited areas.
 Hence the adaptive finite element analysis was proposed to maximize the quality of the numerical solution for a given amount of the computational effort.
 In this method, tiny elements are generated at the required areas only and coarse mesh is expected for the rest.
 Since the stress or the displacement is unknown before the numerical method is conducted, an adaptive mesh can be difficult to be generated based on the geometry and boundary condition only.
@@ -57,17 +57,17 @@ Nowadays, the employment of rational polynomial functions in description of geom
 While, the geometric descriptions adopted by engineers today for CAD and that for analysis are totally different.
 Furthermore, frequent design modifications in fast pace, modern society restricts the usage of analysis if a new mesh cannot be created in a short duration.
 \paragraph{}
-Creation of mesh in FEM can be expensive in terms of time and human resource.
+\hl{The} creation of mesh in FEM can be expensive in terms of time and human resource.
 One possible solution is trying to replace the geometric modelling tool in FEM by something more CAD-like.
 NURBS, for example, is a standard mathematical model utilized in CAD industry.
 Exact CAD geometric boundary is achieved with the help of the NURBS curve and surface.
-This idea to be geometrically exact with a minimum discretization was adopted in Isogeometric analysis developed in 2005 \citep{Hug2005b} and further refined recently \citep{Zhang2007,Hug2005b,Cot2006,Cot2009,Baz2006a,Baz2006b}.
+This idea to be geometrically exact with a minimum discretization was adopted in \hl{the} Isogeometric analysis developed in 2005 \citep{Hug2005b} and further refined recently \citep{Zhang2007,Hug2005b,Cot2006,Cot2009,Baz2006a,Baz2006b}.
 Furthermore, a simplified mesh refinement method by omitting the necessity for communication with the CAD geometry once the initial shape was received is also targeted \citep{Cot2007}.
 It shows advantage in the structure analysis, fluid mechanics \citep{Buf2011} and dynamics \citep{Cot2006}.
 
 % 7.	Scaled boundary finite element method
 \paragraph{}
-A Scaled Boundary finite element method (SBFEM) which has similarity with both the FEM and the BEM is proposed to eradicate the necessity of fundamental solution in BEM.
+A Scaled Boundary finite element method (SBFEM) which has similarity with both the FEM and the BEM is proposed to eradicate the necessity of fundamental solution in \hl{the} BEM.
 SBFEM is a novel semi-analytical approach developed by Wolf and Song \citep{Wol1999}.
 As a method developed based on the FEM and the BEM, the SBFEM is a fundamental-solution-less boundary element method which keeps the benefits of the both as well as provides some effective solutions to the limitations to the FEM and the BEM \citep{Wol1999}.
 The fundamental solution is no longer required, spatial dimension is reduced by one as only the boundary is meshed with surface elements which leads to a decline in the number of unknowns and achievement of infinite boundary \citep{Wol2003}.
@@ -87,7 +87,7 @@ Considerable research on solving this incompatibility by domain parameterization
 
 % mesh generation
 \paragraph{}
-the conventional FEM allows only hexahedron, tetrahedron, wedge and pyramid in 3D and triangular and quadrilateral elements in 2D which poses a heavy burden on mesh generation.
+\hl{T}he conventional FEM allows only hexahedron, tetrahedron, wedge and pyramid in 3D and triangular and quadrilateral elements in 2D which poses a heavy burden on mesh generation.
 In order to achieve a reasonably accurate result, the mesh of the traditional FEM is required to conform to the boundary of the problem domain.
 One rough estimate provided by \cite{Hug2005} suggests that more than half of the overall analysis time is spent on meshing in the industries such as automotive and aerospace where complex shapes are involved.
 As a consequence, it could be necessary to develop an automatic mesh generation algorithm using limited types of shapes \citep{Frey:2007:MGA:1205626}.
@@ -110,7 +110,7 @@ After the design files (IGES file and STL file in 3D) are delivered in electroni
 The SBFEM is adopted as it requires only the boundary information and hence provides a seamless integration with the CAD modeling.
 The main objectives of this thesis are as follows
 \begin{enumerate}
-    \item Minimize human effort spent on structural analysis
+    \item Minimize human efforts spent on structural analysis
     \item Be compatible with arbitrary geometric input in both 2D and 3D
     \item Generate high quality mesh
     \item Retain exact geometry
@@ -126,7 +126,7 @@ In the next chapter, a literature review on the existing numerical methods inclu
 The advantages and disadvantages of different methods are critically discussed.
 
 \paragraph{}
-In Chapter 3, the idea of the isogeometric analysis is extended to the SBFEM to solve 2D problem including linear elasticity and linear elastic fracture mechanics.
+In Chapter 3, the idea of the isogeometric analysis is extended to the SBFEM to solve 2D problem\hl{s} including linear elasticity and linear elastic fracture mechanics.
 The NURBS basis functions are adopted as the shape functions in the SBFEM instead of the conventional Legendre polynomials.
 Some key formulations in linear elasticity and linear elastic fracture mechanics in the SBFEM using the NURBS shape functions are derived.
 In order to perform a numerical integration on piecewise polynomials, a knot insertion is adopted to convert a piecewise polynomial to multiple non-piecewise polynomials.
@@ -146,7 +146,7 @@ In Chapter 5, an adaptive mesh refinement algorithm is proposed by the help of m
 Expressions related to the eigenvalues of the SBFEM formulation together with some key geometric properties of the scaled boundary finite element are obtained as the error indicators.
 The models trained by the Multilayer Perceptron (MLP), the Support Vector Machine (SVM) using radial kernel function and the random forest are compared and the MLP model which achieves the best performance is used.
 In order to improve the accuracy of the MLP, regularization methods including bagging and dropout are adopted.
-Due to the lack of eigenvalue error indicator in first order triangular element, method that eliminates these situation is produced.
+Due to the lack of eigenvalue error indicator in first order triangular element\hl{s}, \hl{the} method that eliminates these situation is produced.
 A matrix representation of NURBS curves is presented to achieve a higher efficiency and stability in calculating the intersections between a line and a NURBS curve.
 Stress analysis is conducted on 2D linear elasticity problems.
 

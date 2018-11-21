@@ -1,7 +1,7 @@
 % !TeX root = ../thesis.tex
 \paragraph{}
 In some situations, the FEM mesh can be so locally coarse that some localized phenomena can not be captured.
-However, a naive implemented mesh generation algorithm usually produce a uniform mesh where small elements are created even though they are only necessary in limited areas.
+However, a naive implemented mesh generation algorithm usually produce\hl{s} a uniform mesh where small elements are created even though they are only necessary in limited areas.
 X-FEM \citep{Moes1999} or the Generalized FEM \citep{STROUBOULIS20014081,doi:10.1002/nme.4954} was proposed to enrich the model when the mesh is so coarse that the local scale phenomena (crack for example) can not be taken into account.
 Others developed the multigrid algorithms which permits relevant computations while keeping the computational cost acceptable to solve this problem \citep{doi:10.1002/nme.2427, doi:10.1002/nme.3037}.
 However, only ad-hoc softwares support enriched finite element model or multigrid \citep{Duval2018}, which leads to the fact that these methods may not be applicable to all circumstances, especially for the users of the softwares that lack of such features.
@@ -11,5 +11,5 @@ As a consequence, methods using a posteriori error estimator to refine the mesh 
 A posteriori error estimator using stress recovery technique for the SBFEM was also proposed \citep{NME:NME439}.
 However, some of these error estimators require extra work such as stress recovery.
 Besides, it could be difficult to determine the most suitable error indicator to a given problem.
-Machine learning and deep neural network introduced in Sec.~\ref{lr_sec:machine_learning} allows the usage of multiple error indicators was proposed \citep{SaeedIqbal;Graham.F.Carey2005}.
+Machine learning and deep neural network introduced in Sec.~\ref{lr_sec:machine_learning} allow the usage of multiple error indicators was proposed \citep{SaeedIqbal;Graham.F.Carey2005}.
 However, the fact that only the geometric properties were considered and the lack of physical indicators limit the effectiveness of this method.

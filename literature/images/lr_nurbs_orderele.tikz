@@ -8,7 +8,6 @@
 % where you can also make suggestions and rate matlab2tikz.
 % 
 \begin{tikzpicture}[scale=1]
-
 \begin{axis}[%
 width=1.95217803030303in,
 height=1.46030765503876in,

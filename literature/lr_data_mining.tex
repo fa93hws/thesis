@@ -18,7 +18,7 @@ The tasks usually include classification and regression problems in numerical ca
 As a way to measure the abilities of a machine learning program, quantitative measurement of its performance must be designed.
 Accuracy could be one of the most popular performance measurement in classification task.
 It is simply defined as the rate of examples for which the algorithms gives the same classification as the reality.
-In real world problem, the ability that a model performs on data that it has not seen before could be more important as it is related to its performance when used in real world problem.
+In real world problem, the ability that a model performs on data that it has not seen before could be more important as it is related to its performance when used in real world problem\hl{s}.
 Consequently, these performance measures are usually evaluated using a subset of the original data called test set.
 While another subset of the original data called training set is adopted to train the machine learning system.
 
@@ -41,7 +41,7 @@ There are plenty of machine learning algorithms such as Support Vector Machine (
 Multilayer Perceptron (MLP), also known as feedforward neural networks or deep feedforward networks will be introduced in detail in this section.
 
 \paragraph{}
-Fig.~\ref{lr_fig:ml_mlp_intro} illustrates an typical multilayer perceptron.
+Fig.~\ref{lr_fig:ml_mlp_intro} illustrates a typical multilayer perceptron.
 The reason why it is called feedforward is because that all calculation are conducted all the way from the inputs $x$ to the outputs $y$, passing the intermediate computations.
 There is no feedback from a deeper layer to a shallower layer otherwise it becomes a recurrent neural network.
 It is called neural networks is because that they are usually defined by a composition of several distinct functions.
@@ -87,7 +87,7 @@ However, the merits outweigh the shortcomings since the generalization is as hig
 \subsection{Gradient based optimization}
 \paragraph{}
 The learning problem of the MLP can be generalized as a optimization problem in mathematics.
-In other words, the learning algorithm is to find the global minimum value of a specific value on a high dimensional surface.
+In other words, the learning algorithm is to find the global minimum of a specific value on a high dimensional surface.
 The function need to be minimized is called the criterion and it is called cost function or loss function when it is being minimized.
 Fig.~\ref{lr_fig:ml_gradient_optimization} illustrates how the derivatives are used to perform a gradient descent algorithm on a parabola.
 \begin{figure}
@@ -102,13 +102,13 @@ Fig.~\ref{lr_fig:ml_gradient_optimization} illustrates how the derivatives are u
 In a two dimensional curve which can be expressed by function $y=f(x)$ with real numbers $x$ and $y$.
 The derivative $f^\prime=\frac{dy}{dx}$ is ultra useful to determine the global minimal value of a function as it stands for the slope and the slope tells whether $y$ is becoming smaller or larger when $x$ increase.
 The global minimal is proven to happen when the derivative equal to zeros or on the boundary if the function is continuous.
-While a point with zero slope does not necessary stands for a global minimal as it can be a local one or a saddle point.
+While a point with zero slope does not necessary stand for a global minimal as it can be a local one or a saddle point.
 \paragraph{}
-In training problem of the MLP, chances are that we are end up with a multidimensional function that is not convex which creates extra challenge to determine the global minimal from local ones and saddle points surrounded by very flat regions.
+In training problem\hl{s} of the MLP, chances are that we are end up with a multidimensional function that is not convex which creates extra challenge to determine the global minimal from local ones and saddle points surrounded by very flat regions.
 As a consequence, in practice, the algorithm will be terminated when a small enough local minimal is found instead of looking for the global one.
-In the situation where multiple input is involved, the concept of partial derivatives $\frac{\partial}{\partial x_i}f(x)$ is used to demonstrate the change in $y$ corresponding to the change in the $i$-th input $x_i$.
+In the situation where multiple inputs are involved, the concept of partial derivatives $\frac{\partial}{\partial x_i}f(x)$ is used to demonstrate the change in $y$ corresponding to the change in the $i$-th input $x_i$.
 The gradient $\nabla_x f(x)$ contains the partial derivatives in all directions and hence is used in solving the learning problem in MLP.
-In order to minimize loss function $f$, it is expected to determine the direction where $f$ decrease the fastest and it can be expressed in mathematical as \footnote{$\argmin_x f(x) = \left\{
+In order to minimize loss function $f$, it is expected to determine the direction where $f$ decreases the fastest and it can be expressed in mathematical as \footnote{$\argmin_x f(x) = \left\{
     x | x \in S \wedge \forall y \in S : f(y) \geq f(x)
 \right\}$}
 \begin{equation}
@@ -120,7 +120,7 @@ In order to minimize loss function $f$, it is expected to determine the directio
 \end{equation}
 %
 where $\mathbf{u}$ is a directional unit vector ($\mathbf{u}^T\mathbf{u}=1$) and $\theta$ is the angle between $\mathbf{u}$ and the gradient.
-it can be concluded that $f$ can be decreased in the fastest way in the direction of the reverse of the gradient which is called gradient descent in Eq.~\ref{lr_eq:ml_gradient_descent}.
+It can be concluded that $f$ can be decreased in the fastest way in the direction of the reverse of the gradient which is called gradient descent in Eq.~\ref{lr_eq:ml_gradient_descent}.
 \begin{equation}
     x^\prime = x - \epsilon \nabla_x f(x)
     \label{lr_eq:ml_gradient_descent}
@@ -159,14 +159,14 @@ The gradient then can be calculated based on minibatch with $O(1)$ operation as
 \end{equation}
 %
 The most outstanding feature of the MLP compared to linear models is that it can capture non-linear features automatically which results in a non-convex loss function.
-As a consequence, learning algorithm in MLP adopt SGD to solve the optimization problem iteratively, instead of finding it directly with a closed form mathematical solution or by convex optimization.
+As a consequence, learning algorithms in the MLP adopt the SGD to solve the optimization problem iteratively, instead of finding it directly with a closed form mathematical solution or by convex optimization.
 This usually leads to a cost function with very low value rather than the global minimum.
 Furthermore, without a convergence guarantee as non-convex loss function is treated and SGD is adopted, the selection of the initial value may have significant influence on the final result.
 Hence, it is recommended to initialize all weights and bias to small values.
 
 \subsection{Cost function}
 \paragraph{}
-Choosing a suitable cost function can be import to train a MLP.
+Choosing a suitable cost function can be import\hl{ant} to train a MLP.
 In most of the cases, maximum likelihood or negative log-likelihood performs reasonably satisfactory as the cross-entropy between the training data and the labels remains as for linear models.
 It can be expressed as:
 \begin{equation}
@@ -178,7 +178,7 @@ One of the outstanding merits to adopt this method is that the design of the cos
 Setting parameter for a model $p(x|y)$ and the cost function $log p(y|x)$ can be determined automatically.
 Another advantage using maximum likelihood function as cost function is because that it helps to prevent gradient vanishing.
 The gradient descent plays an important role in the learning algorithm and the method becomes inefficiency or even fails when the cost function becomes extremely flat (very small gradient).
-In negative log-likelihood cost function, this kind of circumstance can be prevented because a logarithmic function saturate when the argument is extremely large.
+In negative log-likelihood cost function, this kind of circumstance can be prevented because a logarithmic function saturate\hl{s} when the argument is extremely large.
 
 \subsection{Output units}
 \paragraph{}
@@ -196,7 +196,7 @@ By enforcing a constrain of $[0,1]$ on the probability, it becomes
 \end{equation}
 %
 assuming linear unit is adopted.
-Even though a valid probability is defined, there will be some issue during the training as the gradient becomes zero when $w^T h +b>1$.
+Even though a valid probability is defined, there will be some issue\hl{s} during the training as the gradient becomes zero when $w^T h +b>1$.
 In gradient based learning algorithm, a zero gradient always cause problem because the algorithm may have very little information on how to improve the parameters.
 In order to guarantee a non-zero gradient, a sigmoid output (Eq.~\ref{lr_eq:ml_sigmoid}) unit can be taken.
 \begin{equation}
@@ -208,7 +208,7 @@ where $\sigma$ is the logistic sigmoid function
     \sigma = \frac{1}{1+e^{-x}}
 \end{equation}
 %
-A sigmoid unit can be regarded as a combination of linear unit and a sigmoid activation function that convert the output from the linear component $z$ into a probability.
+A sigmoid unit can be regarded as a combination of linear unit and a sigmoid activation function that convert\hl{s} the output from the linear component $z$ into a probability.
 The definition of the probability distribution over $y$ using the value $z$ will be discussed.
 The sigmoid can be motivated by building an unnormalized probability distribution $\tilde{P}(y)$, which does not sum to 1.
 A valid probability distribution then can be determined by dividing by a specific constant.
@@ -250,7 +250,7 @@ It helps the gradient descent learning algorithms to function with stability.
 
 \subsection{Hidden units}
 The choice of the hidden units lack of definitive principles and is still an active area of research.
-Nevertheless, the rectified linear unit (RELU) usually acts as a default option.
+Nevertheless, the rectified linear unit (RELU) usually acts as the default option.
 RELU uses an activation function that maps $g(z)$ to $max\{0,z\}$ as shown in Fig.~\ref{lr_fig:ml_relu}.
 \begin{figure}[!ht]
     \centering
@@ -351,7 +351,7 @@ It is defined as the harmonic mean of them.
 ROC is a True Positive Rate(TPR) vs False Positive Rate(FPR) curve (Fig.~\ref{lr_fig:performance_roc}) where $TPR=R$ and $FPR=FP/(FP+TN)$
 \begin{figure}[h!]
     \centering
-    \scalebox{0.25}{
+    \scalebox{0.5}{
         \includegraphics{adaptivity/images/svm_roc.jpg}
     }
     \caption[Receiver operating characteristic(ROC)]{Receiver operating characteristic(ROC)}

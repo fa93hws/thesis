@@ -1,4 +1,4 @@
-\section{Pressurized hollow sphere}
+\subsection{Pressurized hollow sphere}
 \paragraph{}
 The problem is a pressurized hollow sphere subjected to the internal pressure.
 The geometry of the problem is described in Fig.\ref{oct_fig:ex_pre-hollow-sphere}. 
@@ -13,11 +13,11 @@ The geometry of the problem is described in Fig.\ref{oct_fig:ex_pre-hollow-spher
 \paragraph{}
 In the example, the external pressure is set to be zero so that only the internal one is considered.
 The geometric properties are: $a=\SI{10}{\meter}$ and $b=\SI{50}{\meter}$.
-The boundary condition is: $p_a = \SI{10}{\newton \per \square \meter}$ ,$p_b = 0$ and the rigid body motion is prevented.
+The boundary condition\hl{s are}: $p_a = \SI{10}{\newton \per \square \meter}$ ,$p_b = 0$ and the rigid body motion is prevented.
 The material properties are: $E=\SI{200}{\newton \per \square \meter}$ and $\nu=0.3$.
 For simplification, only a quarter of the sphere is analysed as shown in Fig.~\ref{oct_fig:ex_hollow_sphere_mesh_1716}
 Analytical surface traction is applied on all of the boundary surfaces.
-First order tetrahedral element is adopted to calculated the displacement and stress and they are compared to the exact solution as in Eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
+First order tetrahedral element is adopted to calculated the displacement and \hl{the} stress and they are compared to the exact solution as in Eq.~\ref{oct_eq:ex_hollow_sphere_ana_sol} in spherical coordinate.
 
 \begin{subequations}
 \begin{align}
@@ -28,7 +28,7 @@ First order tetrahedral element is adopted to calculated the displacement and st
   \label{oct_eq:ex_hollow_sphere_ana_sol}
 \end{align}
 \end{subequations}
-The tensor transformation from spherical coordinate to cartesian coordinate can be written as Eq.~\ref{eqn:transformation} with according to Fig.~\ref{octree_fig:oct_ex_hollow_sphere_tran}.
+The tensor transformation from spherical coordinate to cartesian coordinate can be written as Eq.~\ref{eqn:transformation} according to Fig.~\ref{octree_fig:oct_ex_hollow_sphere_tran}.
 \begin{subequations}
   \begin{align}
     \begin{bmatrix}
@@ -127,7 +127,7 @@ The tensor transformation from spherical coordinate to cartesian coordinate can 
 %   \label{oct_fig:ex_hollow_sphere_meshP}
 % \end{figure}
 
-Stress boundary in Eq.~\ref{oct_eq:ex_sphere_hole_bond_str} condition is applied on two spherical surfaces.
+Stress boundary \hl{condition} in Eq.~\ref{oct_eq:ex_sphere_hole_bond_str} is applied on two spherical surfaces.
 \begin{subequations}
     \begin{align}
     \sigma_{RR}(R=a,\phi,\theta) & = \frac{p_aa^3-p_bb^3}{b^3-a^3} - \frac{(p_a-p_b)b^3a^3}{(b^3-a^3)R^3}\\

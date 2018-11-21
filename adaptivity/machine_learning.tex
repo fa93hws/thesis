@@ -1,6 +1,6 @@
 \paragraph{}
 Due to the fact that there are a few error indicators, it could be hard to determine the relationship between them and whether a subdomain needs refinement or not.
-As a result, specific technique is required in order to search for the patterns in the data to find this relationship.
+As a result, specific technique is required in order to search for the patterns in the data.
 After that, the final decision which is a binary classification in this case as each subdomain will be labeled as ``refine'' or ``not refine'' can be made based on the input of the error indicators explained in Sec.~\ref{adap_sec:error_indicator}.
 Hence, the discovery of regularities plays a key role in the adaptive analysis and an automatic discovery of regularities is usually associated with pattern recognition by the help of algorithms.
 
@@ -49,7 +49,7 @@ The training data is annotated with whether a subdomain is refined or not and th
     \label{adap_fig:svm_train_cantilever}    
 \end{figure}
 %
-With the same examples, uniform mesh of quadtree is conducted and the same region are marked as refined as shown in Fig.~\ref{adap_fig:svm_train_my}.
+With the same example, uniform mesh of quadtree is conducted and the same region are marked as refined as shown in Fig.~\ref{adap_fig:svm_train_my}.
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{1\linewidth}
@@ -84,7 +84,7 @@ Criteria taken into consideration are:
 \paragraph{Bagging}
 \label{adp_sec:ml_bagging}
 Bagging is a technique that utilize multiple models in order to increase the accuracy of the prediction \citep{Breiman1996}.
-The principle of idea of that is simple: training multiple models separately and let them vote for the prediction.
+The principle idea of that is simple: training multiple models separately and let them vote for the prediction.
 It is adopted vastly in machine learning.
 The idea behind the optimization technique is that different models often make different errors on the same test set.
 Take a set of $k$ regression models for an example, error $\epsilon_i$ is made by each model on each example.
@@ -223,9 +223,9 @@ They can be indexed into the family of sub-models by element-wise multiplication
 
 \subsubsection{Indicator used in adaptivity}
 \paragraph{}
-All terms used in the performance indicators in machine learning are introduced in Sec.~\ref{lr_ml:indicators}
+All terms used in the performance indicators in machine learning are introduced in Sec.~\ref{lr_ml:indicators}.
 The balance of the indicators is highly dependent on classifiers' objective.
-Take the spam detector for an example, a false positive can be more dangerous than a false negative as an important e-mail being marked as spam can be a disaster.
+Take the spam detector for an example, a false positive can be more dangerous than a false negative is as an important e-mail being marked as spam can be a disaster.
 While in adaptivity, there may be no favour over either of them.
 It is because the refinement of a cell with lower error or leaving a cell with higher error unrefined may not produce significant influence on the final result.
 As a result, F1 score can be the most important indicator as it takes both recall rate and precision into consideration.
@@ -245,14 +245,14 @@ Half of the training data ($320$ out of $640$) are used to train the model and t
 Different class weights are set for testing different performance in regard to all indicators in Fig.~\ref{adap_fig:svm_performance_0}.
 \begin{figure}[h!]
     \centering
-    \scalebox{0.3}{
+    \scalebox{0.4}{
         \includegraphics{adaptivity/images/svm_performance_0.eps}
     }
     \caption{Accuracy, precision, recall rate and F1 score vs different class weight}
     \label{adap_fig:svm_performance_0}
 \end{figure}
 %
-A class weight is a vector that influence the predication directly.
+A class weight is a vector that influence\hl{s} the predication directly.
 The model will calculate the probability for each classification based on the input and the one with higher probability will be chosen as the result in default situation.
 Change class weight to $1:2$ will force the model to choose first class when its probability is higher than $66.67\%$ instead of $50\%$.
 A class weight of $3:7$ was chosen from Fig.~\ref{adap_fig:svm_performance_0} to guarantee a balance between precision and recall rate.

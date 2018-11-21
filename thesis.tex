@@ -6,10 +6,12 @@
 \usepackage{float}      % h!
 \usepackage{pdfpages}
 \usepackage{longtable}
+% \usepackage{soul}
 
 % font
 \usepackage{helvet}
-\usepackage{color}
+\usepackage{scalefnt}
+\usepackage{color,soul}
 \renewcommand{\familydefault}{\sfdefault}
 
 % caption
@@ -22,6 +24,7 @@
 \usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{placeins}
 
 % page
 \usepackage{fancyhdr}
@@ -71,6 +74,9 @@
 \newcommand{\RN}[1]{
     \textup{\uppercase\expandafter{\romannumeral#1}}
 }
+\renewcommand{\hl}[1]{
+    #1
+}
 
 %pdf plot
 % \pgfplotsset{compat=1.15}
@@ -92,7 +98,7 @@
 
     \begin{figure*}[h!]
         \centering
-        \scalebox{0.3}{\includegraphics{UNSW.png}}
+        \scalebox{0.3}{\includegraphics{unsw.png}}
     \end{figure*}
 
     { School of Civil \& Environmental Engineering}\\

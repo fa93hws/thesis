@@ -1,21 +1,21 @@
 \subsection{Projection algorithm}
 \paragraph{}
-Point projection algorithm is to find the nearest point in parameter $(u)$ on the NURBS curve of the test point.
+A point projection algorithm is to find the nearest point in parameter $(u)$ on the NURBS curve of the test point.
 In the proposed method, all points on the NURBS curve is generated based on the approximated polylines and hence are not exactly on the boundaries.
 Although there exists a closed form solution for point projection, it require the order of the NURBS curve must be less than $4$ \citep{Pie1997}.
 As a consequence, a projection algorithm \citep{MA200379} using Newton-Raphson method is introduced to tackle this problem.
 
 \paragraph{}
-For a given point $P=(x,y)$, its projection on the curve $C(u$ so that the distance $|P-C(u)|$ is minimum is targeted.
-However, in the proposed method, the existence of the large number of the possible curves increase the computational cost significantly.
-The projection point for the test point $P$ need to be determined for every existing curves and the one with the smallest minimum distance will be selected.
-One possible improvement could be limit the possible curves to only a few by utilizing the fact that the NURBS curves has been divided into multiple sub-curves without interior knot by knot insertion introduced in Sec.~\ref{lr_sec:nurbs_knot_ins}
+For a given point $P=(x,y)$, its projection on the curve $C(u)$ so that the distance $|P-C(u)|$ is minimum is targeted.
+However, in the proposed method, the existence of the large number of the possible curves increases the computational cost significantly.
+The projection point for the test point $P$ need to be determined for every existing curve and the one with the smallest minimum distance will be selected.
+One possible improvement could be limit the possible curves to only a few by utilizing the fact that the NURBS curves has been divided into multiple sub-curves without interior knot by knot insertion introduced in Sec.~\ref{lr_sec:nurbs_knot_ins}.
 Another property that can be utilized is that most of the test point $P$ is expected to be extremely close to its projection on the curve $C(u)$.
 
 \paragraph{}
-As a consequence, the strong convex hull property can be adopted to limit the number of possible curves to less than $2$.
+As a consequence, the strong convex hull property can be adopted to limit the number of possible curves to \hl{be} less than $2$.
 The building of the convex hull is explained in detail in Sec.~\ref{qdt_sc:convex_hull}.
-The signed distance of the test point to all curves' convex hull is calculated and only the curves with negative signed distance which indicate that the point is in the convex hull will be selected as candidates.
+The signed distance\hl{s} of the test point to all curves' convex hull\hl{s} \hl{are} calculated and only the curves with negative signed distance\hl{s} which indicate that the point is in the convex hull will be selected as candidates.
 If no negative distance is detected, a few number (taken as $3$ in the proposed method) of curves with minimum signed distance will be selected.
 
 \paragraph{}
@@ -97,7 +97,7 @@ The iteration will be terminated if this condition is meet.
 \subsection{Convex hull in 2D}
 \label{qdt_sc:convex_hull}
 \paragraph{}
-The convex hull property of the NURBS curve indicates that all points on the curve must be contained within the convex hull constructed by its control points \citep{SELIMOVIC2009772}
+The convex hull property of the NURBS curve indicates that all points on the curve must be contained within the convex hull constructed by its control points \citep{SELIMOVIC2009772}.
 There are great number of algorithm that can be used including gift wrapping \citep{Cormen:2009:IAT:1614191}, graham scan \citep{ANDERSON197853}, quick hull \citep{Barber:1996:QAC:235815.235821}, Chan's algorithm \citep{Chan1996} and so on \citep{doi:10.1137/0215021, ANDREW1979216}.
 The quick hull is adopted in the proposed as it provides a computationally efficient and stable algorithm.
 The algorithm utilize the idea of `` divide and conquer'' to build the convex hull with an expected time complexity of $O(nlog(n))$ and  $O(n^2)$ for the worst case.

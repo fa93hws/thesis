@@ -43,6 +43,7 @@
     "interpolants",
     "isoparametric",
     "multigrid",
+    "parallelized",
     "posteriori",
     "quadratically",
     "softmax",

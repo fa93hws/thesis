@@ -17,16 +17,16 @@ The preprocessing of the proposed method is conducted automatically without losi
 In 2D problems, the geometric information from the IGES file exported from CAD design is extracted and a quad-tree based mesh will be generated automatically.
 High mesh quality and reduced computational cost in the calculation of the element stiffness matrix can be expected. 
 For 3D cases, both of the STL and the IGES files are exported from the CAD design and an octree based mesh will be generated based on STL file.
-Since the STL file represents the triangulation of the geometric surfaces, intersections calculated during cutting stage is supposed to be located on the triangular plane instead of the original surface.
+Since the STL file represents the triangulation of the geometric surfaces, intersections calculated during cutting stage \hl{are} supposed to be located on the triangular plane\hl{s} instead of the original surface\hl{s}.
 As a consequence, a point projection algorithm is adopted to move the points back to the NURBS surfaces after the mesh has been generated.
 Then, an arbitrary geometric shape in 2D and 3D can be meshed automatically with high quality mesh and solved by the SBFEM.
 The geometric exact can also be achieved by replacing the distance calculation with finding that between the edge of the element and the NURBS surface directly. 
 
 \paragraph{}
 After the solution is determined from the SBFEM, a mesh refinement may be necessary to improve the accuracy and check the convergence.
-In order to find out the scaled boundary finite element which improves the accuracy significant after refinement, an adaptive mesh refinement algorithm is required.
+In order to find out the scaled boundary finite element which improves the accuracy significant\hl{ly} after refinement, an adaptive mesh refinement algorithm is required.
 Expressions related to the eigenvalues of the SBFEM formulation are adopted as the physical error indicator to prevent extra work such as stress recovery.
-Some key geometric error estimator including area of the subdomain, minimal angel and so on are also included.
+Some key geometric error estimator including area of the subdomain, minimal angle and so on are also included.
 The decision based on numerous error estimators are conducted by the help of a machine learning algorithm.
 The proposed adaptive mesh refinement exhibits higher rate of convergence compared to an uniform mesh refinement using SBFEM.
 
@@ -76,11 +76,11 @@ The proposed method is able to generate the mesh from an arbitrary geometric inp
 
 \section{Future work}
 \paragraph{}
-As discussed in Chapter 3, there is no exact numerical integration for the NURBS basis function at the moment as its rational property currently.
+As discussed in Chapter 3, there is no exact numerical integration for the NURBS basis function at the moment \hl{due to} its rational property.
 Furthermore, the computational cost of calculating a value of NURBS basis function can be $10$ times higher than that of the traditional Legendre polynomials.
-In chapters after Chapter 3, the conventional shape functions are adopted instead of the NURBS basis functions to avoid too many expensive computational operation when the number of the elements grow drastically.
-Future work can be performed on derive an exact and efficient numerical integration quadrature to prevent extra error.
-Algorithm that evaluate the NURBS basis function can also be optimized so that the whole programme can be much more efficient as it is involved in almost all NURBS operation.
+In chapters after Chapter 3, the conventional shape functions are adopted instead of the NURBS basis functions to avoid too many expensive computational operation\hl{s} when the number of the elements grow drastically.
+Future work can be performed on \hl{deriving} an exact and efficient numerical integration quadrature to prevent extra error.
+\hl{The} algorithm that evaluate\hl{s} the NURBS basis function can also be optimized so that the whole programme can be much more efficient as it is involved in almost all NURBS operation\hl{s}.
 
 \paragraph{}
 As discussed in Chapter 4, one of the most outstanding advantages of using machine learning algorithm to train the model responsible for making decision whether an element need to be refined lies in the allowance of unlimited number of error indicators.
@@ -88,4 +88,4 @@ The effectiveness of the deep neural network is closely related to the quantity 
 In Chapter 4, less than a thousand of the training data is used, which limits the depth of the neural network and the number of the error indicators.
 Future work can concentrate on building a platform so the cloud computing can be utilized and the service can be available to the whole community.
 By having a platform, number of the training data can be solved naturally as any request of calculation contributes to one extra training data.
-A large training set then motive the scholars adding any error indicator.
+A large training set then motive\hl{s} the scholars adding any error indicator.

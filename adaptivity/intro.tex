@@ -2,7 +2,7 @@
 The main objective of this chapter is to introduce a way that can develop an adaptive mesh automatically based on the posteriori error estimator.
 Most of the unnecessary refinement in the region which contributes few to the improvement of the accuracy will be prevented.
 The expressions related to the eigenvalues of the SBFEM formulation representing the quantity of the error in the interpolation are adopted as one of the error indicators, together with the area and other geometric properties of the Scaled Boundary Finite Element.
-A machine learning model using the Multilayer Perceptron (MLP) is trained to determine whether a Scaled Boundary Finite Element needs refinement or not based on all these information based on all error estimators mentioned above.
+A machine learning model using the Multilayer Perceptron (MLP) is trained to determine whether a Scaled Boundary Finite Element needs refinement or not based on all these information.
 
 \paragraph{}
 The proposed method enhances the SBFEM with quad-tree mesh introduced in Sec.~\ref{qdt_sec:main} and the outstanding features of the method are:
@@ -16,6 +16,6 @@ The proposed method enhances the SBFEM with quad-tree mesh introduced in Sec.~\r
 This chapter is organized as follows.
 The error indicators used in the proposed method will be introduced first.
 After that, a machine learning algorithm that can be trained to determine the necessity of the refinement of a cell based on these indicators is presented.
-Furthermore, a triangle merging algorithm is developed to bypass the lack of eigenvalue error indicators in first order triangular element in the SBFEM.
+Furthermore, a triangle merging algorithm is developed to bypass the lack of eigenvalue error indicators in first order triangular element\hl{s} in the SBFEM.
 Finally, the matrix representation of NURBS curves is introduced to improve the computational efficiency and the robustness of the NURBS related calculation.
 The accuracy and the convergence properties of the proposed techniques are demonstrated with benchmark problems in the context of linear elasticity, followed by concluding remarks in the last section.

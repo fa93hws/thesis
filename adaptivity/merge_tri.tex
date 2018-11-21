@@ -1,8 +1,8 @@
 
 \paragraph{}
 % why
-Due to the property of the SBFEM, first order triangle element will result identical eigenvalues of one.
-Under this circumstances, the displacement, nodal forces and energy using eigenvalues failed as the they are always equal to the order of the shape function, one.
+Due to the property of the SBFEM, first order triangle element\hl{s} will result identical eigenvalues of one.
+Under this circumstance, the displacement, nodal force and energy using eigenvalues failed as the they are always equal to the order of the shape function, one.
 As a consequence, the triangular elements shall be merged with their neighbours to form a larger polygon.
 Besides, due to the fact that triangular elements are formed by cutting with the geometric boundary, triangular elements have a higher chance to be obtuse triangles, which lead to poor quality mesh.
 As a result, merging triangle can help to improve the mesh quality as well.
@@ -44,7 +44,7 @@ If there are two remaining possibility as in Fig.~\ref{adap_fig:mt_choose_3p}, t
 Triangle $0$ in Fig.~\ref{adap_fig:mt_choose_3p} will be merged with cell $1$ instead of $3$ because $AB > AC$.
 It is because of the following reason.
 Take Fig.~\ref{adap_fig:mt_choose_3p} as an example, edge $AD$ will be extended to $DC$ if triangle $0$ is merged with polygon $1$.
-So merging triangle with the polygon that share a longer edge with means the polygon will less elongated and leads to a better mesh quality.
+So merging triangle with the polygon that share a longer edge \hl{indicates} the polygon will less elongated and leads to a better mesh quality.
 Furthermore, the polygon to merge with the triangle must have the same material property with the triangular element, otherwise they shall not be combined together.
 In some extreme case, the merging triangle may not be possible as the triangular element itself fill the whole region with a specific material property.
 A reasonable selection of hyperparameter in generating mesh can prevent it from happening.
@@ -99,8 +99,8 @@ where $A$ stands for the area of the polygon.
 \paragraph{}
 % concave polygon
 However, centroid of a concave polygon may be located at the outside of the polygon, result in an invalid scaling center.
-Consequently, special treatment is need to adjust the scaling center.
-If the mesh in the previous steps are correct, there should not be more than one reflexive angle in the polygon.
+Consequently, special treatment is \hl{necessary} to adjust the scaling center.
+If the mesh in the previous steps \hl{is} correct, there should not be more than one reflexive angle in the polygon.
 So the vertex of that reflexive angle must be found first.
 It can be easily done by check the cross product between any two adjacent edges as vectors and find the only one whose sign is different with others.
 An angle bisector then is drawn and the intersection between it with the edge of the polygon will be recorded (point $B$ in Fig.~\ref{adap_fig:mt_concave_sc}).
